@@ -1,70 +1,86 @@
-const SET_USER = 'session/setUser';
-const REMOVE_USER = 'session/removeUser';
+//! --------------------------------------------------------------------
+//*                          Action Types
+//! --------------------------------------------------------------------
 
-const setUser = (user) => ({
-  type: SET_USER,
-  payload: user
+const SET_USER = "session/setUser";
+const REMOVE_USER = "session/removeUser";
+
+//! --------------------------------------------------------------------
+//*                         Action Creator
+//! --------------------------------------------------------------------
+
+const action = (type, payload) => ({
+  type,
+  payload,
 });
 
-const removeUser = () => ({
-  type: REMOVE_USER
-});
+//! --------------------------------------------------------------------
+//*                             Thunks
+//! --------------------------------------------------------------------
 
 export const thunkAuthenticate = () => async (dispatch) => {
-	const response = await fetch("/api/auth/");
-	if (response.ok) {
-		const data = await response.json();
-		if (data.errors) {
-			return;
-		}
-
-		dispatch(setUser(data));
-	}
+  const response = await fetch("/api/auth/");
+  if (response.ok) {
+    const data = await response.json();
+    if (data.errors) {
+      return;
+    }
+    dispatch(action(SET_USER, data));
+  }
 };
 
-export const thunkLogin = (credentials) => async dispatch => {
+//! --------------------------------------------------------------------
+
+export const thunkLogin = (credentials) => async (dispatch) => {
   const response = await fetch("/api/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(credentials)
+    body: JSON.stringify(credentials),
   });
 
-  if(response.ok) {
+  if (response.ok) {
     const data = await response.json();
-    dispatch(setUser(data));
+    dispatch(action(SET_USER, data));
   } else if (response.status < 500) {
     const errorMessages = await response.json();
-    return errorMessages
+    return errorMessages;
   } else {
-    return { server: "Something went wrong. Please try again" }
+    return { server: "Something went wrong. Please try again" };
   }
 };
+
+//! --------------------------------------------------------------------
 
 export const thunkSignup = (user) => async (dispatch) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(user)
+    body: JSON.stringify(user),
   });
 
-  if(response.ok) {
+  if (response.ok) {
     const data = await response.json();
-    dispatch(setUser(data));
+    dispatch(action(SET_USER, data));
   } else if (response.status < 500) {
     const errorMessages = await response.json();
-    return errorMessages
+    return errorMessages;
   } else {
-    return { server: "Something went wrong. Please try again" }
+    return { server: "Something went wrong. Please try again" };
   }
 };
 
+//! --------------------------------------------------------------------
+
 export const thunkLogout = () => async (dispatch) => {
   await fetch("/api/auth/logout");
-  dispatch(removeUser());
+  dispatch(action(REMOVE_USER));
 };
 
-const initialState = { user: null };
+//! --------------------------------------------------------------------
+//*                            Reducer
+//! --------------------------------------------------------------------
 
+const initialState = { user: null };
 function sessionReducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
