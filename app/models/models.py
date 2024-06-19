@@ -31,7 +31,8 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'builds': [build.to_dict() for build in self.builds]
         }
 
 
