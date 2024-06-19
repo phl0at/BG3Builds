@@ -1,3 +1,7 @@
+## Database Schema Design
+
+![db-schema](./images/DB_SCHEMA.png)
+
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
@@ -235,11 +239,6 @@ Returns all the Builds the logged-in user owns.
           "id": 1,
           "owner_id": 1,
           "name": "My First Build",
-          "proficiencies": {
-            "stealth": 2,
-            "nature": 2,
-            "animal_handling": 2
-          },
           "abilities": {
             "build_id": 1,
             "strength": 8,
@@ -250,6 +249,11 @@ Returns all the Builds the logged-in user owns.
             "charisma": 16,
             "plus_1": "Charisma",
             "plus_2": "Dexterity"
+          },
+          "proficiencies": {
+            "stealth": 2,
+            "nature": 2,
+            "animal_handling": 2
           },
           "character": {
             "build_id": 1,
@@ -414,11 +418,6 @@ Creates and returns a new build.
     {
       "owner_id": 1,
       "name": "My Second Build",
-      "proficiencies": {
-        "stealth": 2,
-        "nature": 2,
-        "animal_handling": 2
-      },
       "abilities": {
         "build_id": 1,
         "strength": 8,
@@ -429,6 +428,11 @@ Creates and returns a new build.
         "charisma": 16,
         "plus_1": "Charisma",
         "plus_2": "Dexterity"
+      },
+      "proficiencies": {
+        "stealth": 2,
+        "nature": 2,
+        "animal_handling": 2
       },
       "character": {
         "build_id": 1,
@@ -488,11 +492,6 @@ Creates and returns a new build.
       "id": 2,
       "owner_id": 1,
       "name": "My Second Build",
-      "proficiencies": {
-        "stealth": 2,
-        "nature": 2,
-        "animal_handling": 2
-      },
       "abilities": {
         "build_id": 1,
         "strength": 8,
@@ -503,6 +502,11 @@ Creates and returns a new build.
         "charisma": 16,
         "plus_1": "Charisma",
         "plus_2": "Dexterity"
+      },
+      "proficiencies": {
+        "stealth": 2,
+        "nature": 2,
+        "animal_handling": 2
       },
       "character": {
         "build_id": 1,
@@ -1506,7 +1510,7 @@ Creates a new class for a build.
       "errors": {
         "build_id": "Is required",
         "name": "Is required",
-        "level": "Is required",
+        "level": "Is required"
       }
     }
     ```
@@ -1576,7 +1580,7 @@ Update and return an existing class table.
         "id": "Is required",
         "build_id": "Is required",
         "name": "Is required",
-        "level": "Is required",
+        "level": "Is required"
       }
     }
     ```
