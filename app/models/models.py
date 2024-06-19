@@ -31,3 +31,14 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email
         }
+
+
+class Build(db.Model):
+    __tablename__ = 'builds'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    name = db.Column(db.String(25), nullable=False)
