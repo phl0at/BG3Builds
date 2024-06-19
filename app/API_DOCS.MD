@@ -397,7 +397,7 @@ Returns the details of a build specified by its id.
 
     ```json
     {
-      "errors": "Build couldn't be found"
+      "errors": "Build could not be found"
     }
     ```
 
@@ -562,11 +562,15 @@ Creates and returns a new build.
   - Body:
 
     ```json
+    {
+      "errors": "Name is required"
+    }
+    ```
 
-      "errors": {
-        "name": "Name is required"
-      }
-
+    ```json
+    {
+      "errors": "Name must be 3 to 25 characters in length"
+    }
     ```
 
 ### Edit a Build
@@ -612,11 +616,15 @@ Updates and returns an existing build.
   - Body:
 
     ```json
+    {
+      "errors": "Name is required"
+    }
+    ```
 
-      "errors": {
-        "name": "Name is required"
-      }
-
+    ```json
+    {
+      "errors": "Name must be 3 to 25 characters in length"
+    }
     ```
 
 - Error response: Couldn't find a Server with the specified id
@@ -628,7 +636,7 @@ Updates and returns an existing build.
 
     ```json
     {
-      "message": "Build couldn't be found"
+      "message": "Build could not be found"
     }
     ```
 
@@ -666,7 +674,7 @@ Deletes an existing build.
 
     ```json
     {
-      "error": "Build couldn't be found"
+      "error": "Build could not be found"
     }
     ```
 
