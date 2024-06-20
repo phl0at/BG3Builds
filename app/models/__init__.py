@@ -1,3 +1,5 @@
 from .db import db
-from .models import User, Build, Class, BuildClass
+from .users import User
+from .builds import Build, Class, BuildClass
+from .engagements import Comment, Favorite
 from .db import environment, SCHEMA

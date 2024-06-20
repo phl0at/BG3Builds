@@ -19,7 +19,6 @@ def get_all_builds():
         .all()
     return [build.to_dict() for build in builds]
 
-
 ###########################GET USERS BUILDS##############################
 
 @build_routes.route("/current")
@@ -30,6 +29,7 @@ def get_owned_builds():
     """
     user_builds = Build.query \
         .options(joinedload(Build.classes)) \
+        .options(joinedload(Build.comments)) \
         .filter(Build.owner_id == current_user.id)
     return [build.to_dict() for build in user_builds]
 
@@ -91,19 +91,19 @@ def create_build():
         return { 'errors': errors }, 400
     else:
         build = Build(
-            name=name,
-            owner_id=owner_id,
-            character_name=character_name,
-            armor_class=armor_class,
-            origin=origin,
-            strength=strength,
-            dexterity=dexterity,
-            constitution=constitution,
-            intelligence=intelligence,
-            wisdom=wisdom,
-            charisma=charisma,
-            plus_1=plus_1,
-            plus_2=plus_2
+            name = name,
+            owner_id = owner_id,
+            character_name = character_name,
+            armor_class = armor_class,
+            origin = origin,
+            strength = strength,
+            dexterity = dexterity,
+            constitution = constitution,
+            intelligence = intelligence,
+            wisdom = wisdom,
+            charisma = charisma,
+            plus_1 = plus_1,
+            plus_2 = plus_2
         )
         db.session.add(build)
         db.session.commit()
@@ -154,23 +154,19 @@ def edit_build(id):
         return { 'errors': errors }, 400
     else:
         build.name = name
-        build.character_name=character_name,
-        build.origin=origin,
-        build.strength=strength,
-        build.dexterity=dexterity,
-        build.constitution=constitution,
-        build.intelligence=intelligence,
-        build.wisdom=wisdom,
-        build.charisma=charisma,
-        build.plus_1=plus_1,
-        build.plus_2=plus_2
+        build.character_name = character_name,
+        build.origin = origin,
+        build.strength = strength,
+        build.dexterity = dexterity,
+        build.constitution = constitution,
+        build.intelligence = intelligence,
+        build.wisdom = wisdom,
+        build.charisma = charisma,
+        build.plus_1 = plus_1,
+        build.plus_2 = plus_2
         db.session.commit()
 
-        return {
-            "id": build.id,
-            "owner_id": build.owner_id,
-            "name": build.name,
-        }
+        return build.to_dict()
 
 ###########################DELETE BUILD##############################
 
