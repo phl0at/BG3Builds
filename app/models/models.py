@@ -45,9 +45,46 @@ class Build(db.Model):
     name = db.Column(db.String(25), nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
+    abilities = db.relationship("Ability", backref="build", cascade="all, delete-orphan")
+
     def to_dict(self):
-        return {
+        build_dict = {
             'id': self.id,
             'name': self.name,
-            'owner_id': self.owner_id
+            'owner_id': self.owner_id,
+            'abilities': []
+        }
+        if len(self.abilities):
+            build_dict['abilities'] = self.abilities[0].to_dict()
+            
+        return build_dict
+
+class Ability(db.Model):
+    __tablename__ = 'abilities'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    build_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('builds.id')), nullable=False)
+    strength = db.Column(db.Integer, nullable=False)
+    dexterity = db.Column(db.Integer, nullable=False)
+    constitution = db.Column(db.Integer, nullable=False)
+    intelligence = db.Column(db.Integer, nullable=False)
+    wisdom = db.Column(db.Integer, nullable=False)
+    charisma = db.Column(db.Integer, nullable=False)
+    plus_1 = db.Column(db.String(12), nullable=False)
+    plus_2 = db.Column(db.String(12), nullable=False)
+
+    def to_dict(self):
+        return {
+            'build_id': self.build_id,
+            'strength': self.strength,
+            'dexterity': self.dexterity,
+            'constitution': self.constitution,
+            'intelligence': self.intelligence,
+            'wisdom': self.wisdom,
+            'charisma': self.charisma,
+            'plus_1': self.plus_1,
+            'plus_2': self.plus_2
         }

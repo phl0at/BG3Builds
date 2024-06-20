@@ -1,4 +1,4 @@
-from app.models import db, User, Build, environment, SCHEMA
+from app.models import db, User, Build, Ability, environment, SCHEMA
 from sqlalchemy.sql import text
 from werkzeug.security import generate_password_hash
 
@@ -34,6 +34,68 @@ def seed_all():
         db.session.add(build)
 
 
+    ## SEED ABILITIES
+    ability_list = [
+        {
+            'build_id': 1,
+            "strength": 14,
+            "dexterity": 10,
+            "constitution": 16,
+            "intelligence": 8,
+            "wisdom": 10,
+            "charisma": 16,
+            "plus_1": "Constitution",
+            "plus_2": "Charisma"
+         },
+        {
+            'build_id': 2,
+            "strength": 8,
+            "dexterity": 16,
+            "constitution": 14,
+            "intelligence": 8,
+            "wisdom": 12,
+            "charisma": 16,
+            "plus_1": "Charisma",
+            "plus_2": "Dexterity"
+         },
+        {
+            'build_id': 3,
+            "strength": 8,
+            "dexterity": 16,
+            "constitution": 14,
+            "intelligence": 8,
+            "wisdom": 12,
+            "charisma": 16,
+            "plus_1": "Charisma",
+            "plus_2": "Dexterity"
+         },
+        {
+            'build_id': 4,
+            "strength": 8,
+            "dexterity": 16,
+            "constitution": 14,
+            "intelligence": 8,
+            "wisdom": 12,
+            "charisma": 16,
+            "plus_1": "Charisma",
+            "plus_2": "Dexterity"
+         },
+    ]
+
+    for ability_data in ability_list:
+        abilities = Ability(
+            build_id=ability_data['build_id'],
+            strength=ability_data['strength'],
+            dexterity=ability_data['dexterity'],
+            constitution=ability_data['constitution'],
+            intelligence=ability_data['intelligence'],
+            wisdom=ability_data['wisdom'],
+            charisma=ability_data['charisma'],
+            plus_1=ability_data['plus_1'],
+            plus_2=ability_data['plus_2'],
+        )
+        db.session.add(abilities)
+
 
 
     db.session.commit()
@@ -49,7 +111,11 @@ def seed_all():
 def undo_all():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.builds RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.abilities RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
+        db.session.execute(text("DELETE FROM builds"))
+        db.session.execute(text("DELETE FROM abilities"))
 
     db.session.commit()

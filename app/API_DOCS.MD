@@ -803,15 +803,14 @@ Update and return an existing abilities table.
     ```json
     {
       "errors": {
-        "build_id": "Is required",
-        "strength": "Is required",
-        "dexterity": "Is required",
-        "constitution": "Is required",
-        "intelligence": "Is required",
-        "wisdom": "Is required",
-        "charisma": "Is required",
-        "plus_1": "Is required",
-        "plus_2": "Is required"
+        "strength": "Required",
+        "dexterity": "Required",
+        "constitution": "Required",
+        "intelligence": "Required",
+        "wisdom": "Required",
+        "charisma": "Required",
+        "plus_1": "Required",
+        "plus_2": "Required"
       }
     }
     ```
