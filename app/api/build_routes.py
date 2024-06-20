@@ -9,7 +9,6 @@ build_routes = Blueprint('builds', __name__)
 ###########################GET ALL BUILDS##############################
 
 @build_routes.route("/")
-@login_required
 def get_all_builds():
     """
         Returns all builds created by all users

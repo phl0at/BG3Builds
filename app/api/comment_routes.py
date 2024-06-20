@@ -36,7 +36,7 @@ def create_comment(build_id):
     if not message:
         return { 'errors': 'Message is required' }, 400
     elif len(message) < 1 or len(message) > 200:
-        return { 'errors': 'Maximum message length is 200 characters'}, 400
+        return { 'errors': 'Maximum length is 200 characters'}, 400
     else:
         comment = Comment(
             build_id=build_id,
@@ -52,7 +52,7 @@ def create_comment(build_id):
 
 @comment_routes.route("/<int:comment_id>", methods=["PUT"])
 @login_required
-def create_comment(comment_id):
+def edit_comment(comment_id):
     """
         Updates and returns a comment
     """

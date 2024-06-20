@@ -1,8 +1,8 @@
-"""comments
+"""init
 
-Revision ID: 5a7ac0cfec2e
+Revision ID: e765166268cd
 Revises: 
-Create Date: 2024-06-20 17:42:52.424332
+Create Date: 2024-06-20 19:18:39.657165
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '5a7ac0cfec2e'
+revision = 'e765166268cd'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,11 +35,13 @@ def upgrade():
     )
     op.create_table('builds',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=25), nullable=False),
-    sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.Column('character_name', sa.String(length=25), nullable=False),
     sa.Column('origin', sa.String(length=25), nullable=False),
-    sa.Column('armor_class', sa.Integer(), nullable=False),
+    sa.Column('race', sa.String(length=25), nullable=False),
+    sa.Column('sub_race', sa.String(length=25), nullable=True),
+    sa.Column('background', sa.String(length=25), nullable=False),
     sa.Column('strength', sa.Integer(), nullable=False),
     sa.Column('dexterity', sa.Integer(), nullable=False),
     sa.Column('constitution', sa.Integer(), nullable=False),
@@ -48,7 +50,8 @@ def upgrade():
     sa.Column('charisma', sa.Integer(), nullable=False),
     sa.Column('plus_1', sa.String(length=12), nullable=False),
     sa.Column('plus_2', sa.String(length=12), nullable=False),
-    sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
+    sa.Column('armor_class', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('build_classes',
@@ -61,19 +64,19 @@ def upgrade():
     )
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('owner_id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('build_id', sa.Integer(), nullable=False),
     sa.Column('message', sa.String(length=200), nullable=False),
     sa.ForeignKeyConstraint(['build_id'], ['builds.id'], ),
-    sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('favorites',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('owner_id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('build_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['build_id'], ['builds.id'], ),
-    sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###

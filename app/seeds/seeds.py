@@ -1,4 +1,4 @@
-from app.models import db, User, Build, Class, BuildClass, environment, SCHEMA
+from app.models import db, User, Build, Class, BuildClass, Comment, Favorite, environment, SCHEMA
 from sqlalchemy.sql import text
 from werkzeug.security import generate_password_hash
 
@@ -38,10 +38,12 @@ def seed_all():
     build_list = [
         {
             'name': 'Build 1-1',
-            'owner_id': 1,
+            'user_id': 1,
             'character_name': 'Tav',
             'origin': 'custom',
-            'armor_class': 15,
+            'race': 'Human',
+            'sub_race': None,
+            'background': 'Soldier',
             "strength": 14,
             "dexterity": 10,
             "constitution": 16,
@@ -49,14 +51,17 @@ def seed_all():
             "wisdom": 10,
             "charisma": 16,
             "plus_1": "Constitution",
-            "plus_2": "Charisma"
-            },
+            "plus_2": "Charisma",
+            'armor_class': 15
+        },
         {
             'name': 'Build 2-1',
-            'owner_id': 1,
+            'user_id': 1,
             'character_name': 'Tav',
             'origin': 'custom',
-            'armor_class': 15,
+            'race': 'Human',
+            'sub_race': None,
+            'background': 'Soldier',
             "strength": 14,
             "dexterity": 10,
             "constitution": 16,
@@ -64,13 +69,17 @@ def seed_all():
             "wisdom": 10,
             "charisma": 16,
             "plus_1": "Constitution",
-            "plus_2": "Charisma"},
+            "plus_2": "Charisma",
+            'armor_class': 15
+        },
         {
             'name': 'Build 1-2',
-            'owner_id': 2,
+            'user_id': 2,
             'character_name': 'Tav',
             'origin': 'custom',
-            'armor_class': 15,
+            'race': 'Human',
+            'sub_race': None,
+            'background': 'Soldier',
             "strength": 14,
             "dexterity": 10,
             "constitution": 16,
@@ -78,13 +87,17 @@ def seed_all():
             "wisdom": 10,
             "charisma": 16,
             "plus_1": "Constitution",
-            "plus_2": "Charisma"},
+            "plus_2": "Charisma",
+            'armor_class': 15
+        },
         {
             'name': 'Build 2-2',
-            'owner_id': 2,
+            'user_id': 2,
             'character_name': 'Tav',
             'origin': 'custom',
-            'armor_class': 15,
+            'race': 'Human',
+            'sub_race': None,
+            'background': 'Soldier',
             "strength": 14,
             "dexterity": 10,
             "constitution": 16,
@@ -92,16 +105,20 @@ def seed_all():
             "wisdom": 10,
             "charisma": 16,
             "plus_1": "Constitution",
-            "plus_2": "Charisma"},
+            "plus_2": "Charisma",
+            'armor_class': 15
+        }
     ]
 
     for build_data in build_list:
         build = Build(
             name=build_data['name'],
-            owner_id=build_data['owner_id'],
+            user_id=build_data['user_id'],
             character_name=build_data['character_name'],
             origin=build_data['origin'],
-            armor_class=build_data['armor_class'],
+            race=build_data['race'],
+            sub_race=build_data['sub_race'],
+            background=build_data['background'],
             strength=build_data['strength'],
             dexterity=build_data['dexterity'],
             constitution=build_data['constitution'],
@@ -109,7 +126,8 @@ def seed_all():
             wisdom=build_data['wisdom'],
             charisma=build_data['charisma'],
             plus_1=build_data['plus_1'],
-            plus_2=build_data['plus_2']
+            plus_2=build_data['plus_2'],
+            armor_class=build_data['armor_class']
         )
         db.session.add(build)
 
@@ -145,7 +163,31 @@ def seed_all():
         db.session.add(new_bc)
 
 
+    ## SEED COMMENTS
+    comment_list = [
+        {'user_id': 1, 'build_id': 3,  'message': 'such a cool build!'},
+        {'user_id': 2, 'build_id': 1,  'message': 'awesome build!'},
+    ]
 
+    for comment in comment_list:
+        new_comment = Comment(
+            user_id = comment['user_id'],
+            build_id = comment['build_id'],
+            message = comment['message'],
+        )
+        db.session.add(new_comment)
+
+    ## SEED FAVORITES
+    fav_list = [
+        { 'user_id': 1, 'build_id': 3 },
+        { 'user_id': 2, 'build_id': 1 },
+    ]
+    for fav in fav_list:
+        new_fav = Favorite(
+            user_id=fav['user_id'],
+            build_id=fav['build_id'],
+        )
+        db.session.add(new_fav)
 
     db.session.commit()
 
@@ -161,8 +203,12 @@ def undo_all():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.builds RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.comments RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.favorites RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
         db.session.execute(text("DELETE FROM builds"))
+        db.session.execute(text("DELETE FROM comments"))
+        db.session.execute(text("DELETE FROM favorites"))
 
     db.session.commit()

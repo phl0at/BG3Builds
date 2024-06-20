@@ -93,7 +93,114 @@ information.
       "id": 1,
       "username": "jsmith",
       "email": "john.smith@gmail.com",
-      "username": "JohnSmith"
+      "builds": [
+        {
+          "id": 1,
+          "user_id": 1,
+          "name": "Build 1-1",
+          "character_name": "Tav",
+          "origin": "custom",
+          "race": "Human",
+          "sub_race": null,
+          "background": "Outlander",
+          "strength": 14,
+          "dexterity": 10,
+          "constitution": 16,
+          "intelligence": 8,
+          "wisdom": 10,
+          "charisma": 16,
+          "plus_1": "Constitution",
+          "plus_2": "Charisma",
+          "helmet": 1,
+          "cloak": 2,
+          "armor": 3,
+          "gloves": 4,
+          "boots": 5,
+          "amulet": 6,
+          "ring_1": 7,
+          "ring_2": 8,
+          "main_hand": 9,
+          "off_hand": 10,
+          "ranged_mh": 11,
+          "ranged_oh": null,
+          "armor_class": 15,
+          "classes": [
+            {
+              "class_id": 1
+            },
+            {
+              "class_id": 2
+            },
+            {
+              "class_id": 3
+            },
+            {
+              "class_id": 4
+            },
+            {
+              "class_id": 5
+            }
+          ],
+          "comments": [
+            {
+              "id": 2,
+              "build_id": 1,
+              "user_id": 2,
+              "message": "awesome build!"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "user_id": 1,
+          "name": "Build 2-1",
+          "character_name": "Tav",
+          "origin": "custom",
+          "race": "Human",
+          "sub_race": null,
+          "background": "Outlander",
+          "strength": 14,
+          "dexterity": 10,
+          "constitution": 16,
+          "intelligence": 8,
+          "wisdom": 10,
+          "charisma": 16,
+          "plus_1": "Constitution",
+          "plus_2": "Charisma",
+          "helmet": 1,
+          "cloak": 2,
+          "armor": 3,
+          "gloves": 4,
+          "boots": 5,
+          "amulet": 6,
+          "ring_1": 7,
+          "ring_2": 8,
+          "main_hand": 9,
+          "off_hand": 10,
+          "ranged_mh": 11,
+          "ranged_oh": null,
+          "armor_class": 15,
+          "classes": [
+            {
+              "class_id": 1
+            },
+            {
+              "class_id": 2
+            },
+            {
+              "class_id": 3
+            },
+            {
+              "class_id": 4
+            },
+            {
+              "class_id": 5
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "favorites": [{ "build_id": 3 }]
     }
     ```
 
@@ -142,8 +249,8 @@ user's information.
 
     ```json
     {
-      "email": "john.smith@gmail.com",
       "username": "jsmith",
+      "email": "john.smith@gmail.com",
       "password": "secret password"
     }
     ```
@@ -216,9 +323,137 @@ user's information.
 
 ### Get my Builds
 
-Returns all the Builds the logged-in user owns.
+Returns all the Builds the logged-in user created.
 
 - Require Authentication: True
+- Request
+
+  - Method: GET
+  - URL: /api/builds/current
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    [
+      {
+        "id": 1,
+        "user_id": 1,
+        "name": "Build 1-1",
+        "character_name": "Tav",
+        "origin": "custom",
+        "race": "Human",
+        "sub_race": null,
+        "background": "Outlander",
+        "strength": 14,
+        "dexterity": 10,
+        "constitution": 16,
+        "intelligence": 8,
+        "wisdom": 10,
+        "charisma": 16,
+        "plus_1": "Constitution",
+        "plus_2": "Charisma",
+        "helmet": 1,
+        "cloak": 2,
+        "armor": 3,
+        "gloves": 4,
+        "boots": 5,
+        "amulet": 6,
+        "ring_1": 7,
+        "ring_2": 8,
+        "main_hand": 9,
+        "off_hand": 10,
+        "ranged_mh": 11,
+        "ranged_oh": null,
+        "armor_class": 15,
+        "classes": [
+          {
+            "class_id": 1
+          },
+          {
+            "class_id": 2
+          },
+          {
+            "class_id": 3
+          },
+          {
+            "class_id": 4
+          },
+          {
+            "class_id": 5
+          }
+        ],
+        "comments": [
+          {
+            "id": 2,
+            "build_id": 1,
+            "user_id": 2,
+            "message": "awesome build!"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "user_id": 1,
+        "name": "Build 2-1",
+        "character_name": "Tav",
+        "origin": "custom",
+        "race": "Human",
+        "sub_race": null,
+        "background": "Outlander",
+        "strength": 14,
+        "dexterity": 10,
+        "constitution": 16,
+        "intelligence": 8,
+        "wisdom": 10,
+        "charisma": 16,
+        "plus_1": "Constitution",
+        "plus_2": "Charisma",
+        "helmet": 1,
+        "cloak": 2,
+        "armor": 3,
+        "gloves": 4,
+        "boots": 5,
+        "amulet": 6,
+        "ring_1": 7,
+        "ring_2": 8,
+        "main_hand": 9,
+        "off_hand": 10,
+        "ranged_mh": 11,
+        "ranged_oh": null,
+        "armor_class": 15,
+        "classes": [
+          {
+            "class_id": 1
+          },
+          {
+            "class_id": 2
+          },
+          {
+            "class_id": 3
+          },
+          {
+            "class_id": 4
+          },
+          {
+            "class_id": 5
+          }
+        ],
+        "comments": []
+      }
+    ]
+    ```
+
+### Get all Builds
+
+Returns all created Builds.
+
+- Require Authentication: False
 - Request
 
   - Method: GET
@@ -233,74 +468,218 @@ Returns all the Builds the logged-in user owns.
   - Body:
 
     ```json
-    {
-      "Builds": [
-        {
-          "id": 1,
-          "owner_id": 1,
-          "name": "My First Build",
-          "abilities": {
-            "build_id": 1,
-            "strength": 8,
-            "dexterity": 16,
-            "constitution": 14,
-            "intelligence": 8,
-            "wisdom": 12,
-            "charisma": 16,
-            "plus_1": "Charisma",
-            "plus_2": "Dexterity"
+    [
+      {
+        "id": 1,
+        "user_id": 1,
+        "name": "Build 1-1",
+        "character_name": "Tav",
+        "origin": "custom",
+        "race": "Human",
+        "sub_race": null,
+        "background": "Outlander",
+        "strength": 14,
+        "dexterity": 10,
+        "constitution": 16,
+        "intelligence": 8,
+        "wisdom": 10,
+        "charisma": 16,
+        "plus_1": "Constitution",
+        "plus_2": "Charisma",
+        "helmet": 1,
+        "cloak": 2,
+        "armor": 3,
+        "gloves": 4,
+        "boots": 5,
+        "amulet": 6,
+        "ring_1": 7,
+        "ring_2": 8,
+        "main_hand": 9,
+        "off_hand": 10,
+        "ranged_mh": 11,
+        "ranged_oh": null,
+        "armor_class": 15,
+        "classes": [
+          {
+            "class_id": 1
           },
-          "proficiencies": {
-            "stealth": 2,
-            "nature": 2,
-            "animal_handling": 2
+          {
+            "class_id": 2
           },
-          "character": {
-            "build_id": 1,
-            "name": "Legolas",
-            "origin": "custom",
-            "race": "Elf",
-            "sub_race": "Wood Elf",
-            "background": "Outlander"
+          {
+            "class_id": 3
           },
-          "classes": [
-            { "name": "Ranger", "level": 1 },
-            { "name": "Ranger", "level": 2 },
-            { "name": "Ranger", "level": 3 }
-          ],
-          "sub_classes": [{ "sub_class": "Gloomstalker" }],
-          "spells": [{ "name": "Find Familiar" }],
-          "cantrips": [{ "name": "Truestrike" }],
-          "effects": [
-            {
-              "name": "Auntie Ethel's Hair",
-              "description": "Agility:1"
-            }
-          ],
-          "feats": [
-            {
-              "name": "Sharpshooter",
-              "description": "Range weapon damage:10"
-            }
-          ],
-          "equipment": {
-            "helmet": "helmet_name",
-            "cloak": "cloak_name",
-            "armor": "armor_name",
-            "gloves": "gloves_name",
-            "boots": "boots_name",
-            "amulet": "amulet_name",
-            "ring_1": "ring_1_name",
-            "ring_2": "ring_2_name",
-            "main_hand": "main_hand_name",
-            "off_hand": "off_hand_name",
-            "ranged_mh": "ranged_mh_name",
-            "ranged_oh": "ranged_oh_name",
-            "armor_class": 15
+          {
+            "class_id": 4
+          },
+          {
+            "class_id": 5
           }
-        }
-      ]
-    }
+        ],
+        "comments": [
+          {
+            "id": 2,
+            "build_id": 1,
+            "user_id": 2,
+            "message": "awesome build!"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "user_id": 1,
+        "name": "Build 2-1",
+        "character_name": "Tav",
+        "origin": "custom",
+        "race": "Human",
+        "sub_race": null,
+        "background": "Outlander",
+        "strength": 14,
+        "dexterity": 10,
+        "constitution": 16,
+        "intelligence": 8,
+        "wisdom": 10,
+        "charisma": 16,
+        "plus_1": "Constitution",
+        "plus_2": "Charisma",
+        "helmet": 1,
+        "cloak": 2,
+        "armor": 3,
+        "gloves": 4,
+        "boots": 5,
+        "amulet": 6,
+        "ring_1": 7,
+        "ring_2": 8,
+        "main_hand": 9,
+        "off_hand": 10,
+        "ranged_mh": 11,
+        "ranged_oh": null,
+        "armor_class": 15,
+        "classes": [
+          {
+            "class_id": 1
+          },
+          {
+            "class_id": 2
+          },
+          {
+            "class_id": 3
+          },
+          {
+            "class_id": 4
+          },
+          {
+            "class_id": 5
+          }
+        ],
+        "comments": []
+      },
+      {
+        "id": 3,
+        "user_id": 2,
+        "name": "Build 1-2",
+        "character_name": "Tav",
+        "origin": "custom",
+        "race": "Human",
+        "sub_race": null,
+        "background": "Outlander",
+        "strength": 14,
+        "dexterity": 10,
+        "constitution": 16,
+        "intelligence": 8,
+        "wisdom": 10,
+        "charisma": 16,
+        "plus_1": "Constitution",
+        "plus_2": "Charisma",
+        "helmet": 1,
+        "cloak": 2,
+        "armor": 3,
+        "gloves": 4,
+        "boots": 5,
+        "amulet": 6,
+        "ring_1": 7,
+        "ring_2": 8,
+        "main_hand": 9,
+        "off_hand": 10,
+        "ranged_mh": 11,
+        "ranged_oh": null,
+        "armor_class": 15,
+        "classes": [
+          {
+            "class_id": 1
+          },
+          {
+            "class_id": 2
+          },
+          {
+            "class_id": 3
+          },
+          {
+            "class_id": 4
+          },
+          {
+            "class_id": 5
+          }
+        ],
+        "comments": [
+          {
+            "build_id": 3,
+            "id": 1,
+            "message": "such a cool build!",
+            "user_id": 1
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "user_id": 2,
+        "name": "Build 2-2",
+        "character_name": "Tav",
+        "origin": "custom",
+        "race": "Human",
+        "sub_race": null,
+        "background": "Outlander",
+        "strength": 14,
+        "dexterity": 10,
+        "constitution": 16,
+        "intelligence": 8,
+        "wisdom": 10,
+        "charisma": 16,
+        "plus_1": "Constitution",
+        "plus_2": "Charisma",
+        "helmet": 1,
+        "cloak": 2,
+        "armor": 3,
+        "gloves": 4,
+        "boots": 5,
+        "amulet": 6,
+        "ring_1": 7,
+        "ring_2": 8,
+        "main_hand": 9,
+        "off_hand": 10,
+        "ranged_mh": 11,
+        "ranged_oh": null,
+        "armor_class": 15,
+        "classes": [
+          {
+            "class_id": 1
+          },
+          {
+            "class_id": 2
+          },
+          {
+            "class_id": 3
+          },
+          {
+            "class_id": 4
+          },
+          {
+            "class_id": 5
+          }
+        ],
+        "comments": []
+      }
+    ]
     ```
 
 ### Get details of a Build from an id
@@ -324,67 +703,59 @@ Returns the details of a build specified by its id.
     ```json
     {
       "id": 1,
-      "owner_id": 1,
-      "name": "My First Build",
-      "proficiencies": {
-        "stealth": 2,
-        "nature": 2,
-        "animal_handling": 2
-      },
-      "abilities": {
-        "build_id": 1,
-        "strength": 8,
-        "dexterity": 16,
-        "constitution": 14,
-        "intelligence": 8,
-        "wisdom": 12,
-        "charisma": 16,
-        "plus_1": "Charisma",
-        "plus_2": "Dexterity"
-      },
-      "character": {
-        "build_id": 1,
-        "name": "Legolas",
-        "origin": "custom",
-        "race": "Elf",
-        "sub_race": "Wood Elf",
-        "background": "Outlander"
-      },
+      "user_id": 1,
+      "name": "Build 1-1",
+      "character_name": "Tav",
+      "origin": "custom",
+      "race": "Human",
+      "sub_race": null,
+      "background": "Outlander",
+      "strength": 14,
+      "dexterity": 10,
+      "constitution": 16,
+      "intelligence": 8,
+      "wisdom": 10,
+      "charisma": 16,
+      "plus_1": "Constitution",
+      "plus_2": "Charisma",
+      "helmet": 1,
+      "cloak": 2,
+      "armor": 3,
+      "gloves": 4,
+      "boots": 5,
+      "amulet": 6,
+      "ring_1": 7,
+      "ring_2": 8,
+      "main_hand": 9,
+      "off_hand": 10,
+      "ranged_mh": 11,
+      "ranged_oh": null,
+      "armor_class": 15,
       "classes": [
-        { "name": "Ranger", "level": 1 },
-        { "name": "Ranger", "level": 2 },
-        { "name": "Ranger", "level": 3 }
-      ],
-      "sub_classes": [{ "sub_class": "Gloomstalker" }],
-      "spells": [{ "name": "Find Familiar" }],
-      "cantrips": [{ "name": "Truestrike" }],
-      "effects": [
         {
-          "name": "Auntie Ethel's Hair",
-          "description": "Agility:1"
+          "class_id": 1
+        },
+        {
+          "class_id": 2
+        },
+        {
+          "class_id": 3
+        },
+        {
+          "class_id": 4
+        },
+        {
+          "class_id": 5
         }
       ],
-      "feats": [
+      "comments": [
         {
-          "name": "Sharpshooter",
-          "description": "Range weapon damage:10"
+          "id": 2,
+          "build_id": 1,
+          "user_id": 2,
+          "message": "awesome build!"
         }
-      ],
-      "equipment": {
-        "helmet": "helmet_name",
-        "cloak": "cloak_name",
-        "armor": "armor_name",
-        "gloves": "gloves_name",
-        "boots": "boots_name",
-        "amulet": "amulet_name",
-        "ring_1": "ring_1_name",
-        "ring_2": "ring_2_name",
-        "main_hand": "main_hand_name",
-        "off_hand": "off_hand_name",
-        "ranged_mh": "ranged_mh_name",
-        "ranged_oh": "ranged_oh_name",
-        "armor_class": 15
-      }
+      ]
     }
     ```
 
@@ -416,67 +787,34 @@ Creates and returns a new build.
 
     ```json
     {
-      "owner_id": 1,
-      "name": "My Second Build",
-      "abilities": {
-        "build_id": 1,
-        "strength": 8,
-        "dexterity": 16,
-        "constitution": 14,
-        "intelligence": 8,
-        "wisdom": 12,
-        "charisma": 16,
-        "plus_1": "Charisma",
-        "plus_2": "Dexterity"
-      },
-      "proficiencies": {
-        "stealth": 2,
-        "nature": 2,
-        "animal_handling": 2
-      },
-      "character": {
-        "build_id": 1,
-        "name": "Legolas",
-        "origin": "custom",
-        "race": "Elf",
-        "sub_race": "Wood Elf",
-        "background": "Outlander"
-      },
-      "classes": [
-        { "name": "Ranger", "level": 1 },
-        { "name": "Ranger", "level": 2 },
-        { "name": "Ranger", "level": 3 }
-      ],
-      "sub_classes": [{ "sub_class": "Gloomstalker" }],
-      "spells": [{ "name": "Find Familiar" }],
-      "cantrips": [{ "name": "Truestrike" }],
-      "effects": [
-        {
-          "name": "Auntie Ethel's Hair",
-          "description": "Agility:1"
-        }
-      ],
-      "feats": [
-        {
-          "name": "Sharpshooter",
-          "description": "Range weapon damage:10"
-        }
-      ],
-      "equipment": {
-        "helmet": "helmet_name",
-        "cloak": "cloak_name",
-        "armor": "armor_name",
-        "gloves": "gloves_name",
-        "boots": "boots_name",
-        "amulet": "amulet_name",
-        "ring_1": "ring_1_name",
-        "ring_2": "ring_2_name",
-        "main_hand": "main_hand_name",
-        "off_hand": "off_hand_name",
-        "ranged_mh": "ranged_mh_name",
-        "ranged_oh": "ranged_oh_name",
-        "armor_class": 15
-      }
+      "user_id": 1,
+      "name": "My New Build",
+      "character_name": "Legolas",
+      "origin": "custom",
+      "race": "Elf",
+      "sub_race": "High Elf",
+      "background": "Soldier",
+      "strength": 12,
+      "dexterity": 16,
+      "constitution": 10,
+      "intelligence": 14,
+      "wisdom": 10,
+      "charisma": 16,
+      "helmet": 1,
+      "cloak": 2,
+      "armor": 3,
+      "gloves": 4,
+      "boots": 5,
+      "amulet": 6,
+      "ring_1": 7,
+      "ring_2": 8,
+      "main_hand": 9,
+      "off_hand": 10,
+      "ranged_mh": 11,
+      "ranged_oh": null,
+      "plus_1": "Dexterity",
+      "plus_2": "Charisma",
+      "armor_class": 15
     }
     ```
 
@@ -490,67 +828,34 @@ Creates and returns a new build.
     ```json
     {
       "id": 2,
-      "owner_id": 1,
-      "name": "My Second Build",
-      "abilities": {
-        "build_id": 1,
-        "strength": 8,
-        "dexterity": 16,
-        "constitution": 14,
-        "intelligence": 8,
-        "wisdom": 12,
-        "charisma": 16,
-        "plus_1": "Charisma",
-        "plus_2": "Dexterity"
-      },
-      "proficiencies": {
-        "stealth": 2,
-        "nature": 2,
-        "animal_handling": 2
-      },
-      "character": {
-        "build_id": 1,
-        "name": "Legolas",
-        "origin": "custom",
-        "race": "Elf",
-        "sub_race": "Wood Elf",
-        "background": "Outlander"
-      },
-      "classes": [
-        { "name": "Ranger", "level": 1 },
-        { "name": "Ranger", "level": 2 },
-        { "name": "Ranger", "level": 3 }
-      ],
-      "sub_classes": [{ "sub_class": "Gloomstalker" }],
-      "spells": [{ "name": "Find Familiar" }],
-      "cantrips": [{ "name": "Truestrike" }],
-      "effects": [
-        {
-          "name": "Auntie Ethel's Hair",
-          "description": "Agility:1"
-        }
-      ],
-      "feats": [
-        {
-          "name": "Sharpshooter",
-          "description": "Range weapon damage:10"
-        }
-      ],
-      "equipment": {
-        "helmet": "helmet_name",
-        "cloak": "cloak_name",
-        "armor": "armor_name",
-        "gloves": "gloves_name",
-        "boots": "boots_name",
-        "amulet": "amulet_name",
-        "ring_1": "ring_1_name",
-        "ring_2": "ring_2_name",
-        "main_hand": "main_hand_name",
-        "off_hand": "off_hand_name",
-        "ranged_mh": "ranged_mh_name",
-        "ranged_oh": "ranged_oh_name",
-        "armor_class": 15
-      }
+      "user_id": 1,
+      "name": "My New Build",
+      "character_name": "Legolas",
+      "origin": "custom",
+      "race": "Elf",
+      "sub_race": "High Elf",
+      "background": "Soldier",
+      "strength": 12,
+      "dexterity": 16,
+      "constitution": 10,
+      "intelligence": 14,
+      "wisdom": 10,
+      "charisma": 16,
+      "helmet": 1,
+      "cloak": 2,
+      "armor": 3,
+      "gloves": 4,
+      "boots": 5,
+      "amulet": 6,
+      "ring_1": 7,
+      "ring_2": 8,
+      "main_hand": 9,
+      "off_hand": 10,
+      "ranged_mh": 11,
+      "ranged_oh": null,
+      "plus_1": "Dexterity",
+      "plus_2": "Charisma",
+      "armor_class": 15
     }
     ```
 
@@ -589,7 +894,33 @@ Updates and returns an existing build.
 
     ```json
     {
-      "name": "New Build Name"
+      "name": "My Edited Build",
+      "character_name": "Legolas",
+      "origin": "custom",
+      "race": "Elf",
+      "sub_race": "High Elf",
+      "background": "Soldier",
+      "strength": 10,
+      "dexterity": 16,
+      "constitution": 10,
+      "intelligence": 14,
+      "wisdom": 12,
+      "charisma": 16,
+      "helmet": 1,
+      "cloak": 2,
+      "armor": 3,
+      "gloves": 4,
+      "boots": 5,
+      "amulet": 6,
+      "ring_1": 7,
+      "ring_2": 8,
+      "main_hand": 9,
+      "off_hand": 10,
+      "ranged_mh": 11,
+      "ranged_oh": null,
+      "plus_1": "Dexterity",
+      "plus_2": "Charisma",
+      "armor_class": 15
     }
     ```
 
@@ -603,8 +934,34 @@ Updates and returns an existing build.
     ```json
     {
       "id": 1,
-      "owner_id": 1,
-      "name": "New Server Name"
+      "user_id": 1,
+      "name": "My Edited Build",
+      "character_name": "Legolas",
+      "origin": "custom",
+      "race": "Elf",
+      "sub_race": "High Elf",
+      "background": "Soldier",
+      "strength": 10,
+      "dexterity": 16,
+      "constitution": 10,
+      "intelligence": 14,
+      "wisdom": 12,
+      "charisma": 16,
+      "helmet": 1,
+      "cloak": 2,
+      "armor": 3,
+      "gloves": 4,
+      "boots": 5,
+      "amulet": 6,
+      "ring_1": 7,
+      "ring_2": 8,
+      "main_hand": 9,
+      "off_hand": 10,
+      "ranged_mh": 11,
+      "ranged_oh": null,
+      "plus_1": "Dexterity",
+      "plus_2": "Charisma",
+      "armor_class": 15
     }
     ```
 
@@ -636,7 +993,7 @@ Updates and returns an existing build.
 
     ```json
     {
-      "message": "Build could not be found"
+      "errors": "Build could not be found"
     }
     ```
 
@@ -674,36 +1031,27 @@ Deletes an existing build.
 
     ```json
     {
-      "error": "Build could not be found"
+      "errors": "Build could not be found"
     }
     ```
 
-## ABILITIES
+### Adding a Class to a Build
 
-### Create an Ability Table
-
-Creates a new table of abilities for a build.
+Creates and returns a new build/class relationship.
 
 - Require Authentication: true
+- Require proper authorization: Build must belong to the current user
 - Request
 
   - Method: POST
-  - URL: /api/abilities/:build_id
+  - URL: /api/class/:build_id
   - Headers:
     - Content-Type: application/json
   - Body:
 
     ```json
     {
-      "build_id": 1,
-      "strength": 8,
-      "dexterity": 16,
-      "constitution": 14,
-      "intelligence": 8,
-      "wisdom": 12,
-      "charisma": 16,
-      "plus_1": "Charisma",
-      "plus_2": "Dexterity"
+      "class_id": 1
     }
     ```
 
@@ -716,9 +1064,12 @@ Creates a new table of abilities for a build.
 
     ```json
     {
-      "message": "Success!"
+      "id": 1,
+      "build_id": 1,
+      "class_id": 1
     }
     ```
+
 
 - Error Response: Body validation errors
 
@@ -729,93 +1080,11 @@ Creates a new table of abilities for a build.
 
     ```json
     {
-      "errors": {
-        "build_id": "Is required",
-        "strength": "Is required",
-        "dexterity": "Is required",
-        "constitution": "Is required",
-        "intelligence": "Is required",
-        "wisdom": "Is required",
-        "charisma": "Is required",
-        "plus_1": "Is required",
-        "plus_2": "Is required"
-      }
+      "errors": "Class ID is required"
     }
     ```
 
-### Edit an Ability Table
-
-Update and return an existing abilities table.
-
-- Require Authentication: true
-- Require proper authorization: Build must belong to the current user
-- Request
-
-  - Method: PUT
-  - URL: /api/abilities/:build_id
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "build_id": 1,
-      "strength": 8,
-      "dexterity": 16,
-      "constitution": 16,
-      "intelligence": 8,
-      "wisdom": 12,
-      "charisma": 14,
-      "plus_1": "Constitution",
-      "plus_2": "Dexterity"
-    }
-    ```
-
-- Successful Response
-
-  - Status Code: 200
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "id": 1,
-      "build_id": 1,
-      "strength": 8,
-      "dexterity": 16,
-      "constitution": 16,
-      "intelligence": 8,
-      "wisdom": 12,
-      "charisma": 14,
-      "plus_1": "Constitution",
-      "plus_2": "Dexterity"
-    }
-    ```
-
-- Error response: Body validation errors
-
-  - Status Code: 400
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "errors": {
-        "strength": "Required",
-        "dexterity": "Required",
-        "constitution": "Required",
-        "intelligence": "Required",
-        "wisdom": "Required",
-        "charisma": "Required",
-        "plus_1": "Required",
-        "plus_2": "Required"
-      }
-    }
-    ```
-
-- Error response: Couldn't find a Build with the specified id
+- Error response: Couldn't find a Server with the specified id
 
   - Status Code: 404
   - Headers:
@@ -824,20 +1093,21 @@ Update and return an existing abilities table.
 
     ```json
     {
-      "message": "Build couldn't be found"
+      "errors": "Build could not be found"
     }
     ```
 
-### Delete an Abilities Table
 
-Delete an existing abilities table from a build.
+### Removing a Class from a Build
+
+Deletes an existing build/class relationship based on ID.
 
 - Require Authentication: true
 - Require proper authorization: Build must belong to the current user
 - Request
 
   - Method: DELETE
-  - URL: /api/abilities/:build_id
+  - URL: /api/class/:bc_id
   - Body: none
 
 - Successful Response
@@ -853,7 +1123,7 @@ Delete an existing abilities table from a build.
     }
     ```
 
-- Error response: Couldn't find a Build with the specified id
+- Error response: Couldn't find a buildclass with the specified ID
 
   - Status Code: 404
   - Headers:
@@ -862,31 +1132,30 @@ Delete an existing abilities table from a build.
 
     ```json
     {
-      "message": "Build couldn't be found"
+      "errors": "Class could not be found"
     }
     ```
 
-## PROFICIENCY TABLE
+## COMMENTS
 
-### Create a Proficiencies Table
+### Create a Comment
 
-Creates a new table of proficiencies for a build.
+Creates a new comment on a build.
 
 - Require Authentication: true
 - Request
 
   - Method: POST
-  - URL: /api/prof/:build_id
+  - URL: /api/comments/:build_id
   - Headers:
     - Content-Type: application/json
   - Body:
 
     ```json
     {
-      "build_id": 1,
-      "stealth": 2,
-      "nature": 2,
-      "animal_handling": 2
+      "user_id": 1,
+      "build_id": 4,
+      "message": "awesome!!"
     }
     ```
 
@@ -899,11 +1168,10 @@ Creates a new table of proficiencies for a build.
 
     ```json
     {
-      "id": 1,
-      "build_id": 1,
-      "stealth": 2,
-      "nature": 2,
-      "animal_handling": 2
+      "id": 3,
+      "user_id": 1,
+      "build_id": 4,
+      "message": "awesome!!"
     }
     ```
 
@@ -915,7 +1183,12 @@ Creates a new table of proficiencies for a build.
   - Body:
 
     ```json
-    { "errors": "build_id and at least 3 proficiencies required" }
+    {
+      "errors": {
+        "message": "Required",
+        "message": "Maximum length is 200 characters"
+      }
+    }
     ```
 
 - Error response: Couldn't find a Build with the specified id
@@ -927,30 +1200,27 @@ Creates a new table of proficiencies for a build.
 
     ```json
     {
-      "message": "Build couldn't be found"
+      "errors": "Build couldn't be found"
     }
     ```
 
-### Edit a Proficiency Table
+### Edit a Comment
 
-Update and return an existing proficiency table.
+Update and return an existing comment
 
 - Require Authentication: true
-- Require proper authorization: Build must belong to the current user
+- Require proper authorization: Comment must belong to the current user
 - Request
 
   - Method: PUT
-  - URL: /api/prof/:build_id
+  - URL: /api/comments/:comment_id
   - Headers:
     - Content-Type: application/json
   - Body:
 
     ```json
     {
-      "build_id": 1,
-      "stealth": 2,
-      "nature": 2,
-      "insight": 2
+      "message": "awesome!! i love this build!"
     }
     ```
 
@@ -963,11 +1233,10 @@ Update and return an existing proficiency table.
 
     ```json
     {
-      "id": 1,
-      "build_id": 1,
-      "stealth": 2,
-      "nature": 2,
-      "insight": 2
+      "id": 3,
+      "build_id": 4,
+      "user_id": 1,
+      "message": "awesome!! i love this build!"
     }
     ```
 
@@ -979,10 +1248,15 @@ Update and return an existing proficiency table.
   - Body:
 
     ```json
-    { "errors": "build_id and at least 3 proficiencies required" }
+    {
+      "errors": {
+        "message": "Required",
+        "message": "Maximum length is 200 characters"
+      }
+    }
     ```
 
-- Error response: Couldn't find a Build with the specified id
+- Error response: Couldn't find a comment with the specified id
 
   - Status Code: 404
   - Headers:
@@ -991,20 +1265,20 @@ Update and return an existing proficiency table.
 
     ```json
     {
-      "message": "Build couldn't be found"
+      "errors": "Comment could not be found"
     }
     ```
 
-### Delete a Proficiency Table
+### Delete a Comment
 
-Delete an existing proficiencies table from a build.
+Delete an existing comment from a build.
 
 - Require Authentication: true
-- Require proper authorization: Build must belong to the current user
+- Require proper authorization: comment must belong to the current user
 - Request
 
   - Method: DELETE
-  - URL: /api/prof/:build_id
+  - URL: /api/comments/:comment_id
   - Body: none
 
 - Successful Response
@@ -1029,33 +1303,29 @@ Delete an existing proficiencies table from a build.
 
     ```json
     {
-      "message": "Build couldn't be found"
+      "message": "Comment could not be found"
     }
     ```
 
-## CHARACTER TABLE
+## FAVORITES
 
-### Create a Character Table
+### Create a Favorite
 
-Creates a new character for a build.
+Favorites a build.
 
 - Require Authentication: true
 - Request
 
   - Method: POST
-  - URL: /api/character/:build_id
+  - URL: /api/favs/:build_id
   - Headers:
     - Content-Type: application/json
   - Body:
 
     ```json
     {
-      "build_id": 1,
-      "name": "Legolas",
-      "origin": "custom",
-      "race": "Elf",
-      "sub_race": "Wood Elf",
-      "background": "Outlander"
+      "user_id": 1,
+      "build_id": 4
     }
     ```
 
@@ -1069,32 +1339,8 @@ Creates a new character for a build.
     ```json
     {
       "id": 1,
-      "build_id": 1,
-      "name": "Legolas",
-      "origin": "custom",
-      "race": "Elf",
-      "sub_race": "Wood Elf",
-      "background": "Outlander"
-    }
-    ```
-
-- Error response: Body validation errors
-
-  - Status Code: 400
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "errors": {
-        "build_id": "Is required",
-        "name": "Is required",
-        "origin": "Is required",
-        "race": "Is required",
-        "sub_race": "Is required",
-        "background": "Is required"
-      }
+      "user_id": 1,
+      "build_id": 4
     }
     ```
 
@@ -1107,97 +1353,20 @@ Creates a new character for a build.
 
     ```json
     {
-      "message": "Build couldn't be found"
+      "errors": "Build could not be found"
     }
     ```
 
-### Edit a Character Table
+### Delete a Favorite
 
-Update and return an existing character table.
+Delete an existing favorite.
 
 - Require Authentication: true
-- Require proper authorization: Build must belong to the current user
-- Request
-
-  - Method: PUT
-  - URL: /api/character/:build_id
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "build_id": 1,
-      "name": "Shadowheart",
-      "origin": "Shadowheart",
-      "race": "Half-Elf",
-      "sub_race": "High Half-Elf",
-      "background": "Acolyte"
-    }
-    ```
-
-- Successful Response
-
-  - Status Code: 200
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "id": 1,
-      "build_id": 1,
-      "name": "Shadowheart",
-      "origin": "Shadowheart",
-      "race": "Half-Elf",
-      "sub_race": "High Half-Elf",
-      "background": "Acolyte"
-    }
-    ```
-
-- Error response: Body validation errors
-
-  - Status Code: 400
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "errors": {
-        "build_id": "Is required",
-        "name": "Is required",
-        "origin": "Is required",
-        "race": "Is required",
-        "sub_race": "Is required",
-        "background": "Is required"
-      }
-    }
-    ```
-
-- Error response: Couldn't find a Build with the specified id
-
-  - Status Code: 404
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "message": "Build couldn't be found"
-    }
-    ```
-
-### Delete a Proficiency Table
-
-Delete an existing proficiencies table from a build.
-
-- Require Authentication: true
-- Require proper authorization: Build must belong to the current user
+- Require proper authorization: comment must belong to the current user
 - Request
 
   - Method: DELETE
-  - URL: /api/prof/:build_id
+  - URL: /api/favs/:fav_id
   - Body: none
 
 - Successful Response
@@ -1213,7 +1382,7 @@ Delete an existing proficiencies table from a build.
     }
     ```
 
-- Error response: Couldn't find a Build with the specified id
+- Error response: Couldn't find a favorite with the specified id
 
   - Status Code: 404
   - Headers:
@@ -1222,424 +1391,7 @@ Delete an existing proficiencies table from a build.
 
     ```json
     {
-      "message": "Build couldn't be found"
-    }
-    ```
-
-## EQUIPMENT TABLE
-
-### Create an Equipment Table
-
-Creates a new equipment for a build.
-
-- Require Authentication: true
-- Request
-
-  - Method: POST
-  - URL: /api/equipment/:build_id
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "build_id": 1,
-      "helmet": "helmet_name",
-      "cloak": "cloak_name",
-      "armor": "armor_name",
-      "gloves": "gloves_name",
-      "boots": "boots_name",
-      "amulet": "amulet_name",
-      "ring_1": "ring_1_name",
-      "ring_2": "ring_2_name",
-      "main_hand": "main_hand_name",
-      "off_hand": "off_hand_name",
-      "ranged_mh": "ranged_mh_name",
-      "ranged_oh": "ranged_oh_name",
-      "armor_class": 15
-    }
-    ```
-
-- Successful Response
-
-  - Status Code: 200
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "id": 1,
-      "build_id": 1,
-      "helmet": "helmet_name",
-      "cloak": "cloak_name",
-      "armor": "armor_name",
-      "gloves": "gloves_name",
-      "boots": "boots_name",
-      "amulet": "amulet_name",
-      "ring_1": "ring_1_name",
-      "ring_2": "ring_2_name",
-      "main_hand": "main_hand_name",
-      "off_hand": "off_hand_name",
-      "ranged_mh": "ranged_mh_name",
-      "ranged_oh": "ranged_oh_name",
-      "armor_class": 15
-    }
-    ```
-
-- Error response: Body validation errors
-
-  - Status Code: 400
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "errors": {
-        "helmet": "Is required",
-        "cloak": "Is required",
-        "armor": "Is required",
-        "gloves": "Is required",
-        "boots": "Is required",
-        "amulet": "Is required",
-        "ring_1": "Is required",
-        "ring_2": "Is required",
-        "main_hand": "Is required",
-        "off_hand": "Is required",
-        "ranged_mh": "Is required",
-        "ranged_oh": "Is required",
-        "armor_class": "Is required"
-      }
-    }
-    ```
-
-- Error response: Couldn't find a Build with the specified id
-
-  - Status Code: 404
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "message": "Build couldn't be found"
-    }
-    ```
-
-### Edit an Equipment Table
-
-Update and return an existing equipment table.
-
-- Require Authentication: true
-- Require proper authorization: Build must belong to the current user
-- Request
-
-  - Method: PUT
-  - URL: /api/equipment/:build_id
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "build_id": 1,
-      "helmet": "new_helmet_name",
-      "cloak": "new_cloak_name",
-      "armor": "new_armor_name",
-      "gloves": "new_gloves_name",
-      "boots": "new_boots_name",
-      "amulet": "new_amulet_name",
-      "ring_1": "new_ring_1_name",
-      "ring_2": "new_ring_2_name",
-      "main_hand": "new_main_hand_name",
-      "off_hand": "new_off_hand_name",
-      "ranged_mh": "new_ranged_mh_name",
-      "ranged_oh": "new_ranged_oh_name",
-      "armor_class": 20
-    }
-    ```
-
-- Successful Response
-
-  - Status Code: 200
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "id": 1,
-      "build_id": 1,
-      "helmet": "new_helmet_name",
-      "cloak": "new_cloak_name",
-      "armor": "new_armor_name",
-      "gloves": "new_gloves_name",
-      "boots": "new_boots_name",
-      "amulet": "new_amulet_name",
-      "ring_1": "new_ring_1_name",
-      "ring_2": "new_ring_2_name",
-      "main_hand": "new_main_hand_name",
-      "off_hand": "new_off_hand_name",
-      "ranged_mh": "new_ranged_mh_name",
-      "ranged_oh": "new_ranged_oh_name",
-      "armor_class": 20
-    }
-    ```
-
-- Error response: Body validation errors
-
-  - Status Code: 400
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "errors": {
-        "build_id": "Is required",
-        "helmet": "Is required",
-        "cloak": "Is required",
-        "armor": "Is required",
-        "gloves": "Is required",
-        "boots": "Is required",
-        "amulet": "Is required",
-        "ring_1": "Is required",
-        "ring_2": "Is required",
-        "main_hand": "Is required",
-        "off_hand": "Is required",
-        "ranged_mh": "Is required",
-        "ranged_oh": "Is required",
-        "armor_class": "Is required"
-      }
-    }
-    ```
-
-- Error response: Couldn't find a Build with the specified id
-
-  - Status Code: 404
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "message": "Build couldn't be found"
-    }
-    ```
-
-### Delete an Equipment Table
-
-Delete an existing equipment table from a build.
-
-- Require Authentication: true
-- Require proper authorization: Build must belong to the current user
-- Request
-
-  - Method: DELETE
-  - URL: /api/equipment/:build_id
-  - Body: none
-
-- Successful Response
-
-  - Status Code: 200
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "message": "Successfully deleted"
-    }
-    ```
-
-- Error response: Couldn't find a Build with the specified id
-
-  - Status Code: 404
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "message": "Build couldn't be found"
-    }
-    ```
-
-## CLASS TABLE
-
-### Create a Class Table
-
-Creates a new class for a build.
-
-- Require Authentication: true
-- Request
-
-  - Method: POST
-  - URL: /api/class/:build_id
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "build_id": 1,
-      "name": "Ranger",
-      "level": 1
-    }
-    ```
-
-- Successful Response
-
-  - Status Code: 200
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "id": 1,
-      "build_id": 1,
-      "name": "Ranger",
-      "level": 1
-    }
-    ```
-
-- Error response: Body validation errors
-
-  - Status Code: 400
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "errors": {
-        "build_id": "Is required",
-        "name": "Is required",
-        "level": "Is required"
-      }
-    }
-    ```
-
-- Error response: Couldn't find a Build with the specified id
-
-  - Status Code: 404
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "message": "Build couldn't be found"
-    }
-    ```
-
-### Edit a Class Table
-
-Update and return an existing class table.
-
-- Require Authentication: true
-- Require proper authorization: Build must belong to the current user
-- Request
-
-  - Method: PUT
-  - URL: /api/class/:class_id
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "id": 1,
-      "build_id": 1,
-      "name": "Rogue",
-      "level": 1
-    }
-    ```
-
-- Successful Response
-
-  - Status Code: 200
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "id": 1,
-      "build_id": 1,
-      "name": "Rogue",
-      "level": 1
-    }
-    ```
-
-- Error response: Body validation errors
-
-  - Status Code: 400
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "errors": {
-        "id": "Is required",
-        "build_id": "Is required",
-        "name": "Is required",
-        "level": "Is required"
-      }
-    }
-    ```
-
-- Error response: Couldn't find a Class with the specified id
-
-  - Status Code: 404
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "message": "Class couldn't be found"
-    }
-    ```
-
-### Delete a Class Table
-
-Delete an existing class table from by id.
-
-- Require Authentication: true
-- Require proper authorization: Build must belong to the current user
-- Request
-
-  - Method: DELETE
-  - URL: /api/class/:class_id
-  - Body: none
-
-- Successful Response
-
-  - Status Code: 200
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "message": "Successfully deleted"
-    }
-    ```
-
-- Error response: Couldn't find a Class with the specified id
-
-  - Status Code: 404
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "message": "Class couldn't be found"
+      "message": "Favorite could not be found"
     }
     ```
 

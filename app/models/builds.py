@@ -9,11 +9,13 @@ class Build(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     name = db.Column(db.String(25), nullable=False)
-    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     character_name = db.Column(db.String(25), nullable=False)
     origin = db.Column(db.String(25), nullable=False)
-    armor_class = db.Column(db.Integer, nullable=False)
+    race = db.Column(db.String(25), nullable=False)
+    sub_race = db.Column(db.String(25), nullable=True)
+    background = db.Column(db.String(25), nullable=False)
     strength = db.Column(db.Integer, nullable=False)
     dexterity = db.Column(db.Integer, nullable=False)
     constitution = db.Column(db.Integer, nullable=False)
@@ -22,6 +24,7 @@ class Build(db.Model):
     charisma = db.Column(db.Integer, nullable=False)
     plus_1 = db.Column(db.String(12), nullable=False)
     plus_2 = db.Column(db.String(12), nullable=False)
+    armor_class = db.Column(db.Integer, nullable=False)
 
     classes = db.relationship("BuildClass", backref="build", cascade="all, delete-orphan")
     comments = db.relationship("Comment", backref="build", cascade="all, delete-orphan")
@@ -29,11 +32,13 @@ class Build(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
+            'user_id': self.user_id,
             'name': self.name,
-            'owner_id': self.owner_id,
             'character_name': self.character_name,
             'origin': self.origin,
-            'armor_class': self.armor_class,
+            'race': self.race,
+            'sub_race': self.sub_race,
+            'background': self.background,
             'strength': self.strength,
             'dexterity': self.dexterity,
             'constitution': self.constitution,
@@ -42,6 +47,7 @@ class Build(db.Model):
             'charisma': self.charisma,
             'plus_1': self.plus_1,
             'plus_2': self.plus_2,
+            'armor_class': self.armor_class,
             'classes': [build_class.to_dict() for build_class in self.classes],
             'comments': [comment.to_dict() for comment in self.comments]
         }
@@ -82,8 +88,9 @@ class BuildClass(db.Model):
 
     def to_dict(self):
         return {
+            'id': self.id,
+            'build_id': self.build_id,
             'class_id': self.class_id
         }
 
 ################################################################################
-
