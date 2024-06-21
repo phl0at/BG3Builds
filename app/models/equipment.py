@@ -9,7 +9,7 @@ class Equipment(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.Integer, db.Enum("helmet", "cloak", "armor", "gloves",
+    type = db.Column(db.String(6), db.Enum("helmet", "cloak", "armor", "gloves",
                                          "boots", "amulet", "ring", "melee", "ranged"), nullable=False)
     name = db.Column(db.String(50), nullable=False, unique=True)
     description = db.Column(db.String(250), nullable=True, unique=True)
