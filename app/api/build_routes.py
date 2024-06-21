@@ -29,7 +29,7 @@ def get_owned_builds():
     user_builds = Build.query \
         .options(joinedload(Build.classes)) \
         .options(joinedload(Build.comments)) \
-        .filter(Build.owner_id == current_user.id)
+        .filter(Build.user_id == current_user.id)
     return [build.to_dict() for build in user_builds]
 
 ###########################GET ONE BUILD##############################
@@ -60,7 +60,7 @@ def create_build():
         TABLE CREATIONS IN THIS SINGLE ROUTE
     """
     data = request.get_json()
-    owner_id = current_user.id
+    user_id = current_user.id
 
     name = data.get('name')
     character_name = data.get('character_name')
@@ -91,7 +91,7 @@ def create_build():
     else:
         build = Build(
             name = name,
-            owner_id = owner_id,
+            user_id = user_id,
             character_name = character_name,
             armor_class = armor_class,
             origin = origin,
@@ -121,7 +121,7 @@ def edit_build(id):
 
     if not build:
         return { 'errors': 'Build could not be found'}, 404
-    elif build.owner_id != current_user.id:
+    elif build.user_id != current_user.id:
         return { 'errors': 'Unauthorized Action' }, 403
 
     data = request.get_json()
@@ -179,7 +179,7 @@ def delete_build(id):
 
     if not build:
         return { 'errors': 'Build could not be found'}, 404
-    elif build.owner_id != current_user.id:
+    elif build.user_id != current_user.id:
         return { 'errors': 'Unauthorized Action' }, 403
     else:
         db.session.delete(build)

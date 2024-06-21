@@ -1,8 +1,8 @@
-"""init
+"""equipment
 
-Revision ID: e765166268cd
+Revision ID: 805c896b815f
 Revises: 
-Create Date: 2024-06-20 19:18:39.657165
+Create Date: 2024-06-20 20:41:43.790352
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e765166268cd'
+revision = '805c896b815f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,6 +23,15 @@ def upgrade():
     sa.Column('level', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('equipment',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('type', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=50), nullable=False),
+    sa.Column('description', sa.String(length=250), nullable=True),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('description'),
+    sa.UniqueConstraint('name')
     )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -50,7 +59,31 @@ def upgrade():
     sa.Column('charisma', sa.Integer(), nullable=False),
     sa.Column('plus_1', sa.String(length=12), nullable=False),
     sa.Column('plus_2', sa.String(length=12), nullable=False),
+    sa.Column('helmet', sa.Integer(), nullable=True),
+    sa.Column('cloak', sa.Integer(), nullable=True),
+    sa.Column('armor', sa.Integer(), nullable=True),
+    sa.Column('gloves', sa.Integer(), nullable=True),
+    sa.Column('boots', sa.Integer(), nullable=True),
+    sa.Column('amulet', sa.Integer(), nullable=True),
+    sa.Column('ring_1', sa.Integer(), nullable=True),
+    sa.Column('ring_2', sa.Integer(), nullable=True),
+    sa.Column('main_hand', sa.Integer(), nullable=True),
+    sa.Column('off_hand', sa.Integer(), nullable=True),
+    sa.Column('ranged_mh', sa.Integer(), nullable=True),
+    sa.Column('ranged_oh', sa.Integer(), nullable=True),
     sa.Column('armor_class', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['amulet'], ['equipment.id'], ),
+    sa.ForeignKeyConstraint(['armor'], ['equipment.id'], ),
+    sa.ForeignKeyConstraint(['boots'], ['equipment.id'], ),
+    sa.ForeignKeyConstraint(['cloak'], ['equipment.id'], ),
+    sa.ForeignKeyConstraint(['gloves'], ['equipment.id'], ),
+    sa.ForeignKeyConstraint(['helmet'], ['equipment.id'], ),
+    sa.ForeignKeyConstraint(['main_hand'], ['equipment.id'], ),
+    sa.ForeignKeyConstraint(['off_hand'], ['equipment.id'], ),
+    sa.ForeignKeyConstraint(['ranged_mh'], ['equipment.id'], ),
+    sa.ForeignKeyConstraint(['ranged_oh'], ['equipment.id'], ),
+    sa.ForeignKeyConstraint(['ring_1'], ['equipment.id'], ),
+    sa.ForeignKeyConstraint(['ring_2'], ['equipment.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -89,5 +122,6 @@ def downgrade():
     op.drop_table('build_classes')
     op.drop_table('builds')
     op.drop_table('users')
+    op.drop_table('equipment')
     op.drop_table('classes')
     # ### end Alembic commands ###
