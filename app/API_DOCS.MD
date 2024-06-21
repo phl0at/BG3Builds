@@ -826,36 +826,38 @@ Creates and returns a new build.
   - Body:
 
     ```json
-    {
-      "id": 2,
-      "user_id": 1,
-      "name": "My New Build",
-      "character_name": "Legolas",
-      "origin": "custom",
-      "race": "Elf",
-      "sub_race": "High Elf",
-      "background": "Soldier",
-      "strength": 12,
-      "dexterity": 16,
-      "constitution": 10,
-      "intelligence": 14,
-      "wisdom": 10,
-      "charisma": 16,
-      "helmet": 1,
-      "cloak": 2,
-      "armor": 3,
-      "gloves": 4,
-      "boots": 5,
-      "amulet": 6,
-      "ring_1": 7,
-      "ring_2": 8,
-      "main_hand": 9,
-      "off_hand": 10,
-      "ranged_mh": 11,
-      "ranged_oh": null,
-      "plus_1": "Dexterity",
-      "plus_2": "Charisma",
-      "armor_class": 15
+      {
+        "amulet": 6,
+        "armor": 3,
+        "armor_class": 15,
+        "background": "Soldier",
+        "boots": 5,
+        "character_name": "Legolas",
+        "charisma": 16,
+        "classes": [],
+        "cloak": 2,
+        "comments": [],
+        "constitution": 10,
+        "dexterity": 16,
+        "gloves": 4,
+        "helmet": 1,
+        "id": 5,
+        "intelligence": 14,
+        "main_hand": 9,
+        "name": "My New Build",
+        "off_hand": 10,
+        "origin": "custom",
+        "plus_1": "Dexterity",
+        "plus_2": "Charisma",
+        "race": "Elf",
+        "ranged_mh": 11,
+        "ranged_oh": null,
+        "ring_1": 7,
+        "ring_2": 8,
+        "strength": 12,
+        "sub_race": "High Elf",
+        "user_id": 1,
+        "wisdom": 10
     }
     ```
 
@@ -1070,7 +1072,6 @@ Creates and returns a new build/class relationship.
     }
     ```
 
-
 - Error Response: Body validation errors
 
   - Status Code: 400
@@ -1096,7 +1097,6 @@ Creates and returns a new build/class relationship.
       "errors": "Build could not be found"
     }
     ```
-
 
 ### Removing a Class from a Build
 

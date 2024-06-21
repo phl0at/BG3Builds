@@ -1,8 +1,8 @@
 """init
 
-Revision ID: cb61813d5f6b
+Revision ID: 4fc938b66e33
 Revises: 
-Create Date: 2024-06-20 20:50:10.136274
+Create Date: 2024-06-20 22:56:22.561398
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'cb61813d5f6b'
+revision = '4fc938b66e33'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -57,20 +57,20 @@ def upgrade():
     sa.Column('intelligence', sa.Integer(), nullable=False),
     sa.Column('wisdom', sa.Integer(), nullable=False),
     sa.Column('charisma', sa.Integer(), nullable=False),
-    sa.Column('plus_1', sa.String(length=12), nullable=False),
-    sa.Column('plus_2', sa.String(length=12), nullable=False),
-    sa.Column('helmet', sa.Integer(), nullable=True),
-    sa.Column('cloak', sa.Integer(), nullable=True),
-    sa.Column('armor', sa.Integer(), nullable=True),
-    sa.Column('gloves', sa.Integer(), nullable=True),
-    sa.Column('boots', sa.Integer(), nullable=True),
-    sa.Column('amulet', sa.Integer(), nullable=True),
-    sa.Column('ring_1', sa.Integer(), nullable=True),
-    sa.Column('ring_2', sa.Integer(), nullable=True),
-    sa.Column('main_hand', sa.Integer(), nullable=True),
-    sa.Column('off_hand', sa.Integer(), nullable=True),
-    sa.Column('ranged_mh', sa.Integer(), nullable=True),
-    sa.Column('ranged_oh', sa.Integer(), nullable=True),
+    sa.Column('plus_1', sa.String(length=20), nullable=False),
+    sa.Column('plus_2', sa.String(length=20), nullable=False),
+    sa.Column('helmet', sa.Integer(), nullable=False),
+    sa.Column('cloak', sa.Integer(), nullable=False),
+    sa.Column('armor', sa.Integer(), nullable=False),
+    sa.Column('gloves', sa.Integer(), nullable=False),
+    sa.Column('boots', sa.Integer(), nullable=False),
+    sa.Column('amulet', sa.Integer(), nullable=False),
+    sa.Column('ring_1', sa.Integer(), nullable=False),
+    sa.Column('ring_2', sa.Integer(), nullable=False),
+    sa.Column('main_hand', sa.Integer(), nullable=False),
+    sa.Column('off_hand', sa.Integer(), nullable=False),
+    sa.Column('ranged_mh', sa.Integer(), nullable=False),
+    sa.Column('ranged_oh', sa.Integer(), nullable=False),
     sa.Column('armor_class', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['amulet'], ['equipment.id'], ),
     sa.ForeignKeyConstraint(['armor'], ['equipment.id'], ),
