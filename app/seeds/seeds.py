@@ -86,7 +86,7 @@ def seed_all():
             "main_hand": 9,
             "off_hand": 10,
             "ranged_mh": 11,
-            "ranged_oh": 0,
+            "ranged_oh": None,
             'armor_class': 15
         },
         {
@@ -116,7 +116,7 @@ def seed_all():
             "main_hand": 9,
             "off_hand": 10,
             "ranged_mh": 11,
-            "ranged_oh": 0,
+            "ranged_oh": None,
             'armor_class': 15
         },
         {
@@ -146,7 +146,7 @@ def seed_all():
             "main_hand": 9,
             "off_hand": 10,
             "ranged_mh": 11,
-            "ranged_oh": 0,
+            "ranged_oh": None,
             'armor_class': 15
         },
         {
@@ -176,7 +176,7 @@ def seed_all():
             "main_hand": 9,
             "off_hand": 10,
             "ranged_mh": 11,
-            "ranged_oh": 0,
+            "ranged_oh": None,
             'armor_class': 15
         }
     ]

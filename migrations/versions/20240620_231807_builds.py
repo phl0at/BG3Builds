@@ -1,8 +1,8 @@
-"""init
+"""builds
 
-Revision ID: 4fc938b66e33
+Revision ID: 06620b8da3c3
 Revises: 
-Create Date: 2024-06-20 22:56:22.561398
+Create Date: 2024-06-20 23:18:07.528966
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '4fc938b66e33'
+revision = '06620b8da3c3'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -59,18 +59,18 @@ def upgrade():
     sa.Column('charisma', sa.Integer(), nullable=False),
     sa.Column('plus_1', sa.String(length=20), nullable=False),
     sa.Column('plus_2', sa.String(length=20), nullable=False),
-    sa.Column('helmet', sa.Integer(), nullable=False),
-    sa.Column('cloak', sa.Integer(), nullable=False),
-    sa.Column('armor', sa.Integer(), nullable=False),
-    sa.Column('gloves', sa.Integer(), nullable=False),
-    sa.Column('boots', sa.Integer(), nullable=False),
-    sa.Column('amulet', sa.Integer(), nullable=False),
-    sa.Column('ring_1', sa.Integer(), nullable=False),
-    sa.Column('ring_2', sa.Integer(), nullable=False),
-    sa.Column('main_hand', sa.Integer(), nullable=False),
-    sa.Column('off_hand', sa.Integer(), nullable=False),
-    sa.Column('ranged_mh', sa.Integer(), nullable=False),
-    sa.Column('ranged_oh', sa.Integer(), nullable=False),
+    sa.Column('helmet', sa.Integer(), nullable=True),
+    sa.Column('cloak', sa.Integer(), nullable=True),
+    sa.Column('armor', sa.Integer(), nullable=True),
+    sa.Column('gloves', sa.Integer(), nullable=True),
+    sa.Column('boots', sa.Integer(), nullable=True),
+    sa.Column('amulet', sa.Integer(), nullable=True),
+    sa.Column('ring_1', sa.Integer(), nullable=True),
+    sa.Column('ring_2', sa.Integer(), nullable=True),
+    sa.Column('main_hand', sa.Integer(), nullable=True),
+    sa.Column('off_hand', sa.Integer(), nullable=True),
+    sa.Column('ranged_mh', sa.Integer(), nullable=True),
+    sa.Column('ranged_oh', sa.Integer(), nullable=True),
     sa.Column('armor_class', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['amulet'], ['equipment.id'], ),
     sa.ForeignKeyConstraint(['armor'], ['equipment.id'], ),
