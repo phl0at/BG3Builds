@@ -1,4 +1,4 @@
-from app.models import db, User, Build, Class, BuildClass, Comment, Favorite, Equipment, environment, SCHEMA
+from app.models import db, Origin, User, Build, Class, BuildClass, Comment, Favorite, Equipment, environment, SCHEMA
 from sqlalchemy.sql import text
 from werkzeug.security import generate_password_hash
 
@@ -41,6 +41,25 @@ def seed_all():
             description=classes['description']
         )
         db.session.add(new_class)
+
+    ################ SEED ORIGINS ################
+    origin_list = [
+        {'id': 1, 'name': 'Astarion', 'description': 'After two hundred years of serving a cruel master, the vampire spawn Astarion is finally free - free to walk in the sun, free to chase power, and free to take revenge.'},
+        {'id': 2, 'name': "Lae'zel", 'description': "Lae'zel was raised ready for a life amongst the stars, mercilessly conquering the cosmos as a githyanki soldier. Grounded, she must deal with a world she doesn't understand, and find a way to server her people in a plane that despises her militant kin."},
+        {'id': 3, 'name': 'Gale', 'description': "Gale's wizarding prowess once earned him the love of Mystra, the goddess of magic, until his ambition led him to the brink of catastrophe..."},
+        {'id': 4, 'name': 'Shadowheart', 'description': "Shadowheart willingly undertook a ritual to remove her memories in order to protect the secrets of her fellow Shar worshippers. Loss and pain are sacred to her, but her faith is now being tested like never before."},
+        {'id': 5, 'name': 'Wyll', 'description': "Known as 'The Blade of Frontiers', Wyll uses his magic to fell the monsters and devils menacing the Sword Coast. In a moment of desperation, he accepted an offer of greater power, forcing him into an infernal game he is struggling to play."},
+        {'id': 6, 'name': 'Karlach', 'description': "Karlach has escaped ten years of service in the Hells with nothing but the axe on her back - and the infernal engine blazing furiously where her heart used to be."},
+        {'id': 7, 'name': 'The Dark Urge', 'description':  "You remember nothing but a path paved in blood. Unimaginable cruelty whispers to you from within. Can you escape it? Would you even want to?"},
+        {'id': 8, 'name': 'Custom', 'description': "Choose your own origins and destiny!"},
+    ]
+    for origin in origin_list:
+        new_origin = Origin(
+            id=origin['id'],
+            name=origin['name'],
+            description=origin['description'],
+        )
+        db.session.add(new_origin)
 
     ################ SEED EQUIPMENT ################
     equip_list = [

@@ -1,8 +1,8 @@
-"""init
+"""origins
 
-Revision ID: 7f7eb3b1eb17
+Revision ID: 8c0d8c6352c0
 Revises: 
-Create Date: 2024-06-22 17:04:40.911805
+Create Date: 2024-06-22 19:52:36.721457
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7f7eb3b1eb17'
+revision = '8c0d8c6352c0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,6 +32,12 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('description'),
     sa.UniqueConstraint('name')
+    )
+    op.create_table('origins',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(), nullable=False),
+    sa.Column('description', sa.String(length=250), nullable=False),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -125,6 +131,7 @@ def downgrade():
     op.drop_table('build_classes')
     op.drop_table('builds')
     op.drop_table('users')
+    op.drop_table('origins')
     op.drop_table('equipment')
     op.drop_table('classes')
     # ### end Alembic commands ###
