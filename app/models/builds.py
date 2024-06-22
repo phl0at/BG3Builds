@@ -92,7 +92,7 @@ class Class(db.Model):
                                             'Rogue', 'Sorcerer', 'Warlock',
                                             'Wizard'), nullable=False)
     description = db.Column(db.String(250), nullable=False)
-    
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -124,3 +124,20 @@ class BuildClass(db.Model):
         }
 
 ################################################################################
+
+class Origin(db.Model):
+    __tablename__ = 'origins'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, db.Enum("Astarion", "Lae'zel", "Gale", "Shadowheart", "Wyll", "Karlach", "The Dark Urge", "Custom"), nullable=False)
+    description = db.Column(db.String(250), nullable=False)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description
+        }

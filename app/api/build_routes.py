@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import Build, Class, db
+from app.models import Build, Class, Origin, db
 from flask_login import current_user, login_required
 from sqlalchemy.orm import joinedload
 
@@ -273,10 +273,12 @@ def delete_build(id):
 
 ###########################GET ALL CLASSES##############################
 
-@build_routes.route("/classes")
-def get_all_classes():
+@build_routes.route("/preload")
+def get_preload_data():
     """
-        Returns all 12 classes in the database
+        Returns all preloaded data the database
+        (origins, races, classes, and background)
     """
+    origins = Origin.query.all()
     classes = Class.query.all()
     return [vocation.to_dict() for vocation in classes]
