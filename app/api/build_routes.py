@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import Build, db
+from app.models import Build, Class, db
 from flask_login import current_user, login_required
 from sqlalchemy.orm import joinedload
 
@@ -90,6 +90,7 @@ def create_build():
     ranged_mh = data.get('ranged_mh')
     ranged_oh = data.get('ranged_oh')
     armor_class = data.get('armor_class')
+    level = data.get('level')
 
     errors = {}
 
@@ -142,7 +143,8 @@ def create_build():
             off_hand = off_hand,
             ranged_mh = ranged_mh,
             ranged_oh = ranged_oh,
-            armor_class = armor_class
+            armor_class = armor_class,
+            level = level
         )
         db.session.add(build)
         db.session.commit()
@@ -193,6 +195,7 @@ def edit_build(id):
     ranged_mh = data.get('ranged_mh')
     ranged_oh = data.get('ranged_oh')
     armor_class = data.get('armor_class')
+    level = data.get('level')
 
     errors = {}
 
@@ -216,7 +219,6 @@ def edit_build(id):
     if errors:
         return { 'errors': errors }, 400
     else:
-        build.armor_class = armor_class
         build.name = name
         build.character_name = character_name
         build.origin = origin
@@ -243,6 +245,8 @@ def edit_build(id):
         build.off_hand = off_hand
         build.ranged_mh = ranged_mh
         build.ranged_oh = ranged_oh
+        build.armor_class = armor_class
+        build.level = level
 
         db.session.commit()
 
@@ -266,3 +270,13 @@ def delete_build(id):
         db.session.delete(build)
         db.session.commit()
         return { 'message': 'Successfully deleted' }, 200
+
+###########################GET ALL CLASSES##############################
+
+@build_routes.route("/classes")
+def get_all_classes():
+    """
+        Returns all 12 classes in the database
+    """
+    classes = Class.query.all()
+    return [vocation.to_dict() for vocation in classes]

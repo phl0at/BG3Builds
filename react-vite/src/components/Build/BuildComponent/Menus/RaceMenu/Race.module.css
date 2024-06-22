@@ -1,0 +1,39 @@
+.title {
+    margin-top: 10px;
+    font-size: 14pt;
+  }
+  .select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    height: 180px;
+  }
+
+  .raceList {
+    display: flex;
+    justify-content: center;
+    column-gap: 40px;
+    row-gap: 15px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .race {
+    gap: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-wrap: nowrap;
+  }
+
+  .raceImg {
+    width: 60px;
+    height: 67px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .error {
+    color: red;
+  }

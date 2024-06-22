@@ -20,17 +20,55 @@ def seed_all():
 
     ################ SEED CLASSES ################
     class_list = [
-        { 'level': 1, 'name': 'Ranger'},
-        { 'level': 2, 'name': 'Ranger'},
-        { 'level': 3, 'name': 'Ranger'},
-        { 'level': 4, 'name': 'Ranger'},
-        { 'level': 5, 'name': 'Ranger'},
+        { 'id': 1, 'name': 'Barbarian', 'description': 'The strong embrace the wild that hides inside - \
+                                                        keen instincts, primal physicality, and most of all, \
+                                                        an unbridled, unquenchable rage.'},
+
+        { 'id': 2, 'name': 'Bard', 'description': 'Bards know music is more than idle fancy - it is power. \
+                                                    Through study and adventure, these traveling troudabours \
+                                                    master song, speech, and the magic within'},
+
+        { 'id': 3, 'name': 'Cleric', 'description': 'Clerics are representatives of the gods they worship, \
+                                                    wielding potent divine magic for good or ill.'},
+
+        { 'id': 4, 'name': 'Druid', 'description': 'Druids channel the elemental forces of nature and share a deep \
+                                                    kinship with animals. Mastery of Wild Shape allows them to \
+                                                    transform into beasts from all over the Realms.'},
+
+        { 'id': 5, 'name': 'Fighter', 'description': 'Fighters have mastered the art of combat, wielding weapons \
+                                                        with unmatched skill and wearing armor like a second skin.'},
+
+        { 'id': 6, 'name': 'Monk', 'description': 'Some reach enlightenment by languid meditation - others do so in \
+                                                   the heat of battle. Monks manipulate ki to empower their own  \
+                                                   strikes and debilitate their foes.'},
+
+        { 'id': 7, 'name': 'Paladin', 'description': 'A promise made so deeply that it becomes divine in itself \
+                                                      flows through a paladin, burning bright enough to inspire \
+                                                      allies and smite foes.'},
+
+        { 'id': 8, 'name': 'Ranger', 'description': 'Rangers are unrivalled scouts and trackers, honing a deep \
+                                                     connection with nature in order to hunt their favored prey.'},
+
+        { 'id': 9, 'name': 'Rogue', 'description': "With stealth, skill, and uncanny reflexes, rogues' versatility \
+                                                    lets them get the upper hand in almost any situation."},
+
+        { 'id': 10, 'name': 'Sorcerer', 'description': 'Sorcerers are natural spellcasters, drawing on inherent \
+                                                        magic from a gift or bloodline.'},
+
+        { 'id': 11, 'name': 'Warlock', 'description': 'Bound by a pact to an all-powerful patron, warlocks trade \
+                                                        their loyalty for supernatural abilities and unique magic.'},
+
+        { 'id': 12, 'name': 'Wizard', 'description': 'Wizards master the arcane by specializing in individual \
+                                                      schools of magic, combining ancient spells with \
+                                                      modern research.'},
+
     ]
 
     for classes in class_list:
         new_class = Class(
-            level=classes['level'],
-            name=classes['name']
+            id=classes['id'],
+            name=classes['name'],
+            description=classes['description']
         )
         db.session.add(new_class)
 
@@ -87,7 +125,8 @@ def seed_all():
             "off_hand": 10,
             "ranged_mh": 11,
             "ranged_oh": None,
-            'armor_class': 15
+            'armor_class': 15,
+            "level": 5
         },
         {
             'name': 'Build 2-1',
@@ -117,7 +156,8 @@ def seed_all():
             "off_hand": 10,
             "ranged_mh": 11,
             "ranged_oh": None,
-            'armor_class': 15
+            'armor_class': 15,
+            "level": 5
         },
         {
             'name': 'Build 1-2',
@@ -147,7 +187,8 @@ def seed_all():
             "off_hand": 10,
             "ranged_mh": 11,
             "ranged_oh": None,
-            'armor_class': 15
+            'armor_class': 15,
+            "level": 5
         },
         {
             'name': 'Build 2-2',
@@ -177,7 +218,8 @@ def seed_all():
             "off_hand": 10,
             "ranged_mh": 11,
             "ranged_oh": None,
-            'armor_class': 15
+            'armor_class': 15,
+            "level": 5
         }
     ]
 
@@ -210,38 +252,25 @@ def seed_all():
             off_hand=build_data['off_hand'],
             ranged_mh=build_data['ranged_mh'],
             ranged_oh=build_data['ranged_oh'],
-            armor_class=build_data['armor_class']
+            armor_class=build_data['armor_class'],
+            level=build_data['level']
         )
         db.session.add(build)
 
 
     ################ SEED BUILD CLASSES ################
     build_classes_list = [
-        { 'build_id': 1, 'class_id': 1},
-        { 'build_id': 1, 'class_id': 2},
-        { 'build_id': 1, 'class_id': 3},
-        { 'build_id': 1, 'class_id': 4},
-        { 'build_id': 1, 'class_id': 5},
-        { 'build_id': 2, 'class_id': 1},
-        { 'build_id': 2, 'class_id': 2},
-        { 'build_id': 2, 'class_id': 3},
-        { 'build_id': 2, 'class_id': 4},
-        { 'build_id': 2, 'class_id': 5},
-        { 'build_id': 3, 'class_id': 1},
-        { 'build_id': 3, 'class_id': 2},
-        { 'build_id': 3, 'class_id': 3},
-        { 'build_id': 3, 'class_id': 4},
-        { 'build_id': 3, 'class_id': 5},
-        { 'build_id': 4, 'class_id': 1},
-        { 'build_id': 4, 'class_id': 2},
-        { 'build_id': 4, 'class_id': 3},
-        { 'build_id': 4, 'class_id': 4},
-        { 'build_id': 4, 'class_id': 5},
+        { 'build_id': 1, 'class_id': 8, 'level': 5, 'sub_class': 'Gloomstalker'},
+        { 'build_id': 2, 'class_id': 8, 'level': 5, 'sub_class': 'Gloomstalker'},
+        { 'build_id': 3, 'class_id': 8, 'level': 5, 'sub_class': 'Gloomstalker'},
+        { 'build_id': 4, 'class_id': 8, 'level': 5, 'sub_class': 'Gloomstalker'},
     ]
     for build_class in build_classes_list:
         new_bc = BuildClass(
             build_id=build_class['build_id'],
             class_id=build_class['class_id'],
+            level=build_class['level'],
+            sub_class=build_class['sub_class']
         )
         db.session.add(new_bc)
 

@@ -37,6 +37,7 @@ class Build(db.Model):
     ranged_mh = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('equipment.id')), nullable=True)
     ranged_oh = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('equipment.id')), nullable=True)
     armor_class = db.Column(db.Integer, nullable=False)
+    level = db.Column(db.Integer, nullable=False)
 
     classes = db.relationship("BuildClass", backref="build", cascade="all, delete-orphan")
     comments = db.relationship("Comment", backref="build", cascade="all, delete-orphan")
@@ -72,6 +73,7 @@ class Build(db.Model):
             'ranged_mh': self.ranged_mh,
             'ranged_oh': self.ranged_oh,
             'armor_class': self.armor_class,
+            'level': self.level,
             'classes': [build_class.to_dict() for build_class in self.classes],
             'comments': [comment.to_dict() for comment in self.comments]
         }
@@ -85,17 +87,17 @@ class Class(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    level = db.Column(db.Integer, nullable=False)
     name = db.Column(db.String(50), db.Enum('Cleric', 'Druid', 'Fighter',
                                             'Monk', 'Paladin', 'Ranger',
                                             'Rogue', 'Sorcerer', 'Warlock',
                                             'Wizard'), nullable=False)
-
+    description = db.Column(db.String(250), nullable=False)
+    
     def to_dict(self):
         return {
             'id': self.id,
-            'level': self.level,
             'name': self.name,
+            'description': self.description
         }
 
 ################################################################################
@@ -109,12 +111,16 @@ class BuildClass(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     build_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('builds.id')), nullable=False)
     class_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('classes.id')), nullable=False)
+    level = db.Column(db.Integer, nullable=False)
+    sub_class = db.Column(db.String(50), nullable=True)
 
     def to_dict(self):
         return {
             'id': self.id,
             'build_id': self.build_id,
-            'class_id': self.class_id
+            'class_id': self.class_id,
+            'level': self.level,
+            'sub_class': self.sub_class
         }
 
 ################################################################################

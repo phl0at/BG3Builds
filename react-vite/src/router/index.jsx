@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import LandingPage from '../components/Landing';
-import CreateBuildPage from '../components/Build/Parent'
-// import EditBuildPage from '../components/Build/Edit'
+import CreateBuildPage from '../components/Build/CreatePage/Parent'
+import EditBuildPage from '../components/Build/EditPage/Parent'
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -18,8 +18,8 @@ export const router = createBrowserRouter([
         element: <CreateBuildPage />,
       },
       {
-        path: "/edit",
-        // element: <EditBuildPage />,
+        path: "/edit/:buildId",
+        element: <EditBuildPage />,
       },
     ],
   },
