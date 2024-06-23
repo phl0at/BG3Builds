@@ -29,6 +29,24 @@ import Rogue from "../../../images/class_icons/Rogue.png";
 import Sorcerer from "../../../images/class_icons/Sorcerer.png";
 import Warlock from "../../../images/class_icons/Warlock.png";
 import Wizard from "../../../images/class_icons/Wizard.png";
+import Acolyte from "../../../images/bg_icons/Acolyte.png";
+import Charlatan from "../../../images/bg_icons/Charlatan.png";
+import Criminal from "../../../images/bg_icons/Criminal.png";
+import Entertainer from "../../../images/bg_icons/Entertainer.png";
+import FolkHero from "../../../images/bg_icons/FolkHero.png";
+import GuildArtisan from "../../../images/bg_icons/GuildArtisan.png";
+import HauntedOne from "../../../images/bg_icons/HauntedOne.png";
+import Noble from "../../../images/bg_icons/Noble.png";
+import Outlander from "../../../images/bg_icons/Outlander.png";
+import Sage from "../../../images/bg_icons/Sage.png";
+import Soldier from "../../../images/bg_icons/Soldier.png";
+import Urchin from "../../../images/bg_icons/Urchin.png";
+import Strength from "../../../images/stat_icons/Strength.png";
+import Dexterity from "../../../images/stat_icons/Dexterity.png";
+import Constitution from "../../../images/stat_icons/Constitution.png";
+import Intelligence from "../../../images/stat_icons/Intelligence.png";
+import Wisdom from "../../../images/stat_icons/Wisdom.png";
+import Charisma from "../../../images/stat_icons/Charisma.png";
 
 export const Images = {
   characters: {
@@ -68,4 +86,26 @@ export const Images = {
     Warlock,
     Wizard,
   },
+  backgrounds: {
+    Acolyte,
+    Charlatan,
+    Criminal,
+    Entertainer,
+    FolkHero,
+    GuildArtisan,
+    HauntedOne,
+    Noble,
+    Outlander,
+    Sage,
+    Soldier,
+    Urchin
+  },
+  abilities: {
+    Strength,
+    Dexterity,
+    Constitution,
+    Intelligence,
+    Wisdom,
+    Charisma
+  }
 };

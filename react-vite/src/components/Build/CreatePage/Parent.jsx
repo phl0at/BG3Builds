@@ -2,23 +2,25 @@
 import styles from "./Parent.module.css";
 //Functions/Components
 import {
+  setBackground,
   setOrigin,
   setRace,
-  setClass,
 } from "../../../redux/build";
 import Navigation from "../NavigationComponent";
 import BuildComponent from "../BuildComponent/Build";
+import { thunkPreloadData } from "../../../redux/static";
 //Packages
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { thunkPreloadData } from "../../../redux/static";
 
 export default function ParentPage() {
   const dispatch = useDispatch();
   const [activeMenu, setActiveMenu] = useState("Origin");
+
   useEffect(() => {
-    dispatch(setOrigin("Custom"));
-    dispatch(setRace("Elf"));
+    dispatch(setOrigin(8));
+    dispatch(setRace(1));
+    dispatch(setBackground(1))
     dispatch(thunkPreloadData());
   }, []);
 

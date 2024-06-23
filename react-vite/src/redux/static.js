@@ -24,20 +24,33 @@ function staticReducer(state = initialState, action) {
   switch (action.type) {
     case "preload": {
       const { origins, classes, races, backgrounds } = action.payload;
-      const newState = {};
+      const newState = { ...state };
       origins.forEach(
-        (origin) => (newState["origins"] = { [origin.id]: origin })
+        (origin) =>
+          (newState["origins"] = {
+            ...newState["origins"],
+            [origin.id]: origin,
+          })
       );
       classes.forEach(
-        (_class) => (newState["classes"] = { [_class.id]: _class })
+        (_class) =>
+          (newState["classes"] = {
+            ...newState["classes"],
+            [_class.id]: _class,
+          })
       );
       races.forEach(
-        (race) => (newState["races"] = { [race.id]: race })
+        (race) =>
+          (newState["races"] = { ...newState["races"], [race.id]: race })
       );
       backgrounds.forEach(
-        (background) => (newState["backgrounds"] = { [background.id]: background })
+        (background) =>
+          (newState["backgrounds"] = {
+            ...newState["backgrounds"],
+            [background.id]: background,
+          })
       );
-      return newState
+      return newState;
     }
     default:
       return state;

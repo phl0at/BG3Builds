@@ -7,8 +7,9 @@ import { createSelector } from "reselect";
 const SET_ORIGIN = "build/setOrigin";
 const SET_RACE = "build/setRace";
 const SET_CLASS = "build/setClass";
+const SET_BG = "build/setBackground";
 const ADD_CLASS = "build/addClass";
-const GET_ALL_CLASSES = "buld/getAllClasses";
+const GET_ALL_CLASSES = "build/getAllClasses";
 
 //! --------------------------------------------------------------------
 //*                         Action Creators
@@ -45,12 +46,18 @@ export const setClass = (payload) => {
 };
 
 //! --------------------------------------------------------------------
+export const setBackground = (payload) => {
+  return {
+    type: SET_BG,
+    payload,
+  };
+};
+
+//! --------------------------------------------------------------------
 //*                             Thunks
 //! --------------------------------------------------------------------
 
 export const thunkCreateBuild = () => async (dispatch) => {};
-
-
 
 //! --------------------------------------------------------------------
 //*                            Reducer
@@ -67,9 +74,17 @@ function buildReducer(state = initialState, action) {
     case SET_RACE:
       return { ...state, current: { ...state.current, race: action.payload } };
     case SET_CLASS: {
-      const newState = { ...state, current: { ...state.current } };
-      const selectedClass = newState.classes[action.payload];
-      newState.current["class"] = selectedClass;
+      const newState = {
+        ...state,
+        current: { ...state.current, class: action.payload },
+      };
+      return newState;
+    }
+    case SET_BG: {
+      const newState = {
+        ...state,
+        current: { ...state.current, background: action.payload },
+      };
       return newState;
     }
     case ADD_CLASS: {
