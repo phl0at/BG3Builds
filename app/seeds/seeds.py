@@ -1,4 +1,4 @@
-from app.models import db, Origin, User, Build, Class, BuildClass, Comment, Favorite, Equipment, environment, SCHEMA
+from app.models import db, Origin, Background, Race, User, Build, Class, BuildClass, Comment, Favorite, Equipment, environment, SCHEMA
 from sqlalchemy.sql import text
 from werkzeug.security import generate_password_hash
 
@@ -63,8 +63,48 @@ def seed_all():
 
     ################ SEED RACES ################
     race_list = [
-        { 'id': 1, 'name': 'Elf', 'description': ''}
+        { 'id': 1, 'name': 'Elf', 'description': "With ethereal countenances and long lifespans, elves are at home with nature's power, flourishing in light and dark alike"},
+        { 'id': 2, 'name': 'Tiefling', 'description': "Descended from devils of the Nine Hells, tieflings face constant suspicion in Faerûn. Thankfully, their arcane abilities make them natural survivors."},
+        { 'id': 3, 'name': 'Drow', 'description': "Driven to the Underdark, most drow have adopted a ruthless pragmatism. While the Lolth-sworn delight in the goddess' evil tenets, the Seldarine reject Her attempt to overthrow the leader of the elven pantheon."},
+        { 'id': 4, 'name': 'Human', 'description': "The most common face in Faerûn, humans are known for their tenacity, creativity, and endless capacity for growth."},
+        { 'id': 5, 'name': 'Githyanki', 'description': "With a ruthlessness borne from mind flayer enslavement, githyanki ride the Astral Sea atop red dragons, bringing their silver swords and psionic might to bear against any trace of the illithid menace."},
+        { 'id': 6, 'name': 'Dwarf', 'description': "As durable an unyielding as their homes of stone, dwarves are some of the finest warriors, miners, and smiths of Faerûn."},
+        { 'id': 7, 'name': 'Half-Elf', 'description': "Curious, ambitious, and versatile, half-elves are welcome everywhere, but struggle without a community to call their own."},
+        { 'id': 8, 'name': 'Halfling', 'description': "Small yet capable, halflings prefer the comforts of home and hearth - but their natural luck and dexterity makes them fine adventurers."},
+        { 'id': 9, 'name': 'Gnome', 'description': "Small, clever, and energetic, gnomes use their long lives to explore Faerûn's brightest corners and darkest depths."},
+        { 'id': 10, 'name': 'Dragonborn', 'description': "A proud race that values clan and skills above all else. Once enslaved by dragons, they strive to be self-sufficient, not wanting to be beholden to anyone, not even the gods."},
+        { 'id': 11, 'name': 'Half-Orc', 'description': "Creatures of intense emotion, half-orcs are more inclined to act than contemplate - whether the rage burning in their bodies compels them to fight, or the love filling their hearts inspires acts of incredible kindness."},
     ]
+    for race in race_list:
+        new_race = Race(
+            id=race['id'],
+            name=race['name'],
+            description=race['description'],
+        )
+        db.session.add(new_race)
+
+    ################ SEED BACKGROUNDS ################
+    background_list = [
+        {'id': 1, 'name':"Acolyte", "description": "You have spent your life in service to a temple, learning sacred rites and providing sacrifices to the god or gods you worship. Serving the gods and discovering their sacred works will guide you to greatness." },
+        {'id': 2, 'name':"Charlatan", "description": "You're an expert in manipulation, prone to exaggeration and more than happy to profit from it. Bending the truth and turning allies against each other will lead to greater success down the road." },
+        {'id': 3, 'name':"Criminal", "description": "You have a history of breaking the law and survive by leveraging less-than-legal connections. Profiting from criminal enterprise will lead to greater opportunities in the future." },
+        {'id': 4, 'name':"Entertainer", "description": "You live to sway and subvert your audience, engaging common crowds and high society alike. Preserving art and bringing joy to the hapless and downtrodden heightens your charismatic aura." },
+        {'id': 5, 'name':"Folk Hero", "description": "You're a champion to the common people, challenging tyrants and monsters to protect the helpless. Saving innocents in imminent danger will make your legend grow." },
+        {'id': 6, 'name':"Guild Artisan", "description": "Your skill in a particular craft has earned you membership in a mercantile guild, offering privileges and protection while engaging in your art. Repairing and discovering rare crafts will bring new inspiration." },
+        {'id': 7, 'name':"Noble", "description": "You were raised in a family among the social elite, accustomed to power and privilege. Accumulating renown, power, and loyalty will raise your status." },
+        {'id': 8, 'name':"Outlander", "description": "You grew up in the wilds, learning to survive far from the comforts of civilization. Surviving unusual hazards of the wild will enhance your prowess and understanding." },
+        {'id': 9, 'name':"Sage", "description": "You are curious and well-read, with an unending thirst for knowledge. Learning about rare lore of the world will inspire you to put this knowledge to greater purpose." },
+        {'id': 10, 'name':"Soldier", "description": "You are trained in battlefield tactics and combat, having served in a militia, mercenary company, or officer corps. Show smart tactics and bravery on the battlefield to enhance you prowess." },
+        {'id': 11, 'name':"Urchin", "description": "After surviving a poor and bleak childhood, you know how to make the most out of every little. Using your street smarts bolsters your spirit for the journey ahead." },
+    ]
+    for background in background_list:
+        new_background = Background(
+            id = background['id'],
+            name = background['name'],
+            description = background['description'],
+        )
+        db.session.add(new_background)
+
 
     ################ SEED EQUIPMENT ################
     equip_list = [
@@ -95,10 +135,9 @@ def seed_all():
             'name': 'Build 1-1',
             'user_id': 1,
             'character_name': 'Tav',
-            'origin': 'custom',
-            'race': 'Human',
-            'sub_race': None,
-            'background': 'Soldier',
+            'origin': 8,
+            'race': 1,
+            'background': 11,
             "strength": 14,
             "dexterity": 10,
             "constitution": 16,
@@ -126,10 +165,9 @@ def seed_all():
             'name': 'Build 2-1',
             'user_id': 1,
             'character_name': 'Tav',
-            'origin': 'custom',
-            'race': 'Human',
-            'sub_race': None,
-            'background': 'Soldier',
+            'origin': 8,
+            'race': 1,
+            'background': 11,
             "strength": 14,
             "dexterity": 10,
             "constitution": 16,
@@ -157,10 +195,9 @@ def seed_all():
             'name': 'Build 1-2',
             'user_id': 2,
             'character_name': 'Tav',
-            'origin': 'custom',
-            'race': 'Human',
-            'sub_race': None,
-            'background': 'Soldier',
+            'origin': 8,
+            'race': 1,
+            'background': 11,
             "strength": 14,
             "dexterity": 10,
             "constitution": 16,
@@ -188,10 +225,9 @@ def seed_all():
             'name': 'Build 2-2',
             'user_id': 2,
             'character_name': 'Tav',
-            'origin': 'custom',
-            'race': 'Human',
-            'sub_race': None,
-            'background': 'Soldier',
+            'origin': 8,
+            'race': 1,
+            'background': 11,
             "strength": 14,
             "dexterity": 10,
             "constitution": 16,
@@ -224,7 +260,6 @@ def seed_all():
             character_name=build_data['character_name'],
             origin=build_data['origin'],
             race=build_data['race'],
-            sub_race=build_data['sub_race'],
             background=build_data['background'],
             strength=build_data['strength'],
             dexterity=build_data['dexterity'],
@@ -254,17 +289,17 @@ def seed_all():
 
     ################ SEED BUILD CLASSES ################
     build_classes_list = [
-        { 'build_id': 1, 'class_id': 8, 'level': 5, 'sub_class': 'Gloomstalker'},
-        { 'build_id': 2, 'class_id': 8, 'level': 5, 'sub_class': 'Gloomstalker'},
-        { 'build_id': 3, 'class_id': 8, 'level': 5, 'sub_class': 'Gloomstalker'},
-        { 'build_id': 4, 'class_id': 8, 'level': 5, 'sub_class': 'Gloomstalker'},
+        { 'build_id': 1, 'class_id': 8, 'level': 5},
+        { 'build_id': 2, 'class_id': 8, 'level': 5},
+        { 'build_id': 3, 'class_id': 8, 'level': 5},
+        { 'build_id': 4, 'class_id': 8, 'level': 5},
     ]
     for build_class in build_classes_list:
         new_bc = BuildClass(
             build_id=build_class['build_id'],
             class_id=build_class['class_id'],
             level=build_class['level'],
-            sub_class=build_class['sub_class']
+            # sub_class=build_class['sub_class']
         )
         db.session.add(new_bc)
 
@@ -312,11 +347,21 @@ def undo_all():
         db.session.execute(f"TRUNCATE table {SCHEMA}.comments RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.favorites RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.equipment RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.classes RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.build_classes RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.origins RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.races RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.backgrounds RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
         db.session.execute(text("DELETE FROM builds"))
         db.session.execute(text("DELETE FROM comments"))
         db.session.execute(text("DELETE FROM favorites"))
         db.session.execute(text("DELETE FROM equipment"))
+        db.session.execute(text("DELETE FROM classes"))
+        db.session.execute(text("DELETE FROM build_classes"))
+        db.session.execute(text("DELETE FROM origins"))
+        db.session.execute(text("DELETE FROM races"))
+        db.session.execute(text("DELETE FROM backgrounds"))
 
     db.session.commit()

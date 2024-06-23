@@ -50,19 +50,7 @@ export const setClass = (payload) => {
 
 export const thunkCreateBuild = () => async (dispatch) => {};
 
-//! --------------------------------------------------------------------
-export const thunkGetAllClasses = () => async (dispatch) => {
-  try {
-    const res = await fetch("/api/builds/classes");
-    if (res.ok) {
-      const data = await res.json();
-      dispatch(action(GET_ALL_CLASSES, data));
-      return data;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 
 //! --------------------------------------------------------------------
 //*                            Reducer

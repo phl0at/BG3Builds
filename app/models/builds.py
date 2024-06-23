@@ -12,10 +12,10 @@ class Build(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     name = db.Column(db.String(25), nullable=False)
     character_name = db.Column(db.String(25), nullable=False)
-    origin = db.Column(db.String(25), nullable=False)
-    race = db.Column(db.String(25), nullable=False)
-    sub_race = db.Column(db.String(25), nullable=True)
-    background = db.Column(db.String(25), nullable=False)
+    origin = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('origins.id')), nullable=False)
+    race = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('races.id')), nullable=False)
+    # sub_race = db.Column(db.String(25), nullable=True)
+    background = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('backgrounds.id')), nullable=False)
     strength = db.Column(db.Integer, nullable=False)
     dexterity = db.Column(db.Integer, nullable=False)
     constitution = db.Column(db.Integer, nullable=False)
@@ -50,7 +50,7 @@ class Build(db.Model):
             'character_name': self.character_name,
             'origin': self.origin,
             'race': self.race,
-            'sub_race': self.sub_race,
+            # 'sub_race': self.sub_race,
             'background': self.background,
             'strength': self.strength,
             'dexterity': self.dexterity,
@@ -80,28 +80,6 @@ class Build(db.Model):
 
 ################################################################################
 
-class Class(db.Model):
-    __tablename__ = 'classes'
-
-    if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), db.Enum('Cleric', 'Druid', 'Fighter',
-                                            'Monk', 'Paladin', 'Ranger',
-                                            'Rogue', 'Sorcerer', 'Warlock',
-                                            'Wizard'), nullable=False)
-    description = db.Column(db.String(250), nullable=False)
-
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'description': self.description
-        }
-
-################################################################################
-
 class BuildClass(db.Model):
     __tablename__ = 'build_classes'
 
@@ -125,6 +103,28 @@ class BuildClass(db.Model):
 
 ################################################################################
 
+class Class(db.Model):
+    __tablename__ = 'classes'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), db.Enum('Cleric', 'Druid', 'Fighter',
+                                            'Monk', 'Paladin', 'Ranger',
+                                            'Rogue', 'Sorcerer', 'Warlock',
+                                            'Wizard'), nullable=False)
+    description = db.Column(db.String(250), nullable=False)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description
+        }
+
+################################################################################
+
 class Origin(db.Model):
     __tablename__ = 'origins'
 
@@ -132,7 +132,7 @@ class Origin(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), db.Enum("Astarion", "Lae'zel", "Gale", "Shadowheart", "Wyll", "Karlach", "The Dark Urge", "Custom"), nullable=False)
     description = db.Column(db.String(500), nullable=False)
 
     def to_dict(self):
@@ -151,7 +151,26 @@ class Race(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), db.Enum("Elf", "Tiefling","Drow", "Human", "Githyanki", "Dwarf", "Half-Elf", "Halfling", "Gnome", "Dragonborn", "Half-Orc"), nullable=False, unique=True)
+    description = db.Column(db.String(500), nullable=False)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description
+        }
+
+################################################################################
+
+class Background(db.Model):
+    __tablename__ = 'backgrounds'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(25), db.Enum("Acolyte", "Charlatan", "Criminal", "Entertainer", "Folk Hero", "Guild Artisan", "Noble", "Outlander", "Sage", "Solder", "Urchin"), unique=True, nullable=False)
     description = db.Column(db.String(500), nullable=False)
 
     def to_dict(self):

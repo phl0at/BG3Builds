@@ -7,8 +7,10 @@ import {
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import buildReducer from "./build";
+import staticReducer from "./static";
 
 const rootReducer = combineReducers({
+  static: staticReducer,
   session: sessionReducer,
   builds: buildReducer,
 });

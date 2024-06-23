@@ -1,10 +1,11 @@
 from flask import Blueprint, request
-from app.models import Build, Class, Origin, db
+from app.models import Build, Class, Origin, Race, Background, db
 from flask_login import current_user, login_required
 from sqlalchemy.orm import joinedload
 
 
 build_routes = Blueprint('builds', __name__)
+
 
 ###########################GET ALL BUILDS##############################
 
@@ -270,15 +271,3 @@ def delete_build(id):
         db.session.delete(build)
         db.session.commit()
         return { 'message': 'Successfully deleted' }, 200
-
-###########################GET ALL CLASSES##############################
-
-@build_routes.route("/preload")
-def get_preload_data():
-    """
-        Returns all preloaded data the database
-        (origins, races, classes, and background)
-    """
-    origins = Origin.query.all()
-    classes = Class.query.all()
-    return [vocation.to_dict() for vocation in classes]
