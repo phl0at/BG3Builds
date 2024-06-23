@@ -12,7 +12,7 @@ class Equipment(db.Model):
     type = db.Column(db.String(6), db.Enum("helmet", "cloak", "armor", "gloves",
                                          "boots", "amulet", "ring", "melee", "ranged"), nullable=False)
     name = db.Column(db.String(50), nullable=False, unique=True)
-    description = db.Column(db.String(250), nullable=True, unique=True)
+    description = db.Column(db.String(500), nullable=True, unique=True)
 
     def to_dict(self):
         return {
