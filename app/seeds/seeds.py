@@ -61,6 +61,11 @@ def seed_all():
         )
         db.session.add(new_origin)
 
+    ################ SEED RACES ################
+    race_list = [
+        { 'id': 1, 'name': 'Elf', 'description': ''}
+    ]
+
     ################ SEED EQUIPMENT ################
     equip_list = [
         { 'id': 1, 'type': 'helmet', 'name': 'Haste Helm', 'description': 'Movement Speed:3' },
