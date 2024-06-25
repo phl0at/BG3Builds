@@ -5,15 +5,17 @@
   outline: 3px solid rgb(101, 71, 42);
   border-radius: 4px;
   height: 95%;
-  width: 440px;
+  min-width: 440px;
+  width: 32%;
   gap: 20px;
   overflow-y: auto;
-  background-color: rgba(17, 13, 12, 0.85);
+  background-color: rgba(17, 13, 12, 0.78);
 }
 
 .title {
   margin-top: 10px;
-  font-size: 14pt;
+  font-size: 17pt;
+  color: #e69a28;
 }
 
 .equipment {
@@ -35,9 +37,20 @@
   justify-content: space-between;
 }
 .armorClass {
-  border: 1px solid white;
-  height: 100px;
-  width: 85px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  bottom: 5px;
+  border-radius: 4px;
+  height: 150px;
+  width: 110px;
+  background-color: rgba(17, 13, 12, 0.65);
+}
+
+.armorClass > span {
+  margin-top: 5px;
+  font-size: 15pt;
 }
 
 .accessories {
@@ -50,9 +63,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid white;
-  height: 50px;
-  width: 50px;
+  border: 1px solid #e69a28;
+  border-radius: 2px;
+  height: 75px;
+  width: 75px;
+  background-color: rgba(17, 13, 12, 0.65);
+}
+
+@media (min-width: 1645px){
+  .armorClass{
+    height: 160px;
+    width: 130px;
+  }
+  .slot{
+    height: 80px;
+    width: 80px;
+  }
 }
 
 .weapons {

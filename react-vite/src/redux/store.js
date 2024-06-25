@@ -8,11 +8,13 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import buildReducer from "./build";
 import staticReducer from "./static";
+import equipmentReducer from "./equipment";
 
 const rootReducer = combineReducers({
   static: staticReducer,
   session: sessionReducer,
   builds: buildReducer,
+  equipment: equipmentReducer,
 });
 
 let enhancer;

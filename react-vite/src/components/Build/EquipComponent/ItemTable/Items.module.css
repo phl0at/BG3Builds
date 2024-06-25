@@ -1,0 +1,15 @@
+.main {
+  min-width: 400px;
+  min-height: 450px;
+  background-color: rgba(10, 8, 8, 0.96);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.table {
+  min-width: 350px;
+  min-height: 400px;
+  outline: 3px solid rgb(101, 71, 42);
+  border-radius: 4px;
+}

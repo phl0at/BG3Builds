@@ -1,0 +1,42 @@
+.main {
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  height: 95%;
+  min-width: 320px;
+  width: 26%;
+}
+
+.infoPanel {
+  outline: 3px solid rgb(101, 71, 42);
+  background-color: rgba(17, 13, 12, 0.78);
+  border-radius: 4px;
+  width: 100%;
+  height: 73%;
+}
+.title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 17pt;
+  color: #e69a28;
+}
+.userBar {
+  outline: 3px solid rgb(101, 71, 42);
+  background-color: rgba(17, 13, 12, 0.78);
+  border-radius: 4px;
+  width: 100%;
+  height: 23%;
+}
+
+
+@media (max-width: 600px){
+  .main{
+    display: none;
+  }
+}

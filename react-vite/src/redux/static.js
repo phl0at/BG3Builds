@@ -1,3 +1,7 @@
+//! --------------------------------------------------------------------
+//*                         Action Creators
+//! --------------------------------------------------------------------
+
 const loadStaticData = (payload) => {
   return {
     type: "preload",
@@ -6,6 +10,9 @@ const loadStaticData = (payload) => {
 };
 
 //! --------------------------------------------------------------------
+//*                             Thunks
+//! --------------------------------------------------------------------
+
 export const thunkPreloadData = () => async (dispatch) => {
   try {
     const res = await fetch("/api/preload");
@@ -18,6 +25,10 @@ export const thunkPreloadData = () => async (dispatch) => {
     console.log(error);
   }
 };
+
+//! --------------------------------------------------------------------
+//*                            Reducer
+//! --------------------------------------------------------------------
 
 const initialState = {};
 function staticReducer(state = initialState, action) {

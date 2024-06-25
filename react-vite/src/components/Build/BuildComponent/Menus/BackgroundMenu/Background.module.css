@@ -1,47 +1,118 @@
 .title {
-    margin-top: 10px;
-    font-size: 14pt;
-  }
-  .select {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    height: 180px;
-  }
-  .name {
-    font-size: 14pt;
-  }
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 17pt;
+  color: #e69a28;
+  animation: fadeIn 0.85s;
+  -webkit-animation: fadeIn 0.85s;
+  -moz-animation: fadeIn 0.85s;
+  -o-animation: fadeIn 0.85s;
+  -ms-animation: fadeIn 0.85s;
+}
+.select {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  height: 180px;
+  animation: fadeIn 0.85s;
+  -webkit-animation: fadeIn 0.85s;
+  -moz-animation: fadeIn 0.85s;
+  -o-animation: fadeIn 0.85s;
+  -ms-animation: fadeIn 0.85s;
+}
+.name {
+  font-size: 14pt;
+  color: #e69a28;
+}
 
-  .description {
-    padding-top: 5px;
-    text-align: center;
-    max-width: 90%;
-  }
-  .bgList {
-    display: flex;
-    justify-content: center;
-    column-gap: 40px;
-    row-gap: 15px;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
+.description {
+  padding-top: 5px;
+  text-align: center;
+  max-width: 90%;
+}
+.bgList {
+  display: flex;
+  justify-content: center;
+  column-gap: 40px;
+  row-gap: 15px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 440px;
+  animation: fadeIn 0.85s;
+  -webkit-animation: fadeIn 0.85s;
+  -moz-animation: fadeIn 0.85s;
+  -o-animation: fadeIn 0.85s;
+  -ms-animation: fadeIn 0.85s;
+}
 
-  .background {
-    gap: 3px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-wrap: nowrap;
-  }
+.background {
+  gap: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-wrap: nowrap;
+}
 
-  .bgImg {
-    width: 60px;
-    height: 67px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
+.bgImg {
+  width: 60px;
+  height: 67px;
+  border-radius: 10px;
+  cursor: pointer;
+}
 
-  .error {
-    color: red;
+.error {
+  color: red;
+}
+
+/*
+FADE-IN ANIMATIONS !!!!!!!!!!!
+*/
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

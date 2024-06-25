@@ -1,7 +1,13 @@
 #root {
-  color: #fff;
+  color: #e4c274;
   height: 97vh;
   width: 100%;
+  font-size: 13pt;
+  animation: fadeIn 1.2s;
+  -webkit-animation: fadeIn 1.2s;
+  -moz-animation: fadeIn 1.2s;
+  -o-animation: fadeIn 1.2s;
+  -ms-animation: fadeIn 1.2s;
 }
 
 body {
@@ -27,4 +33,50 @@ input[type="reset"] {
   font: inherit;
   cursor: pointer;
   outline: inherit;
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

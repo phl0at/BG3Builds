@@ -3,7 +3,7 @@ import styles from "./Navigation.module.css";
 function Navigation({ setActiveMenu }) {
   return (
     <main className={styles.main}>
-      <div>
+      <div className={styles.menuItem}>
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -13,7 +13,7 @@ function Navigation({ setActiveMenu }) {
           Origin
         </button>
       </div>
-      <div>
+      <div className={styles.menuItem}>
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -23,7 +23,7 @@ function Navigation({ setActiveMenu }) {
           Race
         </button>
       </div>
-      <div>
+      <div className={styles.menuItem}>
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -33,7 +33,7 @@ function Navigation({ setActiveMenu }) {
           Class
         </button>
       </div>
-      <div>
+      <div className={styles.menuItem}>
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -43,7 +43,7 @@ function Navigation({ setActiveMenu }) {
           Background
         </button>
       </div>
-      <div>
+      <div className={styles.menuItem}>
         <button
           onClick={(e) => {
             e.preventDefault();
