@@ -15,11 +15,13 @@ const action = (type, payload) => ({
   payload,
 });
 
+
 //! --------------------------------------------------------------------
 //*                             Thunks
 //! --------------------------------------------------------------------
 
 export const thunkGetEquipment = (type) => async (dispatch) => {
+  console.log(type)
   const res = await fetch(`/api/equipment/${type}`);
   if (res.ok) {
       const data = await res.json();

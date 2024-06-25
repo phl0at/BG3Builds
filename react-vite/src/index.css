@@ -23,6 +23,7 @@ body {
 
 a {
   text-decoration: none;
+  cursor: pointer;
   color: white;
 }
 
@@ -37,7 +38,6 @@ input[type="reset"] {
   cursor: pointer;
   outline: inherit;
 }
-
 
 @keyframes fadeIn {
   0% {

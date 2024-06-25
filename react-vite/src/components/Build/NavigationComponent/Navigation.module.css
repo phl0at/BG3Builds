@@ -11,6 +11,34 @@
 }
 
 .menuItem {
-  margin-left: 20px;
-  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 15px;
+  margin-top: 15px;
+  height: 25px;
+  width: 100%;
+  column-gap: 4px;
+
+}
+.menuItemSelected {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 15px;
+  margin-top: 15px;
+  height: 25px;
+  width: 100%;
+  column-gap: 4px;
+  color: #e69a28;
+}
+
+.menuItem:hover {
+  color: rgb(251, 224, 136);
+  text-decoration: underline;
+}
+
+.navArrow{
+  width: 15px;
+  color: #e69a28;
 }

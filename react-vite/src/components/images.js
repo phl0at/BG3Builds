@@ -47,6 +47,17 @@ import Constitution from "../../../images/stat_icons/Constitution.png";
 import Intelligence from "../../../images/stat_icons/Intelligence.png";
 import Wisdom from "../../../images/stat_icons/Wisdom.png";
 import Charisma from "../../../images/stat_icons/Charisma.png";
+import HasteHelm from "../../../images/item_icons/HasteHelm.png";
+import BronzeNecklace from "../../../images/item_icons/BronzeNecklace.png";
+import CausticBand from "../../../images/item_icons/CausticBand.png";
+import CloakofProtection from "../../../images/item_icons/CloakofProtection.png";
+import ClubofHillGiantStrength from "../../../images/item_icons/ClubofHillGiantStrength.png";
+import CopperRing from "../../../images/item_icons/CopperRing.png";
+import Dagger from "../../../images/item_icons/Dagger.png";
+import DrowLeatherBoots from "../../../images/item_icons/DrowLeatherBoots.png";
+import GlovesofDexterity from "../../../images/item_icons/GlovesofDexterity.png";
+import LeatherArmour from "../../../images/item_icons/LeatherArmour.png";
+import TitanStringBow from "../../../images/item_icons/TitanStringBow.png";
 
 export const Images = {
   characters: {
@@ -98,7 +109,7 @@ export const Images = {
     Outlander,
     Sage,
     Soldier,
-    Urchin
+    Urchin,
   },
   abilities: {
     Strength,
@@ -106,6 +117,19 @@ export const Images = {
     Constitution,
     Intelligence,
     Wisdom,
-    Charisma
-  }
+    Charisma,
+  },
+  equipment: {
+    HasteHelm,
+    CloakofProtection,
+    LeatherArmour,
+    GlovesofDexterity,
+    DrowLeatherBoots,
+    BronzeNecklace,
+    CausticBand,
+    CopperRing,
+    Dagger,
+    ClubofHillGiantStrength,
+    TitanStringBow,
+  },
 };

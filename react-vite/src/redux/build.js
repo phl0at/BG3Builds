@@ -8,6 +8,7 @@ const SET_ORIGIN = "build/setOrigin";
 const SET_RACE = "build/setRace";
 const SET_CLASS = "build/setClass";
 const SET_BG = "build/setBackground";
+const EQUIP_ITEM = "build/equip";
 const ADD_CLASS = "build/addClass";
 const GET_ALL_CLASSES = "build/getAllClasses";
 
@@ -54,6 +55,16 @@ export const setBackground = (payload) => {
 };
 
 //! --------------------------------------------------------------------
+
+export const equipItem = (itemType, payload) => {
+  return {
+    type: EQUIP_ITEM,
+    itemType,
+    payload,
+  };
+};
+
+//! --------------------------------------------------------------------
 //*                             Thunks
 //! --------------------------------------------------------------------
 
@@ -86,6 +97,15 @@ function buildReducer(state = initialState, action) {
         current: { ...state.current, background: action.payload },
       };
       return newState;
+    }
+    case EQUIP_ITEM: {
+      return {
+        ...state,
+        current: {
+          ...state.current,
+          [action.itemType]: action.payload,
+        },
+      };
     }
     case ADD_CLASS: {
       const newState = {

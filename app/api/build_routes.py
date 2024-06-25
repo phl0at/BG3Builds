@@ -86,8 +86,8 @@ def create_build():
     amulet = data.get('amulet')
     ring_1 = data.get('ring_1')
     ring_2 = data.get('ring_2')
-    main_hand = data.get('main_hand')
-    off_hand = data.get('off_hand')
+    melee_mh = data.get('melee_mh')
+    melee_oh = data.get('melee_oh')
     ranged_mh = data.get('ranged_mh')
     ranged_oh = data.get('ranged_oh')
     armor_class = data.get('armor_class')
@@ -140,8 +140,8 @@ def create_build():
             amulet = amulet,
             ring_1 = ring_1,
             ring_2 = ring_2,
-            main_hand = main_hand,
-            off_hand = off_hand,
+            melee_mh = melee_mh,
+            melee_oh = melee_oh,
             ranged_mh = ranged_mh,
             ranged_oh = ranged_oh,
             armor_class = armor_class,
@@ -191,8 +191,8 @@ def edit_build(id):
     amulet = data.get('amulet')
     ring_1 = data.get('ring_1')
     ring_2 = data.get('ring_2')
-    main_hand = data.get('main_hand')
-    off_hand = data.get('off_hand')
+    melee_mh = data.get('melee_mh')
+    melee_oh = data.get('melee_oh')
     ranged_mh = data.get('ranged_mh')
     ranged_oh = data.get('ranged_oh')
     armor_class = data.get('armor_class')
@@ -242,8 +242,8 @@ def edit_build(id):
         build.amulet = amulet
         build.ring_1 = ring_1
         build.ring_2 = ring_2
-        build.main_hand = main_hand
-        build.off_hand = off_hand
+        build.melee_mh = melee_mh
+        build.melee_oh = melee_oh
         build.ranged_mh = ranged_mh
         build.ranged_oh = ranged_oh
         build.armor_class = armor_class

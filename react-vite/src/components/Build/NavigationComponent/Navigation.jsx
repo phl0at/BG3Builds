@@ -1,9 +1,19 @@
+//Files
 import styles from "./Navigation.module.css";
-
-function Navigation({ setActiveMenu }) {
+//Functions/Components
+//Packages
+import { CiPaperplane } from "react-icons/ci";
+function Navigation({ setActiveMenu, activeMenu }) {
   return (
     <main className={styles.main}>
-      <div className={styles.menuItem}>
+      <div
+        className={
+          activeMenu === "Origin" ? styles.menuItemSelected : styles.menuItem
+        }
+      >
+        <div className={styles.navArrow}>
+          {activeMenu === "Origin" && <CiPaperplane size="15" />}
+        </div>
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -13,7 +23,14 @@ function Navigation({ setActiveMenu }) {
           Origin
         </button>
       </div>
-      <div className={styles.menuItem}>
+      <div
+        className={
+          activeMenu === "Race" ? styles.menuItemSelected : styles.menuItem
+        }
+      >
+        <div className={styles.navArrow}>
+          {activeMenu === "Race" && <CiPaperplane />}
+        </div>
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -23,7 +40,14 @@ function Navigation({ setActiveMenu }) {
           Race
         </button>
       </div>
-      <div className={styles.menuItem}>
+      <div
+        className={
+          activeMenu === "Class" ? styles.menuItemSelected : styles.menuItem
+        }
+      >
+        <div className={styles.navArrow}>
+          {activeMenu === "Class" && <CiPaperplane />}
+        </div>
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -33,7 +57,16 @@ function Navigation({ setActiveMenu }) {
           Class
         </button>
       </div>
-      <div className={styles.menuItem}>
+      <div
+        className={
+          activeMenu === "Background"
+            ? styles.menuItemSelected
+            : styles.menuItem
+        }
+      >
+        <div className={styles.navArrow}>
+          {activeMenu === "Background" && <CiPaperplane />}
+        </div>
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -43,7 +76,14 @@ function Navigation({ setActiveMenu }) {
           Background
         </button>
       </div>
-      <div className={styles.menuItem}>
+      <div
+        className={
+          activeMenu === "Abilities" ? styles.menuItemSelected : styles.menuItem
+        }
+      >
+        <div className={styles.navArrow}>
+          {activeMenu === "Abilities" && <CiPaperplane />}
+        </div>
         <button
           onClick={(e) => {
             e.preventDefault();

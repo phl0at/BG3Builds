@@ -1,8 +1,8 @@
 """init
 
-Revision ID: 95e81fc635bd
+Revision ID: 8a65e1d5ab96
 Revises: 
-Create Date: 2024-06-22 23:16:14.740110
+Create Date: 2024-06-25 17:41:14.886471
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '95e81fc635bd'
+revision = '8a65e1d5ab96'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -86,8 +86,8 @@ def upgrade():
     sa.Column('amulet', sa.Integer(), nullable=True),
     sa.Column('ring_1', sa.Integer(), nullable=True),
     sa.Column('ring_2', sa.Integer(), nullable=True),
-    sa.Column('main_hand', sa.Integer(), nullable=True),
-    sa.Column('off_hand', sa.Integer(), nullable=True),
+    sa.Column('melee_mh', sa.Integer(), nullable=True),
+    sa.Column('melee_oh', sa.Integer(), nullable=True),
     sa.Column('ranged_mh', sa.Integer(), nullable=True),
     sa.Column('ranged_oh', sa.Integer(), nullable=True),
     sa.Column('armor_class', sa.Integer(), nullable=False),
@@ -99,8 +99,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['cloak'], ['equipment.id'], ),
     sa.ForeignKeyConstraint(['gloves'], ['equipment.id'], ),
     sa.ForeignKeyConstraint(['helmet'], ['equipment.id'], ),
-    sa.ForeignKeyConstraint(['main_hand'], ['equipment.id'], ),
-    sa.ForeignKeyConstraint(['off_hand'], ['equipment.id'], ),
+    sa.ForeignKeyConstraint(['melee_mh'], ['equipment.id'], ),
+    sa.ForeignKeyConstraint(['melee_oh'], ['equipment.id'], ),
     sa.ForeignKeyConstraint(['origin'], ['origins.id'], ),
     sa.ForeignKeyConstraint(['race'], ['races.id'], ),
     sa.ForeignKeyConstraint(['ranged_mh'], ['equipment.id'], ),

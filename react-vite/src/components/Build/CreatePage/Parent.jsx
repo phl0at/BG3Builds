@@ -24,7 +24,7 @@ export default function ParentPage() {
 
   return (
     <main className={styles.main}>
-      <Navigation setActiveMenu={setActiveMenu} />
+      <Navigation setActiveMenu={setActiveMenu} activeMenu={activeMenu} />
       <BuildComponent activeMenu={activeMenu} />
       <EquipmentComponent activeMenu={activeMenu} />
       <InfoComponent activeMenu={activeMenu} />

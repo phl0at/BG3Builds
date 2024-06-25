@@ -18,12 +18,18 @@
   color: #e69a28;
 }
 
+
 .equipment {
   width: 80%;
   height: 60%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.itemImg {
+  width: 80%;
+  height: 80%;
 }
 
 .left {
@@ -44,7 +50,7 @@
   bottom: 5px;
   border-radius: 4px;
   height: 150px;
-  width: 110px;
+  width: 77px;
   background-color: rgba(17, 13, 12, 0.65);
 }
 
@@ -73,7 +79,7 @@
 @media (min-width: 1645px){
   .armorClass{
     height: 160px;
-    width: 130px;
+    width: 82px;
   }
   .slot{
     height: 80px;
