@@ -25,7 +25,11 @@ export default function ClassComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 1)}
                 src={Images.classes["Barbarian"]}
-                className={styles.classImg}
+                className={
+                  currentBuild?.class === 1
+                    ? styles.selected_classImg
+                    : styles.classImg
+                }
               ></img>
               Barbarian
             </div>
@@ -33,7 +37,11 @@ export default function ClassComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 2)}
                 src={Images.classes["Bard"]}
-                className={styles.classImg}
+                className={
+                  currentBuild?.class === 2
+                    ? styles.selected_classImg
+                    : styles.classImg
+                }
               ></img>
               Bard
             </div>
@@ -41,7 +49,11 @@ export default function ClassComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 3)}
                 src={Images.classes["Cleric"]}
-                className={styles.classImg}
+                className={
+                  currentBuild?.class === 3
+                    ? styles.selected_classImg
+                    : styles.classImg
+                }
               ></img>
               Cleric
             </div>
@@ -49,7 +61,11 @@ export default function ClassComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 4)}
                 src={Images.classes["Druid"]}
-                className={styles.classImg}
+                className={
+                  currentBuild?.class === 4
+                    ? styles.selected_classImg
+                    : styles.classImg
+                }
               ></img>
               Druid
             </div>
@@ -57,7 +73,11 @@ export default function ClassComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 5)}
                 src={Images.classes["Fighter"]}
-                className={styles.classImg}
+                className={
+                  currentBuild?.class === 5
+                    ? styles.selected_classImg
+                    : styles.classImg
+                }
               ></img>
               Fighter
             </div>
@@ -65,7 +85,11 @@ export default function ClassComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 6)}
                 src={Images.classes["Monk"]}
-                className={styles.classImg}
+                className={
+                  currentBuild?.class === 6
+                    ? styles.selected_classImg
+                    : styles.classImg
+                }
               ></img>
               Monk
             </div>
@@ -73,7 +97,11 @@ export default function ClassComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 7)}
                 src={Images.classes["Paladin"]}
-                className={styles.classImg}
+                className={
+                  currentBuild?.class === 7
+                    ? styles.selected_classImg
+                    : styles.classImg
+                }
               ></img>
               Paladin
             </div>
@@ -81,7 +109,11 @@ export default function ClassComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 8)}
                 src={Images.classes["Ranger"]}
-                className={styles.classImg}
+                className={
+                  currentBuild?.class === 8
+                    ? styles.selected_classImg
+                    : styles.classImg
+                }
               ></img>
               Ranger
             </div>
@@ -89,7 +121,11 @@ export default function ClassComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 9)}
                 src={Images.classes["Rogue"]}
-                className={styles.classImg}
+                className={
+                  currentBuild?.class === 9
+                    ? styles.selected_classImg
+                    : styles.classImg
+                }
               ></img>
               Rogue
             </div>
@@ -97,7 +133,11 @@ export default function ClassComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 10)}
                 src={Images.classes["Sorcerer"]}
-                className={styles.classImg}
+                className={
+                  currentBuild?.class === 10
+                    ? styles.selected_classImg
+                    : styles.classImg
+                }
               ></img>
               Sorcerer
             </div>
@@ -105,7 +145,11 @@ export default function ClassComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 11)}
                 src={Images.classes["Warlock"]}
-                className={styles.classImg}
+                className={
+                  currentBuild?.class === 11
+                    ? styles.selected_classImg
+                    : styles.classImg
+                }
               ></img>
               Warlock
             </div>
@@ -113,7 +157,11 @@ export default function ClassComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 12)}
                 src={Images.classes["Wizard"]}
-                className={styles.classImg}
+                className={
+                  currentBuild?.class === 12
+                    ? styles.selected_classImg
+                    : styles.classImg
+                }
               ></img>
               Wizard
             </div>

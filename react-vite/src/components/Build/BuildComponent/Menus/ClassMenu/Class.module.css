@@ -6,11 +6,6 @@
   margin-top: 10px;
   font-size: 17pt;
   color: #e69a28;
-  animation: fadeIn 0.85s;
-  -webkit-animation: fadeIn 0.85s;
-  -moz-animation: fadeIn 0.85s;
-  -o-animation: fadeIn 0.85s;
-  -ms-animation: fadeIn 0.85s;
 }
 .select {
   display: flex;
@@ -18,11 +13,6 @@
   align-items: center;
   gap: 8px;
   height: 180px;
-  animation: fadeIn 0.85s;
-  -webkit-animation: fadeIn 0.85s;
-  -moz-animation: fadeIn 0.85s;
-  -o-animation: fadeIn 0.85s;
-  -ms-animation: fadeIn 0.85s;
 }
 .name {
   font-size: 14pt;
@@ -44,15 +34,10 @@
   flex-wrap: wrap;
   width: 80%;
   min-width: 440px;
-  animation: fadeIn 0.85s;
-  -webkit-animation: fadeIn 0.85s;
-  -moz-animation: fadeIn 0.85s;
-  -o-animation: fadeIn 0.85s;
-  -ms-animation: fadeIn 0.85s;
 }
 
 .class {
-  gap: 3px;
+  gap: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,69 +45,42 @@
   cursor: pointer;
 }
 
+.class:hover {
+  color: rgb(251, 224, 136);
+  text-decoration: underline;
+}
+
 .classImg {
   width: 65px;
   height: 65px;
   border-radius: 10px;
 }
+
+.selected_classImg {
+  outline: 3.5px solid rgb(180, 135, 92);
+  box-shadow: rgb(180, 135, 92) 0px 5px 12px;
+  width: 65px;
+  height: 65px;
+  border-radius: 10px;
+}
+
 @media (min-width: 1645px) {
+  .selected_classImg {
+    height: 80px;
+    width: 80px;
+  }
   .classImg {
     height: 80px;
     width: 80px;
   }
 }
 @media (min-width: 2005px) {
-  .classImg {
+  .selected_classImg {
     height: 95px;
     width: 95px;
   }
-}
-
-/*
-FADE-IN ANIMATIONS !!!!!!!!!!!
-*/
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
+  .classImg {
+    height: 95px;
+    width: 95px;
   }
 }

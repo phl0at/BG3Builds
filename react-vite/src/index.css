@@ -3,6 +3,9 @@
   height: 97vh;
   width: 100%;
   font-size: 13pt;
+}
+
+#root > main {
   animation: fadeIn 1.2s;
   -webkit-animation: fadeIn 1.2s;
   -moz-animation: fadeIn 1.2s;

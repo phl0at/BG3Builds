@@ -6,11 +6,6 @@
   margin-top: 10px;
   font-size: 17pt;
   color: #e69a28;
-  animation: fadeIn 0.85s;
-  -webkit-animation: fadeIn 0.85s;
-  -moz-animation: fadeIn 0.85s;
-  -o-animation: fadeIn 0.85s;
-  -ms-animation: fadeIn 0.85s;
 }
 .select {
   display: flex;
@@ -18,11 +13,6 @@
   align-items: center;
   gap: 8px;
   height: 180px;
-  animation: fadeIn 0.85s;
-  -webkit-animation: fadeIn 0.85s;
-  -moz-animation: fadeIn 0.85s;
-  -o-animation: fadeIn 0.85s;
-  -ms-animation: fadeIn 0.85s;
 }
 .name {
   font-size: 14pt;
@@ -42,19 +32,19 @@
   flex-direction: row;
   flex-wrap: wrap;
   max-width: 440px;
-  animation: fadeIn 0.85s;
-  -webkit-animation: fadeIn 0.85s;
-  -moz-animation: fadeIn 0.85s;
-  -o-animation: fadeIn 0.85s;
-  -ms-animation: fadeIn 0.85s;
 }
 
 .race {
-  gap: 3px;
+  gap: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-wrap: nowrap;
+}
+
+.race:hover {
+  color: rgb(251, 224, 136);
+  text-decoration: underline;
 }
 
 .raceImg {
@@ -64,59 +54,15 @@
   cursor: pointer;
 }
 
+.selected_raceImg {
+  outline: 3.5px solid rgb(180, 135, 92);
+  box-shadow: rgb(180, 135, 92) 0px 5px 12px;
+  width: 60px;
+  height: 67px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 .error {
   color: red;
-}
-
-
-
-
-
-/*
-FADE-IN ANIMATIONS !!!!!!!!!!!
-*/
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }

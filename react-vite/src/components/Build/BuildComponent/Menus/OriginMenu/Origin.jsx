@@ -41,8 +41,24 @@ export default function OriginComponent({ currentBuild }) {
           <div className={styles.characterList}>
             <div className={styles.character}>
               <img
+                onClick={(e) => onClick(e, 8)}
+                className={
+                  currentBuild?.origin === 8
+                    ? styles.selected_charImg
+                    : styles.charImg
+                }
+                src={Images.characters["Custom"]}
+              />
+              Custom
+            </div>
+            <div className={styles.character}>
+              <img
                 onClick={(e) => onClick(e, 1)}
-                className={styles.charImg}
+                className={
+                  currentBuild?.origin === 1
+                    ? styles.selected_charImg
+                    : styles.charImg
+                }
                 src={Images.characters["Astarion"]}
               />
               Astarion
@@ -50,7 +66,11 @@ export default function OriginComponent({ currentBuild }) {
             <div className={styles.character}>
               <img
                 onClick={(e) => onClick(e, 2)}
-                className={styles.charImg}
+                className={
+                  currentBuild?.origin === 2
+                    ? styles.selected_charImg
+                    : styles.charImg
+                }
                 src={Images.characters["Laezel"]}
               />
               Lae'zel
@@ -58,7 +78,11 @@ export default function OriginComponent({ currentBuild }) {
             <div className={styles.character}>
               <img
                 onClick={(e) => onClick(e, 3)}
-                className={styles.charImg}
+                className={
+                  currentBuild?.origin === 3
+                    ? styles.selected_charImg
+                    : styles.charImg
+                }
                 src={Images.characters["Gale"]}
               />
               Gale
@@ -66,7 +90,11 @@ export default function OriginComponent({ currentBuild }) {
             <div className={styles.character}>
               <img
                 onClick={(e) => onClick(e, 4)}
-                className={styles.charImg}
+                className={
+                  currentBuild?.origin === 4
+                    ? styles.selected_charImg
+                    : styles.charImg
+                }
                 src={Images.characters["Shadowheart"]}
               />
               Shadowheart
@@ -74,7 +102,11 @@ export default function OriginComponent({ currentBuild }) {
             <div className={styles.character}>
               <img
                 onClick={(e) => onClick(e, 5)}
-                className={styles.charImg}
+                className={
+                  currentBuild?.origin === 5
+                    ? styles.selected_charImg
+                    : styles.charImg
+                }
                 src={Images.characters["Wyll"]}
               />
               Wyll
@@ -82,7 +114,11 @@ export default function OriginComponent({ currentBuild }) {
             <div className={styles.character}>
               <img
                 onClick={(e) => onClick(e, 6)}
-                className={styles.charImg}
+                className={
+                  currentBuild?.origin === 6
+                    ? styles.selected_charImg
+                    : styles.charImg
+                }
                 src={Images.characters["Karlach"]}
               />
               Karlach
@@ -90,18 +126,14 @@ export default function OriginComponent({ currentBuild }) {
             <div className={styles.character}>
               <img
                 onClick={(e) => onClick(e, 7)}
-                className={styles.charImg}
+                className={
+                  currentBuild?.origin === 7
+                    ? styles.selected_charImg
+                    : styles.charImg
+                }
                 src={Images.characters["DarkUrge"]}
               />
               The Dark Urge
-            </div>
-            <div className={styles.character}>
-              <img
-                onClick={(e) => onClick(e, 8)}
-                className={styles.charImg}
-                src={Images.characters["Custom"]}
-              />
-              Custom
             </div>
           </div>
           <div className={styles.select}>

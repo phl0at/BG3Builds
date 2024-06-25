@@ -6,11 +6,6 @@
   margin-top: 10px;
   font-size: 17pt;
   color: #e69a28;
-  animation: fadeIn 0.85s;
-  -webkit-animation: fadeIn 0.85s;
-  -moz-animation: fadeIn 0.85s;
-  -o-animation: fadeIn 0.85s;
-  -ms-animation: fadeIn 0.85s;
 }
 .select {
   display: flex;
@@ -18,11 +13,6 @@
   align-items: center;
   gap: 8px;
   height: 220px;
-  animation: fadeIn 0.85s;
-  -webkit-animation: fadeIn 0.85s;
-  -moz-animation: fadeIn 0.85s;
-  -o-animation: fadeIn 0.85s;
-  -ms-animation: fadeIn 0.85s;
 }
 
 .name {
@@ -38,21 +28,15 @@
 
 .characterList {
   display: flex;
-  justify-content: center;
-  column-gap: 45px;
+  justify-content: space-evenly;
+  column-gap: 15px;
   row-gap: 10px;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width: 440px;
-  animation: fadeIn 0.85s;
-  -webkit-animation: fadeIn 0.85s;
-  -moz-animation: fadeIn 0.85s;
-  -o-animation: fadeIn 0.85s;
-  -ms-animation: fadeIn 0.85s;
+  width: 440px;
 }
 
 .character {
-  width: 55px;
   gap: 8px;
   display: flex;
   flex-direction: column;
@@ -60,76 +44,46 @@
   text-wrap: nowrap;
 }
 
+.character:hover{
+  color: rgb(251, 224, 136);
+  text-decoration: underline;
+}
+
+.selected_charImg {
+  height: 110px;
+  width: 75px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: 3.5px solid rgb(180, 135, 92);
+  box-shadow: rgb(180, 135, 92) 0px 5px 12px;
+}
+
 .charImg {
-  height: 90px;
-  width: 55px;
+  height: 110px;
+  width: 75px;
   object-fit: cover;
   border-radius: 10px;
   cursor: pointer;
 }
 
-@media (min-width: 1645px){
-  .charImg{
-    height: 110px;
-    width: 75px;
+@media (min-width: 1645px) {
+  .selected_charImg {
+    height: 120px;
+    width: 85px;
   }
-}
-@media (min-width: 1950px){
-  .charImg{
+  .charImg {
     height: 120px;
     width: 85px;
   }
 }
-
-
-
-
-
-/*
-FADE-IN ANIMATIONS !!!!!!!!!!!
-*/
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
+@media (min-width: 1950px) {
+  .selected_charImg {
+    height: 140px;
+    width: 95px;
   }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
+  .charImg {
+    height: 140px;
+    width: 95px;
   }
 }

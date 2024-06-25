@@ -34,7 +34,11 @@ export default function BackgroundComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 1)}
                 src={Images.backgrounds["Acolyte"]}
-                className={styles.bgImg}
+                className={
+                  currentBuild?.background === 1
+                    ? styles.selected_bgImg
+                    : styles.bgImg
+                }
               ></img>
               Acolyte
             </div>
@@ -42,7 +46,11 @@ export default function BackgroundComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 2)}
                 src={Images.backgrounds["Charlatan"]}
-                className={styles.bgImg}
+                className={
+                  currentBuild?.background === 2
+                    ? styles.selected_bgImg
+                    : styles.bgImg
+                }
               ></img>
               Charlatan
             </div>
@@ -50,7 +58,11 @@ export default function BackgroundComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 3)}
                 src={Images.backgrounds["Criminal"]}
-                className={styles.bgImg}
+                className={
+                  currentBuild?.background === 3
+                    ? styles.selected_bgImg
+                    : styles.bgImg
+                }
               ></img>
               Criminal
             </div>
@@ -58,7 +70,11 @@ export default function BackgroundComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 4)}
                 src={Images.backgrounds["Entertainer"]}
-                className={styles.bgImg}
+                className={
+                  currentBuild?.background === 4
+                    ? styles.selected_bgImg
+                    : styles.bgImg
+                }
               ></img>
               Entertainer
             </div>
@@ -66,7 +82,11 @@ export default function BackgroundComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 5)}
                 src={Images.backgrounds["FolkHero"]}
-                className={styles.bgImg}
+                className={
+                  currentBuild?.background === 5
+                    ? styles.selected_bgImg
+                    : styles.bgImg
+                }
               ></img>
               Folk Hero
             </div>
@@ -74,7 +94,11 @@ export default function BackgroundComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 6)}
                 src={Images.backgrounds["GuildArtisan"]}
-                className={styles.bgImg}
+                className={
+                  currentBuild?.background === 6
+                    ? styles.selected_bgImg
+                    : styles.bgImg
+                }
               ></img>
               Guild Artisan
             </div>
@@ -82,7 +106,11 @@ export default function BackgroundComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 7)}
                 src={Images.backgrounds["Noble"]}
-                className={styles.bgImg}
+                className={
+                  currentBuild?.background === 7
+                    ? styles.selected_bgImg
+                    : styles.bgImg
+                }
               ></img>
               Noble
             </div>
@@ -90,7 +118,11 @@ export default function BackgroundComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 8)}
                 src={Images.backgrounds["Outlander"]}
-                className={styles.bgImg}
+                className={
+                  currentBuild?.background === 8
+                    ? styles.selected_bgImg
+                    : styles.bgImg
+                }
               ></img>
               Outlander
             </div>
@@ -98,7 +130,11 @@ export default function BackgroundComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 9)}
                 src={Images.backgrounds["Sage"]}
-                className={styles.bgImg}
+                className={
+                  currentBuild?.background === 9
+                    ? styles.selected_bgImg
+                    : styles.bgImg
+                }
               ></img>
               Sage
             </div>
@@ -106,7 +142,11 @@ export default function BackgroundComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 10)}
                 src={Images.backgrounds["Soldier"]}
-                className={styles.bgImg}
+                className={
+                  currentBuild?.background === 10
+                    ? styles.selected_bgImg
+                    : styles.bgImg
+                }
               ></img>
               Soldier
             </div>
@@ -114,7 +154,11 @@ export default function BackgroundComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 11)}
                 src={Images.backgrounds["Urchin"]}
-                className={styles.bgImg}
+                className={
+                  currentBuild?.background === 11
+                    ? styles.selected_bgImg
+                    : styles.bgImg
+                }
               ></img>
               Urchin
             </div>
