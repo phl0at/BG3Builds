@@ -7,6 +7,17 @@
   align-items: center;
   justify-content: center;
 }
+
+.sideMenu{
+  position: absolute;
+  left: 100%;
+  bottom: 44%;
+  border: 1px solid white;
+  min-width: 300px;
+  min-height: 250px;
+  background-color: rgba(10, 8, 8, 0.96);
+}
+
 .table {
   min-width: 350px;
   min-height: 400px;

@@ -7,27 +7,36 @@ import {
   getEquipmentArray,
 } from "../../../../redux/equipment";
 //Packages
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { equipItem } from "../../../../redux/build";
 
 export default function ItemsTableModal({ type }) {
   const dispatch = useDispatch();
+  const [slotMenu, setSlotMenu] = useState(false)
+  const [desMenu, setDesMenu] = useState(true)
+  const [selectedItem, setSelectedItem] = useState(null)
   const currentBuild = useSelector((state) => state.builds.current);
   const equipment = useSelector(getEquipmentArray);
   const formatType = type.split("_").length ? type.split("_")[0] : type;
+
   useEffect(() => {
     dispatch(thunkGetEquipment(formatType));
   }, []);
 
   const onClick = (e, name) => {
     e.preventDefault();
-    if (type != "ring" || type != "melee" || type != "ranged") {
+    if (formatType != "ring" || formatType != "melee" || formatType != "ranged") {
       dispatch(equipItem(type, name));
+    } else {
+      setDesMenu(false)
+      setSlotMenu(true)
     }
   };
 
   return (
+
+    <>
     <main className={styles.main}>
       <div className={styles.table}>
         <div className={styles.thead}>
@@ -62,5 +71,7 @@ export default function ItemsTableModal({ type }) {
         })}
       </div>
     </main>
+    <main className={styles.sideMenu}></main>
+    </>
   );
 }
