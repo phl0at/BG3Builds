@@ -6,6 +6,10 @@
 
 body {
   background-color: #0a0e15;
+  max-height: 100vh;
+  max-width: 100vw;
+  background-image: url("https://cdn.openart.ai/editing_generation/33QpI7DBEPU2s6P4DhGt/ebaa4e3222944de1a9ee4225707534e6_raw.jpg");
+  background-size: cover;
 }
 
 a {

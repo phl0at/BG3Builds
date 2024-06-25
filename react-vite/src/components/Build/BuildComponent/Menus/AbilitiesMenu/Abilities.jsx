@@ -51,6 +51,8 @@ export default function AbilitiesComponent({ currentBuild }) {
           </button>
           <input
             className={styles.input}
+            min="8"
+            max="17"
             type="number"
             value={strength}
             onChange={(e) => setStrength(e.target.value)}

@@ -8,6 +8,7 @@ import {
 } from "../../../redux/build";
 import Navigation from "../NavigationComponent";
 import BuildComponent from "../BuildComponent/Build";
+import EquipmentComponent from "../EquipComponent/Equipment";
 import { thunkPreloadData } from "../../../redux/static";
 //Packages
 import { useDispatch } from "react-redux";
@@ -28,6 +29,7 @@ export default function ParentPage() {
     <main className={styles.main}>
       <Navigation setActiveMenu={setActiveMenu} />
       <BuildComponent activeMenu={activeMenu} />
+      <EquipmentComponent activeMenu={activeMenu} />
     </main>
   );
 }
