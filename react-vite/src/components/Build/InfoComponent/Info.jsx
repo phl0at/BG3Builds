@@ -54,7 +54,7 @@ export default function InfoComponent() {
         <div className={styles.right}>
           <button
             className={styles.calcButton}
-            onClick={(e) => alert("Feature coming soon!")}
+            onClick={() => alert("Feature coming soon!")}
           >
             Calculate Effectiveness
           </button>

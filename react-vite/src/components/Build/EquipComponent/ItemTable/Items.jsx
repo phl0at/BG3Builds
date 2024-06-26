@@ -17,10 +17,7 @@ export default function ItemsTableModal({ type }) {
   const currentBuild = useSelector((state) => state.builds.current);
   const [selectedItem, setSelectedItem] = useState(null);
   const equipment = useSelector(getEquipmentArray);
-  const formatType = type.split("_").length ? type.split("_")[0] : type;
-  const mh_oh = formatType === "melee" || formatType === "ranged";
-  const r1_r2 = formatType === "ring";
-  const std = !mh_oh && !r1_r2;
+  const formatType = type.split("_")[0]
 
   useEffect(() => {
     dispatch(thunkGetEquipment(formatType));
@@ -31,9 +28,9 @@ export default function ItemsTableModal({ type }) {
     setSelectedItem(id);
   };
 
-  const equip = (e, itemType, id) => {
+  const equip = (e, id) => {
     e.preventDefault();
-    dispatch(equipItem(itemType, itemsObject[id]));
+    dispatch(equipItem(type, itemsObject[id]));
   };
 
   return (
@@ -49,6 +46,7 @@ export default function ItemsTableModal({ type }) {
                 <div key={item.id} className={styles.tbody}>
                   <button
                     onClick={(e) => onClick(e, item.id)}
+                    id={selectedItem === item.id ? styles.selectedItem : ""}
                     className={
                       currentBuild[type]?.name === item.name
                         ? styles.equippedItem
@@ -81,46 +79,12 @@ export default function ItemsTableModal({ type }) {
                 {itemsObject[selectedItem].description}
               </div>
               <div className={styles.buttons}>
-                {mh_oh && (
-                  <>
-                    <button
-                      onClick={(e) => equip(e, "melee_mh", selectedItem)}
-                      className={styles.equip}
-                    >
-                      Equip Main Hand
-                    </button>
-                    <button
-                      onClick={(e) => equip(e,"melee_oh", selectedItem)}
-                      className={styles.equip}
-                    >
-                      Equip Off Hand
-                    </button>
-                  </>
-                )}
-                {r1_r2 && (
-                  <>
-                    <button
-                      onClick={(e) => equip(e,"ring_1", selectedItem)}
-                      className={styles.equip}
-                    >
-                      Equip Slot 1
-                    </button>
-                    <button
-                      onClick={(e) => equip(e, "ring_2", selectedItem)}
-                      className={styles.equip}
-                    >
-                      Equip Slot 2
-                    </button>
-                  </>
-                )}
-                {std && (
-                  <button
-                    onClick={(e) => equip(e, type, selectedItem)}
-                    className={styles.equip}
-                  >
-                    Equip
-                  </button>
-                )}
+                <button
+                  onClick={(e) => equip(e, selectedItem)}
+                  className={styles.equip}
+                >
+                  Equip
+                </button>
               </div>
             </>
           )}

@@ -34,7 +34,7 @@
 }
 
 .menuItem:hover {
-  color: rgb(251, 224, 136);
+  color: rgb(245, 223, 153);
   text-decoration: underline;
 }
 
@@ -42,5 +42,3 @@
   width: 15px;
   color: #e69a28;
 }
-
-
