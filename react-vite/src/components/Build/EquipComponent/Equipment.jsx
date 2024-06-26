@@ -26,7 +26,7 @@ export default function EquipmentComponent({ activeMenu }) {
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.helmet.replaceAll(" ", "")
+                          currentBuild.helmet.name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -44,7 +44,9 @@ export default function EquipmentComponent({ activeMenu }) {
                     <img
                       className={styles.itemImg}
                       src={
-                        Images.equipment[currentBuild.cloak.replaceAll(" ", "")]
+                        Images.equipment[
+                          currentBuild.cloak.name.replaceAll(" ", "")
+                        ]
                       }
                     />
                   ) : (
@@ -59,9 +61,10 @@ export default function EquipmentComponent({ activeMenu }) {
                 buttonText={
                   currentBuild.armor ? (
                     <img
-                      className={styles.itemImg}
                       src={
-                        Images.equipment[currentBuild.armor.replaceAll(" ", "")]
+                        Images.equipment[
+                          currentBuild.armor.name.replaceAll(" ", "")
+                        ]
                       }
                     />
                   ) : (
@@ -79,7 +82,7 @@ export default function EquipmentComponent({ activeMenu }) {
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.gloves.replaceAll(" ", "")
+                          currentBuild.gloves.name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -97,7 +100,9 @@ export default function EquipmentComponent({ activeMenu }) {
                     <img
                       className={styles.itemImg}
                       src={
-                        Images.equipment[currentBuild.boots.replaceAll(" ", "")]
+                        Images.equipment[
+                          currentBuild.boots.name.replaceAll(" ", "")
+                        ]
                       }
                     />
                   ) : (
@@ -111,11 +116,13 @@ export default function EquipmentComponent({ activeMenu }) {
               <OpenModalButton
                 className={styles.slot}
                 buttonText={
-                  currentBuild.melee ? (
+                  currentBuild.melee_mh ? (
                     <img
                       className={styles.itemImg}
                       src={
-                        Images.equipment[currentBuild.melee.replaceAll(" ", "")]
+                        Images.equipment[
+                          currentBuild.melee_mh.name.replaceAll(" ", "")
+                        ]
                       }
                     />
                   ) : (
@@ -127,11 +134,13 @@ export default function EquipmentComponent({ activeMenu }) {
               <OpenModalButton
                 className={styles.slot}
                 buttonText={
-                  currentBuild.melee ? (
+                  currentBuild.melee_oh ? (
                     <img
                       className={styles.itemImg}
                       src={
-                        Images.equipment[currentBuild.melee.replaceAll(" ", "")]
+                        Images.equipment[
+                          currentBuild.melee_oh.name.replaceAll(" ", "")
+                        ]
                       }
                     />
                   ) : (
@@ -155,7 +164,7 @@ export default function EquipmentComponent({ activeMenu }) {
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.amulet.replaceAll(" ", "")
+                          currentBuild.amulet.name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -168,27 +177,13 @@ export default function EquipmentComponent({ activeMenu }) {
               <OpenModalButton
                 className={styles.slot}
                 buttonText={
-                  currentBuild.ring ? (
+                  currentBuild.ring_1 ? (
                     <img
                       className={styles.itemImg}
                       src={
-                        Images.equipment[currentBuild.ring.replaceAll(" ", "")]
-                      }
-                    />
-                  ) : (
-                    <CiNoWaitingSign size="40" />
-                  )
-                }
-                modalComponent={<ItemsTableModal type="ring_2" />}
-              />
-              <OpenModalButton
-                className={styles.slot}
-                buttonText={
-                  currentBuild.ring ? (
-                    <img
-                      className={styles.itemImg}
-                      src={
-                        Images.equipment[currentBuild.ring.replaceAll(" ", "")]
+                        Images.equipment[
+                          currentBuild.ring_1.name.replaceAll(" ", "")
+                        ]
                       }
                     />
                   ) : (
@@ -197,17 +192,35 @@ export default function EquipmentComponent({ activeMenu }) {
                 }
                 modalComponent={<ItemsTableModal type="ring_1" />}
               />
+              <OpenModalButton
+                className={styles.slot}
+                buttonText={
+                  currentBuild.ring_2 ? (
+                    <img
+                      className={styles.itemImg}
+                      src={
+                        Images.equipment[
+                          currentBuild.ring_2.name.replaceAll(" ", "")
+                        ]
+                      }
+                    />
+                  ) : (
+                    <CiNoWaitingSign size="40" />
+                  )
+                }
+                modalComponent={<ItemsTableModal type="ring_2" />}
+              />
             </div>
             <div className={styles.weapons}>
               <OpenModalButton
                 className={styles.slot}
                 buttonText={
-                  currentBuild.ranged ? (
+                  currentBuild.ranged_mh ? (
                     <img
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.ranged.replaceAll(" ", "")
+                          currentBuild.ranged_mh.name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -220,12 +233,12 @@ export default function EquipmentComponent({ activeMenu }) {
               <OpenModalButton
                 className={styles.slot}
                 buttonText={
-                  currentBuild.ranged ? (
+                  currentBuild.ranged_oh ? (
                     <img
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.ranged.replaceAll(" ", "")
+                          currentBuild.ranged_oh.name.replaceAll(" ", "")
                         ]
                       }
                     />
