@@ -2,17 +2,45 @@
 import styles from "./Class.module.css";
 import { Images } from "../../../../images";
 //Functions/Components
-import { setClass } from "../../../../../redux/build";
+import {
+  addBuildClass,
+  getBuildClassArray,
+  setClass,
+} from "../../../../../redux/build";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
+import { CiCircleRemove } from "react-icons/ci";
+import OpenModalButton from "../../../../Modal";
 
 export default function ClassComponent({ currentBuild }) {
   const dispatch = useDispatch();
   const Classes = useSelector((state) => state.static.classes);
+  const buildClasses = useSelector(getBuildClassArray);
 
   const onClick = (e, _class) => {
     e.preventDefault();
     dispatch(setClass(_class));
+  };
+
+  const clickAddClass = (e, _class, sub_class) => {
+    e.preventDefault();
+    let newClass = {
+      id: _class.id,
+      name: _class.name,
+      level: 1,
+      sub_class,
+    };
+    buildClasses.forEach((existingClass) => {
+      if (existingClass.id === _class.id) {
+        newClass = {
+          id: _class.id,
+          name: _class.name,
+          level: (existingClass.level += 1),
+          sub_class,
+        };
+      }
+    });
+    dispatch(addBuildClass(newClass));
   };
 
   return (
@@ -167,12 +195,49 @@ export default function ClassComponent({ currentBuild }) {
             </div>
           </div>
           <div className={styles.select}>
-            <div className={styles.name}>
-              {Classes[currentBuild.class]?.name}
+            <div className={styles.nameSection}>
+              {currentBuild.class && (
+                <>
+                  {Classes[currentBuild.class]?.name}
+                  <button
+                    className={styles.addButton}
+                    onClick={(e) =>
+                      clickAddClass(e, Classes[currentBuild.class], null)
+                    }
+                  >
+                    Add Class
+                  </button>
+                </>
+              )}
+              {buildClasses[0] && (
+                <OpenModalButton
+                  modalComponent={""}
+                  className={styles.reset}
+                  buttonText={<CiCircleRemove color="red" size="30" />}
+                />
+              )}
             </div>
             <div className={styles.description}>
               {Classes[currentBuild.class]?.description}
             </div>
+          </div>
+          <div className={styles.buildClassList}>
+            {buildClasses.map((_class) => {
+              if (_class.id > 0) {
+                const titleCase =
+                  _class.name[0].toUpperCase() + _class.name.slice(1);
+                return (
+                  <div key={_class.id} className={styles.buildClass}>
+                    <img
+                      className={styles.classImg}
+                      src={Images.classes[titleCase]}
+                    />
+                    {`${_class.name} level: ${_class.level}`}
+                    {_class.sub_class && `Subclass: ${_class.sub_class}`}
+                  </div>
+                );
+              }
+            })}
           </div>
         </>
       )}

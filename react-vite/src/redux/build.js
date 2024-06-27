@@ -6,16 +6,15 @@ import { createSelector } from "reselect";
 
 const SET_ORIGIN = "build/setOrigin";
 const SET_RACE = "build/setRace";
-const SET_CLASS = "build/setClass";
 const SET_BG = "build/setBackground";
 const SET_BONUS = "build/setBonus";
+const SET_CLASS = "build/setClass";
+const ADD_BUILD_CLASS = "build/addBuildClass";
 const CLEAR_BONUS = "build/clearBonus";
 const SET_DEFAULT_ABILITIES = "build/setAbilities";
 const RAISE_ABILITY = "build/raiseAbility";
 const LOWER_ABILITY = "build/lowerAbility";
 const EQUIP_ITEM = "build/equip";
-const ADD_CLASS = "build/addClass";
-const GET_ALL_CLASSES = "build/getAllClasses";
 
 //! --------------------------------------------------------------------
 //*                         Action Creators
@@ -44,14 +43,24 @@ export const setRace = (payload) => {
 };
 
 //! --------------------------------------------------------------------
+
 export const setClass = (payload) => {
   return {
     type: SET_CLASS,
     payload,
   };
 };
+//! --------------------------------------------------------------------
+
+export const addBuildClass = (payload) => {
+  return {
+    type: ADD_BUILD_CLASS,
+    payload,
+  };
+};
 
 //! --------------------------------------------------------------------
+
 export const setBackground = (payload) => {
   return {
     type: SET_BG,
@@ -121,48 +130,60 @@ export const equipItem = (itemType, payload) => {
 export const thunkCreateBuild = () => async (dispatch) => {};
 
 //! --------------------------------------------------------------------
+//*                            Selectors
+//! --------------------------------------------------------------------
+
+export const getBuildClassArray = createSelector(
+  (state) => state.builds.current.buildClasses,
+  (_class) => {
+    let arr = [];
+    for (const key in _class) {
+      if (key > 0) {
+        arr.push(_class[key]);
+      }
+    }
+    return arr;
+  }
+);
+
+//! --------------------------------------------------------------------
 //*                            Reducer
 //! --------------------------------------------------------------------
 
 const initialState = {};
 function buildReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_ORIGIN:
-      return {
-        ...state,
-        current: { ...state.current, origin: action.payload },
-      };
-    case SET_RACE:
-      return { ...state, current: { ...state.current, race: action.payload } };
+    case SET_ORIGIN: {
+      const newState = { ...state, current: { ...state.current } };
+      newState.current.origin = action.payload;
+      return newState;
+    }
+    case SET_RACE: {
+      const newState = { ...state, current: { ...state.current } };
+      newState.current.race = action.payload;
+      return newState;
+    }
+
     case SET_CLASS: {
-      const newState = {
-        ...state,
-        current: { ...state.current, class: action.payload },
-      };
+      const newState = { ...state, current: { ...state.current } };
+      newState.current.class = action.payload;
       return newState;
     }
-    case SET_BG: {
-      const newState = {
-        ...state,
-        current: { ...state.current, background: action.payload },
-      };
-      return newState;
-    }
-    case SET_DEFAULT_ABILITIES: {
+    case ADD_BUILD_CLASS: {
       const newState = {
         ...state,
         current: {
           ...state.current,
-          strength: 8,
-          dexterity: 8,
-          constitution: 8,
-          intelligence: 8,
-          wisdom: 8,
-          charisma: 8,
-          plus_1: "",
-          plus_2: "",
+          buildClasses: { ...state.current.buildClasses },
         },
       };
+      delete newState.current.buildClasses["0"];
+      newState.current.buildClasses[action.payload.id] = action.payload;
+      return newState;
+    }
+    case SET_BG: {
+      const newState = { ...state, current: { ...state.current } };
+      newState.current.background = action.payload;
       return newState;
     }
     case RAISE_ABILITY: {
@@ -190,24 +211,21 @@ function buildReducer(state = initialState, action) {
       newState.current[action.itemType] = action.payload;
       return newState;
     }
-    case ADD_CLASS: {
+    case SET_DEFAULT_ABILITIES: {
       const newState = {
         ...state,
         current: {
           ...state.current,
-          classList: {
-            ...state.current.classList,
-            [action.payload.id]: action.payload,
-          },
+          strength: 8,
+          dexterity: 8,
+          constitution: 8,
+          intelligence: 8,
+          wisdom: 8,
+          charisma: 8,
+          plus_1: "",
+          plus_2: "",
         },
       };
-      return newState;
-    }
-    case GET_ALL_CLASSES: {
-      const newState = { ...state, classes: {} };
-      action.payload.forEach(
-        (_class) => (newState.classes[_class.id] = _class)
-      );
       return newState;
     }
     default:

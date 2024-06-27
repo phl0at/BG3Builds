@@ -49,15 +49,6 @@
   text-decoration: underline;
 }
 
-.selected_charImg {
-  height: 110px;
-  width: 75px;
-  object-fit: cover;
-  border-radius: 10px;
-  cursor: pointer;
-  outline: 3.5px solid rgb(180, 135, 92);
-  box-shadow: rgb(180, 135, 92) 0px 5px 12px;
-}
 
 .charImg {
   height: 110px;
@@ -67,6 +58,15 @@
   cursor: pointer;
 }
 
+.selected_charImg {
+  height: 110px;
+  width: 75px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: 3.5px solid rgb(180, 135, 92);
+  box-shadow: rgb(180, 135, 92) 0px 5px 12px;
+}
 @media (min-width: 1645px) {
   .selected_charImg {
     height: 120px;

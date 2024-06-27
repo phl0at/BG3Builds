@@ -7,29 +7,11 @@
   font-size: 17pt;
   color: #e69a28;
 }
-.select {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  height: 180px;
-}
-.name {
-  font-size: 14pt;
-  color: #e69a28;
-}
-
-.description {
-  padding-top: 5px;
-  text-align: center;
-  max-width: 90%;
-}
-
 .classList {
   display: flex;
   justify-content: center;
-  column-gap: 40px;
-  row-gap: 15px;
+  column-gap: 55px;
+  row-gap: 5px;
   flex-direction: row;
   flex-wrap: wrap;
   width: 80%;
@@ -43,6 +25,7 @@
   align-items: center;
   text-wrap: nowrap;
   cursor: pointer;
+  font-size: 12pt;
 }
 
 .class:hover {
@@ -51,36 +34,100 @@
 }
 
 .classImg {
-  width: 65px;
-  height: 65px;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
   border-radius: 10px;
 }
 
 .selected_classImg {
   outline: 3.5px solid rgb(180, 135, 92);
   box-shadow: rgb(180, 135, 92) 0px 5px 12px;
-  width: 65px;
-  height: 65px;
+  width: 50px;
+  height: 50px;
   border-radius: 10px;
+}
+
+.select {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  height: 150px;
+}
+
+.nameSection {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90%;
+  height: 35px;
+  color: #e69a28;
+  column-gap: 10px;
+}
+
+.addClasses {
+  width: 95%;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.addButton {
+  height: 35px;
+  width: 85px;
+  color: #e4c274;
+  outline: 2px solid rgb(101, 71, 42);
+  background-color: rgba(17, 13, 12, 0.78);
+  border-radius: 4px;
+}
+
+.description {
+  padding-top: 5px;
+  text-align: left;
+  max-width: 90%;
+}
+
+.reset {
+  position: absolute;
+  top: 15px;
+  left: 190px;
+}
+
+.buildClassList {
+  width: 98%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+.buildClass {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 11pt;
 }
 
 @media (min-width: 1645px) {
   .selected_classImg {
-    height: 80px;
-    width: 80px;
+    height: 65px;
+    width: 65px;
   }
   .classImg {
-    height: 80px;
-    width: 80px;
+    height: 65px;
+    width: 65px;
   }
 }
 @media (min-width: 2005px) {
   .selected_classImg {
-    height: 95px;
-    width: 95px;
+    height: 80px;
+    width: 80px;
   }
   .classImg {
-    height: 95px;
-    width: 95px;
+    height: 80px;
+    width: 80px;
   }
 }

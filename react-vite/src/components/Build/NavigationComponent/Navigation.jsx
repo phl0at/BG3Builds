@@ -7,9 +7,7 @@ import { CiPaperplane } from "react-icons/ci";
 
 function Navigation({ setActiveMenu, activeMenu }) {
   const user = useSelector((state) => state.session.user);
-  const dispatch = useDispatch()
-
-
+  const dispatch = useDispatch();
 
   return (
     <main className={styles.main}>
@@ -49,23 +47,6 @@ function Navigation({ setActiveMenu, activeMenu }) {
       </div>
       <div
         className={
-          activeMenu === "Class" ? styles.menuItemSelected : styles.menuItem
-        }
-      >
-        <div className={styles.navArrow}>
-          {activeMenu === "Class" && <CiPaperplane />}
-        </div>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            setActiveMenu("Class");
-          }}
-        >
-          Class
-        </button>
-      </div>
-      <div
-        className={
           activeMenu === "Background"
             ? styles.menuItemSelected
             : styles.menuItem
@@ -85,6 +66,23 @@ function Navigation({ setActiveMenu, activeMenu }) {
       </div>
       <div
         className={
+          activeMenu === "Class" ? styles.menuItemSelected : styles.menuItem
+        }
+      >
+        <div className={styles.navArrow}>
+          {activeMenu === "Class" && <CiPaperplane />}
+        </div>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setActiveMenu("Class");
+          }}
+        >
+          Class
+        </button>
+      </div>
+      <div
+        className={
           activeMenu === "Abilities" ? styles.menuItemSelected : styles.menuItem
         }
       >
@@ -100,7 +98,6 @@ function Navigation({ setActiveMenu, activeMenu }) {
           Abilities
         </button>
       </div>
-
     </main>
   );
 }
