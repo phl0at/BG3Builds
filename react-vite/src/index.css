@@ -4,6 +4,12 @@
   width: 100%;
   font-size: 13pt;
 }
+input {
+  padding: 4px;
+  border-radius: 4px;
+  border: none;
+  background-color: rgb(101, 71, 42);
+}
 
 #root > main {
   height: 100%;

@@ -8,13 +8,6 @@
   min-width: 320px;
   width: 26%;
 }
-.left > * {
-  animation: fadeIn 0.75s;
-  -webkit-animation: fadeIn 0.75s;
-  -moz-animation: fadeIn 0.75s;
-  -o-animation: fadeIn 0.75s;
-  -ms-animation: fadeIn 0.75s;
-}
 
 .infoPanel {
   outline: 3px solid rgb(101, 71, 42);
@@ -40,52 +33,60 @@
   height: 23%;
   display: flex;
   flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
 }
-
-.left {
+.buildButtons {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-end;
   row-gap: 10px;
-  width: 45%;
-  padding-left: 10px;
+  width: 50%;
   padding-bottom: 10px;
 }
-.login {
+
+.buildButtons > * {
   width: 100px;
   height: 35px;
-  background-color: rgba(0, 0, 0, 0.715);
+  color: #e4c274;
+  outline: 2px solid rgb(101, 71, 42);
+  background-color: rgba(17, 13, 12, 0.78);
   border-radius: 4px;
-  font-size: 11pt;
+  font-size: 10pt;
+  animation: fadeIn 0.75s;
+  -webkit-animation: fadeIn 0.75s;
+  -moz-animation: fadeIn 0.75s;
+  -o-animation: fadeIn 0.75s;
+  -ms-animation: fadeIn 0.75s;
 }
 
-.login:hover {
-  background-color: rgba(0, 0, 0, 0);
-  outline: 2px solid rgb(101, 71, 42);
+.userButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  row-gap: 10px;
+  width: 50%;
+  padding-bottom: 10px;
 }
-.signup {
+
+.userButtons > * {
   width: 100px;
   height: 35px;
-  background-color: rgba(0, 0, 0, 0.715);
-  border-radius: 4px;
-  font-size: 11pt;
-}
-.signup:hover {
-  background-color: rgba(0, 0, 0, 0);
+  color: #e4c274;
   outline: 2px solid rgb(101, 71, 42);
-}
-.demo {
-  width: 100px;
-  height: 35px;
-  background-color: rgba(0, 0, 0, 0.715);
+  background-color: rgba(17, 13, 12, 0.78);
   border-radius: 4px;
-  font-size: 11pt;
+  font-size: 10pt;
+  animation: fadeIn 0.75s;
+  -webkit-animation: fadeIn 0.75s;
+  -moz-animation: fadeIn 0.75s;
+  -o-animation: fadeIn 0.75s;
+  -ms-animation: fadeIn 0.75s;
 }
-.demo:hover {
-  background-color: rgba(0, 0, 0, 0);
-  outline: 2px solid rgb(101, 71, 42);
-}
+
+
 .logout {
   width: 100px;
   height: 35px;
@@ -96,22 +97,6 @@
 
 .logout:hover {
   background-color: rgb(215, 17, 17);
-}
-
-.right {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  width: 45%;
-  padding-bottom: 10px;
-}
-
-.calcButton {
-  width: 130px;
-  height: 55px;
-  background-color: rgba(28, 55, 116, 0.74);
-  border-radius: 4px;
-  font-size: 11pt;
 }
 
 @media (max-width: 600px) {

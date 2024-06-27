@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { thunkSignup } from "../../../redux/session";
-import "./SignupForm.css";
+import styles from "./SignupForm.module.css";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function SignupFormModal() {
     if (password !== confirmPassword) {
       return setErrors({
         confirmPassword:
-          "Confirm Password field must be the same as the Password field",
+          "Passwords must match",
       });
     }
 
@@ -39,53 +39,49 @@ function SignupFormModal() {
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        {errors.username && <p>{errors.username}</p>}
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+    <main className={styles.main}>
+      <div className={styles.title}>Sign Up</div>
+      <div className={styles.error}>
+        {errors.server && errors.server}
+        {errors.email && errors.email}
+        {errors.username && errors.username}
+        {errors.password && errors.password}
+        {errors.confirmPassword && errors.confirmPassword}
+      </div>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={email}
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          value={username}
+          placeholder="Username"
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          value={password}
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          value={confirmPassword}
+          placeholder="Confirm Password"
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
+        />
+        <button className={styles.submitButton} type="submit">
+          Submit
+        </button>
       </form>
-    </>
+    </main>
   );
 }
 

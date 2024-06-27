@@ -2,7 +2,7 @@ import { useState } from "react";
 import { thunkLogin } from "../../../redux/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
-import "./LoginForm.css";
+import styles from "./LoginForm.module.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -29,32 +29,29 @@ function LoginFormModal() {
   };
 
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
+    <main className={styles.main}>
+      <div className={styles.title}>Log In</div>
+      <div className={styles.error}>{errors.email && errors.email}</div>
+      <div className={styles.error}>{errors.password && errors.password}</div>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={email}
+          placeholder={"Email"}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+        <input
+          type="password"
+          value={password}
+          placeholder={"Password"}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button className={styles.submitButton} type="submit">Submit</button>
       </form>
-    </>
+    </main>
   );
 }
 

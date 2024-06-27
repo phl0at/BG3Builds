@@ -33,8 +33,32 @@ export default function InfoComponent() {
         <div className={styles.title}>Information</div>
       </div>
       <div className={styles.userBar}>
-        <div className={styles.left}>
-        {user && <button className={styles.logout} onClick={logout}>Log Out</button>}
+        <div className={styles.buildButtons}>
+          {user && (
+           <OpenModalButton
+            buttonText={"Save"}
+            className={styles.saveButton}
+           />
+          )}
+          <button
+            className={styles.calcButton}
+            onClick={() => alert("Feature coming soon!")}
+          >
+            Share
+          </button>
+          <button
+            className={styles.calcButton}
+            onClick={() => alert("Feature coming soon!")}
+          >
+            Calculate
+          </button>
+        </div>
+        <div className={styles.userButtons}>
+          {user && (
+            <button className={styles.logout} onClick={logout}>
+              Log Out
+            </button>
+          )}
           {!user && (
             <>
               <OpenModalButton
@@ -47,17 +71,11 @@ export default function InfoComponent() {
                 buttonText={"Sign up"}
                 modalComponent={<SignupFormModal />}
               />
-              <button className={styles.demo} onClick={onClick}>Demo Features</button>
+              <button className={styles.demo} onClick={onClick}>
+                Demo Features
+              </button>
             </>
           )}
-        </div>
-        <div className={styles.right}>
-          <button
-            className={styles.calcButton}
-            onClick={() => alert("Feature coming soon!")}
-          >
-            Calculate Effectiveness
-          </button>
         </div>
       </div>
     </main>
