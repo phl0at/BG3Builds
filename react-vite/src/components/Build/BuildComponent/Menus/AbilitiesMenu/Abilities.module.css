@@ -7,12 +7,31 @@
   font-size: 17pt;
   color: #e69a28;
 }
+.heading {
+  position: relative;
+  top: 18px;
+  font-size: 10.5pt;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  column-gap: 8px;
+}
 .abilList {
-  max-width: 440px;
-  min-width: 360px;
+  width: 90%;
   display: flex;
   flex-direction: column;
-  row-gap: 15px;
+  row-gap: 5px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.statImg {
+  height: 75px;
 }
 
 .label {
@@ -21,33 +40,71 @@
 }
 
 .values {
-  width: 80px;
+  height: 100%;
+  width: 35%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
 }
 
-.stat {
-  width: 95%;
+.valueContainer {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 4px;
+  height: 100%;
+  width: 100%;
+}
+
+.num {
+  width: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.disabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: grey;
+  cursor: default;
+}
+.enabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.enabled:hover {
+  color: white;
+}
+
+.bonuses {
+  width: 50px;
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  column-gap: 30px;
+}
+.plus {
+  height: 16px;
+  width: 16px;
+  border: 2px solid;
 }
 
-.input {
-  border: none;
-  background: none;
+.plus:hover {
   color: white;
-  width: 20px;
 }
 
-.statImg {
-  height: 75px;
+.plusSelected {
+  height: 16px;
+  width: 16px;
+  background-color: #e69a28;
+  border: 2px solid;
 }
-
+.plusSelected:hover {
+  color: white;
+}
 @media (min-width: 1645px) {
   .statImg {
     height: 85px;

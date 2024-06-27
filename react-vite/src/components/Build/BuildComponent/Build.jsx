@@ -7,11 +7,12 @@ import ClassComponent from "./Menus/ClassMenu/Class"
 import BackgroundComponent from "./Menus/BackgroundMenu/Background";
 //Packages
 import { useSelector } from "react-redux";
+import { useState } from "react";
 import AbilitiesComponent from "./Menus/AbilitiesMenu/Abilities";
 
 export default function BuildComponent({ activeMenu }) {
   const currentBuild = useSelector((state) => state.builds.current);
-
+  const [points, setPoints] = useState(27);
   return (
     <main className={styles.main}>
       {activeMenu === "Origin" && (
@@ -20,7 +21,7 @@ export default function BuildComponent({ activeMenu }) {
       {activeMenu === "Race" && <RaceComponent currentBuild={currentBuild} />}
       {activeMenu === "Class" && <ClassComponent currentBuild={currentBuild} />}
       {activeMenu === "Background" && <BackgroundComponent currentBuild={currentBuild} />}
-      {activeMenu === "Abilities" && <AbilitiesComponent currentBuild={currentBuild} />}
+      {activeMenu === "Abilities" && <AbilitiesComponent points={points} setPoints={setPoints} currentBuild={currentBuild} />}
     </main>
   );
 }

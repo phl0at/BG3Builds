@@ -1,7 +1,7 @@
 //Files
 import styles from "./Parent.module.css";
 //Functions/Components
-import { setBackground, setOrigin, setRace } from "../../../redux/build";
+import { setBackground, setOrigin, setRace, setAbilities } from "../../../redux/build";
 import Navigation from "../NavigationComponent";
 import BuildComponent from "../BuildComponent/Build";
 import EquipmentComponent from "../EquipComponent/Equipment";
@@ -19,6 +19,7 @@ export default function ParentPage() {
     dispatch(setOrigin(8));
     dispatch(setRace(1));
     dispatch(setBackground(1));
+    dispatch(setAbilities())
     dispatch(thunkPreloadData());
   }, []);
 
