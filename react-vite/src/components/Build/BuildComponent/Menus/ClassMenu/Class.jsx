@@ -3,19 +3,20 @@ import styles from "./Class.module.css";
 import { Images } from "../../../../images";
 //Functions/Components
 import { addBuildClass, setClass } from "../../../../../redux/build";
+import OpenModalButton from "../../../../Modal";
+import ResetClassesModal from "./ResetModal";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
 import { CiUndo } from "react-icons/ci";
-import OpenModalButton from "../../../../Modal";
-import ResetClassesModal from "./ResetModal";
 
 export default function ClassComponent({ currentBuild }) {
-  const notMaxLevel = !currentBuild.level || currentBuild.level < 12
+  const notMaxLevel = !currentBuild.level || currentBuild.level < 12;
   const dispatch = useDispatch();
   const Classes = useSelector((state) => state.static.classes);
   const buildClasses = useSelector(
-    (state) => state.builds.current.buildClasses
+    (state) => state.builds.current.build_classes
   );
+
   const clickClass = (e, _class) => {
     e.preventDefault();
     dispatch(setClass(_class));
@@ -26,14 +27,8 @@ export default function ClassComponent({ currentBuild }) {
     const newClass = {
       id: _class.id,
       name: _class.name,
-      level: 1,
       sub_class,
     };
-    for (const class_id in buildClasses) {
-      if (class_id == _class.id) {
-        newClass.level = buildClasses[class_id].level += 1;
-      }
-    }
     dispatch(addBuildClass(newClass));
   };
 
@@ -219,7 +214,7 @@ export default function ClassComponent({ currentBuild }) {
           </div>
           <div className={styles.buildClassList}>
             {buildClasses &&
-              Object.values(buildClasses).map((_class) => {
+              buildClasses.map((_class) => {
                 const titleCase =
                   _class.name[0].toUpperCase() + _class.name.slice(1);
                 return (
@@ -228,7 +223,7 @@ export default function ClassComponent({ currentBuild }) {
                       className={styles.classImg}
                       src={Images.classes[titleCase]}
                     />
-                    {`${_class.name} level: ${_class.level}`}
+                    {`${_class.name}: ${_class.level}`}
                     {_class.sub_class && `Subclass: ${_class.sub_class}`}
                   </div>
                 );

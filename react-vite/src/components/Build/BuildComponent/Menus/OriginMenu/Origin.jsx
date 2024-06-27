@@ -13,7 +13,7 @@ export default function OriginComponent({ currentBuild }) {
   const onClick = (e, origin) => {
     e.preventDefault();
 
-    dispatch(setOrigin(origin));
+    dispatch(setOrigin(origin, Origins[origin].name));
 
     switch (origin) {
       case 1:

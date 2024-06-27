@@ -16,7 +16,7 @@ const SET_DEFAULT_ABILITIES = "build/setAbilities";
 const RAISE_ABILITY = "build/raiseAbility";
 const LOWER_ABILITY = "build/lowerAbility";
 const EQUIP_ITEM = "build/equip";
-const CREATE_BUILD = "build/create"
+const CREATE_BUILD = "build/create";
 
 //! --------------------------------------------------------------------
 //*                         Action Creators
@@ -29,10 +29,11 @@ const action = (type, payload) => ({
 
 //! --------------------------------------------------------------------
 
-export const setOrigin = (payload) => {
+export const setOrigin = (payload, name) => {
   return {
     type: SET_ORIGIN,
     payload,
+    name,
   };
 };
 //! --------------------------------------------------------------------
@@ -138,39 +139,22 @@ export const equipItem = (itemType, payload) => {
 //! --------------------------------------------------------------------
 
 export const thunkCreateBuild = (build) => async (dispatch) => {
-  const res = await fetch('/api/builds', {
+  const res = await fetch("/api/builds", {
     method: "POST",
-    header: {"Content-Type":"application/json"},
-    body: JSON.stringify(build)
-  })
+    header: { "Content-Type": "application/json" },
+    body: JSON.stringify(build),
+  });
   if (res.ok) {
     const data = await res.json();
     dispatch(action(CREATE_BUILD, data));
     return data;
   } else if (res.status < 500) {
-      const errorMessages = await res.json();
-      return errorMessages;
+    const errorMessages = await res.json();
+    return errorMessages;
   } else {
-  return { server: "Something went wrong. Please try again" };
-}
-};
-
-//! --------------------------------------------------------------------
-//*                            Selectors
-//! --------------------------------------------------------------------
-
-export const getBuildClassArray = createSelector(
-  (state) => state.builds.current.buildClasses,
-  (_class) => {
-    let arr = [];
-    for (const key in _class) {
-      if (key > 0) {
-        arr.push(_class[key]);
-      }
-    }
-    return arr;
+    return { server: "Something went wrong. Please try again" };
   }
-);
+};
 
 //! --------------------------------------------------------------------
 //*                            Reducer
@@ -182,8 +166,12 @@ function buildReducer(state = initialState, action) {
     case SET_ORIGIN: {
       const newState = { ...state, current: { ...state.current } };
       newState.current.origin = action.payload;
+      action.payload != 8
+        ? (newState.current.character_name = action.name)
+        : (newState.current.character_name = "Tav");
       return newState;
     }
+
     case SET_RACE: {
       const newState = { ...state, current: { ...state.current } };
       newState.current.race = action.payload;
@@ -195,56 +183,82 @@ function buildReducer(state = initialState, action) {
       newState.current.class = action.payload;
       return newState;
     }
+
     case ADD_BUILD_CLASS: {
       const newState = {
         ...state,
         current: {
           ...state.current,
-          buildClasses: { ...state.current.buildClasses },
         },
       };
-      newState.current.level
-        ? newState.current.level++
-        : (newState.current.level = 1);
-      newState.current.buildClasses[action.payload.id] = action.payload;
+      if (newState.current.build_classes) {
+        newState.current.level++;
+        const existingClass = newState.current.build_classes.find(
+          (build_class) => build_class.id == action.payload.id
+        );
+        if (existingClass) {
+          newState.current.build_classes[
+            newState.current.build_classes.indexOf(existingClass)
+          ].level++;
+
+          newState.current.build_classes[
+            newState.current.build_classes.indexOf(existingClass)
+          ].sub_class = action.payload.sub_class;
+        } else {
+          action.payload.level = 1;
+          newState.current.build_classes.push(action.payload);
+        }
+      } else {
+        newState.current.level = 1;
+        action.payload.level = 1;
+        newState.current.build_classes = [action.payload];
+      }
       return newState;
     }
+
     case RESET_CLASSES: {
       const newState = { ...state };
-      delete state.current.buildClasses;
+      delete state.current.build_classes;
       delete state.current.level;
       return newState;
     }
+
     case SET_BG: {
       const newState = { ...state, current: { ...state.current } };
       newState.current.background = action.payload;
       return newState;
     }
+
     case RAISE_ABILITY: {
       const newState = { ...state, current: { ...state.current } };
       newState.current[action.payload]++;
       return newState;
     }
+
     case LOWER_ABILITY: {
       const newState = { ...state, current: { ...state.current } };
       newState.current[action.payload]--;
       return newState;
     }
+
     case SET_BONUS: {
       const newState = { ...state, current: { ...state.current } };
       newState.current[action.amount] = action.payload;
       return newState;
     }
+
     case CLEAR_BONUS: {
       const newState = { ...state, current: { ...state.current } };
       newState.current[action.payload] = "";
       return newState;
     }
+
     case EQUIP_ITEM: {
       const newState = { ...state, current: { ...state.current } };
       newState.current[action.itemType] = action.payload;
       return newState;
     }
+
     case SET_DEFAULT_ABILITIES: {
       const newState = {
         ...state,
@@ -262,6 +276,7 @@ function buildReducer(state = initialState, action) {
       };
       return newState;
     }
+
     default:
       return state;
   }
