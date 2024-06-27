@@ -20,7 +20,6 @@ export default function ParentPage() {
     dispatch(setRace(1));
     dispatch(setBackground(1));
     dispatch(setAbilities())
-    dispatch(addBuildClass({id:0}))
     dispatch(thunkPreloadData());
   }, []);
 

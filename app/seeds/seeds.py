@@ -290,17 +290,18 @@ def seed_all():
 
     ################ SEED BUILD CLASSES ################
     build_classes_list = [
-        { 'build_id': 1, 'class_id': 8, 'level': 5},
-        { 'build_id': 2, 'class_id': 8, 'level': 5},
-        { 'build_id': 3, 'class_id': 8, 'level': 5},
-        { 'build_id': 4, 'class_id': 8, 'level': 5},
+        { 'build_id': 1, 'class_id': 8, 'name': 'Ranger', 'level': 5, 'sub_class': 'Gloomstalker'},
+        { 'build_id': 2, 'class_id': 8, 'name': 'Ranger', 'level': 5, 'sub_class': 'Gloomstalker'},
+        { 'build_id': 3, 'class_id': 8, 'name': 'Ranger', 'level': 5, 'sub_class': 'Gloomstalker'},
+        { 'build_id': 4, 'class_id': 8, 'name': 'Ranger', 'level': 5, 'sub_class': 'Gloomstalker'},
     ]
     for build_class in build_classes_list:
         new_bc = BuildClass(
             build_id=build_class['build_id'],
             class_id=build_class['class_id'],
+            name=build_class['name'],
             level=build_class['level'],
-            # sub_class=build_class['sub_class']
+            sub_class=build_class['sub_class']
         )
         db.session.add(new_bc)
 

@@ -14,7 +14,6 @@ class Build(db.Model):
     character_name = db.Column(db.String(25), nullable=False)
     origin = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('origins.id')), nullable=False)
     race = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('races.id')), nullable=False)
-    # sub_race = db.Column(db.String(25), nullable=True)
     background = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('backgrounds.id')), nullable=False)
     strength = db.Column(db.Integer, nullable=False)
     dexterity = db.Column(db.Integer, nullable=False)
@@ -50,7 +49,6 @@ class Build(db.Model):
             'character_name': self.character_name,
             'origin': self.origin,
             'race': self.race,
-            # 'sub_race': self.sub_race,
             'background': self.background,
             'strength': self.strength,
             'dexterity': self.dexterity,
@@ -89,6 +87,10 @@ class BuildClass(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     build_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('builds.id')), nullable=False)
     class_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('classes.id')), nullable=False)
+    name = db.Column(db.String(50), db.Enum('Cleric', 'Druid', 'Fighter',
+                                            'Monk', 'Paladin', 'Ranger',
+                                            'Rogue', 'Sorcerer', 'Warlock',
+                                            'Wizard'), nullable=False)
     level = db.Column(db.Integer, nullable=False)
     sub_class = db.Column(db.String(50), nullable=True)
 
@@ -97,6 +99,7 @@ class BuildClass(db.Model):
             'id': self.id,
             'build_id': self.build_id,
             'class_id': self.class_id,
+            'name': self.name,
             'level': self.level,
             'sub_class': self.sub_class
         }

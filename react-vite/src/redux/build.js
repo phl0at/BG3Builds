@@ -10,11 +10,13 @@ const SET_BG = "build/setBackground";
 const SET_BONUS = "build/setBonus";
 const SET_CLASS = "build/setClass";
 const ADD_BUILD_CLASS = "build/addBuildClass";
+const RESET_CLASSES = "build/clearClasses";
 const CLEAR_BONUS = "build/clearBonus";
 const SET_DEFAULT_ABILITIES = "build/setAbilities";
 const RAISE_ABILITY = "build/raiseAbility";
 const LOWER_ABILITY = "build/lowerAbility";
 const EQUIP_ITEM = "build/equip";
+const CREATE_BUILD = "build/create"
 
 //! --------------------------------------------------------------------
 //*                         Action Creators
@@ -56,6 +58,14 @@ export const addBuildClass = (payload) => {
   return {
     type: ADD_BUILD_CLASS,
     payload,
+  };
+};
+
+//! --------------------------------------------------------------------
+
+export const resetClasses = () => {
+  return {
+    type: RESET_CLASSES,
   };
 };
 
@@ -127,7 +137,23 @@ export const equipItem = (itemType, payload) => {
 //*                             Thunks
 //! --------------------------------------------------------------------
 
-export const thunkCreateBuild = () => async (dispatch) => {};
+export const thunkCreateBuild = (build) => async (dispatch) => {
+  const res = await fetch('/api/builds', {
+    method: "POST",
+    header: {"Content-Type":"application/json"},
+    body: JSON.stringify(build)
+  })
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(action(CREATE_BUILD, data));
+    return data;
+  } else if (res.status < 500) {
+      const errorMessages = await res.json();
+      return errorMessages;
+  } else {
+  return { server: "Something went wrong. Please try again" };
+}
+};
 
 //! --------------------------------------------------------------------
 //*                            Selectors
@@ -177,8 +203,16 @@ function buildReducer(state = initialState, action) {
           buildClasses: { ...state.current.buildClasses },
         },
       };
-      delete newState.current.buildClasses["0"];
+      newState.current.level
+        ? newState.current.level++
+        : (newState.current.level = 1);
       newState.current.buildClasses[action.payload.id] = action.payload;
+      return newState;
+    }
+    case RESET_CLASSES: {
+      const newState = { ...state };
+      delete state.current.buildClasses;
+      delete state.current.level;
       return newState;
     }
     case SET_BG: {

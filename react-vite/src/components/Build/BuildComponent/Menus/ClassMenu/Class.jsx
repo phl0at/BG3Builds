@@ -2,44 +2,38 @@
 import styles from "./Class.module.css";
 import { Images } from "../../../../images";
 //Functions/Components
-import {
-  addBuildClass,
-  getBuildClassArray,
-  setClass,
-} from "../../../../../redux/build";
+import { addBuildClass, setClass } from "../../../../../redux/build";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
-import { CiCircleRemove } from "react-icons/ci";
+import { CiUndo } from "react-icons/ci";
 import OpenModalButton from "../../../../Modal";
+import ResetClassesModal from "./ResetModal";
 
 export default function ClassComponent({ currentBuild }) {
+  const notMaxLevel = !currentBuild.level || currentBuild.level < 12
   const dispatch = useDispatch();
   const Classes = useSelector((state) => state.static.classes);
-  const buildClasses = useSelector(getBuildClassArray);
-
-  const onClick = (e, _class) => {
+  const buildClasses = useSelector(
+    (state) => state.builds.current.buildClasses
+  );
+  const clickClass = (e, _class) => {
     e.preventDefault();
     dispatch(setClass(_class));
   };
 
   const clickAddClass = (e, _class, sub_class) => {
     e.preventDefault();
-    let newClass = {
+    const newClass = {
       id: _class.id,
       name: _class.name,
       level: 1,
       sub_class,
     };
-    buildClasses.forEach((existingClass) => {
-      if (existingClass.id === _class.id) {
-        newClass = {
-          id: _class.id,
-          name: _class.name,
-          level: (existingClass.level += 1),
-          sub_class,
-        };
+    for (const class_id in buildClasses) {
+      if (class_id == _class.id) {
+        newClass.level = buildClasses[class_id].level += 1;
       }
-    });
+    }
     dispatch(addBuildClass(newClass));
   };
 
@@ -51,7 +45,7 @@ export default function ClassComponent({ currentBuild }) {
           <div className={styles.classList}>
             <div className={styles.class}>
               <img
-                onClick={(e) => onClick(e, 1)}
+                onClick={(e) => clickClass(e, 1)}
                 src={Images.classes["Barbarian"]}
                 className={
                   currentBuild?.class === 1
@@ -63,7 +57,7 @@ export default function ClassComponent({ currentBuild }) {
             </div>
             <div className={styles.class}>
               <img
-                onClick={(e) => onClick(e, 2)}
+                onClick={(e) => clickClass(e, 2)}
                 src={Images.classes["Bard"]}
                 className={
                   currentBuild?.class === 2
@@ -75,7 +69,7 @@ export default function ClassComponent({ currentBuild }) {
             </div>
             <div className={styles.class}>
               <img
-                onClick={(e) => onClick(e, 3)}
+                onClick={(e) => clickClass(e, 3)}
                 src={Images.classes["Cleric"]}
                 className={
                   currentBuild?.class === 3
@@ -87,7 +81,7 @@ export default function ClassComponent({ currentBuild }) {
             </div>
             <div className={styles.class}>
               <img
-                onClick={(e) => onClick(e, 4)}
+                onClick={(e) => clickClass(e, 4)}
                 src={Images.classes["Druid"]}
                 className={
                   currentBuild?.class === 4
@@ -99,7 +93,7 @@ export default function ClassComponent({ currentBuild }) {
             </div>
             <div className={styles.class}>
               <img
-                onClick={(e) => onClick(e, 5)}
+                onClick={(e) => clickClass(e, 5)}
                 src={Images.classes["Fighter"]}
                 className={
                   currentBuild?.class === 5
@@ -111,7 +105,7 @@ export default function ClassComponent({ currentBuild }) {
             </div>
             <div className={styles.class}>
               <img
-                onClick={(e) => onClick(e, 6)}
+                onClick={(e) => clickClass(e, 6)}
                 src={Images.classes["Monk"]}
                 className={
                   currentBuild?.class === 6
@@ -123,7 +117,7 @@ export default function ClassComponent({ currentBuild }) {
             </div>
             <div className={styles.class}>
               <img
-                onClick={(e) => onClick(e, 7)}
+                onClick={(e) => clickClass(e, 7)}
                 src={Images.classes["Paladin"]}
                 className={
                   currentBuild?.class === 7
@@ -135,7 +129,7 @@ export default function ClassComponent({ currentBuild }) {
             </div>
             <div className={styles.class}>
               <img
-                onClick={(e) => onClick(e, 8)}
+                onClick={(e) => clickClass(e, 8)}
                 src={Images.classes["Ranger"]}
                 className={
                   currentBuild?.class === 8
@@ -147,7 +141,7 @@ export default function ClassComponent({ currentBuild }) {
             </div>
             <div className={styles.class}>
               <img
-                onClick={(e) => onClick(e, 9)}
+                onClick={(e) => clickClass(e, 9)}
                 src={Images.classes["Rogue"]}
                 className={
                   currentBuild?.class === 9
@@ -159,7 +153,7 @@ export default function ClassComponent({ currentBuild }) {
             </div>
             <div className={styles.class}>
               <img
-                onClick={(e) => onClick(e, 10)}
+                onClick={(e) => clickClass(e, 10)}
                 src={Images.classes["Sorcerer"]}
                 className={
                   currentBuild?.class === 10
@@ -171,7 +165,7 @@ export default function ClassComponent({ currentBuild }) {
             </div>
             <div className={styles.class}>
               <img
-                onClick={(e) => onClick(e, 11)}
+                onClick={(e) => clickClass(e, 11)}
                 src={Images.classes["Warlock"]}
                 className={
                   currentBuild?.class === 11
@@ -183,7 +177,7 @@ export default function ClassComponent({ currentBuild }) {
             </div>
             <div className={styles.class}>
               <img
-                onClick={(e) => onClick(e, 12)}
+                onClick={(e) => clickClass(e, 12)}
                 src={Images.classes["Wizard"]}
                 className={
                   currentBuild?.class === 12
@@ -199,21 +193,23 @@ export default function ClassComponent({ currentBuild }) {
               {currentBuild.class && (
                 <>
                   {Classes[currentBuild.class]?.name}
-                  <button
-                    className={styles.addButton}
-                    onClick={(e) =>
-                      clickAddClass(e, Classes[currentBuild.class], null)
-                    }
-                  >
-                    Add Class
-                  </button>
+                  {notMaxLevel && (
+                    <button
+                      className={styles.addButton}
+                      onClick={(e) =>
+                        clickAddClass(e, Classes[currentBuild.class], null)
+                      }
+                    >
+                      Add Class
+                    </button>
+                  )}
                 </>
               )}
-              {buildClasses[0] && (
+              {buildClasses && (
                 <OpenModalButton
-                  modalComponent={""}
                   className={styles.reset}
-                  buttonText={<CiCircleRemove color="red" size="30" />}
+                  buttonText={<CiUndo size="40" />}
+                  modalComponent={<ResetClassesModal />}
                 />
               )}
             </div>
@@ -222,8 +218,8 @@ export default function ClassComponent({ currentBuild }) {
             </div>
           </div>
           <div className={styles.buildClassList}>
-            {buildClasses.map((_class) => {
-              if (_class.id > 0) {
+            {buildClasses &&
+              Object.values(buildClasses).map((_class) => {
                 const titleCase =
                   _class.name[0].toUpperCase() + _class.name.slice(1);
                 return (
@@ -236,8 +232,7 @@ export default function ClassComponent({ currentBuild }) {
                     {_class.sub_class && `Subclass: ${_class.sub_class}`}
                   </div>
                 );
-              }
-            })}
+              })}
           </div>
         </>
       )}
