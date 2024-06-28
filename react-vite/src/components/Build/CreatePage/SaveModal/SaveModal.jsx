@@ -1,10 +1,12 @@
 //Files
 import styles from "./SaveModal.module.css";
 //Functions/Components
+import { thunkCreateBuild } from "../../../../redux/build";
+import { useModal } from "../../../../context/Modal";
 //Packages
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { thunkCreateBuild } from "../../../../redux/build";
 
 export default function SaveBuildModal() {
   const currentBuild = useSelector((state) => state.builds.current);
@@ -12,8 +14,10 @@ export default function SaveBuildModal() {
   const [buildName, setBuildName] = useState("");
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
+  const navigateTo = useNavigate();
+  const { closeModal } = useModal();
 
-  const submit = (e) => {
+  const submit = async (e) => {
     setErrors({});
     e.preventDefault();
     if (buildName.trim().length < 3 || buildName.length > 25) {
@@ -21,7 +25,13 @@ export default function SaveBuildModal() {
     } else if (charName.trim().length < 3 || charName.length > 25) {
       setErrors({ error: "Names must be 3 to 25 characters" });
     } else {
-      dispatch(thunkCreateBuild(currentBuild, { name: buildName }));
+      const success = await dispatch(
+        thunkCreateBuild(currentBuild, { name: buildName })
+      );
+      if (success) {
+        navigateTo(`/edit/${success.id}`);
+        closeModal()
+      }
     }
   };
   return (

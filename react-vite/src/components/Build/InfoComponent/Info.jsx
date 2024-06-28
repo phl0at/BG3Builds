@@ -5,14 +5,17 @@ import OpenModalButton from "../../Modal";
 import LoginFormModal from "../../Auth/LoginFormModal";
 import SignupFormModal from "../../Auth/SignupFormModal";
 import SaveBuildModal from "../CreatePage/SaveModal";
-//Packages
-import { useDispatch, useSelector } from "react-redux";
 import { thunkLogin, thunkLogout } from "../../../redux/session";
+//Packages
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function InfoComponent() {
   const dispatch = useDispatch();
+  const navigateTo = useNavigate();
   const user = useSelector((state) => state.session.user);
-
+  const currentBuild = useSelector((state) => state.builds.current);
+  
   const onClick = (e) => {
     e.preventDefault();
     dispatch(
@@ -26,6 +29,7 @@ export default function InfoComponent() {
   const logout = (e) => {
     e.preventDefault();
     dispatch(thunkLogout());
+    navigateTo("/");
   };
 
   return (
@@ -35,13 +39,20 @@ export default function InfoComponent() {
       </div>
       <div className={styles.userBar}>
         <div className={styles.buildButtons}>
-          {user && (
-            <OpenModalButton
-              buttonText={"Save"}
-              className={styles.saveButton}
-              modalComponent={<SaveBuildModal />}
-            />
-          )}
+          {user &&
+            (user.id === currentBuild?.user_id ? (
+              <OpenModalButton
+                buttonText={"Update"}
+                className={styles.saveButton}
+                modalComponent={"<UpdateBuildModal />"}
+              />
+            ) : (
+              <OpenModalButton
+                buttonText={"Save"}
+                className={styles.saveButton}
+                modalComponent={<SaveBuildModal />}
+              />
+            ))}
           <button
             className={styles.calcButton}
             onClick={() => alert("Feature coming soon!")}

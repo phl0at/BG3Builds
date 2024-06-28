@@ -1,15 +1,15 @@
 //Files
 import styles from "./Parent.module.css";
 //Functions/Components
-import { setBackground, setOrigin, setRace, setAbilities, addBuildClass } from "../../../redux/build";
+import { setBackground, setOrigin, setRace, setAbilities } from "../../../redux/build";
+import { thunkPreloadData } from "../../../redux/static";
 import Navigation from "../NavigationComponent";
 import BuildComponent from "../BuildComponent/Build";
 import EquipmentComponent from "../EquipComponent/Equipment";
-import { thunkPreloadData } from "../../../redux/static";
+import InfoComponent from "../InfoComponent";
 //Packages
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import InfoComponent from "../InfoComponent";
 
 export default function ParentPage() {
   const dispatch = useDispatch();

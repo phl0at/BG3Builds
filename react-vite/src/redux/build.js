@@ -4,6 +4,8 @@ import { createSelector } from "reselect";
 //*                          Action Types
 //! --------------------------------------------------------------------
 
+const SET_CURRENT_BUILD = "build/setBuild";
+const GET_BUILD = "build/getBuild";
 const SET_ORIGIN = "build/setOrigin";
 const SET_RACE = "build/setRace";
 const SET_BG = "build/setBackground";
@@ -22,11 +24,19 @@ const CREATE_BUILD = "build/create";
 //*                         Action Creators
 //! --------------------------------------------------------------------
 
-const action = (type, payload) => ({
+export const action = (type, payload) => ({
   type,
   payload,
 });
 
+//! --------------------------------------------------------------------
+
+export const setCurrentBuild = (payload) => {
+  return {
+    type: SET_CURRENT_BUILD,
+    payload,
+  };
+};
 //! --------------------------------------------------------------------
 
 export const setOrigin = (payload, name) => {
@@ -162,12 +172,41 @@ export const thunkCreateBuild =
   };
 
 //! --------------------------------------------------------------------
+
+export const thunkGetBuild = (buildId) => async (dispatch) => {
+  const res = await fetch(`/api/builds/${buildId}`);
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(action(GET_BUILD, data));
+    return data;
+  } else if (res.status < 500) {
+    const errorMessages = await res.json();
+    return errorMessages;
+  } else {
+    return { server: "Something went wrong. Please try again" };
+  }
+};
+
+//! --------------------------------------------------------------------
 //*                            Reducer
 //! --------------------------------------------------------------------
 
 const initialState = {};
 function buildReducer(state = initialState, action) {
   switch (action.type) {
+    case SET_CURRENT_BUILD: {
+      const newState = { ...state };
+      newState.current = action.payload;
+      return newState;
+    }
+
+    case GET_BUILD: {
+      const newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      newState.current = action.payload;
+      return newState;
+    }
+
     case SET_ORIGIN: {
       const newState = { ...state, current: { ...state.current } };
       newState.current.origin = action.payload;
@@ -209,6 +248,7 @@ function buildReducer(state = initialState, action) {
           newState.current.build_classes[
             newState.current.build_classes.indexOf(existingClass)
           ].sub_class = action.payload.sub_class;
+          
         } else {
           action.payload.level = 1;
           newState.current.build_classes.push(action.payload);
@@ -223,8 +263,8 @@ function buildReducer(state = initialState, action) {
 
     case RESET_CLASSES: {
       const newState = { ...state };
-      delete state.current.build_classes;
-      delete state.current.level;
+      delete newState.current.level;
+      newState.current.build_classes = [];
       return newState;
     }
 
