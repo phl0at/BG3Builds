@@ -200,7 +200,7 @@ export default function ClassComponent({ currentBuild }) {
                   )}
                 </>
               )}
-              {buildClasses.length ? (
+              {buildClasses?.length ? (
                 <OpenModalButton
                   className={styles.reset}
                   buttonText={<CiUndo size="40" />}
