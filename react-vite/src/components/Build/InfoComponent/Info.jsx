@@ -5,6 +5,7 @@ import OpenModalButton from "../../Modal";
 import LoginFormModal from "../../Auth/LoginFormModal";
 import SignupFormModal from "../../Auth/SignupFormModal";
 import SaveBuildModal from "../CreatePage/SaveModal";
+import UpdateBuildModal from "../EditPage/UpdateModal";
 import { thunkLogin, thunkLogout } from "../../../redux/session";
 //Packages
 import { useNavigate } from "react-router-dom";
@@ -15,7 +16,7 @@ export default function InfoComponent() {
   const navigateTo = useNavigate();
   const user = useSelector((state) => state.session.user);
   const currentBuild = useSelector((state) => state.builds.current);
-  
+
   const onClick = (e) => {
     e.preventDefault();
     dispatch(
@@ -44,7 +45,7 @@ export default function InfoComponent() {
               <OpenModalButton
                 buttonText={"Update"}
                 className={styles.saveButton}
-                modalComponent={"<UpdateBuildModal />"}
+                modalComponent={<UpdateBuildModal />}
               />
             ) : (
               <OpenModalButton

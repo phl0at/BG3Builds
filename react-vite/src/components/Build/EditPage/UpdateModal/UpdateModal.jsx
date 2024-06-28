@@ -1,21 +1,19 @@
 //Files
-import styles from "./SaveModal.module.css";
+import styles from "./UpdateModal.module.css";
 //Functions/Components
-import { thunkCreateBuild } from "../../../../redux/build";
+import { thunkUpdateBuild } from "../../../../redux/build";
 import { useModal } from "../../../../context/Modal";
 //Packages
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
-export default function SaveBuildModal() {
+export default function UpdateBuildModal() {
   const currentBuild = useSelector((state) => state.builds.current);
   const equipment = useSelector((state) => state.equipment);
   const [charName, setCharName] = useState(currentBuild.character_name);
-  const [buildName, setBuildName] = useState("");
+  const [buildName, setBuildName] = useState(currentBuild.name);
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
-  const navigateTo = useNavigate();
   const { closeModal } = useModal();
 
   const submit = async (e) => {
@@ -33,14 +31,12 @@ export default function SaveBuildModal() {
         }
       }
       const success = await dispatch(
-        thunkCreateBuild(equipment, newBuild, {
+        thunkUpdateBuild(equipment, newBuild, {
           name: buildName,
           character_name: charName,
         })
       );
-      console.log(success)
       if (success.id) {
-        navigateTo(`/build/${success.id}`);
         closeModal();
       } else {
         setErrors({ errors: "An error occurred. Please try again later." });
@@ -59,10 +55,7 @@ export default function SaveBuildModal() {
               type="text"
               value={charName}
               placeholder="Character Name"
-              onChange={(e) => {
-                e.preventDefault();
-                setCharName(e.target.value);
-              }}
+              onChange={(e) => setCharName(e.target.value)}
               required
             />
           </>
@@ -79,6 +72,7 @@ export default function SaveBuildModal() {
           onChange={(e) => setBuildName(e.target.value)}
           required
         />
+
         <button className={styles.submitButton} type="submit">
           Submit
         </button>

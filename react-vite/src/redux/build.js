@@ -1,4 +1,5 @@
 import { createSelector } from "reselect";
+import { parseEquipment } from "./helper";
 
 //! --------------------------------------------------------------------
 //*                          Action Types
@@ -12,13 +13,12 @@ const SET_BG = "build/setBackground";
 const SET_BONUS = "build/setBonus";
 const SET_CLASS = "build/setClass";
 const ADD_BUILD_CLASS = "build/addBuildClass";
-const RESET_CLASSES = "build/clearClasses";
+const RESET_CLASSES = "build/resetClasses";
 const CLEAR_BONUS = "build/clearBonus";
 const SET_DEFAULT_ABILITIES = "build/setAbilities";
 const RAISE_ABILITY = "build/raiseAbility";
 const LOWER_ABILITY = "build/lowerAbility";
 const EQUIP_ITEM = "build/equip";
-const CREATE_BUILD = "build/create";
 
 //! --------------------------------------------------------------------
 //*                         Action Creators
@@ -149,9 +149,10 @@ export const equipItem = (itemType, payload) => {
 //! --------------------------------------------------------------------
 
 export const thunkCreateBuild =
-  (build, { name }) =>
+  (equipment, build, { name, character_name }) =>
   async (dispatch) => {
     build.name = name;
+    build.character_name = character_name;
 
     const res = await fetch("/api/builds/", {
       method: "POST",
@@ -161,7 +162,35 @@ export const thunkCreateBuild =
 
     if (res.ok) {
       const data = await res.json();
-      dispatch(action(CREATE_BUILD, data));
+      const formatted = parseEquipment(equipment, data);
+      dispatch(action(GET_BUILD, formatted));
+      return formatted;
+    } else if (res.status < 500) {
+      const errorMessages = await res.json();
+      return errorMessages;
+    } else {
+      return { server: "Something went wrong. Please try again" };
+    }
+  };
+
+//! --------------------------------------------------------------------
+
+export const thunkUpdateBuild =
+  (equipment, build, { name, character_name }) =>
+  async (dispatch) => {
+    build.name = name;
+    build.character_name = character_name;
+
+    const res = await fetch(`/api/builds/${build.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(build),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      const formatted = parseEquipment(equipment, data);
+      dispatch(action(GET_BUILD, formatted));
       return data;
     } else if (res.status < 500) {
       const errorMessages = await res.json();
@@ -236,11 +265,12 @@ function buildReducer(state = initialState, action) {
         },
       };
       if (newState.current.build_classes) {
-        newState.current.level++;
+        console.log("\nCLASSES FOUND")
         const existingClass = newState.current.build_classes.find(
-          (build_class) => build_class.class_id == action.payload.class_id
+          (build_class) => build_class.class_id === action.payload.class_id
         );
         if (existingClass) {
+          console.log("\nEXISTING CLASS FOUND")
           newState.current.build_classes[
             newState.current.build_classes.indexOf(existingClass)
           ].level++;
@@ -248,13 +278,15 @@ function buildReducer(state = initialState, action) {
           newState.current.build_classes[
             newState.current.build_classes.indexOf(existingClass)
           ].sub_class = action.payload.sub_class;
-          
+          newState.current.level++;
         } else {
+          console.log("\nEXISTING CLASS NOT FOUND")
           action.payload.level = 1;
           newState.current.build_classes.push(action.payload);
+          newState.current.level++;
         }
       } else {
-        newState.current.level = 1;
+        console.log("\nNO CLASSES AT ALL")
         action.payload.level = 1;
         newState.current.build_classes = [action.payload];
       }
@@ -263,7 +295,7 @@ function buildReducer(state = initialState, action) {
 
     case RESET_CLASSES: {
       const newState = { ...state };
-      delete newState.current.level;
+      newState.current.level = 1;
       newState.current.build_classes = [];
       return newState;
     }
@@ -317,15 +349,9 @@ function buildReducer(state = initialState, action) {
           charisma: 8,
           plus_1: "",
           plus_2: "",
+          level: 1,
         },
       };
-      return newState;
-    }
-
-    case CREATE_BUILD: {
-      const newState = { ...state };
-      newState[action.payload.id] = action.payload;
-      newState.current = action.payload;
       return newState;
     }
 
