@@ -200,13 +200,13 @@ export default function ClassComponent({ currentBuild }) {
                   )}
                 </>
               )}
-              {buildClasses && (
+              {buildClasses.length ? (
                 <OpenModalButton
                   className={styles.reset}
                   buttonText={<CiUndo size="40" />}
                   modalComponent={<ResetClassesModal />}
                 />
-              )}
+              ) : null}
             </div>
             <div className={styles.description}>
               {Classes[currentBuild.class]?.description}
