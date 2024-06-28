@@ -138,23 +138,28 @@ export const equipItem = (itemType, payload) => {
 //*                             Thunks
 //! --------------------------------------------------------------------
 
-export const thunkCreateBuild = (build) => async (dispatch) => {
-  const res = await fetch("/api/builds", {
-    method: "POST",
-    header: { "Content-Type": "application/json" },
-    body: JSON.stringify(build),
-  });
-  if (res.ok) {
-    const data = await res.json();
-    dispatch(action(CREATE_BUILD, data));
-    return data;
-  } else if (res.status < 500) {
-    const errorMessages = await res.json();
-    return errorMessages;
-  } else {
-    return { server: "Something went wrong. Please try again" };
-  }
-};
+export const thunkCreateBuild =
+  (build, { name }) =>
+  async (dispatch) => {
+    build.name = name;
+
+    const res = await fetch("/api/builds/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(build),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      dispatch(action(CREATE_BUILD, data));
+      return data;
+    } else if (res.status < 500) {
+      const errorMessages = await res.json();
+      return errorMessages;
+    } else {
+      return { server: "Something went wrong. Please try again" };
+    }
+  };
 
 //! --------------------------------------------------------------------
 //*                            Reducer
@@ -194,7 +199,7 @@ function buildReducer(state = initialState, action) {
       if (newState.current.build_classes) {
         newState.current.level++;
         const existingClass = newState.current.build_classes.find(
-          (build_class) => build_class.id == action.payload.id
+          (build_class) => build_class.class_id == action.payload.class_id
         );
         if (existingClass) {
           newState.current.build_classes[
@@ -274,6 +279,13 @@ function buildReducer(state = initialState, action) {
           plus_2: "",
         },
       };
+      return newState;
+    }
+
+    case CREATE_BUILD: {
+      const newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      newState.current = action.payload;
       return newState;
     }
 

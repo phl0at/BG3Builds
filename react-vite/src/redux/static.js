@@ -47,7 +47,7 @@ function staticReducer(state = initialState, action) {
         (_class) =>
           (newState["classes"] = {
             ...newState["classes"],
-            [_class.id]: _class,
+            [_class.class_id]: _class,
           })
       );
       races.forEach(

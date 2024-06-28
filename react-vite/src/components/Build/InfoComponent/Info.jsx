@@ -4,6 +4,7 @@ import styles from "./Info.module.css";
 import OpenModalButton from "../../Modal";
 import LoginFormModal from "../../Auth/LoginFormModal";
 import SignupFormModal from "../../Auth/SignupFormModal";
+import SaveBuildModal from "../CreatePage/SaveModal";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
 import { thunkLogin, thunkLogout } from "../../../redux/session";
@@ -35,10 +36,11 @@ export default function InfoComponent() {
       <div className={styles.userBar}>
         <div className={styles.buildButtons}>
           {user && (
-           <OpenModalButton
-            buttonText={"Save"}
-            className={styles.saveButton}
-           />
+            <OpenModalButton
+              buttonText={"Save"}
+              className={styles.saveButton}
+              modalComponent={<SaveBuildModal />}
+            />
           )}
           <button
             className={styles.calcButton}

@@ -1,8 +1,8 @@
-"""init
+"""prepping backend for save build
 
-Revision ID: 7c00395f3870
+Revision ID: 6a96ce5f8d51
 Revises: 
-Create Date: 2024-06-26 23:03:01.256870
+Create Date: 2024-06-27 19:05:03.954252
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7c00395f3870'
+revision = '6a96ce5f8d51'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -69,6 +69,7 @@ def upgrade():
     sa.Column('character_name', sa.String(length=25), nullable=False),
     sa.Column('origin', sa.Integer(), nullable=False),
     sa.Column('race', sa.Integer(), nullable=False),
+    sa.Column('sub_race', sa.String(length=20), nullable=True),
     sa.Column('background', sa.Integer(), nullable=False),
     sa.Column('strength', sa.Integer(), nullable=False),
     sa.Column('dexterity', sa.Integer(), nullable=False),
@@ -90,7 +91,7 @@ def upgrade():
     sa.Column('melee_oh', sa.Integer(), nullable=True),
     sa.Column('ranged_mh', sa.Integer(), nullable=True),
     sa.Column('ranged_oh', sa.Integer(), nullable=True),
-    sa.Column('armor_class', sa.Integer(), nullable=False),
+    sa.Column('armor_class', sa.Integer(), nullable=True),
     sa.Column('level', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['amulet'], ['equipment.id'], ),
     sa.ForeignKeyConstraint(['armor'], ['equipment.id'], ),

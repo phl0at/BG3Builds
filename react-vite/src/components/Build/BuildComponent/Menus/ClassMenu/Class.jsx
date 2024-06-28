@@ -25,7 +25,7 @@ export default function ClassComponent({ currentBuild }) {
   const clickAddClass = (e, _class, sub_class) => {
     e.preventDefault();
     const newClass = {
-      id: _class.id,
+      class_id: _class.class_id,
       name: _class.name,
       sub_class,
     };
@@ -218,7 +218,7 @@ export default function ClassComponent({ currentBuild }) {
                 const titleCase =
                   _class.name[0].toUpperCase() + _class.name.slice(1);
                 return (
-                  <div key={_class.id} className={styles.buildClass}>
+                  <div key={_class.class_id} className={styles.buildClass}>
                     <img
                       className={styles.classImg}
                       src={Images.classes[titleCase]}

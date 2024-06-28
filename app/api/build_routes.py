@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import Build, Class, Origin, Race, Background, db
+from app.models import Build, BuildClass, db
 from flask_login import current_user, login_required
 from sqlalchemy.orm import joinedload
 
@@ -58,8 +58,7 @@ def get_build(id):
 def create_build():
     """
         Creates and returns a new build
-        WILL REFACTOR AS SITE BUILDS TO INCLUDE ALL RELATED
-        TABLE CREATIONS IN THIS SINGLE ROUTE
+
     """
     data = request.get_json()
     user_id = current_user.id
@@ -68,7 +67,7 @@ def create_build():
     character_name = data.get('character_name')
     origin = data.get('origin')
     race = data.get('race')
-    sub_race = data.get('sub_race')
+    # sub_race=data.get('sub_race')
     background = data.get('background')
     strength = data.get('strength')
     dexterity = data.get('dexterity')
@@ -90,8 +89,9 @@ def create_build():
     melee_oh = data.get('melee_oh')
     ranged_mh = data.get('ranged_mh')
     ranged_oh = data.get('ranged_oh')
-    armor_class = data.get('armor_class')
+    # armor_class = data.get('armor_class')
     level = data.get('level')
+    build_classes = data.get('build_classes')
 
     errors = {}
 
@@ -109,8 +109,8 @@ def create_build():
         errors['race'] = 'Required'
     elif not background:
         errors['background'] = 'Required'
-
-
+    elif not level:
+        level = 1
 
 
     if errors:
@@ -122,7 +122,7 @@ def create_build():
             character_name = character_name,
             origin = origin,
             race = race,
-            sub_race = sub_race,
+            sub_race = None,
             background = background,
             strength = strength,
             dexterity = dexterity,
@@ -144,12 +144,25 @@ def create_build():
             melee_oh = melee_oh,
             ranged_mh = ranged_mh,
             ranged_oh = ranged_oh,
-            armor_class = armor_class,
+            armor_class = None,
             level = level
         )
         db.session.add(build)
         db.session.commit()
 
+
+        if build_classes:
+            for build_class in build_classes:
+                new_build_class = BuildClass(
+                build_id = build.id,
+                class_id = build_class['class_id'],
+                sub_class = build_class['sub_class'],
+                name = build_class['name'],
+                level = build_class['level']
+                )
+                db.session.add(new_build_class)
+
+        db.session.commit()
         return build.to_dict(), 201
 
 ###########################EDIT BUILD##############################

@@ -14,6 +14,7 @@ class Build(db.Model):
     character_name = db.Column(db.String(25), nullable=False)
     origin = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('origins.id')), nullable=False)
     race = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('races.id')), nullable=False)
+    sub_race = db.Column(db.String(20), nullable=True)
     background = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('backgrounds.id')), nullable=False)
     strength = db.Column(db.Integer, nullable=False)
     dexterity = db.Column(db.Integer, nullable=False)
@@ -35,7 +36,7 @@ class Build(db.Model):
     melee_oh = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('equipment.id')), nullable=True)
     ranged_mh = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('equipment.id')), nullable=True)
     ranged_oh = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('equipment.id')), nullable=True)
-    armor_class = db.Column(db.Integer, nullable=False)
+    armor_class = db.Column(db.Integer, nullable=True)
     level = db.Column(db.Integer, nullable=False)
 
     classes = db.relationship("BuildClass", backref="build", cascade="all, delete-orphan")
@@ -72,7 +73,7 @@ class Build(db.Model):
             'ranged_oh': self.ranged_oh,
             'armor_class': self.armor_class,
             'level': self.level,
-            'classes': [build_class.to_dict() for build_class in self.classes],
+            'build_classes': [build_class.to_dict() for build_class in self.classes],
             'comments': [comment.to_dict() for comment in self.comments]
         }
 
@@ -121,7 +122,7 @@ class Class(db.Model):
 
     def to_dict(self):
         return {
-            'id': self.id,
+            'class_id': self.id,
             'name': self.name,
             'description': self.description
         }
