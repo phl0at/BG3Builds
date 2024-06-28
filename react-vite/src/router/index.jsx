@@ -18,7 +18,7 @@ export const router = createBrowserRouter([
         element: <CreateBuildPage />,
       },
       {
-        path: "/edit/:buildId",
+        path: "/build/:buildId",
         element: <EditBuildPage />,
       },
     ],

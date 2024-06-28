@@ -28,8 +28,8 @@ export default function SaveBuildModal() {
       const success = await dispatch(
         thunkCreateBuild(currentBuild, { name: buildName })
       );
-      if (success) {
-        navigateTo(`/edit/${success.id}`);
+      if (success.id) {
+        navigateTo(`/build/${success.id}`);
         closeModal()
       }
     }
