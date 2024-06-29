@@ -39,11 +39,13 @@ export function Ability({ name, statVal, plus_1, plus_2, points, setPoints }) {
       disabled = false;
     } else if (statVal < 15) {
       disabled = false;
-    } else if ((statVal > 12) & (points < 2)) {
+    }
+    if ((statVal > 12) & (points < 2)) {
       disabled = true;
     }
     return disabled;
   };
+  
   const clickLower = (e, type, val) => {
     e.preventDefault();
     if ((val < 14) & !bonusTwo & !bonusOne) {
@@ -66,7 +68,7 @@ export function Ability({ name, statVal, plus_1, plus_2, points, setPoints }) {
       return dispatch(lowerAbility(type));
     }
   };
-  
+
   const clickRaise = (e, type, val) => {
     e.preventDefault();
     if ((val < 13) & !bonusTwo & !bonusOne) {
