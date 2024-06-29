@@ -19,13 +19,12 @@ export default function LandingPage() {
             </p>
             <p>
               2. Once you have created the perfect character, start equipping
-              powerful items! When the Effectiveness Calculator is feature complete, these items will
-              add modifiers to you build's damage/healing calculations.
+              powerful items! Not all items are in the game right now, but more are being added every few weeks.
             </p>
             <p>
               3. Information about stat breakdowns and proficiency bonuses can
-              be found in the Information Panel on the right. This is also where
-              you will view comments on the build.
+              be found in the Information Panel on the right. In the top left corner you will
+              find buttons to switch between the build's comments and stats.
             </p>
             <p>
               4. You cannot save, comment on, or edit existing builds unless you have created an account and singed in. The Login and Sign Up buttons are in the User Panel in the bottom right corner.
