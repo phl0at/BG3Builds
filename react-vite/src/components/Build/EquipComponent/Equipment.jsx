@@ -8,7 +8,7 @@ import ItemsTableModal from "./ItemTable";
 import { useSelector } from "react-redux";
 import { CiNoWaitingSign } from "react-icons/ci";
 
-export default function EquipmentComponent({ activeMenu }) {
+export default function EquipmentComponent() {
   const currentBuild = useSelector((state) => state.builds.current);
 
   return (
@@ -34,7 +34,9 @@ export default function EquipmentComponent({ activeMenu }) {
                     <CiNoWaitingSign size="40" />
                   )
                 }
-                modalComponent={<ItemsTableModal type="helmet" />}
+                modalComponent={
+                  <ItemsTableModal  type="helmet" />
+                }
               />
 
               <OpenModalButton
@@ -53,7 +55,9 @@ export default function EquipmentComponent({ activeMenu }) {
                     <CiNoWaitingSign size="40" />
                   )
                 }
-                modalComponent={<ItemsTableModal type="cloak" />}
+                modalComponent={
+                  <ItemsTableModal  type="cloak" />
+                }
               />
 
               <OpenModalButton
@@ -71,7 +75,9 @@ export default function EquipmentComponent({ activeMenu }) {
                     <CiNoWaitingSign size="40" />
                   )
                 }
-                modalComponent={<ItemsTableModal type="armor" />}
+                modalComponent={
+                  <ItemsTableModal  type="armor" />
+                }
               />
 
               <OpenModalButton
@@ -90,7 +96,9 @@ export default function EquipmentComponent({ activeMenu }) {
                     <CiNoWaitingSign size="40" />
                   )
                 }
-                modalComponent={<ItemsTableModal type="gloves" />}
+                modalComponent={
+                  <ItemsTableModal  type="gloves" />
+                }
               />
 
               <OpenModalButton
@@ -109,7 +117,9 @@ export default function EquipmentComponent({ activeMenu }) {
                     <CiNoWaitingSign size="40" />
                   )
                 }
-                modalComponent={<ItemsTableModal type="boots" />}
+                modalComponent={
+                  <ItemsTableModal  type="boots" />
+                }
               />
             </div>
             <div className={styles.weapons}>
@@ -129,7 +139,9 @@ export default function EquipmentComponent({ activeMenu }) {
                     <CiNoWaitingSign size="40" />
                   )
                 }
-                modalComponent={<ItemsTableModal type="melee_mh" />}
+                modalComponent={
+                  <ItemsTableModal  type="melee_mh" />
+                }
               />
               <OpenModalButton
                 className={styles.slot}
@@ -147,7 +159,9 @@ export default function EquipmentComponent({ activeMenu }) {
                     <CiNoWaitingSign size="40" />
                   )
                 }
-                modalComponent={<ItemsTableModal type="melee_oh" />}
+                modalComponent={
+                  <ItemsTableModal type="melee_oh" />
+                }
               />
             </div>
           </div>
@@ -172,7 +186,9 @@ export default function EquipmentComponent({ activeMenu }) {
                     <CiNoWaitingSign size="40" />
                   )
                 }
-                modalComponent={<ItemsTableModal type="amulet" />}
+                modalComponent={
+                  <ItemsTableModal type="amulet" />
+                }
               />
               <OpenModalButton
                 className={styles.slot}
@@ -190,7 +206,9 @@ export default function EquipmentComponent({ activeMenu }) {
                     <CiNoWaitingSign size="40" />
                   )
                 }
-                modalComponent={<ItemsTableModal type="ring_1" />}
+                modalComponent={
+                  <ItemsTableModal type="ring_1" />
+                }
               />
               <OpenModalButton
                 className={styles.slot}
@@ -208,7 +226,9 @@ export default function EquipmentComponent({ activeMenu }) {
                     <CiNoWaitingSign size="40" />
                   )
                 }
-                modalComponent={<ItemsTableModal type="ring_2" />}
+                modalComponent={
+                  <ItemsTableModal type="ring_2" />
+                }
               />
             </div>
             <div className={styles.weapons}>
@@ -228,7 +248,9 @@ export default function EquipmentComponent({ activeMenu }) {
                     <CiNoWaitingSign size="40" />
                   )
                 }
-                modalComponent={<ItemsTableModal type="ranged_mh" />}
+                modalComponent={
+                  <ItemsTableModal type="ranged_mh" />
+                }
               />
               <OpenModalButton
                 className={styles.slot}
@@ -246,7 +268,9 @@ export default function EquipmentComponent({ activeMenu }) {
                     <CiNoWaitingSign size="40" />
                   )
                 }
-                modalComponent={<ItemsTableModal type="ranged_oh" />}
+                modalComponent={
+                  <ItemsTableModal type="ranged_oh" />
+                }
               />
             </div>
           </div>

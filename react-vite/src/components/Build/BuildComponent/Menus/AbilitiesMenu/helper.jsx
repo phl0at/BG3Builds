@@ -14,40 +14,98 @@ import { useDispatch } from "react-redux";
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 
 export function Ability({ name, statVal, plus_1, plus_2, points, setPoints }) {
-  const titleCaseStat = name[0].toUpperCase() + name.slice(1);
   const dispatch = useDispatch();
+  const titleCaseStat = name[0].toUpperCase() + name.slice(1);
+  const bonusOne = plus_1 === name;
+  const bonusTwo = plus_2 === name;
 
+  const minusDisabled = () => {
+    let disabled = false;
+    if (bonusOne & (statVal === 9)) {
+      disabled = true;
+    } else if (bonusTwo & (statVal === 10)) {
+      disabled = true;
+    } else if (statVal === 8) {
+      disabled = true;
+    }
+    return disabled;
+  };
+
+  const plusDisabled = () => {
+    let disabled = true;
+    if (bonusOne & (statVal < 16)) {
+      disabled = false;
+    } else if (bonusTwo & (statVal < 17)) {
+      disabled = false;
+    } else if (statVal < 15) {
+      disabled = false;
+    } else if ((statVal > 12) & (points < 2)) {
+      disabled = true;
+    }
+    return disabled;
+  };
   const clickLower = (e, type, val) => {
     e.preventDefault();
-    if (val > 8 && points < 27) {
-      dispatch(lowerAbility(type));
-      val < 14 ? setPoints(points + 1) : setPoints(points + 2);
+    if ((val < 14) & !bonusTwo & !bonusOne) {
+      setPoints(points + 1);
+      return dispatch(lowerAbility(type));
+    } else if ((val > 13) & !bonusTwo & !bonusOne) {
+      setPoints(points + 2);
+      return dispatch(lowerAbility(type));
+    } else if ((val < 15) & bonusOne) {
+      setPoints(points + 1);
+      return dispatch(lowerAbility(type));
+    } else if ((val > 14) & bonusOne) {
+      setPoints(points + 2);
+      return dispatch(lowerAbility(type));
+    } else if ((val < 16) & bonusTwo) {
+      setPoints(points + 1);
+      return dispatch(lowerAbility(type));
+    } else if ((val > 15) & bonusTwo) {
+      setPoints(points + 2);
+      return dispatch(lowerAbility(type));
     }
   };
+  
   const clickRaise = (e, type, val) => {
     e.preventDefault();
-    if (val < 15 && points > 0) {
-      dispatch(raiseAbility(type));
-      val < 13 ? setPoints(points - 1) : setPoints(points - 2);
+    if ((val < 13) & !bonusTwo & !bonusOne) {
+      setPoints(points - 1);
+      return dispatch(raiseAbility(type));
+    } else if ((val > 12) & !bonusTwo & !bonusOne) {
+      setPoints(points - 2);
+      return dispatch(raiseAbility(type));
+    } else if ((val < 15) & bonusTwo) {
+      setPoints(points - 1);
+      return dispatch(raiseAbility(type));
+    } else if ((val > 14) & bonusTwo) {
+      setPoints(points - 2);
+      return dispatch(raiseAbility(type));
+    } else if ((val < 14) & bonusOne) {
+      setPoints(points - 1);
+      return dispatch(raiseAbility(type));
+    } else if ((val > 13) & bonusOne) {
+      setPoints(points - 2);
+      return dispatch(raiseAbility(type));
     }
   };
 
   const clickPlusTwo = (e, ability) => {
     e.preventDefault();
-    if (plus_2 === ability) {
-      dispatch(clearBonus("plus_2"));
-    } else if (plus_1 != ability) {
-      dispatch(setBonus("plus_2", ability));
-    }
+    plus_2 === ability
+      ? dispatch(clearBonus("plus_2", ability))
+      : plus_1 != ability
+      ? dispatch(setBonus("plus_2", ability))
+      : null;
   };
 
   const clickPlusOne = (e, ability) => {
     e.preventDefault();
-    if (plus_1 === ability) {
-      dispatch(clearBonus("plus_1"));
-    } else if (plus_2 != ability) {
-      dispatch(setBonus("plus_1", ability));
-    }
+    plus_1 === ability
+      ? dispatch(clearBonus("plus_1", ability))
+      : plus_2 != ability
+      ? dispatch(setBonus("plus_1", ability))
+      : null;
   };
 
   return (
@@ -59,23 +117,21 @@ export function Ability({ name, statVal, plus_1, plus_2, points, setPoints }) {
       <div className={styles.values}>
         <div className={styles.valueContainer}>
           <button
-            disabled={statVal < 9}
-            className={statVal < 9 ? styles.disabled : styles.enabled}
+            disabled={minusDisabled() || points > 26}
+            className={
+              minusDisabled() || points > 26 ? styles.disabled : styles.enabled
+            }
             onClick={(e) => clickLower(e, name, statVal)}
           >
             <CiCircleMinus size="35" />
           </button>
-          <div className={styles.num}>
-            {plus_1 === name
-              ? statVal + 1
-              : plus_2 === name
-              ? statVal + 2
-              : statVal}
-          </div>
+          <div className={styles.num}>{statVal}</div>
           <button
-            disabled={statVal > 14}
+            disabled={plusDisabled() || points < 1}
+            className={
+              plusDisabled() || points < 1 ? styles.disabled : styles.enabled
+            }
             onClick={(e) => clickRaise(e, name, statVal)}
-            className={statVal > 14 || points < 1 ? styles.disabled : styles.enabled}
           >
             <CiCirclePlus size="35" />
           </button>

@@ -39,7 +39,7 @@ export const thunkGetEquipment = (type) => async (dispatch) => {
 //! --------------------------------------------------------------------
 
 export const getEquipmentArray = createSelector(
-    (state) => state.equipment,
+    (state) => state.static.equipment,
     (item) => Object.values(item)
   );
 

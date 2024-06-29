@@ -137,12 +137,16 @@ export default function OriginComponent({ currentBuild }) {
             </div>
           </div>
           <div className={styles.select}>
-            <div className={styles.name}>
-              {Origins[currentBuild?.origin].name}
-            </div>
-            <div className={styles.description}>
-              {Origins[currentBuild?.origin].description}
-            </div>
+            {Origins[currentBuild?.origin] && (
+              <>
+                <div className={styles.name}>
+                  {Origins[currentBuild?.origin].name}
+                </div>
+                <div className={styles.description}>
+                  {Origins[currentBuild?.origin].description}
+                </div>
+              </>
+            )}
           </div>
         </>
       )}

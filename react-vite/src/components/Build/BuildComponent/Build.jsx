@@ -10,9 +10,9 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import AbilitiesComponent from "./Menus/AbilitiesMenu/Abilities";
 
-export default function BuildComponent({ activeMenu }) {
+export default function BuildComponent({ points, setPoints, activeMenu }) {
   const currentBuild = useSelector((state) => state.builds.current);
-  const [points, setPoints] = useState(27);
+
   return (
     <main className={styles.main}>
       {activeMenu === "Origin" && (

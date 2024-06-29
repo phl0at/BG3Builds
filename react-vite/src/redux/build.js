@@ -5,6 +5,7 @@ import { parseEquipment } from "./helper";
 //*                          Action Types
 //! --------------------------------------------------------------------
 
+const SET_DEFAULTS = "build/setDefault";
 const SET_CURRENT_BUILD = "build/setBuild";
 const GET_BUILD = "build/getBuild";
 const SET_ORIGIN = "build/setOrigin";
@@ -15,7 +16,6 @@ const SET_CLASS = "build/setClass";
 const ADD_BUILD_CLASS = "build/addBuildClass";
 const RESET_CLASSES = "build/resetClasses";
 const CLEAR_BONUS = "build/clearBonus";
-const SET_DEFAULT_ABILITIES = "build/setAbilities";
 const RAISE_ABILITY = "build/raiseAbility";
 const LOWER_ABILITY = "build/lowerAbility";
 const EQUIP_ITEM = "build/equip";
@@ -93,7 +93,7 @@ export const setBackground = (payload) => {
 
 export const setAbilities = () => {
   return {
-    type: SET_DEFAULT_ABILITIES,
+    type: SET_DEFAULTS,
   };
 };
 
@@ -127,9 +127,10 @@ export const setBonus = (amount, payload) => {
 
 //! --------------------------------------------------------------------
 
-export const clearBonus = (payload) => {
+export const clearBonus = (amount, payload) => {
   return {
     type: CLEAR_BONUS,
+    amount,
     payload,
   };
 };
@@ -153,7 +154,7 @@ export const thunkCreateBuild =
   async (dispatch) => {
     build.name = name;
     build.character_name = character_name;
-
+    console.log(build)
     const res = await fetch("/api/builds/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -202,11 +203,13 @@ export const thunkUpdateBuild =
 
 //! --------------------------------------------------------------------
 
-export const thunkGetBuild = (buildId) => async (dispatch) => {
+export const thunkGetBuild = (equipment, buildId) => async (dispatch) => {
   const res = await fetch(`/api/builds/${buildId}`);
   if (res.ok) {
     const data = await res.json();
-    dispatch(action(GET_BUILD, data));
+    const formatted = parseEquipment(equipment, data);
+    console.log(data)
+    dispatch(action(GET_BUILD, formatted));
     return data;
   } else if (res.status < 500) {
     const errorMessages = await res.json();
@@ -264,38 +267,28 @@ function buildReducer(state = initialState, action) {
           ...state.current,
         },
       };
-      if (newState.current.build_classes) {
-        console.log("\nCLASSES FOUND")
-        const existingClass = newState.current.build_classes.find(
-          (build_class) => build_class.class_id === action.payload.class_id
-        );
-        if (existingClass) {
-          console.log("\nEXISTING CLASS FOUND")
-          newState.current.build_classes[
-            newState.current.build_classes.indexOf(existingClass)
-          ].level++;
+      const existingClass = newState.current.build_classes.find(
+        (build_class) => build_class.class_id === action.payload.class_id
+      );
+      if (existingClass) {
+        newState.current.build_classes[
+          newState.current.build_classes.indexOf(existingClass)
+        ].level += 1;
 
-          newState.current.build_classes[
-            newState.current.build_classes.indexOf(existingClass)
-          ].sub_class = action.payload.sub_class;
-          newState.current.level++;
-        } else {
-          console.log("\nEXISTING CLASS NOT FOUND")
-          action.payload.level = 1;
-          newState.current.build_classes.push(action.payload);
-          newState.current.level++;
-        }
+        newState.current.build_classes[
+          newState.current.build_classes.indexOf(existingClass)
+        ].sub_class = action.payload.sub_class;
       } else {
-        console.log("\nNO CLASSES AT ALL")
         action.payload.level = 1;
-        newState.current.build_classes = [action.payload];
+        newState.current.build_classes.push(action.payload);
       }
+      newState.current.level++;
       return newState;
     }
 
     case RESET_CLASSES: {
       const newState = { ...state };
-      newState.current.level = 1;
+      newState.current.level = 0;
       newState.current.build_classes = [];
       return newState;
     }
@@ -320,13 +313,23 @@ function buildReducer(state = initialState, action) {
 
     case SET_BONUS: {
       const newState = { ...state, current: { ...state.current } };
+      const existingBonus = newState.current[action.amount];
+      const bonusAmount = Number(action.amount.split("_")[1]);
+
+      if (existingBonus) {
+        newState.current[existingBonus] -= bonusAmount;
+      }
       newState.current[action.amount] = action.payload;
+      newState.current[action.payload] += bonusAmount;
+
       return newState;
     }
 
     case CLEAR_BONUS: {
       const newState = { ...state, current: { ...state.current } };
-      newState.current[action.payload] = "";
+      const bonusAmount = Number(action.amount.split("_")[1]);
+      newState.current[action.amount] = "";
+      newState.current[action.payload] -= bonusAmount;
       return newState;
     }
 
@@ -336,7 +339,7 @@ function buildReducer(state = initialState, action) {
       return newState;
     }
 
-    case SET_DEFAULT_ABILITIES: {
+    case SET_DEFAULTS: {
       const newState = {
         ...state,
         current: {
@@ -349,7 +352,8 @@ function buildReducer(state = initialState, action) {
           charisma: 8,
           plus_1: "",
           plus_2: "",
-          level: 1,
+          level: 0,
+          build_classes: [],
         },
       };
       return newState;

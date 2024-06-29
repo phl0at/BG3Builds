@@ -11,7 +11,7 @@ import { thunkLogin, thunkLogout } from "../../../redux/session";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function InfoComponent() {
+export default function InfoComponent({ Equipment }) {
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
   const user = useSelector((state) => state.session.user);
@@ -45,7 +45,7 @@ export default function InfoComponent() {
               <OpenModalButton
                 buttonText={"Update"}
                 className={styles.saveButton}
-                modalComponent={<UpdateBuildModal />}
+                modalComponent={<UpdateBuildModal Equipment={Equipment} />}
               />
             ) : (
               <OpenModalButton

@@ -34,7 +34,8 @@ const initialState = {};
 function staticReducer(state = initialState, action) {
   switch (action.type) {
     case "preload": {
-      const { origins, classes, races, backgrounds } = action.payload;
+      const { origins, classes, races, backgrounds, equipment } =
+        action.payload;
       const newState = { ...state };
       origins.forEach(
         (origin) =>
@@ -59,6 +60,13 @@ function staticReducer(state = initialState, action) {
           (newState["backgrounds"] = {
             ...newState["backgrounds"],
             [background.id]: background,
+          })
+      );
+      equipment.forEach(
+        (item) =>
+          (newState["equipment"] = {
+            ...newState["equipment"],
+            [item.id]: item,
           })
       );
       return newState;

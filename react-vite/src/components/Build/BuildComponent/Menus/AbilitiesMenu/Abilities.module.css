@@ -25,6 +25,10 @@
   row-gap: 5px;
 }
 
+.red {
+  color: rgb(135, 26, 26);
+}
+
 .stat {
   display: flex;
   flex-direction: row;

@@ -7,9 +7,8 @@ import { useModal } from "../../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
-export default function UpdateBuildModal() {
+export default function UpdateBuildModal({ Equipment }) {
   const currentBuild = useSelector((state) => state.builds.current);
-  const equipment = useSelector((state) => state.equipment);
   const [charName, setCharName] = useState(currentBuild.character_name);
   const [buildName, setBuildName] = useState(currentBuild.name);
   const [errors, setErrors] = useState({});
@@ -26,12 +25,12 @@ export default function UpdateBuildModal() {
     } else {
       const newBuild = { ...currentBuild };
       for (const key in newBuild) {
-        if (typeof newBuild[key] === "object") {
+        if (newBuild[key]?.id) {
           newBuild[key] = newBuild[key].id;
         }
       }
       const success = await dispatch(
-        thunkUpdateBuild(equipment, newBuild, {
+        thunkUpdateBuild(Equipment, newBuild, {
           name: buildName,
           character_name: charName,
         })

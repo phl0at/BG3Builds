@@ -13,11 +13,11 @@ import { equipItem } from "../../../../redux/build";
 
 export default function ItemsTableModal({ type }) {
   const dispatch = useDispatch();
-  const itemsObject = useSelector((state) => state.equipment);
   const currentBuild = useSelector((state) => state.builds.current);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const AllItems = useSelector((state) => state.static.equipment);
   const equipment = useSelector(getEquipmentArray);
-  const formatType = type.split("_")[0]
+  const [selectedItem, setSelectedItem] = useState(null);
+  const formatType = type.split("_")[0];
 
   useEffect(() => {
     dispatch(thunkGetEquipment(formatType));
@@ -30,7 +30,7 @@ export default function ItemsTableModal({ type }) {
 
   const equip = (e, id) => {
     e.preventDefault();
-    dispatch(equipItem(type, itemsObject[id]));
+    dispatch(equipItem(type, AllItems[id]));
   };
 
   return (
@@ -76,7 +76,7 @@ export default function ItemsTableModal({ type }) {
           {selectedItem && (
             <>
               <div className={styles.description}>
-                {itemsObject[selectedItem].description}
+                {AllItems[selectedItem].description}
               </div>
               <div className={styles.buttons}>
                 <button

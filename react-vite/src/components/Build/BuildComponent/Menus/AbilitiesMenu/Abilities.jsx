@@ -26,8 +26,8 @@ export default function AbilitiesComponent({
       <div className={styles.points}>{`Ability Points: ${points}`}</div>
       <div className={styles.abilList}>
         <div className={styles.heading}>
-          <div className={styles.headLabel}>+2</div>
-          <div className={styles.headLabel}>+1</div>
+          <div className={!plus_2 ? styles.red : ""}>+2</div>
+          <div className={!plus_1 ? styles.red : ""}>+1</div>
         </div>
         <Ability
           name={"strength"}
