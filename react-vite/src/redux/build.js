@@ -1,5 +1,4 @@
 import { createSelector } from "reselect";
-import { parseEquipment } from "./helper";
 
 //! --------------------------------------------------------------------
 //*                          Action Types
@@ -91,7 +90,7 @@ export const setBackground = (payload) => {
 
 //! --------------------------------------------------------------------
 
-export const setAbilities = () => {
+export const setDefaults = () => {
   return {
     type: SET_DEFAULTS,
   };
@@ -150,11 +149,10 @@ export const equipItem = (itemType, payload) => {
 //! --------------------------------------------------------------------
 
 export const thunkCreateBuild =
-  (equipment, build, { name, character_name }) =>
+  (build, { name, character_name }) =>
   async (dispatch) => {
     build.name = name;
     build.character_name = character_name;
-    console.log(build)
     const res = await fetch("/api/builds/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -163,9 +161,8 @@ export const thunkCreateBuild =
 
     if (res.ok) {
       const data = await res.json();
-      const formatted = parseEquipment(equipment, data);
-      dispatch(action(GET_BUILD, formatted));
-      return formatted;
+      dispatch(action(GET_BUILD, data));
+      return data;
     } else if (res.status < 500) {
       const errorMessages = await res.json();
       return errorMessages;
@@ -177,7 +174,7 @@ export const thunkCreateBuild =
 //! --------------------------------------------------------------------
 
 export const thunkUpdateBuild =
-  (equipment, build, { name, character_name }) =>
+  (build, { name, character_name }) =>
   async (dispatch) => {
     build.name = name;
     build.character_name = character_name;
@@ -190,8 +187,7 @@ export const thunkUpdateBuild =
 
     if (res.ok) {
       const data = await res.json();
-      const formatted = parseEquipment(equipment, data);
-      dispatch(action(GET_BUILD, formatted));
+      dispatch(action(GET_BUILD, data));
       return data;
     } else if (res.status < 500) {
       const errorMessages = await res.json();
@@ -203,13 +199,11 @@ export const thunkUpdateBuild =
 
 //! --------------------------------------------------------------------
 
-export const thunkGetBuild = (equipment, buildId) => async (dispatch) => {
+export const thunkGetBuild = (buildId) => async (dispatch) => {
   const res = await fetch(`/api/builds/${buildId}`);
   if (res.ok) {
     const data = await res.json();
-    const formatted = parseEquipment(equipment, data);
-    console.log(data)
-    dispatch(action(GET_BUILD, formatted));
+    dispatch(action(GET_BUILD, data));
     return data;
   } else if (res.status < 500) {
     const errorMessages = await res.json();
@@ -233,7 +227,7 @@ function buildReducer(state = initialState, action) {
     }
 
     case GET_BUILD: {
-      const newState = { ...state };
+      const newState = {};
       newState[action.payload.id] = action.payload;
       newState.current = action.payload;
       return newState;
@@ -343,7 +337,10 @@ function buildReducer(state = initialState, action) {
       const newState = {
         ...state,
         current: {
-          ...state.current,
+          character_name: "Tav",
+          origin: 8,
+          race: 1,
+          background: 1,
           strength: 8,
           dexterity: 8,
           constitution: 8,

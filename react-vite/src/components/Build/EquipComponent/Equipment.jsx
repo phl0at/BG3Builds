@@ -10,7 +10,8 @@ import { CiNoWaitingSign } from "react-icons/ci";
 
 export default function EquipmentComponent() {
   const currentBuild = useSelector((state) => state.builds.current);
-
+  const Equipment = useSelector((state) => state.static.equipment);
+  
   return (
     <main className={styles.main}>
       <div className={styles.title}>Equipment</div>
@@ -26,7 +27,7 @@ export default function EquipmentComponent() {
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.helmet.name.replaceAll(" ", "")
+                          Equipment[currentBuild.helmet].name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -35,7 +36,7 @@ export default function EquipmentComponent() {
                   )
                 }
                 modalComponent={
-                  <ItemsTableModal  type="helmet" />
+                  <ItemsTableModal Equipment={Equipment}  type="helmet" />
                 }
               />
 
@@ -47,7 +48,7 @@ export default function EquipmentComponent() {
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.cloak.name.replaceAll(" ", "")
+                          Equipment[currentBuild.cloak].name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -56,7 +57,7 @@ export default function EquipmentComponent() {
                   )
                 }
                 modalComponent={
-                  <ItemsTableModal  type="cloak" />
+                  <ItemsTableModal Equipment={Equipment} type="cloak" />
                 }
               />
 
@@ -67,7 +68,7 @@ export default function EquipmentComponent() {
                     <img
                       src={
                         Images.equipment[
-                          currentBuild.armor.name.replaceAll(" ", "")
+                          Equipment[currentBuild.armor].name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -76,7 +77,7 @@ export default function EquipmentComponent() {
                   )
                 }
                 modalComponent={
-                  <ItemsTableModal  type="armor" />
+                  <ItemsTableModal Equipment={Equipment} type="armor" />
                 }
               />
 
@@ -88,7 +89,7 @@ export default function EquipmentComponent() {
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.gloves.name.replaceAll(" ", "")
+                          Equipment[currentBuild.gloves].name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -97,7 +98,7 @@ export default function EquipmentComponent() {
                   )
                 }
                 modalComponent={
-                  <ItemsTableModal  type="gloves" />
+                  <ItemsTableModal Equipment={Equipment} type="gloves" />
                 }
               />
 
@@ -109,7 +110,7 @@ export default function EquipmentComponent() {
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.boots.name.replaceAll(" ", "")
+                          Equipment[currentBuild.boots].name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -118,7 +119,7 @@ export default function EquipmentComponent() {
                   )
                 }
                 modalComponent={
-                  <ItemsTableModal  type="boots" />
+                  <ItemsTableModal Equipment={Equipment} type="boots" />
                 }
               />
             </div>
@@ -131,7 +132,7 @@ export default function EquipmentComponent() {
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.melee_mh.name.replaceAll(" ", "")
+                          Equipment[currentBuild.melee_mh].name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -140,7 +141,7 @@ export default function EquipmentComponent() {
                   )
                 }
                 modalComponent={
-                  <ItemsTableModal  type="melee_mh" />
+                  <ItemsTableModal Equipment={Equipment} type="melee_mh" />
                 }
               />
               <OpenModalButton
@@ -151,7 +152,7 @@ export default function EquipmentComponent() {
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.melee_oh.name.replaceAll(" ", "")
+                          Equipment[currentBuild.melee_oh].name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -160,7 +161,7 @@ export default function EquipmentComponent() {
                   )
                 }
                 modalComponent={
-                  <ItemsTableModal type="melee_oh" />
+                  <ItemsTableModal Equipment={Equipment} type="melee_oh" />
                 }
               />
             </div>
@@ -178,7 +179,7 @@ export default function EquipmentComponent() {
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.amulet.name.replaceAll(" ", "")
+                          Equipment[currentBuild.amulet].name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -187,7 +188,7 @@ export default function EquipmentComponent() {
                   )
                 }
                 modalComponent={
-                  <ItemsTableModal type="amulet" />
+                  <ItemsTableModal Equipment={Equipment} type="amulet" />
                 }
               />
               <OpenModalButton
@@ -198,7 +199,7 @@ export default function EquipmentComponent() {
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.ring_1.name.replaceAll(" ", "")
+                          Equipment[currentBuild.ring_1].name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -207,7 +208,7 @@ export default function EquipmentComponent() {
                   )
                 }
                 modalComponent={
-                  <ItemsTableModal type="ring_1" />
+                  <ItemsTableModal Equipment={Equipment} type="ring_1" />
                 }
               />
               <OpenModalButton
@@ -218,7 +219,7 @@ export default function EquipmentComponent() {
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.ring_2.name.replaceAll(" ", "")
+                          Equipment[currentBuild.ring_2].name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -227,7 +228,7 @@ export default function EquipmentComponent() {
                   )
                 }
                 modalComponent={
-                  <ItemsTableModal type="ring_2" />
+                  <ItemsTableModal Equipment={Equipment} type="ring_2" />
                 }
               />
             </div>
@@ -240,7 +241,7 @@ export default function EquipmentComponent() {
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.ranged_mh.name.replaceAll(" ", "")
+                          Equipment[currentBuild.ranged_mh].name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -249,7 +250,7 @@ export default function EquipmentComponent() {
                   )
                 }
                 modalComponent={
-                  <ItemsTableModal type="ranged_mh" />
+                  <ItemsTableModal Equipment={Equipment} type="ranged_mh" />
                 }
               />
               <OpenModalButton
@@ -260,7 +261,7 @@ export default function EquipmentComponent() {
                       className={styles.itemImg}
                       src={
                         Images.equipment[
-                          currentBuild.ranged_oh.name.replaceAll(" ", "")
+                          Equipment[currentBuild.ranged_oh].name.replaceAll(" ", "")
                         ]
                       }
                     />
@@ -269,7 +270,7 @@ export default function EquipmentComponent() {
                   )
                 }
                 modalComponent={
-                  <ItemsTableModal type="ranged_oh" />
+                  <ItemsTableModal Equipment={Equipment} type="ranged_oh" />
                 }
               />
             </div>

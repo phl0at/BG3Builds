@@ -15,18 +15,19 @@ import { useParams } from "react-router-dom";
 export default function ParentPage() {
   const { buildId } = useParams();
   const dispatch = useDispatch();
-  const Equipment = useSelector((state) => state.static.equipment);
+  const currentBuild = useSelector((state) => state.builds.current);
   const [activeMenu, setActiveMenu] = useState("Origin");
   const [points, setPoints] = useState(0);
+
   useEffect(() => {
     dispatch(thunkPreloadData());
   }, []);
 
   useEffect(() => {
-    if (Equipment) {
-      dispatch(thunkGetBuild(Equipment, buildId));
+    if (!currentBuild) {
+      dispatch(thunkGetBuild(buildId));
     }
-  }, [Equipment]);
+  }, [currentBuild]);
 
   return (
     <main className={styles.main}>
@@ -36,8 +37,8 @@ export default function ParentPage() {
         setPoints={setPoints}
         activeMenu={activeMenu}
       />
-      <EquipmentComponent Equipment={Equipment} />
-      <InfoComponent buildId={buildId} Equipment={Equipment} />
+      <EquipmentComponent />
+      <InfoComponent points={points} />
     </main>
   );
 }

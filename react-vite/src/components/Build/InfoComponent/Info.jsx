@@ -8,11 +8,12 @@ import SaveBuildModal from "../CreatePage/SaveModal";
 import UpdateBuildModal from "../EditPage/UpdateModal";
 import { thunkLogin, thunkLogout } from "../../../redux/session";
 //Packages
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function InfoComponent({ Equipment }) {
+export default function InfoComponent({ points }) {
   const dispatch = useDispatch();
+  // const { buildId } = useParams();
   const navigateTo = useNavigate();
   const user = useSelector((state) => state.session.user);
   const currentBuild = useSelector((state) => state.builds.current);
@@ -45,13 +46,13 @@ export default function InfoComponent({ Equipment }) {
               <OpenModalButton
                 buttonText={"Update"}
                 className={styles.saveButton}
-                modalComponent={<UpdateBuildModal Equipment={Equipment} />}
+                modalComponent={<UpdateBuildModal points={points} />}
               />
             ) : (
               <OpenModalButton
                 buttonText={"Save"}
                 className={styles.saveButton}
-                modalComponent={<SaveBuildModal />}
+                modalComponent={<SaveBuildModal points={points} />}
               />
             ))}
           <button

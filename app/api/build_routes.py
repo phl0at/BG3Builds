@@ -110,7 +110,7 @@ def create_build():
     elif not background:
         errors['background'] = 'Required'
     elif not level:
-        level = 1
+        level = 0
 
 
     if errors:
@@ -154,11 +154,11 @@ def create_build():
         if build_classes:
             for build_class in build_classes:
                 new_build_class = BuildClass(
-                build_id = build.id,
-                class_id = build_class['class_id'],
-                sub_class = build_class['sub_class'],
-                name = build_class['name'],
-                level = build_class['level']
+                    build_id = build.id,
+                    class_id = build_class['class_id'],
+                    sub_class = build_class['sub_class'],
+                    name = build_class['name'],
+                    level = build_class['level']
                 )
                 db.session.add(new_build_class)
 
@@ -174,6 +174,7 @@ def edit_build(id):
         Updates the name of a build
     """
     build = Build.query.get(id)
+    existing_build_classes = BuildClass.query.filter(BuildClass.build_id == id)
 
     if not build:
         return { 'errors': 'Build could not be found'}, 404
@@ -210,6 +211,7 @@ def edit_build(id):
     ranged_oh = data.get('ranged_oh')
     armor_class = data.get('armor_class')
     level = data.get('level')
+    build_classes = data.get('build_classes')
 
     errors = {}
 
@@ -227,7 +229,8 @@ def edit_build(id):
         errors['race'] = 'Required'
     elif not background:
         errors['background'] = 'Required'
-
+    elif not level:
+        level = 0
 
 
     if errors:
@@ -261,6 +264,22 @@ def edit_build(id):
         build.ranged_oh = ranged_oh
         build.armor_class = armor_class
         build.level = level
+
+
+        if(existing_build_classes):
+            for found_class in existing_build_classes:
+                db.session.delete(found_class)
+
+        if(build_classes):
+            for build_class in build_classes:
+                new_build_class = BuildClass(
+                    build_id = build.id,
+                    class_id = build_class['class_id'],
+                    sub_class = build_class['sub_class'],
+                    name = build_class['name'],
+                    level = build_class['level']
+                )
+                db.session.add(new_build_class)
 
         db.session.commit()
 

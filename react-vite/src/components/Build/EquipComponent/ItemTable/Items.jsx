@@ -11,17 +11,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { equipItem } from "../../../../redux/build";
 
-export default function ItemsTableModal({ type }) {
+export default function ItemsTableModal({ type, Equipment }) {
   const dispatch = useDispatch();
   const currentBuild = useSelector((state) => state.builds.current);
-  const AllItems = useSelector((state) => state.static.equipment);
-  const equipment = useSelector(getEquipmentArray);
+  const EquipmentArray = useSelector(getEquipmentArray);
   const [selectedItem, setSelectedItem] = useState(null);
   const formatType = type.split("_")[0];
-
-  useEffect(() => {
-    dispatch(thunkGetEquipment(formatType));
-  }, []);
 
   const onClick = (e, id) => {
     e.preventDefault();
@@ -30,7 +25,7 @@ export default function ItemsTableModal({ type }) {
 
   const equip = (e, id) => {
     e.preventDefault();
-    dispatch(equipItem(type, AllItems[id]));
+    dispatch(equipItem(type, id));
   };
 
   return (
@@ -40,7 +35,7 @@ export default function ItemsTableModal({ type }) {
           <div className={styles.thead}>
             <div className={styles.itemHead}>Select an item to equip</div>
           </div>
-          {equipment.map((item) => {
+          {EquipmentArray.map((item) => {
             if (item.type === formatType) {
               return (
                 <div key={item.id} className={styles.tbody}>
@@ -76,7 +71,7 @@ export default function ItemsTableModal({ type }) {
           {selectedItem && (
             <>
               <div className={styles.description}>
-                {AllItems[selectedItem].description}
+                {Equipment[selectedItem].description}
               </div>
               <div className={styles.buttons}>
                 <button
