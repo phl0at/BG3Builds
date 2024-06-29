@@ -10,6 +10,14 @@ import { thunkLogin, thunkLogout } from "../../../redux/session";
 //Packages
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  CiTrash,
+  CiFloppyDisk,
+  CiShare2,
+  CiAlignBottom,
+  CiViewList,
+} from "react-icons/ci";
+import DeleteBuildModal from "./DeleteModal/DeleteModal";
 
 export default function InfoComponent({ points }) {
   const dispatch = useDispatch();
@@ -40,53 +48,88 @@ export default function InfoComponent({ points }) {
         <div className={styles.title}>Information</div>
       </div>
       <div className={styles.userBar}>
-        <div className={styles.buildButtons}>
-          {user &&
-            (user.id === currentBuild?.user_id ? (
+        <div className={styles.buildButtonsContainer}>
+          <div className={styles.buildButtons}>
+            <button
+              className={styles.button}
+              title="Import/Export"
+              onClick={() => alert("Feature coming soon!")}
+            >
+              <CiShare2 size="30" />
+            </button>
+            {user && (
               <OpenModalButton
-                buttonText={"Update"}
-                className={styles.saveButton}
-                modalComponent={<UpdateBuildModal points={points} />}
+                buttonText={<CiFloppyDisk size="30" />}
+                className={styles.button}
+                title="Save"
+                modalComponent={
+                  user.id === currentBuild?.user_id ? (
+                    <UpdateBuildModal points={points} />
+                  ) : (
+                    <SaveBuildModal points={points} />
+                  )
+                }
               />
-            ) : (
-              <OpenModalButton
-                buttonText={"Save"}
-                className={styles.saveButton}
-                modalComponent={<SaveBuildModal points={points} />}
-              />
-            ))}
+            )}
+            {user &&
+              (user.id === currentBuild?.user_id ? (
+                <OpenModalButton
+                  buttonText={<CiTrash size="30" />}
+                  className={styles.button}
+                  title="Delete"
+                  modalComponent={<DeleteBuildModal />}
+                />
+              ) : null)}
+          </div>
           <button
-            className={styles.calcButton}
+            id={styles.calButton}
+            className={styles.button}
+            title="Calculate"
             onClick={() => alert("Feature coming soon!")}
           >
-            Share
+            <CiAlignBottom size="40" />
           </button>
-          <button
-            className={styles.calcButton}
-            onClick={() => alert("Feature coming soon!")}
-          >
-            Calculate
-          </button>
+        </div>
+        <div className={styles.userInfo}>
+          {user && (
+            <>
+              <div className={styles.welcome}>
+                {`Welcome, ${user.username}!`}
+              </div>
+              <button
+                id={styles.calButton}
+                className={styles.button}
+                title="View Other Builds"
+                onClick={() => alert("Feature coming soon!")}
+              >
+                <CiViewList size="40" />
+              </button>
+            </>
+          )}
         </div>
         <div className={styles.userButtons}>
           {user && (
-            <button className={styles.logout} onClick={logout}>
+            <button
+              id={styles.logout}
+              className={styles.button}
+              onClick={logout}
+            >
               Log Out
             </button>
           )}
           {!user && (
             <>
               <OpenModalButton
-                className={styles.login}
+                className={styles.button}
                 buttonText={"Log In"}
                 modalComponent={<LoginFormModal />}
               />
               <OpenModalButton
-                className={styles.signup}
+                className={styles.button}
                 buttonText={"Sign up"}
                 modalComponent={<SignupFormModal />}
               />
-              <button className={styles.demo} onClick={onClick}>
+              <button className={styles.button} onClick={onClick}>
                 Demo Features
               </button>
             </>

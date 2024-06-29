@@ -2,12 +2,9 @@
 import styles from "./Items.module.css";
 import { Images } from "../../../images";
 //Functions/Components
-import {
-  thunkGetEquipment,
-  getEquipmentArray,
-} from "../../../../redux/equipment";
+import { getEquipmentArray } from "../../../../redux/build";
 //Packages
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { equipItem } from "../../../../redux/build";
 

@@ -68,11 +68,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #e69a28;
+  outline: 1px solid #e69a28;
   border-radius: 2px;
   height: 75px;
   width: 75px;
   background-color: rgba(17, 13, 12, 0.65);
+  transition: all 0.3s
+}
+
+.slot:hover {
+  background-color: rgba(17, 13, 12, 0.35);
+  outline-color: #e4c274
 }
 
 @media (min-width: 1645px){

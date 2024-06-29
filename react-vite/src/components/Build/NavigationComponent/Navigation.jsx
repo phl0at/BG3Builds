@@ -2,12 +2,9 @@
 import styles from "./Navigation.module.css";
 //Functions/Components
 //Packages
-import { useSelector, useDispatch } from "react-redux";
 import { CiPaperplane } from "react-icons/ci";
 
 function Navigation({ setActiveMenu, activeMenu }) {
-  const user = useSelector((state) => state.session.user);
-  const dispatch = useDispatch();
 
   return (
     <main className={styles.main}>

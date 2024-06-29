@@ -7,6 +7,14 @@
   font-size: 17pt;
   color: #e69a28;
 }
+.reset {
+  outline: none;
+  position: absolute;
+  top: 15px;
+  left: 190px;
+  color: #e69a28;
+}
+
 .heading {
   position: relative;
   top: 18px;
@@ -18,7 +26,7 @@
   justify-content: flex-end;
   column-gap: 8px;
 }
-.abilList {
+.abilityList {
   width: 90%;
   display: flex;
   flex-direction: column;

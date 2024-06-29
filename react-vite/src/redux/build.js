@@ -6,6 +6,7 @@ import { createSelector } from "reselect";
 
 const SET_DEFAULTS = "build/setDefault";
 const SET_CURRENT_BUILD = "build/setBuild";
+const DELETE_BUILD = "build/delete";
 const GET_BUILD = "build/getBuild";
 const SET_ORIGIN = "build/setOrigin";
 const SET_RACE = "build/setRace";
@@ -15,6 +16,7 @@ const SET_CLASS = "build/setClass";
 const ADD_BUILD_CLASS = "build/addBuildClass";
 const RESET_CLASSES = "build/resetClasses";
 const CLEAR_BONUS = "build/clearBonus";
+const RESET_ABILITIES = "build/resetAbilities";
 const RAISE_ABILITY = "build/raiseAbility";
 const LOWER_ABILITY = "build/lowerAbility";
 const EQUIP_ITEM = "build/equip";
@@ -76,6 +78,13 @@ export const addBuildClass = (payload) => {
 export const resetClasses = () => {
   return {
     type: RESET_CLASSES,
+  };
+};
+//! --------------------------------------------------------------------
+
+export const resetAbilities = () => {
+  return {
+    type: RESET_ABILITIES,
   };
 };
 
@@ -212,6 +221,31 @@ export const thunkGetBuild = (buildId) => async (dispatch) => {
     return { server: "Something went wrong. Please try again" };
   }
 };
+//! --------------------------------------------------------------------
+
+export const thunkDeleteBuild = (buildId) => async (dispatch) => {
+  const res = await fetch(`/api/builds/${buildId}`, {
+    method: "DELETE",
+  });
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(action(DELETE_BUILD, buildId));
+    return data;
+  } else if (res.status < 500) {
+    const errorMessages = await res.json();
+    return errorMessages;
+  } else {
+    return { server: "Something went wrong. Please try again" };
+  }
+};
+//! --------------------------------------------------------------------
+//*                            Selectors
+//! --------------------------------------------------------------------
+
+export const getEquipmentArray = createSelector(
+  (state) => state.static.equipment,
+  (item) => Object.values(item)
+);
 
 //! --------------------------------------------------------------------
 //*                            Reducer
@@ -230,6 +264,12 @@ function buildReducer(state = initialState, action) {
       const newState = {};
       newState[action.payload.id] = action.payload;
       newState.current = action.payload;
+      return newState;
+    }
+
+    case DELETE_BUILD: {
+      const newState = { ...state };
+      delete newState[action.payload];
       return newState;
     }
 
@@ -290,6 +330,19 @@ function buildReducer(state = initialState, action) {
     case SET_BG: {
       const newState = { ...state, current: { ...state.current } };
       newState.current.background = action.payload;
+      return newState;
+    }
+
+    case RESET_ABILITIES: {
+      const newState = { ...state, current: { ...state.current } };
+      newState.current.strength = 8;
+      newState.current.dexterity = 8;
+      newState.current.constitution = 8;
+      newState.current.intelligence = 8;
+      newState.current.wisdom = 8;
+      newState.current.charisma = 8;
+      newState.current.plus_1 = "";
+      newState.current.plus_2 = "";
       return newState;
     }
 

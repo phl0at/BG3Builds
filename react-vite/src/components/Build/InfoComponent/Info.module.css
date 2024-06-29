@@ -30,35 +30,61 @@
   background-color: rgba(17, 13, 12, 0.78);
   border-radius: 4px;
   width: 100%;
-  height: 23%;
+  height: 25%;
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
 }
-.buildButtons {
+
+.buildButtonsContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  row-gap: 10px;
-  width: 50%;
-  padding-bottom: 10px;
+  justify-content: space-between;
+  width: 33%;
+  height: 87%;
+}
+
+.buildButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  width: 100%;
 }
 
 .buildButtons > * {
-  width: 100px;
-  height: 35px;
-  color: #e4c274;
-  outline: 2px solid rgb(101, 71, 42);
-  background-color: rgba(17, 13, 12, 0.78);
-  border-radius: 4px;
-  font-size: 10pt;
-  animation: fadeIn 0.75s;
-  -webkit-animation: fadeIn 0.75s;
-  -moz-animation: fadeIn 0.75s;
-  -o-animation: fadeIn 0.75s;
-  -ms-animation: fadeIn 0.75s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+#calButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 33%;
+  height: 87%;
+}
+.welcome {
+  color: #e69a28;
+  animation: fadeIn 0.85s;
+  -webkit-animation: fadeIn 0.85s;
+  -moz-animation: fadeIn 0.85s;
+  -o-animation: fadeIn 0.85s;
+  -ms-animation: fadeIn 0.85s;
 }
 
 .userButtons {
@@ -67,36 +93,42 @@
   align-items: center;
   justify-content: flex-end;
   row-gap: 10px;
-  width: 50%;
-  padding-bottom: 10px;
+  width: 33%;
+  height: 87%;
 }
 
 .userButtons > * {
-  width: 100px;
+  width: 90px;
   height: 35px;
+}
+
+#logout {
+  height: 40px;
+  background-color: rgba(145, 23, 23, 0.906);
+  transition: all 0.3s;
+}
+
+#logout:hover {
+  background-color: rgb(215, 17, 17);
+}
+
+.button {
   color: #e4c274;
   outline: 2px solid rgb(101, 71, 42);
   background-color: rgba(17, 13, 12, 0.78);
   border-radius: 4px;
   font-size: 10pt;
-  animation: fadeIn 0.75s;
-  -webkit-animation: fadeIn 0.75s;
-  -moz-animation: fadeIn 0.75s;
-  -o-animation: fadeIn 0.75s;
-  -ms-animation: fadeIn 0.75s;
+  animation: fadeIn 0.85s;
+  -webkit-animation: fadeIn 0.85s;
+  -moz-animation: fadeIn 0.85s;
+  -o-animation: fadeIn 0.85s;
+  -ms-animation: fadeIn 0.85s;
+  transition: all 0.3s
 }
 
-
-.logout {
-  width: 100px;
-  height: 35px;
-  border-radius: 4px;
-  background-color: rgba(145, 23, 23, 0.906);
-  transition: all 0.3s;
-}
-
-.logout:hover {
-  background-color: rgb(215, 17, 17);
+.button:hover {
+  color: #e69a28;
+  outline-color: #e4c274
 }
 
 @media (max-width: 600px) {

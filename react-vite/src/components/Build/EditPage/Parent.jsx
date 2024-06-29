@@ -10,11 +10,12 @@ import InfoComponent from "../InfoComponent";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function ParentPage() {
   const { buildId } = useParams();
   const dispatch = useDispatch();
+  const navigateTo = useNavigate();
   const currentBuild = useSelector((state) => state.builds.current);
   const [activeMenu, setActiveMenu] = useState("Origin");
   const [points, setPoints] = useState(0);
@@ -24,9 +25,7 @@ export default function ParentPage() {
   }, []);
 
   useEffect(() => {
-    if (!currentBuild) {
-      dispatch(thunkGetBuild(buildId));
-    }
+    if (!currentBuild) dispatch(thunkGetBuild(buildId));
   }, [currentBuild]);
 
   return (

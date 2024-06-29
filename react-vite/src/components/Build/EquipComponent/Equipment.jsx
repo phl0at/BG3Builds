@@ -11,7 +11,7 @@ import { CiNoWaitingSign } from "react-icons/ci";
 export default function EquipmentComponent() {
   const currentBuild = useSelector((state) => state.builds.current);
   const Equipment = useSelector((state) => state.static.equipment);
-  
+
   return (
     <main className={styles.main}>
       <div className={styles.title}>Equipment</div>
@@ -26,8 +26,12 @@ export default function EquipmentComponent() {
                     <img
                       className={styles.itemImg}
                       src={
+                        Equipment &&
                         Images.equipment[
-                          Equipment[currentBuild.helmet].name.replaceAll(" ", "")
+                          Equipment[currentBuild.helmet].name.replaceAll(
+                            " ",
+                            ""
+                          )
                         ]
                       }
                     />
@@ -36,7 +40,7 @@ export default function EquipmentComponent() {
                   )
                 }
                 modalComponent={
-                  <ItemsTableModal Equipment={Equipment}  type="helmet" />
+                  <ItemsTableModal Equipment={Equipment} type="helmet" />
                 }
               />
 
@@ -47,6 +51,7 @@ export default function EquipmentComponent() {
                     <img
                       className={styles.itemImg}
                       src={
+                        Equipment &&
                         Images.equipment[
                           Equipment[currentBuild.cloak].name.replaceAll(" ", "")
                         ]
@@ -67,6 +72,7 @@ export default function EquipmentComponent() {
                   currentBuild.armor ? (
                     <img
                       src={
+                        Equipment &&
                         Images.equipment[
                           Equipment[currentBuild.armor].name.replaceAll(" ", "")
                         ]
@@ -88,8 +94,12 @@ export default function EquipmentComponent() {
                     <img
                       className={styles.itemImg}
                       src={
+                        Equipment &&
                         Images.equipment[
-                          Equipment[currentBuild.gloves].name.replaceAll(" ", "")
+                          Equipment[currentBuild.gloves].name.replaceAll(
+                            " ",
+                            ""
+                          )
                         ]
                       }
                     />
@@ -109,6 +119,7 @@ export default function EquipmentComponent() {
                     <img
                       className={styles.itemImg}
                       src={
+                        Equipment &&
                         Images.equipment[
                           Equipment[currentBuild.boots].name.replaceAll(" ", "")
                         ]
@@ -131,8 +142,12 @@ export default function EquipmentComponent() {
                     <img
                       className={styles.itemImg}
                       src={
+                        Equipment &&
                         Images.equipment[
-                          Equipment[currentBuild.melee_mh].name.replaceAll(" ", "")
+                          Equipment[currentBuild.melee_mh].name.replaceAll(
+                            " ",
+                            ""
+                          )
                         ]
                       }
                     />
@@ -151,8 +166,12 @@ export default function EquipmentComponent() {
                     <img
                       className={styles.itemImg}
                       src={
+                        Equipment &&
                         Images.equipment[
-                          Equipment[currentBuild.melee_oh].name.replaceAll(" ", "")
+                          Equipment[currentBuild.melee_oh].name.replaceAll(
+                            " ",
+                            ""
+                          )
                         ]
                       }
                     />
@@ -178,8 +197,12 @@ export default function EquipmentComponent() {
                     <img
                       className={styles.itemImg}
                       src={
+                        Equipment &&
                         Images.equipment[
-                          Equipment[currentBuild.amulet].name.replaceAll(" ", "")
+                          Equipment[currentBuild.amulet].name.replaceAll(
+                            " ",
+                            ""
+                          )
                         ]
                       }
                     />
@@ -198,8 +221,12 @@ export default function EquipmentComponent() {
                     <img
                       className={styles.itemImg}
                       src={
+                        Equipment &&
                         Images.equipment[
-                          Equipment[currentBuild.ring_1].name.replaceAll(" ", "")
+                          Equipment[currentBuild.ring_1].name.replaceAll(
+                            " ",
+                            ""
+                          )
                         ]
                       }
                     />
@@ -218,8 +245,12 @@ export default function EquipmentComponent() {
                     <img
                       className={styles.itemImg}
                       src={
+                        Equipment &&
                         Images.equipment[
-                          Equipment[currentBuild.ring_2].name.replaceAll(" ", "")
+                          Equipment[currentBuild.ring_2].name.replaceAll(
+                            " ",
+                            ""
+                          )
                         ]
                       }
                     />
@@ -240,8 +271,12 @@ export default function EquipmentComponent() {
                     <img
                       className={styles.itemImg}
                       src={
+                        Equipment &&
                         Images.equipment[
-                          Equipment[currentBuild.ranged_mh].name.replaceAll(" ", "")
+                          Equipment[currentBuild.ranged_mh].name.replaceAll(
+                            " ",
+                            ""
+                          )
                         ]
                       }
                     />
@@ -260,8 +295,12 @@ export default function EquipmentComponent() {
                     <img
                       className={styles.itemImg}
                       src={
+                        Equipment &&
                         Images.equipment[
-                          Equipment[currentBuild.ranged_oh].name.replaceAll(" ", "")
+                          Equipment[currentBuild.ranged_oh].name.replaceAll(
+                            " ",
+                            ""
+                          )
                         ]
                       }
                     />

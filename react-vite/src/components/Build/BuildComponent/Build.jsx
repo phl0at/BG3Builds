@@ -7,7 +7,6 @@ import ClassComponent from "./Menus/ClassMenu/Class"
 import BackgroundComponent from "./Menus/BackgroundMenu/Background";
 //Packages
 import { useSelector } from "react-redux";
-import { useState } from "react";
 import AbilitiesComponent from "./Menus/AbilitiesMenu/Abilities";
 
 export default function BuildComponent({ points, setPoints, activeMenu }) {

@@ -49,7 +49,7 @@ def get_build(id):
     if not build:
         return {'errors': 'Build could not be found'}, 404
 
-    return build.to_dict()
+    return build.to_dict(), 200
 
 ###########################CREATE BUILD##############################
 
@@ -283,7 +283,7 @@ def edit_build(id):
 
         db.session.commit()
 
-        return build.to_dict()
+        return build.to_dict(), 200
 
 ###########################DELETE BUILD##############################
 
