@@ -39,14 +39,12 @@ export function Ability({
   const clickLower = (e, type) => {
     e.preventDefault();
     setPoints(clicks < 6 ? points + 1 : points + 2);
-    setClicks(clicks - 1);
     dispatch(lowerAbility(type));
   };
 
   const clickRaise = (e, type) => {
     e.preventDefault();
     setPoints(clicks < 5 ? points - 1 : points - 2);
-    setClicks(clicks + 1);
     dispatch(raiseAbility(type));
   };
 
