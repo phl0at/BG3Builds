@@ -8,6 +8,7 @@ const SET_DEFAULTS = "build/setDefault";
 const SET_CURRENT_BUILD = "build/setBuild";
 const DELETE_BUILD = "build/delete";
 const GET_BUILD = "build/getBuild";
+const GET_ALL_BUILDS = "build/getAllBuilds";
 const SET_ORIGIN = "build/setOrigin";
 const SET_RACE = "build/setRace";
 const SET_BG = "build/setBackground";
@@ -221,6 +222,22 @@ export const thunkGetBuild = (buildId) => async (dispatch) => {
     return { server: "Something went wrong. Please try again" };
   }
 };
+
+//! --------------------------------------------------------------------
+
+export const thunkGetAllBuilds = () => async (dispatch) => {
+  const res = await fetch(`/api/builds`);
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(action(GET_ALL_BUILDS, data));
+    return data;
+  } else if (res.status < 500) {
+    const errorMessages = await res.json();
+    return errorMessages;
+  } else {
+    return { server: "Something went wrong. Please try again" };
+  }
+};
 //! --------------------------------------------------------------------
 
 export const thunkDeleteBuild = (buildId) => async (dispatch) => {
@@ -264,6 +281,12 @@ function buildReducer(state = initialState, action) {
       const newState = {};
       newState[action.payload.id] = action.payload;
       newState.current = action.payload;
+      return newState;
+    }
+
+    case GET_ALL_BUILDS: {
+      const newState = { ...state };
+      action.payload.forEach((build) => (newState[build.id] = build));
       return newState;
     }
 

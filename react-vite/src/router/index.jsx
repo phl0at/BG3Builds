@@ -1,9 +1,10 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from "react-router-dom";
 
-import LandingPage from '../components/Landing';
-import CreateBuildPage from '../components/Build/CreatePage/Parent'
-import EditBuildPage from '../components/Build/EditPage/Parent'
-import Layout from './Layout';
+import LandingPage from "../components/Landing";
+import CreateBuildPage from "../components/Build/Pages/CreatePage/Parent";
+import EditBuildPage from "../components/Build/Pages/EditPage/Parent";
+import ViewBuildPage from "../components/Build/Pages/ViewPage/Parent";
+import Layout from "./Layout";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: "/build/:buildId",
         element: <EditBuildPage />,
+      },
+      {
+        path: "/browse",
+        element: <ViewBuildPage/>,
       },
     ],
   },
