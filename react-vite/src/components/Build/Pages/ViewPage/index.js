@@ -1,2 +1,2 @@
-import ParentPage from "./Parent";
-export default ParentPage;
+import ViewBuildsComponent from "./ViewComponent";
+export default ViewBuildsComponent

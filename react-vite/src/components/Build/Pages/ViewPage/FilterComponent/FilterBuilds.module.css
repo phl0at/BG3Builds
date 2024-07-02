@@ -1,0 +1,20 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  width: 250px;
+  background: rgba(17, 13, 12, 0.78);
+  outline: 3px solid rgb(101, 71, 42);
+  border-radius: 4px;
+}
+
+.title {
+  font-size: 17pt;
+  width: 90%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e69a28;
+}

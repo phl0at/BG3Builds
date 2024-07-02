@@ -1,32 +1,26 @@
 //Files
-import styles from "./Parent.module.css";
+import styles from "./CreateParent.module.css";
 //Functions/Components
-import { thunkGetBuild } from "../../../../redux/build";
+import { setDefaults } from "../../../../redux/build";
 import { thunkPreloadData } from "../../../../redux/static";
 import Navigation from "../../Components/NavigationComponent";
 import BuildComponent from "../../Components/BuildComponent";
-import EquipmentComponent from "../../Components/EquipComponent/Equipment";
+import EquipmentComponent from "../../Components/EquipComponent";
 import InfoComponent from "../../Components/InfoComponent";
 //Packages
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 
-export default function ParentPage() {
-  const { buildId } = useParams();
+export default function CreateParentPage() {
   const dispatch = useDispatch();
-  const navigateTo = useNavigate();
-  const currentBuild = useSelector((state) => state.builds.current);
   const [activeMenu, setActiveMenu] = useState("Origin");
-  const [points, setPoints] = useState(0);
+
+  const [points, setPoints] = useState(27);
 
   useEffect(() => {
     dispatch(thunkPreloadData());
+    dispatch(setDefaults());
   }, []);
-
-  useEffect(() => {
-    if (!currentBuild) dispatch(thunkGetBuild(buildId));
-  }, [currentBuild]);
 
   return (
     <main className={styles.main}>

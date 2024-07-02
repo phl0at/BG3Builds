@@ -7,7 +7,6 @@ import SignupFormModal from "../../../Auth/SignupFormModal";
 import SaveBuildModal from "../../Pages/CreatePage/SaveModal";
 import UpdateBuildModal from "../../Pages/EditPage/UpdateModal";
 import DeleteBuildModal from "./DeleteModal/DeleteModal";
-import { thunkGetAllBuilds } from "../../../../redux/build";
 import { thunkLogin, thunkLogout } from "../../../../redux/session";
 //Packages
 import { useNavigate, useParams } from "react-router-dom";
@@ -17,7 +16,7 @@ import {
   CiFloppyDisk,
   CiShare2,
   CiAlignBottom,
-  CiViewList,
+  CiBoxList ,
 } from "react-icons/ci";
 
 export default function InfoComponent({ points }) {
@@ -97,21 +96,14 @@ export default function InfoComponent({ points }) {
           </button>
         </div>
         <div className={styles.userInfo}>
-          {user && (
-            <>
-              <div className={styles.welcome}>
-                {`Welcome, ${user.username}!`}
-              </div>
               <button
                 id={styles.calButton}
                 className={styles.button}
                 title="Browse Other Builds"
                 onClick={viewBuilds}
               >
-                <CiViewList size="40" />
+                <CiBoxList size="40" />
               </button>
-            </>
-          )}
         </div>
         <div className={styles.userButtons}>
           {user && (

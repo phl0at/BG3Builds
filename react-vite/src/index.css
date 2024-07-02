@@ -13,11 +13,11 @@ input {
 
 #root > main {
   height: 100%;
-  animation: fadeIn 1.2s;
-  -webkit-animation: fadeIn 1.2s;
-  -moz-animation: fadeIn 1.2s;
-  -o-animation: fadeIn 1.2s;
-  -ms-animation: fadeIn 1.2s;
+  animation: fadeIn 0.8s;
+  -webkit-animation: fadeIn 0.8s;
+  -moz-animation: fadeIn 0.8s;
+  -o-animation: fadeIn 0.8s;
+  -ms-animation: fadeIn 0.8s;
 }
 
 body {
@@ -46,6 +46,9 @@ input[type="reset"] {
   cursor: pointer;
   outline: inherit;
 }
+
+
+
 
 @keyframes fadeIn {
   0% {

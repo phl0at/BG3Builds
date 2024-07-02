@@ -1,2 +1,2 @@
-import ParentPage from "./Parent";
-export default ParentPage;
+import CreateParentPage from "./CreateParent";
+export default CreateParentPage;

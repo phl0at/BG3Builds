@@ -1,2 +1,2 @@
-import ParentPage from "./Parent";
-export default ParentPage;
+import EditParentPage from "./EditParent";
+export default EditParentPage;

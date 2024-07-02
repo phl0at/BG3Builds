@@ -265,6 +265,12 @@ export const getEquipmentArray = createSelector(
 );
 
 //! --------------------------------------------------------------------
+export const getBuildsArray = createSelector(
+  (state) => state.builds,
+  (build) => Object.values(build)
+);
+
+//! --------------------------------------------------------------------
 //*                            Reducer
 //! --------------------------------------------------------------------
 
@@ -287,6 +293,7 @@ function buildReducer(state = initialState, action) {
     case GET_ALL_BUILDS: {
       const newState = { ...state };
       action.payload.forEach((build) => (newState[build.id] = build));
+      delete newState.current;
       return newState;
     }
 
