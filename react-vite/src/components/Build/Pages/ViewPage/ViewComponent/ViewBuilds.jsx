@@ -1,18 +1,30 @@
 //Files
 import { NavLink } from "react-router-dom";
 import styles from "./ViewBuilds.module.css";
-import { Images } from "../../../../images";
 //Functions/Components
 import { getBuildsArray } from "../../../../../redux/build";
+import { thunkPreloadData } from "../../../../../redux/static";
 //Packages
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { CiLogin, CiHeart } from "react-icons/ci";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { CiLogin } from "react-icons/ci";
+import { SelectedBuildPanel } from "./helper";
 
 export default function ViewBuildsComponent() {
+  const dispatch = useDispatch();
   const allBuildsArr = useSelector(getBuildsArray);
   const [selected, setSelected] = useState(null);
   const selectedBuild = useSelector((state) => state.builds[selected]);
+  const Equipment = useSelector((state) => state.static.equipment);
+  const Backgrounds = useSelector((state) => state.static.backgrounds);
+  const Origins = useSelector((state) => state.static.origins);
+  const Races = useSelector((state) => state.static.races);
+
+  useEffect(() => {
+    if (!Equipment) {
+      dispatch(thunkPreloadData());
+    }
+  }, [Equipment, dispatch]);
 
   const onClick = (e, id) => {
     e.preventDefault();
@@ -24,7 +36,7 @@ export default function ViewBuildsComponent() {
       <div className={styles.header}>
         <div className={styles.title}>BG3Builds</div>
         <NavLink
-          title="Back to create!"
+          title="Create build"
           className={styles.navButton}
           to="/create"
         >
@@ -37,6 +49,7 @@ export default function ViewBuildsComponent() {
             allBuildsArr.map((build) => {
               return (
                 <button
+                  key={build.id}
                   onClick={(e) => onClick(e, build.id)}
                   className={
                     selected === build.id ? styles.select : styles.build
@@ -44,13 +57,15 @@ export default function ViewBuildsComponent() {
                 >
                   <>
                     <div className={styles.buildName}>{build.name}</div>
-                    <div className={styles.classes}>
-                      {build.build_classes.map((_class) => {
-                        return (
-                          <div key={_class.class_id}>{`${_class.name}`}</div>
-                        );
+                    <div className={styles.buildClass}>
+                      Classes: |
+                      {build.build_classes.map((bc) => {
+                        return ` ${bc.level} ${bc.name} |`;
                       })}
                     </div>
+                    <div
+                      className={styles.buildComments}
+                    >{`Comments: ${build.comments?.length}`}</div>
                   </>
                 </button>
               );
@@ -60,51 +75,13 @@ export default function ViewBuildsComponent() {
       <div className={selected ? styles.selectedBuild : styles.hidden}>
         {selected && (
           <>
-            <button
-              className={styles.favorite}
-              onClick={(e) => {
-                e.preventDefault();
-                alert("Feature coming soon!");
-              }}
-            >
-              <CiHeart size="20" />
-            </button>
-            <div className={styles.selectedClassImg}>
-              {selectedBuild.build_classes.length ? (
-                <img
-                  src={Images.classes[selectedBuild.build_classes[0].name]}
-                />
-              ) : (
-                "No classes"
-              )}
-            </div>
-            <div className={styles.attributes}>
-              <div className={styles.stat}>
-                <div>Str</div>
-                <div>{selectedBuild.strength}</div>
-              </div>
-              <div className={styles.stat}>
-                <div>Dex</div>
-                <div>{selectedBuild.dexterity}</div>
-              </div>
-              <div className={styles.stat}>
-                <div>Con</div>
-                <div>{selectedBuild.constitution}</div>
-              </div>
-              <div className={styles.stat}>
-                <div>Int</div>
-                <div>{selectedBuild.intelligence}</div>
-              </div>
-              <div className={styles.stat}>
-                <div>Wis</div>
-                <div>{selectedBuild.wisdom}</div>
-              </div>
-              <div className={styles.stat}>
-                <div>Cha</div>
-                <div>{selectedBuild.charisma}</div>
-              </div>
-            </div>
-            <div></div>
+            <SelectedBuildPanel
+              setSelected={setSelected}
+              build={selectedBuild}
+              Backgrounds={Backgrounds}
+              Origins={Origins}
+              Races={Races}
+            />
           </>
         )}
       </div>
