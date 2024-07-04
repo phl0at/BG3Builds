@@ -3,20 +3,24 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border-radius: 4px;
   min-width: 320px;
   width: 26%;
 }
 
 .infoPanel {
   outline: 3px solid rgb(101, 71, 42);
-  background-color: rgba(17, 13, 12, 0.78);
+  background: rgb(21, 16, 14, 0.88);
   border-radius: 4px;
   width: 100%;
   height: 73%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 .title {
   width: 100%;
+  height: 5%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,9 +28,79 @@
   font-size: 17pt;
   color: #e69a28;
 }
+.infoClassHead {
+  height: 20%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.infoClassHead > img {
+  height: 100px;
+  width: 100px;
+}
+.infoBody {
+  width: 100%;
+  height: 70%;
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  row-gap: 10px;
+}
+.infoName {
+  height: 10%;
+  font-size: 15pt;
+}
+.infoAttributes {
+  height: 15%;
+  display: flex;
+  column-gap: 12px;
+  font-size: 16pt;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.orange {
+  color: #e69a28;
+}
+.infoClasses {
+  width: 80%;
+  height: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 15px;
+}
+.infoClass {
+  font-size: 11pt;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.listImage {
+  width: 45px;
+  height: 45px;
+}
+.infoCharacter {
+  font-size: 12pt;
+  display: flex;
+  height: 10%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  column-gap: 8px;
+}
+
 .userBar {
   outline: 3px solid rgb(101, 71, 42);
-  background-color: rgba(17, 13, 12, 0.78);
+  background: rgb(21, 16, 14, 0.88);
   border-radius: 4px;
   width: 100%;
   height: 25%;

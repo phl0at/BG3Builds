@@ -37,13 +37,6 @@ function staticReducer(state = initialState, action) {
       const { origins, classes, races, backgrounds, equipment } =
         action.payload;
       const newState = { ...state };
-      origins.forEach(
-        (origin) =>
-          (newState["origins"] = {
-            ...newState["origins"],
-            [origin.id]: origin,
-          })
-      );
       classes.forEach(
         (_class) =>
           (newState["classes"] = {
@@ -67,6 +60,13 @@ function staticReducer(state = initialState, action) {
           (newState["equipment"] = {
             ...newState["equipment"],
             [item.id]: item,
+          })
+      );
+      origins.forEach(
+        (origin) =>
+          (newState["origins"] = {
+            ...newState["origins"],
+            [origin.id]: origin,
           })
       );
       return newState;

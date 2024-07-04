@@ -12,16 +12,16 @@ export default function AbilitiesComponent({
   setPoints,
   currentBuild,
 }) {
-  const {
-    strength,
-    dexterity,
-    constitution,
-    intelligence,
-    wisdom,
-    charisma,
-    plus_1,
-    plus_2,
-  } = currentBuild;
+  const { plus_1, plus_2 } = currentBuild;
+
+  const abilities = [
+    "strength",
+    "dexterity",
+    "constitution",
+    "intelligence",
+    "wisdom",
+    "charisma",
+  ];
 
   return (
     <>
@@ -39,54 +39,18 @@ export default function AbilitiesComponent({
           <div className={!plus_2 ? styles.red : ""}>+2</div>
           <div className={!plus_1 ? styles.red : ""}>+1</div>
         </div>
-        <Ability
-          name={"strength"}
-          abilityVal={strength}
-          plus_1={plus_1}
-          plus_2={plus_2}
-          points={points}
-          setPoints={setPoints}
-        />
-        <Ability
-          name={"dexterity"}
-          abilityVal={dexterity}
-          plus_1={plus_1}
-          plus_2={plus_2}
-          points={points}
-          setPoints={setPoints}
-        />
-        <Ability
-          name={"constitution"}
-          abilityVal={constitution}
-          plus_1={plus_1}
-          plus_2={plus_2}
-          points={points}
-          setPoints={setPoints}
-        />
-        <Ability
-          name={"intelligence"}
-          abilityVal={intelligence}
-          plus_1={plus_1}
-          plus_2={plus_2}
-          points={points}
-          setPoints={setPoints}
-        />
-        <Ability
-          name={"wisdom"}
-          abilityVal={wisdom}
-          plus_1={plus_1}
-          plus_2={plus_2}
-          points={points}
-          setPoints={setPoints}
-        />
-        <Ability
-          name={"charisma"}
-          abilityVal={charisma}
-          plus_1={plus_1}
-          plus_2={plus_2}
-          points={points}
-          setPoints={setPoints}
-        />
+        {abilities.map((ability) => {
+          return (
+            <Ability
+              name={ability}
+              abilityVal={currentBuild[ability]}
+              plus_1={plus_1}
+              plus_2={plus_2}
+              points={points}
+              setPoints={setPoints}
+            />
+          );
+        })}
       </div>
     </>
   );
