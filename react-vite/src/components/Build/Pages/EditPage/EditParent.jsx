@@ -16,27 +16,28 @@ export default function EditParentPage() {
   const { buildId } = useParams();
   const dispatch = useDispatch();
   const currentBuild = useSelector((state) => state.builds.current);
+  const Origins = useSelector((state) => state.static.origins);
   const [activeMenu, setActiveMenu] = useState("Origin");
   const [points, setPoints] = useState(0);
 
   useEffect(() => {
     dispatch(thunkPreloadData());
+    dispatch(thunkGetBuild(buildId));
   }, []);
 
-  useEffect(() => {
-    if (!currentBuild) dispatch(thunkGetBuild(buildId));
-  }, [currentBuild]);
 
-  return (
-    <main className={styles.main}>
-      <Navigation setActiveMenu={setActiveMenu} activeMenu={activeMenu} />
-      <BuildComponent
-        points={points}
-        setPoints={setPoints}
-        activeMenu={activeMenu}
-      />
-      <EquipmentComponent />
-      <InfoComponent points={points} />
-    </main>
-  );
+  if (!currentBuild || !Origins) return ""
+
+    return (
+      <main className={styles.main}>
+        <Navigation setActiveMenu={setActiveMenu} activeMenu={activeMenu} />
+        <BuildComponent
+          points={points}
+          setPoints={setPoints}
+          activeMenu={activeMenu}
+        />
+        <EquipmentComponent />
+        <InfoComponent points={points} />
+      </main>
+    );
 }

@@ -97,11 +97,11 @@ export function Ability({
         <div className={styles.bonuses}>
           <button
             onClick={(e) => clickPlusTwo(e, name)}
-            className={plus_2 === name ? styles.plusSelected : styles.plus}
+            className={plus_2 == name ? styles.plusSelected : styles.plus}
           ></button>
           <button
             onClick={(e) => clickPlusOne(e, name)}
-            className={plus_1 === name ? styles.plusSelected : styles.plus}
+            className={plus_1 == name ? styles.plusSelected : styles.plus}
           ></button>
         </div>
       </div>

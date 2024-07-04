@@ -9,7 +9,7 @@ const SET_CURRENT_BUILD = "build/setBuild";
 const DELETE_BUILD = "build/delete";
 const GET_BUILD = "build/getBuild";
 const GET_ALL_BUILDS = "build/getAll";
-const GET_ALL_USERS = "users/getAll"
+const GET_ALL_USERS = "users/getAll";
 const SET_ORIGIN = "build/setOrigin";
 const SET_RACE = "build/setRace";
 const SET_BG = "build/setBackground";
@@ -269,7 +269,13 @@ export const getEquipmentArray = createSelector(
 //! --------------------------------------------------------------------
 export const getBuildsArray = createSelector(
   (state) => state.builds,
-  (build) => Object.values(build)
+  (build) => {
+    const arr = [];
+    for (const key in build) {
+      if (key != "current") arr.push(build[key]);
+    }
+    return arr;
+  }
 );
 
 //! --------------------------------------------------------------------
@@ -295,7 +301,6 @@ function buildReducer(state = initialState, action) {
     case GET_ALL_BUILDS: {
       const newState = { ...state };
       action.payload.forEach((build) => (newState[build.id] = build));
-      delete newState.current;
       return newState;
     }
 

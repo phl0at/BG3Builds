@@ -2,7 +2,11 @@
 import styles from "./Origin.module.css";
 import { Images } from "../../../../../images";
 //Functions/Components
-import { setBackground, setOrigin, setRace } from "../../../../../../redux/build";
+import {
+  setBackground,
+  setOrigin,
+  setRace,
+} from "../../../../../../redux/build";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
 
@@ -35,7 +39,7 @@ export default function OriginComponent({ currentBuild }) {
 
   return (
     <>
-      {Origins && (
+      {
         <>
           <div className={styles.title}>Origin</div>
           <div className={styles.characterList}>
@@ -43,7 +47,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 8)}
                 className={
-                  currentBuild?.origin === 8
+                  currentBuild.origin === 8
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -55,7 +59,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 1)}
                 className={
-                  currentBuild?.origin === 1
+                  currentBuild.origin === 1
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -67,7 +71,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 2)}
                 className={
-                  currentBuild?.origin === 2
+                  currentBuild.origin === 2
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -79,7 +83,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 3)}
                 className={
-                  currentBuild?.origin === 3
+                  currentBuild.origin === 3
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -91,7 +95,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 4)}
                 className={
-                  currentBuild?.origin === 4
+                  currentBuild.origin === 4
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -103,7 +107,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 5)}
                 className={
-                  currentBuild?.origin === 5
+                  currentBuild.origin === 5
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -115,7 +119,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 6)}
                 className={
-                  currentBuild?.origin === 6
+                  currentBuild.origin === 6
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -127,7 +131,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 7)}
                 className={
-                  currentBuild?.origin === 7
+                  currentBuild.origin === 7
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -137,19 +141,19 @@ export default function OriginComponent({ currentBuild }) {
             </div>
           </div>
           <div className={styles.select}>
-            {Origins[currentBuild?.origin] && (
+            {Origins[currentBuild.origin] && (
               <>
                 <div className={styles.name}>
-                  {Origins[currentBuild?.origin].name}
+                  {Origins[currentBuild.origin].name}
                 </div>
                 <div className={styles.description}>
-                  {Origins[currentBuild?.origin].description}
+                  {Origins[currentBuild.origin].description}
                 </div>
               </>
             )}
           </div>
         </>
-      )}
+      }
     </>
   );
 }

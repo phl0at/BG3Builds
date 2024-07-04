@@ -1,6 +1,6 @@
 //Files
 import styles from "./ViewBuilds.module.css";
-import { Images } from "../../../../images";
+import { Images } from "../../../images";
 //Functions/Components
 //Packages
 import { CiHeart, CiCircleRemove, CiLogout  } from "react-icons/ci";

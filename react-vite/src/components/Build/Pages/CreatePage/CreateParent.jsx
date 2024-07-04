@@ -8,19 +8,22 @@ import BuildComponent from "../../Components/BuildComponent";
 import EquipmentComponent from "../../Components/EquipComponent";
 import InfoComponent from "../../Components/InfoComponent";
 //Packages
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
 export default function CreateParentPage() {
   const dispatch = useDispatch();
   const [activeMenu, setActiveMenu] = useState("Origin");
-
+  const currentBuild = useSelector((state) => state.builds.current);
+  const Origins = useSelector((state) => state.static.origins);
   const [points, setPoints] = useState(27);
 
   useEffect(() => {
     dispatch(thunkPreloadData());
     dispatch(setDefaults());
   }, []);
+
+  if (!currentBuild || !Origins) return "";
 
   return (
     <main className={styles.main}>
@@ -31,7 +34,7 @@ export default function CreateParentPage() {
         activeMenu={activeMenu}
       />
       <EquipmentComponent />
-      <InfoComponent points={points} />
+      <InfoComponent currentBuild={currentBuild} points={points} />
     </main>
   );
 }
