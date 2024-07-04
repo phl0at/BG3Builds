@@ -11,14 +11,6 @@
   background: rgb(21, 16, 14, 0.88);
 }
 
-main > * {
-  animation: fadeIn 0.5s;
-  -webkit-animation: fadeIn 0.5s;
-  -moz-animation: fadeIn 0.5s;
-  -o-animation: fadeIn 0.5s;
-  -ms-animation: fadeIn 0.5s;
-}
-
 .title {
   margin-top: 10px;
   font-size: 17pt;

@@ -19,13 +19,10 @@ export default function ViewBuildsComponent() {
   const Origins = useSelector((state) => state.static.origins);
   const Races = useSelector((state) => state.static.races);
 
-
   const onClick = (e, id) => {
     e.preventDefault();
     setSelected(id);
   };
-
-  if(!allUsers) return ""
 
   return (
     <main className={styles.main}>
@@ -49,7 +46,7 @@ export default function ViewBuildsComponent() {
                   <>
                     <div className={styles.buildName}>{build.name}</div>
                     <div className={styles.owner}>
-                     {`Created By: ${allUsers[build.user_id].username}`}
+                     {`Created By: ${allUsers[build.user_id]?.username}`}
                     </div>
                     <div
                       className={styles.buildComments}

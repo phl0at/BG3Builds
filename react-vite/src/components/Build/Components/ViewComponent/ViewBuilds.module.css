@@ -8,13 +8,6 @@
   justify-content: space-between;
   padding: 10px;
 }
-.main > * {
-  animation: fadeIn 0.4s;
-  -webkit-animation: fadeIn 0.4s;
-  -moz-animation: fadeIn 0.4s;
-  -o-animation: fadeIn 0.4s;
-  -ms-animation: fadeIn 0.4s;
-}
 .header {
   display: flex;
   flex-direction: row;
