@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import Build, BuildClass, db
+from app.models import Build, BuildClass, User, db
 from flask_login import current_user, login_required
 from sqlalchemy.orm import joinedload
 
@@ -18,7 +18,11 @@ def get_all_builds():
         .options(joinedload(Build.classes)) \
         .options(joinedload(Build.comments)) \
         .all()
-    return [build.to_dict() for build in builds]
+
+    users = User.query.all()
+    
+    return {'builds': [build.to_dict() for build in builds],
+            'users': [user.to_dict() for user in users]}
 
 ###########################GET USERS BUILDS##############################
 

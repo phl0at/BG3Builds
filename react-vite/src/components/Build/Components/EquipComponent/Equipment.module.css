@@ -11,12 +11,19 @@
   background-color: rgba(17, 13, 12, 0.78);
 }
 
+main > * {
+  animation: fadeIn 0.5s;
+  -webkit-animation: fadeIn 0.5s;
+  -moz-animation: fadeIn 0.5s;
+  -o-animation: fadeIn 0.5s;
+  -ms-animation: fadeIn 0.5s;
+}
+
 .title {
   margin-top: 10px;
   font-size: 17pt;
   color: #e69a28;
 }
-
 
 .equipment {
   width: 80%;
@@ -73,20 +80,20 @@
   height: 75px;
   width: 75px;
   background-color: rgba(17, 13, 12, 0.65);
-  transition: all 0.3s
+  transition: all 0.3s;
 }
 
 .slot:hover {
   background-color: rgba(17, 13, 12, 0.35);
-  outline-color: #e4c274
+  outline-color: #e4c274;
 }
 
-@media (min-width: 1645px){
-  .armorClass{
+@media (min-width: 1645px) {
+  .armorClass {
     height: 160px;
     width: 130px;
   }
-  .slot{
+  .slot {
     height: 80px;
     width: 80px;
   }
@@ -94,4 +101,53 @@
 
 .weapons {
   display: flex;
+}
+
+/*
+FADE-IN ANIMATIONS !!!!!!!!!!!
+*/
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

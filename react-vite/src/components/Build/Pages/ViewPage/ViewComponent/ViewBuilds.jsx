@@ -14,6 +14,7 @@ export default function ViewBuildsComponent() {
   const dispatch = useDispatch();
   const allBuildsArr = useSelector(getBuildsArray);
   const [selected, setSelected] = useState(null);
+  const allUsers = useSelector((state) => state.users);
   const selectedBuild = useSelector((state) => state.builds[selected]);
   const Equipment = useSelector((state) => state.static.equipment);
   const Backgrounds = useSelector((state) => state.static.backgrounds);
@@ -35,18 +36,13 @@ export default function ViewBuildsComponent() {
     <main className={styles.main}>
       <div className={styles.header}>
         <div className={styles.title}>BG3Builds</div>
-        <NavLink
-          title="Create build"
-          className={styles.navButton}
-          to="/create"
-        >
+        <NavLink title="Create build" className={styles.navButton} to="/create">
           <CiLogin size="40" />
         </NavLink>
       </div>
       <div className={styles.scroll}>
         <div className={styles.buildsList}>
-          {allBuildsArr &&
-            allBuildsArr.map((build) => {
+          {allBuildsArr.map((build, i) => {
               return (
                 <button
                   key={build.id}
@@ -57,15 +53,22 @@ export default function ViewBuildsComponent() {
                 >
                   <>
                     <div className={styles.buildName}>{build.name}</div>
-                    <div className={styles.buildClass}>
-                      Classes: |
-                      {build.build_classes.map((bc) => {
-                        return ` ${bc.level} ${bc.name} |`;
-                      })}
+                    <div className={styles.owner}>
+                      {allUsers[build.user_id]?.username}
                     </div>
                     <div
                       className={styles.buildComments}
                     >{`Comments: ${build.comments?.length}`}</div>
+                    <div key={i} className={styles.buildClassList}>
+                      {build.build_classes.map((bc) => {
+                        return (
+                          <div
+                            key={bc.class_id}
+                            className={styles.buildClass}
+                          >{`| ${bc.level} ${bc.name}`}</div>
+                        );
+                      })}
+                    </div>
                   </>
                 </button>
               );

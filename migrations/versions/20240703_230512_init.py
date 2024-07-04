@@ -1,8 +1,8 @@
-"""prepping backend for save build
+"""init
 
-Revision ID: 6a96ce5f8d51
+Revision ID: 6ac267595e64
 Revises: 
-Create Date: 2024-06-27 19:05:03.954252
+Create Date: 2024-07-03 23:05:12.882501
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6a96ce5f8d51'
+revision = '6ac267595e64'
 down_revision = None
 branch_labels = None
 depends_on = None

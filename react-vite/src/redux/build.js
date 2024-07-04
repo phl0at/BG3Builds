@@ -8,7 +8,8 @@ const SET_DEFAULTS = "build/setDefault";
 const SET_CURRENT_BUILD = "build/setBuild";
 const DELETE_BUILD = "build/delete";
 const GET_BUILD = "build/getBuild";
-const GET_ALL_BUILDS = "build/getAllBuilds";
+const GET_ALL_BUILDS = "build/getAll";
+const GET_ALL_USERS = "users/getAll"
 const SET_ORIGIN = "build/setOrigin";
 const SET_RACE = "build/setRace";
 const SET_BG = "build/setBackground";
@@ -229,7 +230,8 @@ export const thunkGetAllBuilds = () => async (dispatch) => {
   const res = await fetch(`/api/builds`);
   if (res.ok) {
     const data = await res.json();
-    dispatch(action(GET_ALL_BUILDS, data));
+    dispatch(action(GET_ALL_BUILDS, data.builds));
+    dispatch(action(GET_ALL_USERS, data.users));
     return data;
   } else if (res.status < 500) {
     const errorMessages = await res.json();
@@ -284,7 +286,7 @@ function buildReducer(state = initialState, action) {
     }
 
     case GET_BUILD: {
-      const newState = {};
+      const newState = { ...state };
       newState[action.payload.id] = action.payload;
       newState.current = action.payload;
       return newState;

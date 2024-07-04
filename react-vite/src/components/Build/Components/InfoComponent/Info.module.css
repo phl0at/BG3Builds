@@ -86,11 +86,6 @@
   color: #e69a28;
   font-size: 14pt;
   text-align: center;
-  animation: fadeIn 0.85s;
-  -webkit-animation: fadeIn 0.85s;
-  -moz-animation: fadeIn 0.85s;
-  -o-animation: fadeIn 0.85s;
-  -ms-animation: fadeIn 0.85s;
 }
 
 .userButtons {
@@ -123,11 +118,11 @@
   background-color: rgba(17, 13, 12, 0.78);
   border-radius: 4px;
   font-size: 10pt;
-  animation: fadeIn 0.85s;
-  -webkit-animation: fadeIn 0.85s;
-  -moz-animation: fadeIn 0.85s;
-  -o-animation: fadeIn 0.85s;
-  -ms-animation: fadeIn 0.85s;
+  animation: fadeIn 0.5s;
+  -webkit-animation: fadeIn 0.5s;
+  -moz-animation: fadeIn 0.5s;
+  -o-animation: fadeIn 0.5s;
+  -ms-animation: fadeIn 0.5s;
   transition: all 0.3s;
 }
 

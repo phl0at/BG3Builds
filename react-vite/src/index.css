@@ -4,6 +4,7 @@
   width: 100%;
   font-size: 13pt;
 }
+
 input {
   padding: 4px;
   border-radius: 4px;
@@ -11,14 +12,6 @@ input {
   background-color: rgb(101, 71, 42);
 }
 
-#root > main {
-  height: 100%;
-  animation: fadeIn 0.8s;
-  -webkit-animation: fadeIn 0.8s;
-  -moz-animation: fadeIn 0.8s;
-  -o-animation: fadeIn 0.8s;
-  -ms-animation: fadeIn 0.8s;
-}
 
 body {
   background-color: #0a0e15;
