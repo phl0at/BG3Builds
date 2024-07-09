@@ -18,6 +18,8 @@ import {
   CiShare2,
   CiAlignBottom,
   CiBoxList,
+  CiCircleInfo,
+  CiChat2,
 } from "react-icons/ci";
 
 export default function InfoComponent({ points }) {
@@ -68,6 +70,18 @@ export default function InfoComponent({ points }) {
       {currentBuild && (
         <>
           <div className={styles.infoPanel}>
+            {buildId && (
+              <>
+                <div className={styles.infoToggle}>
+                  <button title="Information" className={styles.button}>
+                    <CiCircleInfo size="33" />
+                  </button>
+                  <button title="Comments" className={styles.button}>
+                    <CiChat2 size="33" />
+                  </button>
+                </div>
+              </>
+            )}
             <div className={styles.title}>Information</div>
             <div className={styles.infoClassHead}>
               {currentBuild.build_classes.length ? (
@@ -105,8 +119,8 @@ export default function InfoComponent({ points }) {
               </div>
               <div className={styles.infoCharacter}>
                 <div className={styles.infoCharL}>
+                  <div>Name: {currentBuild.character_name}</div>
                   <div>Origin: {Origins[currentBuild.origin].name}</div>
-                  <div>Character Name: {currentBuild.character_name}</div>
                 </div>
                 <div className={styles.infoCharR}>
                   <div>
@@ -131,7 +145,7 @@ export default function InfoComponent({ points }) {
                 </button>
                 {user && (
                   <OpenModalButton
-                    buttonText={<CiFloppyDisk size="30" />}
+                    buttonText={<CiFloppyDisk size="27" />}
                     className={styles.button}
                     title="Save"
                     modalComponent={
@@ -146,7 +160,7 @@ export default function InfoComponent({ points }) {
                 {user &&
                   (user.id === currentBuild.user_id ? (
                     <OpenModalButton
-                      buttonText={<CiTrash size="30" />}
+                      buttonText={<CiTrash size="27" />}
                       className={styles.button}
                       title="Delete"
                       modalComponent={<DeleteBuildModal />}
@@ -159,7 +173,7 @@ export default function InfoComponent({ points }) {
                 title="Calculate"
                 onClick={() => alert("Feature coming soon!")}
               >
-                <CiAlignBottom size="40" />
+                <CiAlignBottom size="32" />
               </button>
             </div>
             <div className={styles.userInfo}>
@@ -169,7 +183,7 @@ export default function InfoComponent({ points }) {
                 title="Browse Other Builds"
                 onClick={viewBuilds}
               >
-                <CiBoxList size="40" />
+                <CiBoxList size="32" />
               </button>
             </div>
             <div className={styles.userButtons}>
