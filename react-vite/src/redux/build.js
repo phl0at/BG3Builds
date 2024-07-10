@@ -22,6 +22,7 @@ const RESET_ABILITIES = "build/resetAbilities";
 const RAISE_ABILITY = "build/raiseAbility";
 const LOWER_ABILITY = "build/lowerAbility";
 const EQUIP_ITEM = "build/equip";
+const CREATE_COMMENT = "build/createComment";
 
 //! --------------------------------------------------------------------
 //*                         Action Creators
@@ -257,6 +258,27 @@ export const thunkDeleteBuild = (buildId) => async (dispatch) => {
     return { server: "Something went wrong. Please try again" };
   }
 };
+
+//! --------------------------------------------------------------------
+
+export const thunkCreateComment = (buildId, message) => async (dispatch) => {
+  const res = await fetch(`/api/comments/${buildId}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(message),
+  });
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(action(CREATE_COMMENT, data));
+    return data;
+  } else if (res.status < 500) {
+    const errorMessages = await res.json();
+    return errorMessages;
+  } else {
+    return { server: "Something went wrong. Please try again" };
+  }
+};
+
 //! --------------------------------------------------------------------
 //*                            Selectors
 //! --------------------------------------------------------------------
@@ -307,6 +329,15 @@ function buildReducer(state = initialState, action) {
     case DELETE_BUILD: {
       const newState = { ...state };
       delete newState[action.payload];
+      return newState;
+    }
+
+    case CREATE_COMMENT: {
+      const newState = { ...state };
+      newState.current.comments = [
+        ...newState.current.comments,
+        action.payload,
+      ];
       return newState;
     }
 

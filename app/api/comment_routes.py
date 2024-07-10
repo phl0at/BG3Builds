@@ -29,7 +29,7 @@ def create_comment(build_id):
         Creates and returns a new comment on a build
     """
     data = request.get_json()
-    owner_id = current_user.id
+    user_id = current_user.id
 
     message = data.get('message')
 
@@ -40,7 +40,7 @@ def create_comment(build_id):
     else:
         comment = Comment(
             build_id=build_id,
-            owner_id=owner_id,
+            user_id=user_id,
             message=message
         )
         db.session.add(comment)
@@ -57,11 +57,11 @@ def edit_comment(comment_id):
         Updates and returns a comment
     """
     comment = Comment.query.get(comment_id)
-    owner_id = comment.to_dict()['owner_id']
+    user_id = comment.to_dict()['user_id']
 
     if not comment:
         return { 'errors': 'Comment could not be found' }, 404
-    elif owner_id != current_user.id:
+    elif user_id != current_user.id:
         return { 'errors': 'Unauthorized Action' }, 403
 
     data = request.get_json()

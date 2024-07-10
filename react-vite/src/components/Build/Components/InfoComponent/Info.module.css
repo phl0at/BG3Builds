@@ -18,7 +18,14 @@
   align-items: center;
   justify-content: flex-start;
 }
-.infoToggle{
+.infoPanel > * {
+  animation: fadeIn 0.5s;
+  -webkit-animation: fadeIn 0.5s;
+  -moz-animation: fadeIn 0.5s;
+  -o-animation: fadeIn 0.5s;
+  -ms-animation: fadeIn 0.5s;
+}
+.infoToggle {
   position: absolute;
   right: 1%;
   top: 2%;
@@ -29,9 +36,9 @@
 }
 .title {
   width: 100%;
-  height: 5%;
+  height: 8%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   margin-top: 10px;
   font-size: 17pt;
@@ -106,6 +113,49 @@
   justify-content: center;
   column-gap: 8px;
 }
+
+.scroll {
+  height: 85%;
+  width: 85%;
+  overflow-y: auto;
+}
+.commentsList {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  column-gap: 5px;
+  row-gap: 10px;
+}
+.comment {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2px;
+  padding-left: 4px;
+  padding-top: 4px;
+  background: rgba(3, 3, 3, 0.358);
+  border-radius: 4px;
+  width: 95%;
+  height: 70px;
+  max-height: 120px;
+}
+.commentButtons {
+  display: flex;
+  column-gap: 5px;
+}
+form{
+  width: 85%;
+  position: relative;
+  bottom: 4px;
+}
+.textBox{
+  color: #e4c274;
+  background-color: rgba(15, 13, 13, 0.795);
+  width: 100%;
+}
+
+
 
 .userBar {
   outline: 3px solid rgb(101, 71, 42);

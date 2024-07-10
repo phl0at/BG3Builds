@@ -24,7 +24,7 @@ export const thunkGetAllUsers = () => async (dispatch) => {
     const res = await fetch("/api/users");
     if (res.ok) {
       const data = await res.json();
-      dispatch(action(GET_ALL_USERS, data));
+      dispatch(action(GET_ALL_USERS, data.users));
       return data;
     }
   } catch (error) {
