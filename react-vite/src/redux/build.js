@@ -22,7 +22,9 @@ const RESET_ABILITIES = "build/resetAbilities";
 const RAISE_ABILITY = "build/raiseAbility";
 const LOWER_ABILITY = "build/lowerAbility";
 const EQUIP_ITEM = "build/equip";
-const CREATE_COMMENT = "build/createComment";
+const CREATE_COMMENT = "comment/create";
+const EDIT_COMMENT = "comment/edit";
+const DELETE_COMMENT = "comment/delete";
 
 //! --------------------------------------------------------------------
 //*                         Action Creators
@@ -280,6 +282,44 @@ export const thunkCreateComment = (buildId, message) => async (dispatch) => {
 };
 
 //! --------------------------------------------------------------------
+
+export const thunkEditComment = (message) => async (dispatch) => {
+  const res = await fetch(`/api/comments/${message.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(message),
+  });
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(action(EDIT_COMMENT, data));
+    return data;
+  } else if (res.status < 500) {
+    const errorMessages = await res.json();
+    return errorMessages;
+  } else {
+    return { server: "Something went wrong. Please try again" };
+  }
+};
+
+//! --------------------------------------------------------------------
+
+export const thunkDeleteComment = (id) => async (dispatch) => {
+  const res = await fetch(`/api/comments/${id}`, {
+    method: "DELETE",
+  });
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(action(DELETE_COMMENT, id));
+    return data;
+  } else if (res.status < 500) {
+    const errorMessages = await res.json();
+    return errorMessages;
+  } else {
+    return { server: "Something went wrong. Please try again" };
+  }
+};
+
+//! --------------------------------------------------------------------
 //*                            Selectors
 //! --------------------------------------------------------------------
 
@@ -338,6 +378,35 @@ function buildReducer(state = initialState, action) {
         ...newState.current.comments,
         action.payload,
       ];
+      return newState;
+    }
+
+    case EDIT_COMMENT: {
+      const newState = {
+        ...state,
+        current: { ...state.current, comments: [...state.current.comments] },
+      };
+      newState.current.comments.forEach((comment) => {
+        if (comment.id === action.payload.id) {
+          comment.message = action.payload.message;
+        }
+      });
+      return newState;
+    }
+
+    case DELETE_COMMENT: {
+      const newState = {
+        ...state,
+        current: { ...state.current, comments: [...state.current.comments] },
+      };
+      newState.current.comments.forEach((comment) => {
+        if (comment.id === action.payload) {
+          newState.current.comments.splice(
+            newState.current.comments.indexOf(comment),
+            1
+          );
+        }
+      });
       return newState;
     }
 

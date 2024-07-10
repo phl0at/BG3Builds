@@ -57,11 +57,11 @@ def edit_comment(comment_id):
         Updates and returns a comment
     """
     comment = Comment.query.get(comment_id)
-    user_id = comment.to_dict()['user_id']
+
 
     if not comment:
         return { 'errors': 'Comment could not be found' }, 404
-    elif user_id != current_user.id:
+    elif comment.user_id != current_user.id:
         return { 'errors': 'Unauthorized Action' }, 403
 
     data = request.get_json()
@@ -76,3 +76,26 @@ def edit_comment(comment_id):
         db.session.commit()
 
         return comment.to_dict(), 200
+
+
+########################DELETE A COMMENT##########################
+
+@comment_routes.route("/<int:comment_id>", methods=["DELETE"])
+@login_required
+def delete_comment(comment_id):
+    """
+        Deletes a comment
+    """
+
+    comment = Comment.query.get(comment_id)
+
+
+    if not comment:
+        return { 'errors': 'Comment could not be found' }, 404
+    elif comment.user_id != current_user.id:
+        return { 'errors': 'Unauthorized Action' }, 403
+    else:
+        db.session.delete(comment)
+        db.session.commit()
+
+        return { 'message': 'Successfully deleted' }, 200
