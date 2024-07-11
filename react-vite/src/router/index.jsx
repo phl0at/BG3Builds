@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import LandingPage from "../components/Build/Pages/Landing";
-import CreateBuildPage from "../components/Build/Pages/CreatePage/CreateParent";
-import EditBuildPage from "../components/Build/Pages/EditPage/EditParent";
-import ViewBuildPage from "../components/Build/Pages/ViewPage/ViewParent";
+import LandingPage from "../components/LandingPage";
+import CreateBuildPage from "../components/CreatePage/CreateParent";
+import EditBuildPage from "../components/EditPage/EditParent";
+import ViewBuildPage from "../components/ViewPage/ViewParent";
 import Layout from "./Layout";
 
 export const router = createBrowserRouter([
