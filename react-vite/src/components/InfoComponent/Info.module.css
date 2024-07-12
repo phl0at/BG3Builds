@@ -144,18 +144,16 @@
   display: flex;
   column-gap: 5px;
 }
-form{
+form {
   width: 85%;
   position: relative;
   bottom: 4px;
 }
-.textBox{
+.textBox {
   color: #e4c274;
   background-color: rgba(15, 13, 13, 0.795);
   width: 100%;
 }
-
-
 
 .userBar {
   outline: 3px solid rgb(101, 71, 42);
@@ -266,6 +264,11 @@ form{
 .button:hover {
   color: #e69a28;
   outline-color: #e4c274;
+}
+
+.loading {
+  position: relative;
+  top: 40%;
 }
 
 @media (max-width: 600px) {

@@ -2,8 +2,11 @@
 import styles from "./ViewBuilds.module.css";
 import { Images } from "../images";
 //Functions/Components
+import { thunkAddFavorite, thunkDeleteFavorite } from "../../redux/session";
 //Packages
-import { CiHeart, CiCircleRemove, CiLogout  } from "react-icons/ci";
+import { useSelector, useDispatch } from "react-redux";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { CiCircleRemove, CiLogout } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 
 export function SelectedBuildPanel({
@@ -13,6 +16,9 @@ export function SelectedBuildPanel({
   Origins,
   Races,
 }) {
+  const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.session.user.favorites);
+
   const attributes = [
     "strength",
     "dexterity",
@@ -22,34 +28,45 @@ export function SelectedBuildPanel({
     "charisma",
   ];
 
+  const clickFavorite = (e) => {
+    e.preventDefault();
+    if (favorites[build.id]) {
+      dispatch(thunkDeleteFavorite(build.id));
+    } else {
+      dispatch(thunkAddFavorite(build.id));
+    }
+  };
+
   return (
     <>
       <div className={styles.selectedHeader}>
-        <button
-          className={styles.favorite}
-          onClick={(e) => {
-            e.preventDefault();
-            alert("Feature coming soon!");
-          }}
-        >
-          <CiHeart size="30" />
-        </button>
+        <div>
+          <button title="Add to favorites" className={styles.favorite} onClick={clickFavorite}>
+            {favorites[build.id] ? (
+              <AiFillHeart size="40" />
+            ) : (
+              <AiOutlineHeart size="40" />
+            )}
+          </button>
+        </div>
         <div className={styles.selectedClassImg}>
           {build.build_classes.length ? (
-            <img src={Images.classes[build.build_classes[0].name]} />
+            <img src={Images.classes[(build.build_classes[0]).name]} />
           ) : (
             "No classes"
           )}
         </div>
-        <button
-          className={styles.close}
-          onClick={(e) => {
-            e.preventDefault();
-            setSelected(null);
-          }}
-        >
-          <CiCircleRemove size="30" />
-        </button>
+        <div>
+          <button
+            className={styles.close}
+            onClick={(e) => {
+              e.preventDefault();
+              setSelected(null);
+            }}
+          >
+            <CiCircleRemove size="40" />
+          </button>
+        </div>
       </div>
       <div className={styles.selectedBody}>
         <div
@@ -90,7 +107,13 @@ export function SelectedBuildPanel({
             </div>
           </div>
         </div>
-        <NavLink title="Go to build" className={styles.navButton} to={`/build/${build.id}`}><CiLogout size="40" /></NavLink>
+        <NavLink
+          title="Go to build"
+          className={styles.navButton}
+          to={`/build/${build.id}`}
+        >
+          <CiLogout size="40" />
+        </NavLink>
       </div>
     </>
   );

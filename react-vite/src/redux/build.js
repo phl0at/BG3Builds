@@ -22,8 +22,7 @@ const RESET_ABILITIES = "build/resetAbilities";
 const RAISE_ABILITY = "build/raiseAbility";
 const LOWER_ABILITY = "build/lowerAbility";
 const EQUIP_ITEM = "build/equip";
-const CREATE_COMMENT = "comment/create";
-const EDIT_COMMENT = "comment/edit";
+const COMMENT = "comment";
 const DELETE_COMMENT = "comment/delete";
 
 //! --------------------------------------------------------------------
@@ -271,7 +270,7 @@ export const thunkCreateComment = (buildId, message) => async (dispatch) => {
   });
   if (res.ok) {
     const data = await res.json();
-    dispatch(action(CREATE_COMMENT, data));
+    dispatch(action(COMMENT, data));
     return data;
   } else if (res.status < 500) {
     const errorMessages = await res.json();
@@ -291,7 +290,7 @@ export const thunkEditComment = (message) => async (dispatch) => {
   });
   if (res.ok) {
     const data = await res.json();
-    dispatch(action(EDIT_COMMENT, data));
+    dispatch(action(COMMENT, data));
     return data;
   } else if (res.status < 500) {
     const errorMessages = await res.json();
@@ -329,6 +328,20 @@ export const getEquipmentArray = createSelector(
 );
 
 //! --------------------------------------------------------------------
+
+export const getBuildClassArray = createSelector(
+  (state) => state.builds.current.build_classes,
+  (_class) => Object.values(_class)
+);
+
+//! --------------------------------------------------------------------
+
+export const getCommentsArray = createSelector(
+  (state) => state.builds.current.comments,
+  (comment) => Object.values(comment)
+);
+
+//! --------------------------------------------------------------------
 export const getBuildsArray = createSelector(
   (state) => state.builds,
   (build) => {
@@ -355,8 +368,24 @@ function buildReducer(state = initialState, action) {
 
     case GET_BUILD: {
       const newState = { ...state };
+
       newState[action.payload.id] = action.payload;
       newState.current = action.payload;
+
+      //Normalize classes
+      const build_classes = {};
+      newState.current.build_classes.forEach(
+        (_class) => (build_classes[_class.class_id] = _class)
+      );
+      newState.current.build_classes = { ...build_classes };
+
+      //Normalize comments
+      const comments = {};
+      newState.current.comments.forEach(
+        (comment) => (comments[comment.id] = comment)
+      );
+      newState.current.comments = { ...comments };
+
       return newState;
     }
 
@@ -372,41 +401,21 @@ function buildReducer(state = initialState, action) {
       return newState;
     }
 
-    case CREATE_COMMENT: {
+    case COMMENT: {
       const newState = { ...state };
-      newState.current.comments = [
+      newState.current.comments = {
         ...newState.current.comments,
-        action.payload,
-      ];
-      return newState;
-    }
-
-    case EDIT_COMMENT: {
-      const newState = {
-        ...state,
-        current: { ...state.current, comments: [...state.current.comments] },
+        [action.payload.id]: action.payload,
       };
-      newState.current.comments.forEach((comment) => {
-        if (comment.id === action.payload.id) {
-          comment.message = action.payload.message;
-        }
-      });
       return newState;
     }
 
     case DELETE_COMMENT: {
       const newState = {
         ...state,
-        current: { ...state.current, comments: [...state.current.comments] },
+        current: { ...state.current, comments: { ...state.current.comments } },
       };
-      newState.current.comments.forEach((comment) => {
-        if (comment.id === action.payload) {
-          newState.current.comments.splice(
-            newState.current.comments.indexOf(comment),
-            1
-          );
-        }
-      });
+      delete newState.current.comments[action.payload];
       return newState;
     }
 
@@ -436,22 +445,18 @@ function buildReducer(state = initialState, action) {
         ...state,
         current: {
           ...state.current,
+          build_classes: { ...state.current.build_classes },
         },
       };
-      const existingClass = newState.current.build_classes.find(
-        (build_class) => build_class.class_id === action.payload.class_id
-      );
-      if (existingClass) {
-        newState.current.build_classes[
-          newState.current.build_classes.indexOf(existingClass)
-        ].level += 1;
 
-        newState.current.build_classes[
-          newState.current.build_classes.indexOf(existingClass)
-        ].sub_class = action.payload.sub_class;
+      if (newState.current.build_classes[action.payload.class_id]) {
+        //If the build has this class, simply increment the level
+        newState.current.build_classes[action.payload.class_id].level++;
       } else {
+        //Otherwise, set the class level to 1 and add it to the build
         action.payload.level = 1;
-        newState.current.build_classes.push(action.payload);
+        newState.current.build_classes[action.payload.class_id] =
+          action.payload;
       }
       newState.current.level++;
       return newState;
@@ -460,7 +465,7 @@ function buildReducer(state = initialState, action) {
     case RESET_CLASSES: {
       const newState = { ...state };
       newState.current.level = 0;
-      newState.current.build_classes = [];
+      newState.current.build_classes = {};
       return newState;
     }
 

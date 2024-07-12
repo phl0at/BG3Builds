@@ -6,21 +6,8 @@ from sqlalchemy.orm import joinedload
 
 comment_routes = Blueprint('comments', __name__)
 
-########################GET ALL COMMENTS FOR A BUILD##########################
 
-@comment_routes.route("/<int:build_id>")
-@login_required
-def get_all_comments(build_id):
-    """
-        Returns all comments for a build specified by ID
-    """
-    build = Build.query \
-                .options(joinedload(Build.comments)) \
-                .get(build_id)
-
-    return build.to_dict()['comments']
-
-########################CREATE A COMMENT FOR A BUILD##########################
+########################CREATE A COMMENT##########################
 
 @comment_routes.route("/<int:build_id>", methods=["POST"])
 @login_required

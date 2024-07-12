@@ -20,7 +20,7 @@ def get_all_builds():
         .all()
 
     users = User.query.all()
-    
+
     return {'builds': [build.to_dict() for build in builds],
             'users': [user.to_dict() for user in users]}
 

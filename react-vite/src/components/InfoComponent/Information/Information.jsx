@@ -5,12 +5,11 @@ import { Images } from "../../images";
 // Packages
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { getBuildClassArray } from "../../../redux/build";
 
 export default function Information({ currentBuild }) {
   const buildId = useParams();
-  const build_classes = useSelector(
-    (state) => state.builds.current?.build_classes
-  );
+  const build_classes = useSelector(getBuildClassArray);
   const Backgrounds = useSelector((state) => state.static.backgrounds);
   const Origins = useSelector((state) => state.static.origins);
   const Races = useSelector((state) => state.static.races);
@@ -28,8 +27,8 @@ export default function Information({ currentBuild }) {
     <>
       <div className={styles.title}>Information</div>
       <div className={styles.infoClassHead}>
-        {currentBuild.build_classes.length ? (
-          <img src={Images.classes[currentBuild.build_classes[0].name]} />
+        {build_classes.length ? (
+          <img src={Images.classes[build_classes[0].name]} />
         ) : (
           "No classes"
         )}

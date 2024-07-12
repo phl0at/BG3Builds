@@ -2,18 +2,18 @@
 import styles from "../Info.module.css";
 // Functions/Components
 import { Message } from "./helper";
-import { thunkCreateComment } from "../../../redux/build";
+import { getCommentsArray, thunkCreateComment } from "../../../redux/build";
 import { thunkGetAllUsers } from "../../../redux/users";
 // Packages
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-
+import { ClipLoader } from "react-spinners";
 export default function Comments() {
   const dispatch = useDispatch();
   const { buildId } = useParams();
   const [newComment, setNewComment] = useState("");
-  const comments = useSelector((state) => state.builds.current.comments);
+  const comments = useSelector(getCommentsArray);
   const allUsers = useSelector((state) => state.users);
   const currUser = useSelector((state) => state.session.user);
   const existingComment = comments.find(
@@ -24,7 +24,7 @@ export default function Comments() {
     if (!Object.values(allUsers).length) dispatch(thunkGetAllUsers());
   }, []);
 
-  if (!Object.values(allUsers).length) return "Loading...";
+  if (!Object.values(allUsers).length) return <ClipLoader color="#e4c274" className={styles.loading} />;
 
   const onSubmit = (e) => {
     e.preventDefault();

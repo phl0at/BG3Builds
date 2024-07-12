@@ -2,7 +2,11 @@
 import styles from "./Class.module.css";
 import { Images } from "../../../images";
 //Functions/Components
-import { addBuildClass, setClass } from "../../../../redux/build";
+import {
+  addBuildClass,
+  getBuildClassArray,
+  setClass,
+} from "../../../../redux/build";
 import OpenModalButton from "../../../Modal";
 import ResetClassesModal from "./ResetModal";
 //Packages
@@ -13,9 +17,7 @@ export default function ClassComponent({ currentBuild }) {
   const notMaxLevel = !currentBuild.level || currentBuild.level < 12;
   const dispatch = useDispatch();
   const Classes = useSelector((state) => state.static.classes);
-  const buildClasses = useSelector(
-    (state) => state.builds.current.build_classes
-  );
+  const buildClasses = useSelector(getBuildClassArray);
 
   const clickClass = (e, _class) => {
     e.preventDefault();
