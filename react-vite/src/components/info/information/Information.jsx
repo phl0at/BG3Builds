@@ -49,14 +49,14 @@ export default function Information({ currentBuild }) {
           })}
         </div>
         <div className={styles.infoClasses}>
-          {build_classes.map((bc) => (
-            <div className={styles.infoClass} key={bc.class_id}>
+          {build_classes.map((_class) => (
+            <div className={styles.infoClass} key={_class.class_id}>
               <img
-                title={bc.name}
+                title={_class.name}
                 className={styles.listImage}
-                src={Images.classes[bc.name]}
+                src={Images.classes[_class.name]}
               />
-              <div>{bc.level}</div>
+              <div>{_class.level}</div>
             </div>
           ))}
         </div>

@@ -2,8 +2,8 @@
 import styles from "./Equipment.module.css";
 import { Images } from "../images";
 //Functions/Components
-import OpenModalButton from "../Modal";
-import ItemsTableModal from "./ItemTable";
+import OpenModalButton from "../modals";
+import ItemsTableModal from "./items";
 //Packages
 import { useSelector } from "react-redux";
 import { CiNoWaitingSign } from "react-icons/ci";

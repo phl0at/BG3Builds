@@ -11,14 +11,15 @@ import { CiLogin } from "react-icons/ci";
 import { AiFillHeart } from "react-icons/ai";
 
 export default function ViewBuildsComponent() {
-  const allBuildsArr = useSelector(getBuildsArray);
   const [selected, setSelected] = useState(null);
+  const allBuildsArr = useSelector(getBuildsArray);
   const allUsers = useSelector((state) => state.users);
-  const favorites = useSelector((state) => state.session.user.favorites);
+  const user = useSelector(state=>state.session.user)
   const selectedBuild = useSelector((state) => state.builds[selected]);
   const Backgrounds = useSelector((state) => state.static.backgrounds);
   const Origins = useSelector((state) => state.static.origins);
   const Races = useSelector((state) => state.static.races);
+
 
   const onClick = (e, id) => {
     e.preventDefault();
@@ -43,7 +44,7 @@ export default function ViewBuildsComponent() {
                 className={selected === build.id ? styles.select : styles.build}
               >
                 <>
-                  {favorites[build.id] ? <AiFillHeart className={styles.favorited} size="17" /> : null}
+                  {user && user.favorites[build.id] ? <AiFillHeart className={styles.favorited} size="17" /> : null}
 
                   <div className={styles.buildName}>{build.name}</div>
 

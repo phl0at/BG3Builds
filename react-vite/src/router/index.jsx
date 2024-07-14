@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import LandingPage from "../components/LandingPage";
-import CreateBuildPage from "../components/CreatePage/CreateParent";
-import EditBuildPage from "../components/EditPage/EditParent";
-import ViewBuildPage from "../components/ViewPage/ViewParent";
+import LandingPage from "../pages/landing";
+import CreateBuildPage from "../pages/create";
+import EditBuildPage from "../pages/edit";
+import ViewBuildPage from "../pages/view";
 import Layout from "./Layout";
 
 export const router = createBrowserRouter([
@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/browse",
-        element: <ViewBuildPage/>,
+        element: <ViewBuildPage />,
       },
     ],
   },

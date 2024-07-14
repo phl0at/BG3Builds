@@ -1,13 +1,13 @@
 //Files
 import styles from "./Build.module.css";
 //Functions/Components
-import OriginComponent from "./Menus/OriginMenu/Origin";
-import RaceComponent from "./Menus/RaceMenu/Race";
-import ClassComponent from "./Menus/ClassMenu/Class"
-import BackgroundComponent from "./Menus/BackgroundMenu/Background";
+import OriginComponent from "./menus/origins/Origin";
+import RaceComponent from "./menus/race/Race";
+import ClassComponent from "./menus/class/Class"
+import BackgroundComponent from "./menus/backgrounds/Background";
 //Packages
 import { useSelector } from "react-redux";
-import AbilitiesComponent from "./Menus/AbilitiesMenu/Abilities";
+import AbilitiesComponent from "./menus/abilities/Abilities";
 
 export default function BuildComponent({ points, setPoints, activeMenu }) {
   const currentBuild = useSelector((state) => state.builds.current);

@@ -3,10 +3,10 @@ import styles from "./CreateParent.module.css";
 //Functions/Components
 import { setDefaults } from "../../redux/build";
 import { thunkPreloadData } from "../../redux/static";
-import Navigation from "../NavigationComponent";
-import BuildComponent from "../BuildComponent";
-import EquipmentComponent from "../EquipComponent";
-import InfoComponent from "../InfoComponent";
+import Navigation from "../../components/navigation";
+import BuildComponent from "../../components/build";
+import EquipmentComponent from "../../components/equipment";
+import InfoComponent from "../../components/info";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";

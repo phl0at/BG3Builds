@@ -1,14 +1,14 @@
 //Files
 import styles from "./Info.module.css";
 //Functions/Components
-import Information from "./Information";
-import Comments from "./Comments";
-import OpenModalButton from "../Modal";
-import LoginFormModal from "../Auth/LoginFormModal";
-import SignupFormModal from "../Auth/SignupFormModal";
-import SaveBuildModal from "../CreatePage/SaveModal";
-import UpdateBuildModal from "../EditPage/UpdateModal";
-import DeleteBuildModal from "./DeleteModal/DeleteModal";
+import Information from "./information";
+import Comments from "./comments";
+import OpenModalButton from "../modals";
+import LoginFormModal from "../modals/login";
+import SignupFormModal from "../modals/signup";
+import SaveBuildModal from "../../pages/create/save";
+import UpdateBuildModal from "../../pages/edit/update";
+import DeleteBuildModal from "./delete/DeleteModal";
 import { thunkLogin, thunkLogout } from "../../redux/session";
 //Packages
 import { useState } from "react";

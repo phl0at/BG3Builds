@@ -1,3 +1,4 @@
+import Sadowheart from "../../../images/error_icon/Sadowheart.png"
 import Astarion from "../../../images/char_icons/Astarion.png";
 import Gale from "../../../images/char_icons/Gale.png";
 import Custom from "../../../images/char_icons/Custom.png";
@@ -132,4 +133,7 @@ export const Images = {
     ClubofHillGiantStrength,
     TitanStringBow,
   },
+  error: {
+    Sadowheart
+  }
 };

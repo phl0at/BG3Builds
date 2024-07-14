@@ -15,10 +15,8 @@ export default function Comments() {
   const [newComment, setNewComment] = useState("");
   const comments = useSelector(getCommentsArray);
   const allUsers = useSelector((state) => state.users);
-  const currUser = useSelector((state) => state.session.user);
-  const existingComment = comments.find(
-    (comment) => comment.user_id === currUser?.id
-  );
+  const user = useSelector((state) => state.session.user);
+
 
   useEffect(() => {
     if (!Object.values(allUsers).length) dispatch(thunkGetAllUsers());
@@ -49,8 +47,8 @@ export default function Comments() {
         </div>
       </div>
       <form type="submit" onSubmit={onSubmit}>
-        {/* {!existingComment && */}
-        <input
+
+        {user && <input
           value={newComment}
           onChange={(e) => {
             e.preventDefault();
@@ -60,8 +58,8 @@ export default function Comments() {
           placeholder="Leave a comment!"
           type="text"
           required
-        />
-        {/* } */}
+        />}
+
       </form>
     </>
   );

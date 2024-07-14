@@ -2,7 +2,7 @@
 import styles from "./Abilities.module.css";
 //Functions/Components
 import { Ability } from "./helper";
-import OpenModalButton from "../../../Modal";
+import OpenModalButton from "../../../modals";
 import ResetAbilitiesModal from "./ResetModal";
 //Packages
 import { CiUndo } from "react-icons/ci";

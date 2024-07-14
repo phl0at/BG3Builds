@@ -1,8 +1,8 @@
 //Files
 import styles from "./ViewParent.module.css";
 //Functions/Components
-import ViewBuildsComponent from "../ViewComponent";
-import FilterBuildComponent from "../FilterComponent";
+import ViewBuildsComponent from "../../components/view";
+import FilterBuildComponent from "../../components/filter";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";

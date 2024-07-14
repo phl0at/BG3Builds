@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaUserCircle } from 'react-icons/fa';
 import { thunkLogout } from "../../redux/session";
 import OpenModalButton from "./OpenModalButton";
-import LoginFormModal from "../Auth/LoginFormModal";
+import LoginFormModal from "./login";
 import SignupFormModal from "../Auth/SignupFormModal";
 
 function ProfileButton() {

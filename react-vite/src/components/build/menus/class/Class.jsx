@@ -7,8 +7,8 @@ import {
   getBuildClassArray,
   setClass,
 } from "../../../../redux/build";
-import OpenModalButton from "../../../Modal";
-import ResetClassesModal from "./ResetModal";
+import OpenModalButton from "../../../modals";
+import ResetClassesModal from "./reset";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
 import { CiUndo } from "react-icons/ci";

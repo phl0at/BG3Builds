@@ -166,6 +166,7 @@ export const thunkCreateBuild =
   async (dispatch) => {
     build.name = name;
     build.character_name = character_name;
+    build.build_classes = Object.values(build.build_classes)
     const res = await fetch("/api/builds/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -191,7 +192,8 @@ export const thunkUpdateBuild =
   async (dispatch) => {
     build.name = name;
     build.character_name = character_name;
-
+    build.build_classes = Object.values(build.build_classes)
+    
     const res = await fetch(`/api/builds/${build.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

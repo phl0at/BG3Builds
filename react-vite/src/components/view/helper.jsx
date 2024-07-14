@@ -17,7 +17,7 @@ export function SelectedBuildPanel({
   Races,
 }) {
   const dispatch = useDispatch();
-  const favorites = useSelector((state) => state.session.user.favorites);
+  const user = useSelector(state=>state.session.user)
 
   const attributes = [
     "strength",
@@ -30,6 +30,9 @@ export function SelectedBuildPanel({
 
   const clickFavorite = (e) => {
     e.preventDefault();
+    
+    if(!user) alert("You must sign in to favorite this build")
+
     if (favorites[build.id]) {
       dispatch(thunkDeleteFavorite(build.id));
     } else {
@@ -42,7 +45,7 @@ export function SelectedBuildPanel({
       <div className={styles.selectedHeader}>
         <div>
           <button title="Add to favorites" className={styles.favorite} onClick={clickFavorite}>
-            {favorites[build.id] ? (
+            {user && user.favorites[build.id] ? (
               <AiFillHeart size="40" />
             ) : (
               <AiOutlineHeart size="40" />
