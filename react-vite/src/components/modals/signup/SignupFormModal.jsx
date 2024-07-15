@@ -8,7 +8,7 @@ import ErrorModal from "../error/ErrorModal";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-function SignupFormModal() {
+function SignupFormModal({ setLoading }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -33,6 +33,8 @@ function SignupFormModal() {
     if (!validTLDs.includes(emailTLD)) {
       return setErrors("Email must end in .com, .net, .mil, .org, or .edu");
     }
+
+    setLoading(true);
 
     const serverResponse = await dispatch(
       thunkSignup({

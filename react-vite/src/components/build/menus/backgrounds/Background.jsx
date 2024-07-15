@@ -2,25 +2,23 @@
 import styles from "./Background.module.css";
 import { Images } from "../../../images";
 //Functions/Components
-import { setBackground } from "../../../../redux/build";
+import { action } from "../../../../redux/build";
 //Packages
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function BackgroundComponent({ currentBuild }) {
   const dispatch = useDispatch();
+  const [errors, setErrors] = useState("");
   const Backgrounds = useSelector((state) => state.static.backgrounds);
-  const [errors, setErrors] = useState({});
 
   const onClick = (e, background) => {
     e.preventDefault();
-    setErrors({});
+    setErrors("");
     if (currentBuild.origin === 8) {
-      dispatch(setBackground(background));
+      dispatch(action("build/setBackground", background));
     } else {
-      setErrors({
-        error: "Cannot change the background of an Origin character",
-      });
+      setErrors("Cannot change the background of an Origin character");
     }
   };
 
@@ -175,7 +173,7 @@ export default function BackgroundComponent({ currentBuild }) {
           {Backgrounds[currentBuild.background].description}
         </div>
       </div>
-      <div className={styles.error}>{errors && errors.error}</div>
+      <div className={styles.error}>{errors}</div>
     </>
   );
 }

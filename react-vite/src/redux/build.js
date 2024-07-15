@@ -4,24 +4,30 @@ import { createSelector } from "reselect";
 //*                          Action Types
 //! --------------------------------------------------------------------
 
-const SET_DEFAULTS = "build/setDefault";
-const SET_CURRENT_BUILD = "build/setBuild";
-const DELETE_BUILD = "build/delete";
+// BUILD ACTIONS
 const GET_BUILD = "build/getBuild";
 const GET_ALL_BUILDS = "build/getAll";
+const SET_DEFAULTS = "build/setDefault";
+const DELETE_BUILD = "build/delete";
+// USER ACTIONS
 const GET_ALL_USERS = "users/getAll";
+// CHARACTER ACTIONS
 const SET_ORIGIN = "build/setOrigin";
 const SET_RACE = "build/setRace";
 const SET_BG = "build/setBackground";
+// ABILITY ACTIONS
+const RAISE_ABILITY = "build/raiseAbility";
+const LOWER_ABILITY = "build/lowerAbility";
+const RESET_ABILITIES = "build/resetAbilities";
 const SET_BONUS = "build/setBonus";
+const CLEAR_BONUS = "build/clearBonus";
+// CLASS ACTIONS
 const SET_CLASS = "build/setClass";
 const ADD_BUILD_CLASS = "build/addBuildClass";
 const RESET_CLASSES = "build/resetClasses";
-const CLEAR_BONUS = "build/clearBonus";
-const RESET_ABILITIES = "build/resetAbilities";
-const RAISE_ABILITY = "build/raiseAbility";
-const LOWER_ABILITY = "build/lowerAbility";
+// ITEM ACTIONS
 const EQUIP_ITEM = "build/equip";
+// COMMENT ACTIONS
 const COMMENT = "comment";
 const DELETE_COMMENT = "comment/delete";
 
@@ -34,14 +40,7 @@ export const action = (type, payload) => ({
   payload,
 });
 
-//! --------------------------------------------------------------------
 
-export const setCurrentBuild = (payload) => {
-  return {
-    type: SET_CURRENT_BUILD,
-    payload,
-  };
-};
 //! --------------------------------------------------------------------
 
 export const setOrigin = (payload, name) => {
@@ -51,89 +50,14 @@ export const setOrigin = (payload, name) => {
     name,
   };
 };
-//! --------------------------------------------------------------------
-
-export const setRace = (payload) => {
-  return {
-    type: SET_RACE,
-    payload,
-  };
-};
-
-//! --------------------------------------------------------------------
-
-export const setClass = (payload) => {
-  return {
-    type: SET_CLASS,
-    payload,
-  };
-};
-//! --------------------------------------------------------------------
-
-export const addBuildClass = (payload) => {
-  return {
-    type: ADD_BUILD_CLASS,
-    payload,
-  };
-};
-
-//! --------------------------------------------------------------------
-
-export const resetClasses = () => {
-  return {
-    type: RESET_CLASSES,
-  };
-};
-//! --------------------------------------------------------------------
-
-export const resetAbilities = () => {
-  return {
-    type: RESET_ABILITIES,
-  };
-};
-
-//! --------------------------------------------------------------------
-
-export const setBackground = (payload) => {
-  return {
-    type: SET_BG,
-    payload,
-  };
-};
-
-//! --------------------------------------------------------------------
-
-export const setDefaults = () => {
-  return {
-    type: SET_DEFAULTS,
-  };
-};
-
-//! --------------------------------------------------------------------
-
-export const raiseAbility = (payload) => {
-  return {
-    type: RAISE_ABILITY,
-    payload,
-  };
-};
-
-//! --------------------------------------------------------------------
-
-export const lowerAbility = (payload) => {
-  return {
-    type: LOWER_ABILITY,
-    payload,
-  };
-};
 
 //! --------------------------------------------------------------------
 
 export const setBonus = (amount, payload) => {
   return {
     type: SET_BONUS,
-    amount,
     payload,
+    amount,
   };
 };
 
@@ -142,8 +66,8 @@ export const setBonus = (amount, payload) => {
 export const clearBonus = (amount, payload) => {
   return {
     type: CLEAR_BONUS,
-    amount,
     payload,
+    amount,
   };
 };
 
@@ -152,8 +76,8 @@ export const clearBonus = (amount, payload) => {
 export const equipItem = (itemType, payload) => {
   return {
     type: EQUIP_ITEM,
-    itemType,
     payload,
+    itemType,
   };
 };
 
@@ -193,7 +117,7 @@ export const thunkUpdateBuild =
     build.name = name;
     build.character_name = character_name;
     build.build_classes = Object.values(build.build_classes)
-    
+
     const res = await fetch(`/api/builds/${build.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -362,11 +286,6 @@ export const getBuildsArray = createSelector(
 const initialState = {};
 function buildReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_CURRENT_BUILD: {
-      const newState = { ...state };
-      newState.current = action.payload;
-      return newState;
-    }
 
     case GET_BUILD: {
       const newState = { ...state };

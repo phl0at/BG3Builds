@@ -2,7 +2,7 @@
 import styles from "./Race.module.css";
 import { Images } from "../../../images";
 //Functions/Components
-import { setRace } from "../../../../redux/build";
+import { action } from "../../../../redux/build";
 //Packages
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +16,7 @@ export default function RaceComponent({ currentBuild }) {
     e.preventDefault();
     setErrors({});
     if (currentBuild.origin === 7 || currentBuild.origin === 8) {
-      dispatch(setRace(race));
+      dispatch(action("build/setRace", race));
     } else {
       setErrors({ error: "Cannot change the race of an Origin character" });
     }

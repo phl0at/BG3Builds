@@ -3,9 +3,8 @@ import styles from "./Class.module.css";
 import { Images } from "../../../images";
 //Functions/Components
 import {
-  addBuildClass,
   getBuildClassArray,
-  setClass,
+  action,
 } from "../../../../redux/build";
 import OpenModalButton from "../../../modals";
 import ResetClassesModal from "./reset";
@@ -21,7 +20,7 @@ export default function ClassComponent({ currentBuild }) {
 
   const clickClass = (e, _class) => {
     e.preventDefault();
-    dispatch(setClass(_class));
+    dispatch(action("build/setClass", _class));
   };
 
   const clickAddClass = (e, _class, sub_class) => {
@@ -31,7 +30,7 @@ export default function ClassComponent({ currentBuild }) {
       name: _class.name,
       sub_class,
     };
-    dispatch(addBuildClass(newClass));
+    dispatch(action("build/addBuildClass", newClass));
   };
 
   return (

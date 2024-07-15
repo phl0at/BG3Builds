@@ -2,7 +2,7 @@
 import styles from "./ResetModal.module.css";
 //Functions/Components
 import { useModal } from "../../../../../context/Modal";
-import { resetClasses } from "../../../../../redux/build";
+import { action } from "../../../../../redux/build";
 //Packages
 import { CiCircleCheck, CiCircleRemove } from "react-icons/ci";
 import { useDispatch } from "react-redux";
@@ -13,7 +13,7 @@ export default function ResetClassesModal() {
 
   const reset = (e) => {
     e.preventDefault();
-    dispatch(resetClasses())
+    dispatch(action("build/resetClasses"))
     closeModal();
   };
   const cancel = (e) => {

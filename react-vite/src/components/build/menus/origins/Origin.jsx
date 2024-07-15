@@ -2,11 +2,7 @@
 import styles from "./Origin.module.css";
 import { Images } from "../../../images";
 //Functions/Components
-import {
-  setBackground,
-  setOrigin,
-  setRace,
-} from "../../../../redux/build";
+import { action, setOrigin } from "../../../../redux/build";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
 
@@ -21,19 +17,40 @@ export default function OriginComponent({ currentBuild }) {
 
     switch (origin) {
       case 1:
-        return dispatch(setRace(1)), dispatch(setBackground(2));
+        return (
+          dispatch(action("build/setRace", 1)),
+          dispatch(action("build/setBackground", 2))
+        );
       case 2:
-        return dispatch(setRace(5)), dispatch(setBackground(10));
+        return (
+          dispatch(action("build/setRace", 5)),
+          dispatch(action("build/setBackground", 10))
+        );
       case 3:
-        return dispatch(setRace(4)), dispatch(setBackground(9));
+        return (
+          dispatch(action("build/setRace", 4)),
+          dispatch(action("build/setBackground", 9))
+        );
       case 4:
-        return dispatch(setRace(7)), dispatch(setBackground(1));
+        return (
+          dispatch(action("build/setRace", 7)),
+          dispatch(action("build/setBackground", 1))
+        );
       case 5:
-        return dispatch(setRace(4)), dispatch(setBackground(5));
+        return (
+          dispatch(action("build/setRace", 4)),
+          dispatch(action("build/setBackground", 5))
+        );
       case 6:
-        return dispatch(setRace(2)), dispatch(setBackground(8));
+        return (
+          dispatch(action("build/setRace", 2)),
+          dispatch(action("build/setBackground", 8))
+        );
       case 7:
-        return dispatch(setRace(10)), dispatch(setBackground(12));
+        return (
+          dispatch(action("build/setRace", 10)),
+          dispatch(action("build/setBackground", 12))
+        );
     }
   };
 

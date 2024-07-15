@@ -8,15 +8,16 @@ import ErrorModal from "../error/ErrorModal";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
-function LoginFormModal() {
+function LoginFormModal({ setLoading }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const { closeModal, setModalContent } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setLoading(true);
 
     const serverResponse = await dispatch(
       thunkLogin({
@@ -26,7 +27,7 @@ function LoginFormModal() {
     );
 
     if (serverResponse) {
-      setModalContent(<ErrorModal errors={serverResponse} />)
+      setModalContent(<ErrorModal errors={serverResponse} />);
     } else {
       closeModal();
     }

@@ -3,8 +3,7 @@ import styles from "./Abilities.module.css";
 import { Images } from "../../../images";
 //Functions/Components
 import {
-  lowerAbility,
-  raiseAbility,
+  action,
   setBonus,
   clearBonus,
 } from "../../../../redux/build";
@@ -39,13 +38,13 @@ export function Ability({
   const clickLower = (e, type) => {
     e.preventDefault();
     setPoints(clicks < 6 ? points + 1 : points + 2);
-    dispatch(lowerAbility(type));
+    dispatch(action("build/lowerAbility", type));
   };
 
   const clickRaise = (e, type) => {
     e.preventDefault();
     setPoints(clicks < 5 ? points - 1 : points - 2);
-    dispatch(raiseAbility(type));
+    dispatch(action("build/raiseAbility", type));
   };
 
   const clickPlusTwo = (e, ability) => {

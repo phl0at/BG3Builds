@@ -4,18 +4,17 @@ import styles from "./Info.module.css";
 import Information from "./information";
 import Comments from "./comments";
 import OpenModalButton from "../modals";
-import LoginFormModal from "../modals/login";
-import SignupFormModal from "../modals/signup";
 import SaveBuildModal from "../../pages/create/save";
 import UpdateBuildModal from "../../pages/edit/update";
 import DeleteBuildModal from "./delete/DeleteModal";
 import ErrorModal from "../modals/error/ErrorModal";
-import { thunkLogin, thunkLogout } from "../../redux/session";
+
 import { useModal } from "../../context/Modal";
 //Packages
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { ClipLoader } from "react-spinners";
 import {
   CiTrash,
   CiFloppyDisk,
@@ -25,35 +24,20 @@ import {
   CiCircleInfo,
   CiChat2,
 } from "react-icons/ci";
+import { UserButtons } from "./helper";
 
 export default function InfoComponent({ points }) {
   const { setModalContent } = useModal();
-  const dispatch = useDispatch();
   const { buildId } = useParams();
   const navigateTo = useNavigate();
-  const user = useSelector((state) => state.session.user);
+  const currentUser = useSelector((state) => state.session.user);
   const currentBuild = useSelector((state) => state.builds.current);
   const [display, setDisplay] = useState("Info");
+  const [loading, setLoading] = useState(false);
 
   const viewBuilds = (e) => {
     e.preventDefault();
     navigateTo("/browse");
-  };
-
-  const onClick = (e) => {
-    e.preventDefault();
-    dispatch(
-      thunkLogin({
-        email: "demo@aa.com",
-        password: "password",
-      })
-    );
-  };
-
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(thunkLogout());
-    navigateTo("/");
   };
 
   return (
@@ -108,13 +92,13 @@ export default function InfoComponent({ points }) {
                 >
                   <CiShare2 size="30" />
                 </button>
-                {user && (
+                {currentUser && (
                   <OpenModalButton
                     buttonText={<CiFloppyDisk size="27" />}
                     className={styles.button}
                     title="Save"
                     modalComponent={
-                      user.id === currentBuild.user_id ? (
+                      currentUser.id === currentBuild.user_id ? (
                         <UpdateBuildModal points={points} />
                       ) : (
                         <SaveBuildModal points={points} />
@@ -122,8 +106,8 @@ export default function InfoComponent({ points }) {
                     }
                   />
                 )}
-                {user &&
-                  (user.id === currentBuild.user_id ? (
+                {currentUser &&
+                  (currentUser.id === currentBuild.user_id ? (
                     <OpenModalButton
                       buttonText={<CiTrash size="27" />}
                       className={styles.button}
@@ -160,31 +144,13 @@ export default function InfoComponent({ points }) {
               </button>
             </div>
             <div className={styles.userButtons}>
-              {user && (
-                <button
-                  id={styles.logout}
-                  className={styles.button}
-                  onClick={logout}
-                >
-                  Log Out
-                </button>
-              )}
-              {!user && (
-                <>
-                  <OpenModalButton
-                    className={styles.button}
-                    buttonText={"Log In"}
-                    modalComponent={<LoginFormModal />}
-                  />
-                  <OpenModalButton
-                    className={styles.button}
-                    buttonText={"Sign up"}
-                    modalComponent={<SignupFormModal />}
-                  />
-                  <button className={styles.button} onClick={onClick}>
-                    Demo Features
-                  </button>
-                </>
+              {loading & !currentUser ? (
+                <ClipLoader color="#e4c274" className={styles.loggingIn} />
+              ) : (
+                <UserButtons
+                  currentUser={currentUser}
+                  setLoading={setLoading}
+                />
               )}
             </div>
           </div>

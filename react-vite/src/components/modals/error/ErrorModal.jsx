@@ -13,10 +13,10 @@ export default function ErrorModal({ errors }) {
       <div className={styles.imgContainer}>
         <img className={styles.sadowheart} src={Images.error["Sadowheart"]} />
       </div>
-      <div className={styles.title}>{"Sorry, Adventurer!"}</div>
+      <div className={styles.title}>{"The Lady Shar has denied your request"}</div>
 
       <div className={styles.message}>
-        {"The Lady Shar has denied your request"}
+        {"By her grace, she has blessed you with guidance to correct your errors...this time."}
       </div>
 
       <div className={styles.errors}>

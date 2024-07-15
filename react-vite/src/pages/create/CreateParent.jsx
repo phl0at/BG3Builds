@@ -1,7 +1,7 @@
 //Files
 import styles from "./CreateParent.module.css";
 //Functions/Components
-import { setDefaults } from "../../redux/build";
+import { action } from "../../redux/build";
 import { thunkPreloadData } from "../../redux/static";
 import Navigation from "../../components/navigation";
 import BuildComponent from "../../components/build";
@@ -20,7 +20,7 @@ export default function CreateParentPage() {
 
   useEffect(() => {
     dispatch(thunkPreloadData());
-    dispatch(setDefaults());
+    dispatch(action("build/setDefault"));
   }, [dispatch]);
 
   if (!currentBuild || !Origins) return "";

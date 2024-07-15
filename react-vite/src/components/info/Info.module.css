@@ -235,6 +235,8 @@ form {
   height: 27%;
 }
 
+
+
 #logout {
   background-color: rgba(145, 23, 23, 0.906);
   transition: all 0.3s;
@@ -269,6 +271,11 @@ form {
 .loading {
   position: relative;
   top: 40%;
+}
+
+.loggingIn {
+  position: relative;
+  bottom: 35%;
 }
 
 @media (max-width: 600px) {

@@ -12,16 +12,16 @@ import { thunkPreloadData } from "../../redux/static";
 export default function ViewParentPage() {
   const dispatch = useDispatch();
   const builds = useSelector((state) => state.builds);
-  const Origins = useSelector((state) => state.static.origins);
+  const staticData = useSelector((state) => state.static);
 
   useEffect(() => {
     dispatch(thunkGetAllBuilds());
-    if (!Origins) {
+    if (!staticData) {
       dispatch(thunkPreloadData());
     }
   }, []);
 
-  if (!builds || !Origins) return "";
+  if (!builds || !staticData) return "";
 
   return (
     <main className={styles.main}>

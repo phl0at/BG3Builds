@@ -6,7 +6,7 @@ import { thunkAddFavorite, thunkDeleteFavorite } from "../../redux/session";
 //Packages
 import { useSelector, useDispatch } from "react-redux";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { CiCircleRemove, CiLogout } from "react-icons/ci";
+import { CiCircleRemove, CiViewBoard } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 
 export function SelectedBuildPanel({
@@ -119,7 +119,7 @@ export function SelectedBuildPanel({
           className={styles.navButton}
           to={`/build/${build.id}`}
         >
-          <CiLogout size="40" />
+          <CiViewBoard    size="40" />
         </NavLink>
       </div>
     </>

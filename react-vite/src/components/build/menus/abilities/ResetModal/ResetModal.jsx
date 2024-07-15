@@ -2,7 +2,7 @@
 import styles from "./ResetModal.module.css";
 //Functions/Components
 import { useModal } from "../../../../../context/Modal";
-import { resetAbilities } from "../../../../../redux/build";
+import { action } from "../../../../../redux/build";
 //Packages
 import { CiCircleCheck, CiCircleRemove } from "react-icons/ci";
 import { useDispatch } from "react-redux";
@@ -13,7 +13,7 @@ export default function ResetAbilitiesModal({ setPoints }) {
 
   const reset = (e) => {
     e.preventDefault();
-    dispatch(resetAbilities());
+    dispatch(action("build/resetAbilities"));
     setPoints(27);
     closeModal();
   };
