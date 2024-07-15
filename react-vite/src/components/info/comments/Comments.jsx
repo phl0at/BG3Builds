@@ -9,20 +9,21 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
+
 export default function Comments() {
   const dispatch = useDispatch();
   const { buildId } = useParams();
   const [newComment, setNewComment] = useState("");
   const comments = useSelector(getCommentsArray);
   const allUsers = useSelector((state) => state.users);
-  const user = useSelector((state) => state.session.user);
-
+  const currUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     if (!Object.values(allUsers).length) dispatch(thunkGetAllUsers());
   }, []);
 
-  if (!Object.values(allUsers).length) return <ClipLoader color="#e4c274" className={styles.loading} />;
+  if (!Object.values(allUsers).length)
+    return <ClipLoader color="#e4c274" className={styles.loading} />;
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -47,19 +48,19 @@ export default function Comments() {
         </div>
       </div>
       <form type="submit" onSubmit={onSubmit}>
-
-        {user && <input
-          value={newComment}
-          onChange={(e) => {
-            e.preventDefault();
-            setNewComment(e.target.value);
-          }}
-          className={styles.textBox}
-          placeholder="Leave a comment!"
-          type="text"
-          required
-        />}
-
+        {currUser && (
+          <input
+            value={newComment}
+            onChange={(e) => {
+              e.preventDefault();
+              setNewComment(e.target.value);
+            }}
+            className={styles.textBox}
+            placeholder="Leave a comment!"
+            type="text"
+            required
+          />
+        )}
       </form>
     </>
   );

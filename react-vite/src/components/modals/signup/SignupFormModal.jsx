@@ -1,8 +1,12 @@
+// Files
+import styles from "./SignupForm.module.css";
+// Functions/Components
+import { thunkSignup } from "../../../redux/session";
+import { useModal } from "../../../context/Modal";
+import ErrorModal from "../error/ErrorModal";
+// Packages
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useModal } from "../../../context/Modal";
-import { thunkSignup } from "../../../redux/session";
-import styles from "./SignupForm.module.css";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
@@ -10,17 +14,24 @@ function SignupFormModal() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState({});
-  const { closeModal } = useModal();
+  const [errors, setErrors] = useState("");
+  const { closeModal, setModalContent } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const validTLDs = ["com", "net", "mil", "org", "edu"];
+    const emailTLD = email.split(".")[email.split(".").length - 1];
 
     if (password !== confirmPassword) {
-      return setErrors({
-        confirmPassword:
-          "Passwords must match",
-      });
+      return setErrors("Passwords must match");
+    }
+
+    if (!email.includes("@")) {
+      return setErrors("Please enter a valid email address");
+    }
+
+    if (!validTLDs.includes(emailTLD)) {
+      return setErrors("Email must end in .com, .net, .mil, .org, or .edu");
     }
 
     const serverResponse = await dispatch(
@@ -32,7 +43,7 @@ function SignupFormModal() {
     );
 
     if (serverResponse) {
-      setErrors(serverResponse);
+      setModalContent(<ErrorModal errors={serverResponse} />);
     } else {
       closeModal();
     }
@@ -41,13 +52,7 @@ function SignupFormModal() {
   return (
     <main className={styles.main}>
       <div className={styles.title}>Sign Up</div>
-      <div className={styles.error}>
-        {errors.server && errors.server}
-        {errors.email && errors.email}
-        {errors.username && errors.username}
-        {errors.password && errors.password}
-        {errors.confirmPassword && errors.confirmPassword}
-      </div>
+      <div className={styles.error}>{errors}</div>
       <form className={styles.form} onSubmit={handleSubmit}>
         <input
           type="text"

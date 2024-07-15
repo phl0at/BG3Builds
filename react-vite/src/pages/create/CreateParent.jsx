@@ -21,7 +21,7 @@ export default function CreateParentPage() {
   useEffect(() => {
     dispatch(thunkPreloadData());
     dispatch(setDefaults());
-  }, []);
+  }, [dispatch]);
 
   if (!currentBuild || !Origins) return "";
 

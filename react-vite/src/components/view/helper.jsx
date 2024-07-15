@@ -17,7 +17,7 @@ export function SelectedBuildPanel({
   Races,
 }) {
   const dispatch = useDispatch();
-  const user = useSelector(state=>state.session.user)
+  const currUser = useSelector((state) => state.session.user);
 
   const attributes = [
     "strength",
@@ -30,10 +30,8 @@ export function SelectedBuildPanel({
 
   const clickFavorite = (e) => {
     e.preventDefault();
-    
-    if(!user) alert("You must sign in to favorite this build")
 
-    if (favorites[build.id]) {
+    if (currUser.favorites[build.id]) {
       dispatch(thunkDeleteFavorite(build.id));
     } else {
       dispatch(thunkAddFavorite(build.id));
@@ -43,18 +41,24 @@ export function SelectedBuildPanel({
   return (
     <>
       <div className={styles.selectedHeader}>
-        <div>
-          <button title="Add to favorites" className={styles.favorite} onClick={clickFavorite}>
-            {user && user.favorites[build.id] ? (
-              <AiFillHeart size="40" />
-            ) : (
-              <AiOutlineHeart size="40" />
-            )}
-          </button>
+        <div className={styles.favoriteContainer}>
+          {currUser && (
+            <button
+              title="Add to favorites"
+              className={styles.favorite}
+              onClick={clickFavorite}
+            >
+              {currUser.favorites[build.id] ? (
+                <AiFillHeart size="40" />
+              ) : (
+                <AiOutlineHeart size="40" />
+              )}
+            </button>
+          )}
         </div>
         <div className={styles.selectedClassImg}>
           {build.build_classes.length ? (
-            <img src={Images.classes[(build.build_classes[0]).name]} />
+            <img src={Images.classes[build.build_classes[0].name]} />
           ) : (
             "No classes"
           )}

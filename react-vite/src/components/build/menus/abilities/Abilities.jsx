@@ -42,6 +42,7 @@ export default function AbilitiesComponent({
         {abilities.map((ability) => {
           return (
             <Ability
+              key={ability}
               name={ability}
               abilityVal={currentBuild[ability]}
               plus_1={plus_1}

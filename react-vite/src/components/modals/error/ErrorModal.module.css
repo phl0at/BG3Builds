@@ -1,0 +1,67 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 450px;
+  height: 380px;
+  outline: 3px solid rgb(101, 71, 42);
+  background-color: rgb(17, 13, 12);
+  border-radius: 4px;
+}
+
+.imgContainer {
+  position: absolute;
+  top: -80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 3px solid rgb(101, 71, 42);
+  background-color: rgb(17, 13, 12);
+  border-radius: 50%;
+}
+.sadowheart {
+  position: relative;
+  top: -3px;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+}
+
+.title {
+  position: relative;
+  top: 40px;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23pt;
+  color: #e69a28;
+}
+
+.message {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errors {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  border-radius: 4px;
+  height: 40%;
+  width: 80%;
+}
+.list {
+  color: red;
+}
+
+.close {
+  position: relative;
+  font-size: 11pt;
+  bottom: 6px;
+}

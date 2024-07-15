@@ -9,7 +9,9 @@ import SignupFormModal from "../modals/signup";
 import SaveBuildModal from "../../pages/create/save";
 import UpdateBuildModal from "../../pages/edit/update";
 import DeleteBuildModal from "./delete/DeleteModal";
+import ErrorModal from "../modals/error/ErrorModal";
 import { thunkLogin, thunkLogout } from "../../redux/session";
+import { useModal } from "../../context/Modal";
 //Packages
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -25,6 +27,7 @@ import {
 } from "react-icons/ci";
 
 export default function InfoComponent({ points }) {
+  const { setModalContent } = useModal();
   const dispatch = useDispatch();
   const { buildId } = useParams();
   const navigateTo = useNavigate();
@@ -93,7 +96,15 @@ export default function InfoComponent({ points }) {
                 <button
                   className={styles.button}
                   title="Import/Export"
-                  onClick={() => alert("Feature coming soon!")}
+                  onClick={() =>
+                    setModalContent(
+                      <ErrorModal
+                        errors={{
+                          feature: ["This feature is still under development"],
+                        }}
+                      />
+                    )
+                  }
                 >
                   <CiShare2 size="30" />
                 </button>
@@ -125,7 +136,15 @@ export default function InfoComponent({ points }) {
                 id={styles.calButton}
                 className={styles.button}
                 title="Calculate"
-                onClick={() => alert("Feature coming soon!")}
+                onClick={() =>
+                  setModalContent(
+                    <ErrorModal
+                      errors={{
+                        feature: ["This feature is still under development"],
+                      }}
+                    />
+                  )
+                }
               >
                 <CiCalculator2 size="32" />
               </button>

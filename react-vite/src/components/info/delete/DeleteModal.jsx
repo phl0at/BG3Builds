@@ -3,27 +3,31 @@ import styles from "./DeleteModal.module.css";
 //Functions/Components
 import { thunkDeleteBuild } from "../../../redux/build";
 import { useModal } from "../../../context/Modal";
+import ErrorModal from "../../modals/error/ErrorModal";
 //Packages
 import { CiCircleCheck, CiCircleRemove } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function DeleteBuildModal() {
-  const { closeModal } = useModal();
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
   const currentBuildId = useSelector((state) => state.builds.current.id);
+  const { closeModal, setModalContent } = useModal();
 
   const deleteClick = async (e) => {
     e.preventDefault();
-    const deleted = await dispatch(thunkDeleteBuild(currentBuildId));
-    if (deleted) {
+
+    const serverResponse = await dispatch(thunkDeleteBuild(currentBuildId));
+
+    if (!serverResponse.status === 200) {
+      setModalContent(<ErrorModal errors={serverResponse} />);
+    } else {
       navigateTo("/create");
       closeModal();
-    } else {
-      alert("Try again!")
     }
   };
+  
   const cancel = (e) => {
     e.preventDefault();
     closeModal();

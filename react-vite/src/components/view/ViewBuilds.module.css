@@ -130,6 +130,9 @@
   display: flex;
   align-items: center;
 }
+.favoriteContainer {
+  width: 40px;
+}
 .favorite {
   outline: none;
   display: flex;

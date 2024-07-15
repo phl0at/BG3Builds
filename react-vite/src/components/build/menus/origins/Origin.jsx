@@ -53,7 +53,7 @@ export default function OriginComponent({ currentBuild }) {
                 }
                 src={Images.characters["Custom"]}
               />
-              Custom
+              {"Custom"}
             </div>
             <div className={styles.character}>
               <img
@@ -65,7 +65,7 @@ export default function OriginComponent({ currentBuild }) {
                 }
                 src={Images.characters["Astarion"]}
               />
-              Astarion
+              {"Astarion"}
             </div>
             <div className={styles.character}>
               <img
@@ -77,7 +77,7 @@ export default function OriginComponent({ currentBuild }) {
                 }
                 src={Images.characters["Laezel"]}
               />
-              Lae'zel
+              {"Lae'zel"}
             </div>
             <div className={styles.character}>
               <img
@@ -89,7 +89,7 @@ export default function OriginComponent({ currentBuild }) {
                 }
                 src={Images.characters["Gale"]}
               />
-              Gale
+              {"Gale"}
             </div>
             <div className={styles.character}>
               <img
@@ -101,7 +101,7 @@ export default function OriginComponent({ currentBuild }) {
                 }
                 src={Images.characters["Shadowheart"]}
               />
-              Shadowheart
+              {"Shadowheart"}
             </div>
             <div className={styles.character}>
               <img
@@ -113,7 +113,7 @@ export default function OriginComponent({ currentBuild }) {
                 }
                 src={Images.characters["Wyll"]}
               />
-              Wyll
+              {"Wyll"}
             </div>
             <div className={styles.character}>
               <img
@@ -125,7 +125,7 @@ export default function OriginComponent({ currentBuild }) {
                 }
                 src={Images.characters["Karlach"]}
               />
-              Karlach
+              {"Karlach"}
             </div>
             <div className={styles.character}>
               <img
@@ -137,7 +137,7 @@ export default function OriginComponent({ currentBuild }) {
                 }
                 src={Images.characters["DarkUrge"]}
               />
-              The Dark Urge
+              {"The Dark Urge"}
             </div>
           </div>
           <div className={styles.select}>
