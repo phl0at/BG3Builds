@@ -12,10 +12,22 @@ function LoginFormModal({ setLoading }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState("");
   const { closeModal, setModalContent } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors("")
+    const validTLDs = ["com", "net", "mil", "org", "edu"];
+    const emailTLD = email.split(".")[email.split(".").length - 1];
+
+    if (!email.includes("@")) {
+      return setErrors("Please enter a valid email address");
+    }
+
+    if (!validTLDs.includes(emailTLD)) {
+      return setErrors("Email must end in .com, .net, .mil, .org, or .edu");
+    }
 
     setLoading(true);
 
@@ -28,6 +40,7 @@ function LoginFormModal({ setLoading }) {
 
     if (serverResponse) {
       setModalContent(<ErrorModal errors={serverResponse} />);
+      setLoading(false)
     } else {
       closeModal();
     }
@@ -36,6 +49,7 @@ function LoginFormModal({ setLoading }) {
   return (
     <main className={styles.main}>
       <div className={styles.title}>Log In</div>
+      <div className={styles.error}>{errors}</div>
       <form className={styles.form} onSubmit={handleSubmit}>
         <input
           type="text"

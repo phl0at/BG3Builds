@@ -19,6 +19,7 @@ function SignupFormModal({ setLoading }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors("")
     const validTLDs = ["com", "net", "mil", "org", "edu"];
     const emailTLD = email.split(".")[email.split(".").length - 1];
 
@@ -46,6 +47,7 @@ function SignupFormModal({ setLoading }) {
 
     if (serverResponse) {
       setModalContent(<ErrorModal errors={serverResponse} />);
+      setLoading(false)
     } else {
       closeModal();
     }
