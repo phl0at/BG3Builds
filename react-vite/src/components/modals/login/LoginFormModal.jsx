@@ -17,32 +17,30 @@ function LoginFormModal({ setLoading }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors("")
+    setErrors("");
     const validTLDs = ["com", "net", "mil", "org", "edu"];
     const emailTLD = email.split(".")[email.split(".").length - 1];
 
     if (!email.includes("@")) {
-      return setErrors("Please enter a valid email address");
-    }
-
-    if (!validTLDs.includes(emailTLD)) {
-      return setErrors("Email must end in .com, .net, .mil, .org, or .edu");
-    }
-
-    setLoading(true);
-
-    const serverResponse = await dispatch(
-      thunkLogin({
-        email,
-        password,
-      })
-    );
-
-    if (serverResponse) {
-      setModalContent(<ErrorModal errors={serverResponse} />);
-      setLoading(false)
+      setErrors("Please enter a valid email address");
+    } else if (!validTLDs.includes(emailTLD)) {
+      setErrors("Email must end in .com, .net, .mil, .org, or .edu");
     } else {
-      closeModal();
+      
+      setLoading(true);
+      const serverResponse = await dispatch(
+        thunkLogin({
+          email,
+          password,
+        })
+      );
+
+      if (serverResponse) {
+        setModalContent(<ErrorModal errors={serverResponse} />);
+        setLoading(false);
+      } else {
+        closeModal();
+      }
     }
   };
 

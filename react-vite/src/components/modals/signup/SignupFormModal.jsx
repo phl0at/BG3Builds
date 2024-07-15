@@ -19,37 +19,36 @@ function SignupFormModal({ setLoading }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors("")
     const validTLDs = ["com", "net", "mil", "org", "edu"];
     const emailTLD = email.split(".")[email.split(".").length - 1];
 
-    if (password !== confirmPassword) {
-      return setErrors("Passwords must match");
-    }
-
     if (!email.includes("@")) {
-      return setErrors("Please enter a valid email address");
-    }
-
-    if (!validTLDs.includes(emailTLD)) {
-      return setErrors("Email must end in .com, .net, .mil, .org, or .edu");
-    }
-
-    setLoading(true);
-
-    const serverResponse = await dispatch(
-      thunkSignup({
-        email,
-        username,
-        password,
-      })
-    );
-
-    if (serverResponse) {
-      setModalContent(<ErrorModal errors={serverResponse} />);
-      setLoading(false)
+      setErrors("Please enter a valid email address");
+    } else if (!validTLDs.includes(emailTLD)) {
+      setErrors("Email must end in .com, .net, .mil, .org, or .edu");
+    } else if (username.trim().length < 3 || username.trim().length > 25) {
+      setErrors("Username must be 3 to 25 characters");
+    } else if(password.includes(" ")) {
+      setErrors("Passwords cannot have whitespace")
+    } else if (password !== confirmPassword) {
+      setErrors("Passwords must match");
     } else {
-      closeModal();
+
+      setLoading(true);
+      const serverResponse = await dispatch(
+        thunkSignup({
+          email,
+          username,
+          password,
+        })
+      );
+
+      if (serverResponse) {
+        setModalContent(<ErrorModal errors={serverResponse} />);
+        setLoading(false);
+      } else {
+        closeModal();
+      }
     }
   };
 
