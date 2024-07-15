@@ -100,25 +100,25 @@ def create_build():
     errors = {}
 
     if not name:
-        errors['name'] = 'Required'
+        errors['name'] = ['Build name is required']
     elif len(name) < 3 or len(name) > 25:
-        errors['name'] = 'Name must be 3 to 25 characters in length'
+        errors['name'] = ['Name must be 3 to 25 characters in length']
     elif not character_name:
-        errors['character_name'] = 'Required'
+        errors['character_name'] = 'Character name is required'
     elif len(character_name) < 3 or len(character_name) > 25:
-        errors['character_name'] = 'Character name must be 3 to 25 characters in length'
+        errors['character_name'] = ['Character name must be 3 to 25 characters in length']
     elif not origin:
-        errors['origin'] = 'Required'
+        errors['origin'] = ['Origin is required']
     elif not race:
-        errors['race'] = 'Required'
+        errors['race'] = ['Race is required']
     elif not background:
-        errors['background'] = 'Required'
+        errors['background'] = ['Background is required']
     elif not level:
         level = 0
 
 
     if errors:
-        return { 'errors': errors }, 400
+        return errors, 400
     else:
         build = Build(
             name = name,
@@ -220,25 +220,25 @@ def edit_build(id):
     errors = {}
 
     if not name:
-        errors['name'] = 'Required'
+        errors['name'] = ['Build name is required']
     elif len(name) < 3 or len(name) > 25:
-        errors['name'] = 'Name must be 3 to 25 characters in length'
+        errors['name'] = ['Name must be 3 to 25 characters in length']
     elif not character_name:
-        errors['character_name'] = 'Required'
+        errors['character_name'] = ['Character name is required']
     elif len(character_name) < 3 or len(character_name) > 25:
-        errors['character_name'] = 'Character name must be 3 to 25 characters in length'
+        errors['character_name'] = ['Character name must be 3 to 25 characters in length']
     elif not origin:
-        errors['origin'] = 'Required'
+        errors['origin'] = ['Origin is required']
     elif not race:
-        errors['race'] = 'Required'
+        errors['race'] = ['Race is required']
     elif not background:
-        errors['background'] = 'Required'
+        errors['background'] = ['Background is required']
     elif not level:
         level = 0
 
 
     if errors:
-        return { 'errors': errors }, 400
+        return errors, 400
     else:
         build.name = name
         build.character_name = character_name
