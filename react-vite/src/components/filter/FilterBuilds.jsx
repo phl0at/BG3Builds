@@ -23,6 +23,7 @@ export default function FilterBuildComponent({ filters, setFilters }) {
           {currentUser && (
             <>
               <button
+                disabled={filters["applied"]}
                 className={
                   filters["owned"]
                     ? styles.ownedButtonSelected
@@ -30,7 +31,7 @@ export default function FilterBuildComponent({ filters, setFilters }) {
                 }
                 onClick={(e) => {
                   e.preventDefault();
-                  setFilters({ ...filters, owned: true });
+                  setFilters({ ...filters, owned: !filters["owned"] });
                 }}
               />
               Owned
@@ -39,6 +40,7 @@ export default function FilterBuildComponent({ filters, setFilters }) {
         </div>
         <div className={styles.myFavorites}>
           <button
+            disabled={filters["applied"]}
             className={
               filters["favorites"]
                 ? styles.ownedButtonSelected
@@ -46,13 +48,12 @@ export default function FilterBuildComponent({ filters, setFilters }) {
             }
             onClick={(e) => {
               e.preventDefault();
-              setFilters({ ...filters, favorites: true });
+              setFilters({ ...filters, favorites: !filters["favorites"] });
             }}
           />
           Favorites
         </div>
-            <div className={styles.classes}></div>
-
+        <div className={styles.classes}></div>
 
         <div className={styles.apply}>
           <button className={styles.button} onClick={apply}>

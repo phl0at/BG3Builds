@@ -130,7 +130,6 @@ export function filteredBuilds(builds, filters, currentUser) {
 
   if (filters["applied"]) {
     builds.forEach((build) => {
-      console.log(currentUser.favorites[build.id])
       if (
         filters["owned"] &
         (build.user_id === currentUser.id) &
@@ -180,6 +179,5 @@ export function filteredBuilds(builds, filters, currentUser) {
     });
   }
 
-  console.log(arr);
   return arr.length ? arr : builds;
 }
