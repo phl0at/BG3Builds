@@ -17,8 +17,7 @@ export function SelectedBuildPanel({
   Races,
 }) {
   const dispatch = useDispatch();
-  const currUser = useSelector((state) => state.session.user);
-
+  const currentUser = useSelector((state) => state.session.user);
   const attributes = [
     "strength",
     "dexterity",
@@ -31,7 +30,7 @@ export function SelectedBuildPanel({
   const clickFavorite = (e) => {
     e.preventDefault();
 
-    if (currUser.favorites[build.id]) {
+    if (currentUser.favorites[build.id]) {
       dispatch(thunkDeleteFavorite(build.id));
     } else {
       dispatch(thunkAddFavorite(build.id));
@@ -42,13 +41,13 @@ export function SelectedBuildPanel({
     <>
       <div className={styles.selectedHeader}>
         <div className={styles.favoriteContainer}>
-          {currUser && (
+          {currentUser && (
             <button
               title="Add to favorites"
               className={styles.favorite}
               onClick={clickFavorite}
             >
-              {currUser.favorites[build.id] ? (
+              {currentUser.favorites[build.id] ? (
                 <AiFillHeart size="40" />
               ) : (
                 <AiOutlineHeart size="40" />
@@ -119,9 +118,68 @@ export function SelectedBuildPanel({
           className={styles.navButton}
           to={`/build/${build.id}`}
         >
-          <CiViewBoard    size="40" />
+          <CiViewBoard size="40" />
         </NavLink>
       </div>
     </>
   );
+}
+
+export function filteredBuilds(builds, filters, currentUser) {
+  let arr = [];
+
+  if (filters["applied"]) {
+    builds.forEach((build) => {
+      console.log(currentUser.favorites[build.id])
+      if (
+        filters["owned"] &
+        (build.user_id === currentUser.id) &
+        !arr.includes(build)
+      ) {
+        arr.push(build);
+      }
+
+      if (
+        filters["favorites"] &
+        currentUser.favorites[build.id] != undefined &
+        !arr.includes(build)
+      ) {
+        arr.push(build);
+      }
+
+      if (filters["class"] & !arr.includes(build)) {
+        const hasClass = build.build_classes.some(
+          (_class) => _class.class_id === filters["class"]
+        );
+        if (hasClass) arr.push(build);
+      }
+
+      if (
+        filters["origin"] &
+        (build.origin === filters["origin"]) &
+        !arr.includes(build)
+      ) {
+        arr.push(build);
+      }
+
+      if (
+        filters["race"] &
+        (build.race === filters["race"]) &
+        !arr.includes(build)
+      ) {
+        arr.push(build);
+      }
+
+      if (
+        filters["background"] &
+        (build.background === filters["background"]) &
+        !arr.includes(build)
+      ) {
+        arr.push(build);
+      }
+    });
+  }
+
+  console.log(arr);
+  return arr.length ? arr : builds;
 }

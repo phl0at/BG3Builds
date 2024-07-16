@@ -3,23 +3,23 @@ import { NavLink } from "react-router-dom";
 import styles from "./ViewBuilds.module.css";
 //Functions/Components
 import { getBuildsArray } from "../../redux/build";
-import { SelectedBuildPanel } from "./helper";
+import { filteredBuilds, SelectedBuildPanel } from "./helper";
 //Packages
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { CiLogin } from "react-icons/ci";
 import { AiFillHeart } from "react-icons/ai";
 
-export default function ViewBuildsComponent() {
+export default function ViewBuildsComponent({ filters }) {
   const [selected, setSelected] = useState(null);
   const allBuildsArr = useSelector(getBuildsArray);
   const allUsers = useSelector((state) => state.users);
-  const user = useSelector(state=>state.session.user)
   const selectedBuild = useSelector((state) => state.builds[selected]);
   const Backgrounds = useSelector((state) => state.static.backgrounds);
   const Origins = useSelector((state) => state.static.origins);
   const Races = useSelector((state) => state.static.races);
-
+  const currentUser = useSelector(state=>state.session.user)
+  const buildsArr = filteredBuilds(allBuildsArr, filters, currentUser);
 
   const onClick = (e, id) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ export default function ViewBuildsComponent() {
       </div>
       <div className={styles.scroll}>
         <div className={styles.buildsList}>
-          {allBuildsArr.map((build, i) => {
+          {buildsArr.map((build, i) => {
             return (
               <button
                 key={build.id}
@@ -44,7 +44,9 @@ export default function ViewBuildsComponent() {
                 className={selected === build.id ? styles.select : styles.build}
               >
                 <>
-                  {user && user.favorites[build.id] ? <AiFillHeart className={styles.favorited} size="17" /> : null}
+                  {currentUser && currentUser.favorites[build.id] ? (
+                    <AiFillHeart className={styles.favorited} size="17" />
+                  ) : null}
 
                   <div className={styles.buildName}>{build.name}</div>
 

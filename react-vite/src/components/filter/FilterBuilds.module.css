@@ -18,3 +18,63 @@
   justify-content: center;
   color: #e69a28;
 }
+
+.filtersContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.myBuilds {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 4px;
+  width: 100%;
+}
+.myFavorites {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 4px;
+  width: 100%;
+}
+
+.ownedButton {
+  height: 12px;
+  width: 12px;
+  border: 2px solid;
+}
+
+.ownedButton:hover {
+  color: white;
+}
+.ownedButtonSelected {
+  height: 12px;
+  width: 12px;
+  background-color: #e69a28;
+  border: 2px solid;
+}
+
+.ownedButtonSelected:hover {
+  color: white;
+}
+
+.apply {
+  position: absolute;
+  bottom: 50px;
+  left: 22px;
+  display: flex;
+  column-gap: 6px;
+}
+
+.button {
+  color: #e4c274;
+  outline: 2px solid rgb(101, 71, 42);
+  background-color: rgba(17, 13, 12, 0.78);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
