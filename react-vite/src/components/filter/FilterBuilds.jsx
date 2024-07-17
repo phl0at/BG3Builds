@@ -1,68 +1,254 @@
 import styles from "./FilterBuilds.module.css";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import {
+  CiSquareChevRight,
+  CiSquareChevDown,
+  CiPaperplane,
+  CiStop1,
+  CiSquareRemove,
+} from "react-icons/ci";
+import {
+  getBackgroundArray,
+  getClassArray,
+  getOriginArray,
+  getRaceArray,
+} from "../../redux/static";
 
 export default function FilterBuildComponent({ filters, setFilters }) {
   const currentUser = useSelector((state) => state.session.user);
+  const Origins = useSelector(getOriginArray);
+  const Races = useSelector(getRaceArray);
+  const Backgrounds = useSelector(getBackgroundArray);
+  const Classes = useSelector(getClassArray);
+  const [showOrigins, setShowOrigins] = useState(false);
+  const [showRaces, setShowRaces] = useState(false);
+  const [showBackgrounds, setShowBackgrounds] = useState(false);
+  const [showClasses, setShowClasses] = useState(false);
+  const [selectedItem, setSelectedItem] = useState("");
 
-  const apply = (e) => {
-    e.preventDefault();
-    setFilters({ ...filters, applied: true });
+  useEffect(() => {
     console.log(filters);
-  };
-
-  const clear = (e) => {
-    e.preventDefault();
-    setFilters({});
-  };
+  }, [filters]);
 
   return (
     <main className={styles.main}>
       <div className={styles.title}>Filters</div>
       <div className={styles.filtersContainer}>
-        <div className={styles.myBuilds}>
+        <div>
           {currentUser && (
             <>
               <button
-                disabled={filters["applied"]}
-                className={
-                  filters["owned"]
-                    ? styles.ownedButtonSelected
-                    : styles.ownedButton
-                }
+                className={styles.filter}
                 onClick={(e) => {
                   e.preventDefault();
-                  setFilters({ ...filters, owned: !filters["owned"] });
+                  setFilters(filters["owned"] ? {} : { owned: true });
                 }}
-              />
-              Owned
+              >
+                {filters["owned"] ? (
+                  <CiSquareRemove size="24" />
+                ) : (
+                  <CiStop1 size="24" />
+                )}
+                Owned
+              </button>
             </>
           )}
         </div>
-        <div className={styles.myFavorites}>
+        <div>
+          {currentUser && (
+            <>
+              <button
+                className={styles.filter}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setFilters(filters["favorites"] ? {} : { favorites: true });
+                }}
+              >
+                {filters["favorites"] ? (
+                  <CiSquareRemove size="24" />
+                ) : (
+                  <CiStop1 size="24" />
+                )}
+                Favorites
+              </button>
+            </>
+          )}
+        </div>
+
+        <div>
           <button
-            disabled={filters["applied"]}
-            className={
-              filters["favorites"]
-                ? styles.ownedButtonSelected
-                : styles.ownedButton
-            }
+            className={styles.filter}
             onClick={(e) => {
               e.preventDefault();
-              setFilters({ ...filters, favorites: !filters["favorites"] });
+              setShowOrigins(!showOrigins);
             }}
-          />
-          Favorites
+          >
+            {showOrigins ? (
+              <CiSquareChevDown size="24" />
+            ) : (
+              <CiSquareChevRight size="24" />
+            )}
+            Origins
+          </button>
         </div>
-        <div className={styles.classes}></div>
 
-        <div className={styles.apply}>
-          <button className={styles.button} onClick={apply}>
-            Apply Filters
-          </button>
-          <button className={styles.button} onClick={clear}>
-            Clear Filters
+        {showOrigins && (
+          <div className={styles.list}>
+            {Origins.map((origin) => (
+              <div key={origin.id} className={styles.origin}>
+                <button
+                  className={
+                    selectedItem === origin.name
+                      ? styles.selected
+                      : styles.listItem
+                  }
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setFilters(
+                      filters["origin"] === origin.id
+                        ? {}
+                        : { origin: origin.id }
+                    );
+                    setSelectedItem(
+                      selectedItem === origin.name ? "" : origin.name
+                    );
+                  }}
+                >
+                  {origin.name}
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div>
+          <button
+            className={styles.filter}
+            onClick={(e) => {
+              e.preventDefault();
+              setShowRaces(!showRaces);
+            }}
+          >
+            {showRaces ? (
+              <CiSquareChevDown size="24" />
+            ) : (
+              <CiSquareChevRight size="24" />
+            )}
+            Races
           </button>
         </div>
+
+        {showRaces && (
+          <div className={styles.list}>
+            {Races.map((race) => (
+              <div key={race.id} className={styles.race}>
+                <div className={styles.selected}>
+                  {selectedItem === race.name && <CiPaperplane />}
+                </div>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setFilters(
+                      filters["race"] === race.id ? {} : { race: race.id }
+                    );
+                    setSelectedItem(
+                      selectedItem === race.name ? "" : race.name
+                    );
+                  }}
+                >
+                  {race.name}
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div>
+          <button
+            className={styles.filter}
+            onClick={(e) => {
+              e.preventDefault();
+              setShowBackgrounds(!showBackgrounds);
+            }}
+          >
+            {showBackgrounds ? (
+              <CiSquareChevDown size="24" />
+            ) : (
+              <CiSquareChevRight size="24" />
+            )}{" "}
+            Backgrounds
+          </button>
+        </div>
+
+        {showBackgrounds && (
+          <div className={styles.list}>
+            {Backgrounds.map((bg) => (
+              <div key={bg.id} className={styles.background}>
+                <div className={styles.selected}>
+                  {selectedItem === bg.name && <CiPaperplane />}
+                </div>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setFilters(
+                      filters["background"] === bg.id
+                        ? {}
+                        : { background: bg.id }
+                    );
+                    setSelectedItem(selectedItem === bg.name ? "" : bg.name);
+                  }}
+                >
+                  {bg.name}
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div>
+          <button
+            className={styles.filter}
+            onClick={(e) => {
+              e.preventDefault();
+              setShowClasses(!showClasses);
+            }}
+          >
+            {showClasses ? (
+              <CiSquareChevDown size="24" />
+            ) : (
+              <CiSquareChevRight size="24" />
+            )}
+            Classes
+          </button>
+        </div>
+
+        {showClasses && (
+          <div className={styles.list}>
+            {Classes.map((_class) => (
+              <div key={_class.class_id} className={styles.class}>
+                <div className={styles.selected}>
+                  {selectedItem === _class.name && <CiPaperplane />}
+                </div>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setFilters(
+                      filters["class"] === _class.class_id
+                        ? {}
+                        : { class: _class.class_id }
+                    );
+                    setSelectedItem(
+                      selectedItem === _class.name ? "" : _class.name
+                    );
+                  }}
+                >
+                  {_class.name}
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </main>
   );

@@ -128,56 +128,32 @@ export function SelectedBuildPanel({
 export function filteredBuilds(builds, filters, currentUser) {
   let arr = [];
 
-  if (filters["applied"]) {
+  if (filters["owned"]) {
     builds.forEach((build) => {
-      if (
-        filters["owned"] &
-        (build.user_id === currentUser.id) &
-        !arr.includes(build)
-      ) {
-        arr.push(build);
-      }
-
-      if (
-        filters["favorites"] &
-        currentUser.favorites[build.id] != undefined &
-        !arr.includes(build)
-      ) {
-        arr.push(build);
-      }
-
-      if (filters["class"] & !arr.includes(build)) {
-        const hasClass = build.build_classes.some(
-          (_class) => _class.class_id === filters["class"]
-        );
-        if (hasClass) arr.push(build);
-      }
-
-      if (
-        filters["origin"] &
-        (build.origin === filters["origin"]) &
-        !arr.includes(build)
-      ) {
-        arr.push(build);
-      }
-
-      if (
-        filters["race"] &
-        (build.race === filters["race"]) &
-        !arr.includes(build)
-      ) {
-        arr.push(build);
-      }
-
-      if (
-        filters["background"] &
-        (build.background === filters["background"]) &
-        !arr.includes(build)
-      ) {
-        arr.push(build);
-      }
+      if (build.user_id === currentUser.id) arr.push(build);
     });
   }
 
-  return arr.length ? arr : builds;
+  if (filters["favorites"]) {
+    builds.forEach((build) => {
+      if (currentUser.favorites[build.id]) arr.push(build);
+    });
+  }
+
+  if (filters["origin"]) {
+    builds.forEach((build) => {
+      if (build.origin === filters["origin"]) arr.push(build);
+    });
+  }
+
+  if (filters["class"]) {
+    builds.forEach((build) => {
+      const hasClass = build.build_classes.find(
+        (_class) => _class.class_id === filters["class"]
+      );
+      if (hasClass) arr.push(build);
+    });
+  }
+
+  return Object.values(filters).length ? arr : builds;
 }

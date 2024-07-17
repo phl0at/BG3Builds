@@ -1,3 +1,5 @@
+import { createSelector } from "reselect";
+
 //! --------------------------------------------------------------------
 //*                         Action Creators
 //! --------------------------------------------------------------------
@@ -25,6 +27,35 @@ export const thunkPreloadData = () => async (dispatch) => {
     console.log(error);
   }
 };
+
+//! --------------------------------------------------------------------
+//*                            Selectors
+//! --------------------------------------------------------------------
+
+export const getClassArray = createSelector(
+  (state) => state.static.classes,
+  (_class) => Object.values(_class)
+);
+
+//! --------------------------------------------------------------------
+
+export const getRaceArray = createSelector(
+  (state) => state.static.races,
+  (race) => Object.values(race)
+);
+
+//! --------------------------------------------------------------------
+
+export const getBackgroundArray = createSelector(
+  (state) => state.static.backgrounds,
+  (bg) => Object.values(bg)
+);
+//! --------------------------------------------------------------------
+
+export const getOriginArray = createSelector(
+  (state) => state.static.origins,
+  (origin) => Object.values(origin)
+);
 
 //! --------------------------------------------------------------------
 //*                            Reducer

@@ -1,12 +1,13 @@
 .main {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   height: 100%;
   width: 250px;
   background: rgba(17, 13, 12, 0.78);
   outline: 3px solid rgb(101, 71, 42);
   border-radius: 4px;
+  overflow-y: auto;
 }
 
 .title {
@@ -22,28 +23,25 @@
 .filtersContainer {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  align-items: flex-start;
+  width: 80%;
 }
 
-.myBuilds {
+.filter {
   display: flex;
   align-items: center;
-  justify-content: center;
   column-gap: 4px;
-  width: 100%;
+  border-radius: 4px;
+  padding: 4px;
 }
-.myFavorites {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  column-gap: 4px;
-  width: 100%;
+.filter:hover{
+  background-color: rgba(17, 13, 12, 0.78);
 }
-
 .ownedButton {
-  height: 12px;
-  width: 12px;
-  border: 2px solid;
+  height: 10px;
+  width: 10px;
+  border: 1px solid;
+  border-radius: 2px;
 }
 
 .ownedButton:hover {
@@ -53,21 +51,34 @@
   height: 12px;
   width: 12px;
   background-color: #e69a28;
-  border: 2px solid;
+  border: 1px solid;
+  border-radius: 2px;
 }
 
 .ownedButtonSelected:hover {
-  color: white;
+  color: antiquewhite;
 }
 
-.apply {
-  position: absolute;
-  bottom: 50px;
-  left: 22px;
+.list {
+  background-color: rgba(17, 13, 12, 0.78);
+  border-radius: 4px;
+  width: 120px;
   display: flex;
-  column-gap: 6px;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+  padding: 15px;
+  row-gap: 5px;
 }
-
+.listItem:hover {
+  color: antiquewhite;
+}
+.selected {
+  text-decoration: underline;
+}
+.selected:hover {
+  color: antiquewhite;
+}
 .button {
   color: #e4c274;
   outline: 2px solid rgb(101, 71, 42);
