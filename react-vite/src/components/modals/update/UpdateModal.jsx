@@ -42,7 +42,7 @@ export default function UpdateBuildModal({ points }) {
   };
   return (
     <main className={styles.main}>
-      <div className={styles.title}>Save Build</div>
+      <div className={styles.title}>Update</div>
       <div className={styles.error}>{errors && errors.error}</div>
       <form className={styles.form} type="submit" onSubmit={submit}>
         {currentBuild.origin === 8 || currentBuild.origin === 7 ? (

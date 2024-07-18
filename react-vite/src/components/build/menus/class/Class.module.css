@@ -1,7 +1,21 @@
+.header {
+  position: relative;
+  display: flex;
+  width: 90%;
+  left: -22px;
+  top: 2px;
+}
+
+.reset {
+  width: 45px;
+  height: 45px;
+  color: #e69a28;
+}
+
 .title {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   margin-top: 10px;
   font-size: 17pt;
@@ -91,12 +105,6 @@
   max-width: 90%;
 }
 
-.reset {
-  position: absolute;
-  top: 15px;
-  left: 190px;
-}
-
 .buildClassList {
   width: 97%;
   display: flex;
@@ -112,23 +120,13 @@
   font-size: 11pt;
 }
 
-@media (min-width: 1645px) {
+@media (min-width: 1924px) {
   .selected_classImg {
-    height: 65px;
-    width: 65px;
+    height: 70px;
+    width: 70px;
   }
   .classImg {
-    height: 65px;
-    width: 65px;
-  }
-}
-@media (min-width: 2005px) {
-  .selected_classImg {
-    height: 80px;
-    width: 80px;
-  }
-  .classImg {
-    height: 80px;
-    width: 80px;
+    height: 70px;
+    width: 70px;
   }
 }

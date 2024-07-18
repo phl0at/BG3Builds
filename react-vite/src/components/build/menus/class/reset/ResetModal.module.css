@@ -4,10 +4,10 @@
     align-items: center;
     justify-content: space-around;
     border-radius: 4px;
-    outline: 3px solid rgb(101, 71, 42);
     width: 300px;
-    height: 90px;
-    background-color: rgba(10, 8, 8, 0.96);
+    height: 110px;
+    outline: 3px solid rgb(101, 71, 42);
+    background-color: rgb(17, 13, 12);
 }
 
 .title{

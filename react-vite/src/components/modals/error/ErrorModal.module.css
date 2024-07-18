@@ -29,8 +29,9 @@
 }
 
 .title {
+  color: red;
   position: relative;
-  top: 40px;
+  top: 47px;
   width: 100%;
   height: 10%;
   display: flex;
@@ -64,4 +65,8 @@
   position: relative;
   font-size: 11pt;
   bottom: 6px;
+}
+
+.white {
+  color: antiquewhite;
 }

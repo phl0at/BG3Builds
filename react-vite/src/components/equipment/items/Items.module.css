@@ -1,9 +1,9 @@
 .main {
   min-width: 400px;
   min-height: 450px;
-  background-color: rgba(10, 8, 8, 0.96);
   border-radius: 4px;
   outline: 3px solid rgb(101, 71, 42);
+  background-color: rgb(17, 13, 12);
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -38,7 +38,6 @@
   height: 100%;
   overflow: auto;
   scrollbar-width: thin;
-  /* scrollbar-color:; */
 }
 
 .item {
@@ -97,10 +96,10 @@
   left: 103%;
   bottom: 44.5%;
   border-radius: 4px;
-  outline: 3px solid rgb(101, 71, 42);
   width: 400px;
   height: 250px;
-  background-color: rgba(10, 8, 8, 0.96);
+  outline: 3px solid rgb(101, 71, 42);
+  background-color: rgb(17, 13, 12);
 }
 
 .sideTable {
@@ -126,13 +125,9 @@
 }
 
 .buttons {
-  position: relative;
-  left: -21px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   height: 40px;
-  column-gap: 50px;
-  width: 112%;
 }
 
 .equip {

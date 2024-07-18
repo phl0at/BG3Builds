@@ -6,33 +6,50 @@ export default function LandingPage() {
     <main className={styles.main}>
       <div className={styles.intro}>
         <main className={styles.container}>
-          <div className={styles.disclaimer}>
           <div className={styles.welcome}>{"Welcome to BG3Builds"}</div>
-            <p>
-              {"Thanks for checking out the site! Have fun creating, sharing, and \
-              testing your character builds for Baldur's Gate 3! Here are a few \
-              things to keep in mind before getting started..."}
+          <p className={styles.preStep}>
+            {
+              "Thanks for checking out the site! We hope you enjoy your time creating, sharing, and \
+                testing character builds for the best game on the planet: Baldur's Gate 3. Here are a few things to keep in mind before getting started..."
+            }
+          </p>
+          <div className={styles.scroll}>
+            <p className={styles.step}>
+              {
+                "Larian Studios, crafted a deeply complex Role-Playing Game with myriad systems and unique ways \
+                for players to express themselves. The purpose of this site is to help players establish a blue-print \
+              (or 'build') to plan ahead and create the perfect character for your next play-through."
+              }
             </p>
-            <p>
-              {"1. Begin creating your character by choosing an Origin Story, Race, \
-              Class, Background, and Ability Stats. Use the navigation bar on the left to browse each menu."}
+            <p className={styles.step}>
+              {
+                "Given the game's complexity, please bear in mind that we do not support every single system found in \
+                Baldur's Gate 3. However, things like Spells, Proficiencies, and Sub-classes are in the works!"
+              }
             </p>
-            <p>
-              {"2. Once you have created the perfect character, start equipping \
-              powerful items! Not all items are in the game right now, but more are being added every few weeks."}
+            <p className={styles.step}>
+              {
+                "To create a build of your own, begin by using the navigation bar on the left to browse through the Character Menus.\
+                Here, you will chose your character's origins, classes, and ability point allocations."
+              }
             </p>
-            <p>
-              {"3. Information about stat breakdowns and proficiency bonuses can \
-              be found in the Information Panel on the right. In the top left corner you will \
-              find buttons to switch between the build's comments and stats."}
+            <p className={styles.step}>
+              {
+                "Once your character is set up, start equipping some powerful items! Not all items found in Baldur's Gate 3 are currently available on our site, \
+                but more are added on around a monthly-basis."
+              }
             </p>
-            <p>
-{"              4. You cannot save, comment on, or edit existing builds unless you have created an account and singed in. The Login and Sign Up buttons are in the User Panel in the bottom right corner."}
+            <p className={styles.red}>
+              {
+                "If you would like to save your build for later, you must log into an existing account."
+              }
             </p>
           </div>
-          <NavLink className={styles.start} to="/create">
-            Start Building!
-          </NavLink>
+          <div className={styles.startContainer}>
+            <NavLink className={styles.start} to="/create">
+              Start Building!
+            </NavLink>
+          </div>
         </main>
       </div>
     </main>

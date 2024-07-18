@@ -27,6 +27,7 @@ const ADD_BUILD_CLASS = "build/addBuildClass";
 const RESET_CLASSES = "build/resetClasses";
 // ITEM ACTIONS
 const EQUIP_ITEM = "build/equip";
+const REMOVE_ITEM = "build/remove";
 // COMMENT ACTIONS
 const COMMENT = "comment";
 const DELETE_COMMENT = "comment/delete";
@@ -39,7 +40,6 @@ export const action = (type, payload) => ({
   type,
   payload,
 });
-
 
 //! --------------------------------------------------------------------
 
@@ -90,7 +90,7 @@ export const thunkCreateBuild =
   async (dispatch) => {
     build.name = name;
     build.character_name = character_name;
-    build.build_classes = Object.values(build.build_classes)
+    build.build_classes = Object.values(build.build_classes);
     const res = await fetch("/api/builds/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -116,7 +116,7 @@ export const thunkUpdateBuild =
   async (dispatch) => {
     build.name = name;
     build.character_name = character_name;
-    build.build_classes = Object.values(build.build_classes)
+    build.build_classes = Object.values(build.build_classes);
 
     const res = await fetch(`/api/builds/${build.id}`, {
       method: "PUT",
@@ -286,7 +286,6 @@ export const getBuildsArray = createSelector(
 const initialState = {};
 function buildReducer(state = initialState, action) {
   switch (action.type) {
-
     case GET_BUILD: {
       const newState = { ...state };
 
@@ -446,6 +445,12 @@ function buildReducer(state = initialState, action) {
     case EQUIP_ITEM: {
       const newState = { ...state, current: { ...state.current } };
       newState.current[action.itemType] = action.payload;
+      return newState;
+    }
+
+    case REMOVE_ITEM: {
+      const newState = { ...state, current: { ...state.current } };
+      delete newState.current[action.payload];
       return newState;
     }
 

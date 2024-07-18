@@ -4,10 +4,12 @@ import { Images } from "../../images";
 // Functions/Components
 // Packages
 import { NavLink } from "react-router-dom";
+import { useModal } from "../../../context/Modal";
 
 export default function ErrorModal({ errors }) {
   const errorMessages = Object.values(errors);
   const errorKeys = Object.keys(errors);
+  const { closeModal } = useModal();
 
   return (
     <main className={styles.main}>
@@ -18,28 +20,40 @@ export default function ErrorModal({ errors }) {
         {"The Lady Shar has denied your request"}
       </div>
 
-      <div className={styles.message}>
-        {
-          "By her grace, she has blessed you with guidance to correct your errors...this time."
-        }
-      </div>
+      {errorKeys[0] === "feature" ? null : (
+        <div className={styles.message}>
+          {
+            "By her grace, she has blessed you with guidance to correct your errors...this time."
+          }
+        </div>
+      )}
 
       <div className={styles.errors}>
-        <ul className={styles.list}>
+        <div className={styles.list}>
           {errorMessages.map((err, i) => (
-            <li key={i} className={styles.error}>
+            <div key={i} className={styles.error}>
               {err[0]}
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
       {errorKeys[0] === "feature" ? (
         <div className={styles.close}>
-          {"Visit our public repository on"} <NavLink to="https://github.com/phl0at/BG3Builds/wiki">{"GitHub"}</NavLink> {"for more info on planned features"}
+          {"Visit our public repository on"}{" "}
+          <NavLink to="https://github.com/phl0at/BG3Builds/wiki">
+            {"GitHub"}
+          </NavLink>{" "}
+          {"for more info on planned features"}
         </div>
       ) : (
         <div className={styles.close}>
-          {"Please close this window and try again"}
+          {`Please `}
+          {
+            <button className={styles.white} onClick={closeModal}>
+              close this window
+            </button>
+          }
+          {` and try again`}
         </div>
       )}
     </main>

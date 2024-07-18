@@ -1,6 +1,6 @@
 .main {
   width: 90%;
-  background-color: rgba(17, 13, 12, 0.78);
+  background-color: rgba(17, 13, 12, 0.92);
   outline: 3px solid rgb(101, 71, 42);
   border-radius: 4px;
   display: flex;
@@ -24,7 +24,7 @@
 .navButton {
   color: #e4c274;
   outline: 2px solid rgb(101, 71, 42);
-  background-color: rgba(17, 13, 12, 0.78);
+  background-color: rgba(17, 13, 12, 0.92);
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -38,7 +38,7 @@
 .scroll {
   width: 61%;
   height: 90%;
-  background: rgba(17, 13, 12, 0.78);
+  background: rgb(17, 13, 12);
   border-radius: 4px;
   overflow-y: auto;
 }
@@ -59,7 +59,7 @@
 .build {
   width: 30%;
   display: flex;
-  background-color: rgba(17, 13, 12, 0.78);
+  outline: 1px solid rgb(101, 71, 42);
   border-radius: 10px;
   height: 170px;
   display: flex;
@@ -76,7 +76,8 @@
 .select {
   width: 30%;
   display: flex;
-  background-color: rgba(46, 31, 18, 0.797);
+  background-color: rgba(46, 31, 18, 0.9);
+  outline: 1px solid rgb(101, 71, 42);;
   border-radius: 10px;
   height: 170px;
   display: flex;
@@ -116,7 +117,7 @@
   width: 30%;
   min-width: 200px;
   height: 82%;
-  background-color: rgba(17, 13, 12, 1);
+  background-color: rgb(17, 13, 12);
   outline: 2px solid rgb(101, 71, 42);
   border-radius: 20px;
   display: flex;

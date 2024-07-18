@@ -3,7 +3,7 @@ import styles from "./SaveModal.module.css";
 //Functions/Components
 import { thunkCreateBuild } from "../../../redux/build";
 import { useModal } from "../../../context/Modal";
-import ErrorModal from "../../../components/modals/error/ErrorModal";
+import ErrorModal from "../error/ErrorModal";
 //Packages
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,7 +47,7 @@ export default function SaveBuildModal({ points }) {
   };
   return (
     <main className={styles.main}>
-      <div className={styles.title}>Save Build</div>
+      <div className={styles.title}>Create</div>
       <div className={styles.error}>{errors}</div>
       <form className={styles.form} type="submit" onSubmit={submit}>
         {currentBuild.origin === 8 || currentBuild.origin === 7 ? (

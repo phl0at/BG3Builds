@@ -2,10 +2,7 @@
 import styles from "./Class.module.css";
 import { Images } from "../../../images";
 //Functions/Components
-import {
-  getBuildClassArray,
-  action,
-} from "../../../../redux/build";
+import { getBuildClassArray, action } from "../../../../redux/build";
 import OpenModalButton from "../../../modals";
 import ResetClassesModal from "./reset";
 //Packages
@@ -35,7 +32,17 @@ export default function ClassComponent({ currentBuild }) {
 
   return (
     <>
-      <div className={styles.title}>Class</div>
+      <div className={styles.header}>
+        <div className={styles.reset}>
+          {buildClasses.length ? (
+            <OpenModalButton
+              buttonText={<CiUndo size="40" />}
+              modalComponent={<ResetClassesModal />}
+            />
+          ) : null}
+        </div>
+        <div className={styles.title}>Class</div>
+      </div>
       <div className={styles.classList}>
         <div className={styles.class}>
           <img
@@ -199,13 +206,6 @@ export default function ClassComponent({ currentBuild }) {
               )}
             </>
           )}
-          {buildClasses.length ? (
-            <OpenModalButton
-              className={styles.reset}
-              buttonText={<CiUndo size="40" />}
-              modalComponent={<ResetClassesModal />}
-            />
-          ) : null}
         </div>
         <div className={styles.description}>
           {Classes[currentBuild.class]?.description}

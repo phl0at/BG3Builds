@@ -3,12 +3,12 @@
   flex-direction: column;
   align-items: center;
   border-radius: 4px;
-  min-width: 440px;
-  width: 32%;
+  width: 600px;
+  height: 93%;
   gap: 20px;
   overflow-y: auto;
   outline: 3px solid rgb(101, 71, 42);
-  background: rgb(21, 16, 14, 0.88);
+  background: rgb(21, 16, 14, 0.92);
 }
 
 .main > * {
@@ -18,15 +18,6 @@
   -o-animation: fadeIn 0.5s;
   -ms-animation: fadeIn 0.5s;
 }
-
-
-
-
-
-
-
-
-
 
 /*
 FADE-IN ANIMATIONS !!!!!!!!!!!

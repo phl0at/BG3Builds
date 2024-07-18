@@ -3,7 +3,7 @@ import styles from "./Items.module.css";
 import { Images } from "../../images";
 //Functions/Components
 import { getEquipmentArray } from "../../../redux/build";
-import { equipItem } from "../../../redux/build";
+import { equipItem, action } from "../../../redux/build";
 //Packages
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function ItemsTableModal({ type, Equipment }) {
   const dispatch = useDispatch();
   const currentBuild = useSelector((state) => state.builds.current);
+  const currentUser = useSelector((state) => state.session.user);
   const EquipmentArray = useSelector(getEquipmentArray);
   const [selectedItem, setSelectedItem] = useState(null);
   const formatType = type.split("_")[0];
@@ -20,10 +21,7 @@ export default function ItemsTableModal({ type, Equipment }) {
     setSelectedItem(id);
   };
 
-  const equip = (e, id) => {
-    e.preventDefault();
-    dispatch(equipItem(type, id));
-  };
+  console.log(selectedItem);
 
   return (
     <>
@@ -70,14 +68,32 @@ export default function ItemsTableModal({ type, Equipment }) {
               <div className={styles.description}>
                 {Equipment[selectedItem].description}
               </div>
-              <div className={styles.buttons}>
-                <button
-                  onClick={(e) => equip(e, selectedItem)}
-                  className={styles.equip}
-                >
-                  Equip
-                </button>
-              </div>
+              {currentUser && (
+                <div className={styles.buttons}>
+                  {currentBuild[type] !== selectedItem && (
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        dispatch(equipItem(type, selectedItem));
+                      }}
+                      className={styles.equip}
+                    >
+                      Equip
+                    </button>
+                  )}
+                  {currentBuild[type] === selectedItem && (
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        dispatch(action("build/remove", type));
+                      }}
+                      className={styles.equip}
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
+              )}
             </>
           )}
         </div>

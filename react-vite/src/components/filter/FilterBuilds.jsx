@@ -258,7 +258,7 @@ export default function FilterBuildComponent({ filters, setFilters }) {
             onClick={(e) => {
               e.preventDefault();
               setFilters({});
-              setSelectedItem("")
+              setSelectedItem("");
             }}
           >
             Clear Filters

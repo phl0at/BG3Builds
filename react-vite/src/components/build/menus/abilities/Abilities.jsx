@@ -25,14 +25,17 @@ export default function AbilitiesComponent({
 
   return (
     <>
-      {points < 27 ? (
-        <OpenModalButton
-          className={styles.reset}
-          buttonText={<CiUndo size="40" />}
-          modalComponent={<ResetAbilitiesModal setPoints={setPoints} />}
-        />
-      ) : null}
-      <div className={styles.title}>Abilities</div>
+      <div className={styles.header}>
+        <div className={styles.reset}>
+          {points < 27 ? (
+            <OpenModalButton
+              buttonText={<CiUndo size="40" />}
+              modalComponent={<ResetAbilitiesModal setPoints={setPoints} />}
+            />
+          ) : null}
+        </div>
+        <div className={styles.title}>Abilities</div>
+      </div>
       <div className={styles.points}>{`Ability Points: ${points}`}</div>
       <div className={styles.abilityList}>
         <div className={styles.heading}>

@@ -4,11 +4,11 @@
   align-items: center;
   outline: 3px solid rgb(101, 71, 42);
   border-radius: 4px;
-  min-width: 440px;
-  width: 32%;
+  width: 585px;
+  height: 93%;
   gap: 20px;
   overflow-y: auto;
-  background: rgb(21, 16, 14, 0.88);
+  background: rgb(21, 16, 14, 0.92);
 }
 
 .title {
@@ -79,7 +79,7 @@
   background-color: rgba(17, 13, 12, 0.35);
   outline-color: #e4c274;
 }
-
+/*
 @media (min-width: 1645px) {
   .armorClass {
     height: 160px;
@@ -89,7 +89,7 @@
     height: 80px;
     width: 80px;
   }
-}
+} */
 
 .weapons {
   display: flex;

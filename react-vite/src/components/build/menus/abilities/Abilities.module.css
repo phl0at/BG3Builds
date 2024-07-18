@@ -1,17 +1,23 @@
+.header {
+  position: relative;
+  display: flex;
+  width: 90%;
+  left: -22px;
+  top: 2px;
+}
+
 .title {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   margin-top: 10px;
   font-size: 17pt;
   color: #e69a28;
 }
 .reset {
-  outline: none;
-  position: absolute;
-  top: 15px;
-  left: 190px;
+  width: 45px;
+  height: 45px;
   color: #e69a28;
 }
 

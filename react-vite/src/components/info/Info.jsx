@@ -4,8 +4,8 @@ import styles from "./Info.module.css";
 import Information from "./information";
 import Comments from "./comments";
 import OpenModalButton from "../modals";
-import SaveBuildModal from "../../pages/create/save";
-import UpdateBuildModal from "../../pages/edit/update";
+import SaveBuildModal from "../modals/save";
+import UpdateBuildModal from "../modals/update";
 import DeleteBuildModal from "./delete/DeleteModal";
 import ErrorModal from "../modals/error/ErrorModal";
 
