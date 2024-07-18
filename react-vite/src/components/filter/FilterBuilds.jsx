@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import {
   CiSquareChevRight,
   CiSquareChevDown,
-  CiPaperplane,
   CiStop1,
   CiSquareRemove,
 } from "react-icons/ci";
@@ -143,10 +142,12 @@ export default function FilterBuildComponent({ filters, setFilters }) {
           <div className={styles.list}>
             {Races.map((race) => (
               <div key={race.id} className={styles.race}>
-                <div className={styles.selected}>
-                  {selectedItem === race.name && <CiPaperplane />}
-                </div>
                 <button
+                  className={
+                    selectedItem === race.name
+                      ? styles.selected
+                      : styles.listItem
+                  }
                   onClick={(e) => {
                     e.preventDefault();
                     setFilters(
@@ -185,10 +186,10 @@ export default function FilterBuildComponent({ filters, setFilters }) {
           <div className={styles.list}>
             {Backgrounds.map((bg) => (
               <div key={bg.id} className={styles.background}>
-                <div className={styles.selected}>
-                  {selectedItem === bg.name && <CiPaperplane />}
-                </div>
                 <button
+                  className={
+                    selectedItem === bg.name ? styles.selected : styles.listItem
+                  }
                   onClick={(e) => {
                     e.preventDefault();
                     setFilters(
@@ -227,10 +228,12 @@ export default function FilterBuildComponent({ filters, setFilters }) {
           <div className={styles.list}>
             {Classes.map((_class) => (
               <div key={_class.class_id} className={styles.class}>
-                <div className={styles.selected}>
-                  {selectedItem === _class.name && <CiPaperplane />}
-                </div>
                 <button
+                  className={
+                    selectedItem === _class.name
+                      ? styles.selected
+                      : styles.listItem
+                  }
                   onClick={(e) => {
                     e.preventDefault();
                     setFilters(
@@ -248,6 +251,17 @@ export default function FilterBuildComponent({ filters, setFilters }) {
               </div>
             ))}
           </div>
+        )}
+        {Object.values(filters)[0] && (
+          <button
+            className={styles.button}
+            onClick={(e) => {
+              e.preventDefault();
+              setFilters({});
+            }}
+          >
+            Clear Filters
+          </button>
         )}
       </div>
     </main>

@@ -146,6 +146,18 @@ export function filteredBuilds(builds, filters, currentUser) {
     });
   }
 
+  if (filters["race"]) {
+    builds.forEach((build) => {
+      if (build.race === filters["race"]) arr.push(build);
+    });
+  }
+
+  if (filters["background"]) {
+    builds.forEach((build) => {
+      if (build.background === filters["background"]) arr.push(build);
+    });
+  }
+
   if (filters["class"]) {
     builds.forEach((build) => {
       const hasClass = build.build_classes.find(
