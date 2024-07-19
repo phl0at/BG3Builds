@@ -6,7 +6,7 @@ import Comments from "./comments";
 import OpenModalButton from "../modals";
 import SaveBuildModal from "../modals/save";
 import UpdateBuildModal from "../modals/update";
-import DeleteBuildModal from "./delete/DeleteModal";
+import DeleteBuildModal from "../modals/delete";
 import ErrorModal from "../modals/error/ErrorModal";
 
 import { useModal } from "../../context/Modal";

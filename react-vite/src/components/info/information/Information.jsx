@@ -3,15 +3,12 @@ import styles from "../Info.module.css";
 import { Images } from "../../images";
 // Functions/Components
 // Packages
-import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getBuildClassArray } from "../../../redux/build";
 
 export default function Information({ currentBuild }) {
-  const buildId = useParams();
   const build_classes = useSelector(getBuildClassArray);
   const Backgrounds = useSelector((state) => state.static.backgrounds);
-  const Origins = useSelector((state) => state.static.origins);
   const Races = useSelector((state) => state.static.races);
 
   const attributes = [
@@ -27,16 +24,11 @@ export default function Information({ currentBuild }) {
     <>
       <div className={styles.title}>Information</div>
       <div className={styles.infoClassHead}>
-        {build_classes.length ? (
+        {build_classes[0] && (
           <img src={Images.classes[build_classes[0].name]} />
-        ) : (
-          "No classes"
         )}
       </div>
       <div className={styles.infoBody}>
-        <div className={styles.infoName}>
-          {buildId ? currentBuild.name : null}
-        </div>
         <div className={styles.infoAttributes}>
           {attributes.map((att) => {
             const cont = `${att[0].toUpperCase()}${att.slice(1, 3)}`;
@@ -61,18 +53,9 @@ export default function Information({ currentBuild }) {
           ))}
         </div>
         <div className={styles.infoCharacter}>
-          <div className={styles.infoCharL}>
-            <div>Name: {currentBuild.character_name}</div>
-            <div>Origin: {Origins[currentBuild.origin].name}</div>
-          </div>
-          <div className={styles.infoCharR}>
-            <div>
-              <div>| Race: {Races[currentBuild.race].name}</div>
-              <div>
-                | Background: {Backgrounds[currentBuild.background].name}
-              </div>
-            </div>
-          </div>
+          <div className={styles.char}>{currentBuild.character_name}</div>
+          |<div className={styles.char}>{Races[currentBuild.race].name}</div>
+          |<div className={styles.char}>{Backgrounds[currentBuild.background].name}</div>
         </div>
       </div>
     </>

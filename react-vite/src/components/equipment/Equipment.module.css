@@ -4,7 +4,11 @@
   align-items: center;
   outline: 3px solid rgb(101, 71, 42);
   border-radius: 4px;
-  width: 585px;
+  max-width: 600px;
+  min-width: 440px;
+  max-height: 850px;
+  min-height: 615px;
+  width: 30%;
   height: 93%;
   gap: 20px;
   overflow-y: auto;

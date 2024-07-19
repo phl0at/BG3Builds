@@ -3,7 +3,7 @@ import styles from "./DeleteModal.module.css";
 //Functions/Components
 import { thunkDeleteBuild } from "../../../redux/build";
 import { useModal } from "../../../context/Modal";
-import ErrorModal from "../../modals/error/ErrorModal";
+import ErrorModal from "../error/ErrorModal";
 //Packages
 import { CiCircleCheck, CiCircleRemove } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,7 +27,7 @@ export default function DeleteBuildModal() {
       closeModal();
     }
   };
-  
+
   const cancel = (e) => {
     e.preventDefault();
     closeModal();

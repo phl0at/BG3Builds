@@ -10,6 +10,7 @@ import InfoComponent from "../../components/info";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import { ClipLoader } from "react-spinners";
 
 export default function CreateParentPage() {
   const dispatch = useDispatch();
@@ -23,10 +24,17 @@ export default function CreateParentPage() {
     dispatch(action("build/setDefault"));
   }, [dispatch]);
 
-  if (!currentBuild || !Origins) return "";
+  if (!currentBuild || !Origins) {
+    return (
+      <main className={styles.loading}>
+        <ClipLoader color="rgb(101, 71, 42)" size="100" />
+      </main>
+    );
+  }
 
   return (
     <main className={styles.main}>
+      <div className={styles.title}>{`New Build`}</div>
       <Navigation setActiveMenu={setActiveMenu} activeMenu={activeMenu} />
       <BuildComponent
         points={points}
