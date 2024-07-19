@@ -102,23 +102,18 @@ export function SelectedBuildPanel({
           ))}
         </div>
         <div className={styles.selectedCharacter}>
-          <div className={styles.selectedCharL}>
-            <div>Origin: {Origins[build.origin].name}</div>
-            <div>Character Name: {build.character_name}</div>
-          </div>
-          <div className={styles.selectedCharR}>
-            <div>
-              <div>| Race: {Races[build.race].name}</div>
-              <div>| Background: {Backgrounds[build.background].name}</div>
-            </div>
+          <div className={styles.char}>{build.character_name}</div>|
+          <div className={styles.char}>{Races[build.race].name}</div>|
+          <div className={styles.char}>
+            {Backgrounds[build.background].name}
           </div>
         </div>
         <NavLink
           title="Go to build"
-          className={styles.navButton}
+          className={styles.toBuild}
           to={`/build/${build.id}`}
         >
-          <CiViewBoard size="40" />
+          <CiViewBoard size="50" />
         </NavLink>
       </div>
     </>

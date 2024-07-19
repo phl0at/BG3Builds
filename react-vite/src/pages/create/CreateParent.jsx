@@ -8,15 +8,15 @@ import BuildComponent from "../../components/build";
 import EquipmentComponent from "../../components/equipment";
 import InfoComponent from "../../components/info";
 //Packages
-import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function CreateParentPage() {
   const dispatch = useDispatch();
-  const [activeMenu, setActiveMenu] = useState("Origin");
   const currentBuild = useSelector((state) => state.builds.current);
   const Origins = useSelector((state) => state.static.origins);
+  const [activeMenu, setActiveMenu] = useState("Origin");
   const [points, setPoints] = useState(27);
 
   useEffect(() => {
@@ -27,22 +27,23 @@ export default function CreateParentPage() {
   if (!currentBuild || !Origins) {
     return (
       <main className={styles.loading}>
-        <ClipLoader color="rgb(101, 71, 42)" size="100" />
+        <ClipLoader color="#e4c274" size="100px" />
       </main>
     );
   }
 
   return (
-    <main className={styles.main}>
-      <div className={styles.title}>{`New Build`}</div>
-      <Navigation setActiveMenu={setActiveMenu} activeMenu={activeMenu} />
-      <BuildComponent
-        points={points}
-        setPoints={setPoints}
-        activeMenu={activeMenu}
-      />
-      <EquipmentComponent />
-      <InfoComponent currentBuild={currentBuild} points={points} />
-    </main>
+    <>
+      <main className={styles.main}>
+        <Navigation setActiveMenu={setActiveMenu} activeMenu={activeMenu} />
+        <BuildComponent
+          points={points}
+          setPoints={setPoints}
+          activeMenu={activeMenu}
+        />
+        <EquipmentComponent />
+        <InfoComponent currentBuild={currentBuild} points={points} />
+      </main>
+    </>
   );
 }

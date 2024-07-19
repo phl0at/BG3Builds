@@ -8,94 +8,48 @@ import SaveBuildModal from "../modals/save";
 import UpdateBuildModal from "../modals/update";
 import DeleteBuildModal from "../modals/delete";
 import ErrorModal from "../modals/error/ErrorModal";
-
 import { useModal } from "../../context/Modal";
 //Packages
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { ClipLoader } from "react-spinners";
+
 import {
   CiTrash,
   CiFloppyDisk,
   CiShare2,
   CiCalculator2,
   CiBoxList,
-  CiCircleInfo,
-  CiChat2,
 } from "react-icons/ci";
-import { UserButtons } from "./helper";
 
-export default function InfoComponent({ points }) {
-  const { setModalContent } = useModal();
+export default function InfoComponent({ currentBuild, points }) {
+  const currentUser = useSelector((state) => state.session.user);
   const { buildId } = useParams();
   const navigateTo = useNavigate();
-  const currentUser = useSelector((state) => state.session.user);
-  const currentBuild = useSelector((state) => state.builds.current);
+  const { setModalContent } = useModal();
   const [display, setDisplay] = useState("Info");
-  const [loading, setLoading] = useState(false);
-
-  const viewBuilds = (e) => {
-    e.preventDefault();
-    navigateTo("/browse");
-  };
 
   return (
     <main className={styles.main}>
       {currentBuild && (
         <>
-          {buildId && (
-            <>
-              <div className={styles.infoToggle}>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setDisplay("Info");
-                  }}
-                  title="Information"
-                  className={styles.button}
-                >
-                  <CiCircleInfo size="33" />
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setDisplay("Comments");
-                  }}
-                  title="Comments"
-                  className={styles.button}
-                >
-                  <CiChat2 size="33" />
-                </button>
-              </div>
-            </>
-          )}
           <div className={styles.infoPanel}>
-            {display === "Info" && <Information currentBuild={currentBuild} />}
-            {display === "Comments" && <Comments currentBuild={currentBuild} />}
+            {display === "Info" && (
+              <Information
+                setDisplay={setDisplay}
+                currentBuild={currentBuild}
+              />
+            )}
+            {display === "Comments" && <Comments setDisplay={setDisplay} />}
           </div>
           <div className={styles.userBar}>
-            <div className={styles.buildButtonsContainer}>
-              <div className={styles.buildButtons}>
-                <button
-                  className={styles.button}
-                  title="Import/Export"
-                  onClick={() =>
-                    setModalContent(
-                      <ErrorModal
-                        errors={{
-                          feature: ["This feature is still under development"],
-                        }}
-                      />
-                    )
-                  }
-                >
-                  <CiShare2 size="30" />
-                </button>
-                {currentUser && (
+            {currentUser && (
+              <>
+                <div className={styles.buildButtonsContainer}>
                   <OpenModalButton
                     buttonText={<CiFloppyDisk size="27" />}
-                    className={styles.button}
+                    id={styles.fade}
+                    className={styles.buildButton}
                     title="Save"
                     modalComponent={
                       currentUser.id === currentBuild.user_id ? (
@@ -105,53 +59,81 @@ export default function InfoComponent({ points }) {
                       )
                     }
                   />
-                )}
-                {currentUser &&
-                  (currentUser.id === currentBuild.user_id ? (
+                  {currentUser.id === currentBuild.user_id && (
                     <OpenModalButton
                       buttonText={<CiTrash size="27" />}
-                      className={styles.button}
+                      id={styles.fade}
+                      className={styles.buildButton}
                       title="Delete"
                       modalComponent={<DeleteBuildModal />}
                     />
-                  ) : null)}
-              </div>
+                  )}
+                </div>
+                <div className={styles.buildButtonsContainer}>
+                  <button
+                    id={styles.fade}
+                    className={styles.buildButton}
+                    title="Import/Export"
+                    onClick={() =>
+                      setModalContent(
+                        <ErrorModal
+                          errors={{
+                            feature: [
+                              "This feature is still under development",
+                            ],
+                          }}
+                        />
+                      )
+                    }
+                  >
+                    <CiShare2 size="30" />
+                  </button>
+                  <button
+                    id={styles.fade}
+                    className={styles.buildButton}
+                    title="Calculate"
+                    onClick={() =>
+                      setModalContent(
+                        <ErrorModal
+                          errors={{
+                            feature: [
+                              "This feature is still under development",
+                            ],
+                          }}
+                        />
+                      )
+                    }
+                  >
+                    <CiCalculator2 size="32" />
+                  </button>
+                </div>
+              </>
+            )}
+
+            <div className={styles.buildButtonsContainer}>
               <button
-                id={styles.calButton}
-                className={styles.button}
-                title="Calculate"
-                onClick={() =>
-                  setModalContent(
-                    <ErrorModal
-                      errors={{
-                        feature: ["This feature is still under development"],
-                      }}
-                    />
-                  )
-                }
-              >
-                <CiCalculator2 size="32" />
-              </button>
-            </div>
-            <div className={styles.userInfo}>
-              <button
-                id={styles.calButton}
-                className={styles.button}
+                id={styles.fade}
+                className={styles.buildButton}
                 title="Browse Other Builds"
-                onClick={viewBuilds}
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateTo("/browse");
+                }}
               >
                 <CiBoxList size="32" />
               </button>
-            </div>
-            <div className={styles.userButtons}>
-              {loading & !currentUser ? (
-                <ClipLoader color="#e4c274" className={styles.loggingIn} />
-              ) : (
-                <UserButtons
-                  currentUser={currentUser}
-                  setLoading={setLoading}
-                />
-              )}
+
+              <button
+                id={styles.fade}
+                className={styles.buildButton}
+                title="FAQ Page"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateTo("/faq");
+                }}
+              >
+                ?
+              </button>
             </div>
           </div>
         </>

@@ -2,14 +2,17 @@
 import styles from "../Info.module.css";
 import { Images } from "../../images";
 // Functions/Components
+import { getBuildClassArray } from "../../../redux/build";
 // Packages
 import { useSelector } from "react-redux";
-import { getBuildClassArray } from "../../../redux/build";
+import { CiChat2, CiSquarePlus } from "react-icons/ci";
+import { useParams, NavLink } from "react-router-dom";
 
-export default function Information({ currentBuild }) {
+export default function Information({ currentBuild, setDisplay }) {
   const build_classes = useSelector(getBuildClassArray);
   const Backgrounds = useSelector((state) => state.static.backgrounds);
   const Races = useSelector((state) => state.static.races);
+  const { buildId } = useParams();
 
   const attributes = [
     "strength",
@@ -22,8 +25,35 @@ export default function Information({ currentBuild }) {
 
   return (
     <>
-      <div className={styles.title}>Information</div>
-      <div className={styles.infoClassHead}>
+      <div className={styles.header}>
+        <div className={styles.headerButton}>
+          {buildId && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setDisplay("Comments");
+              }}
+              title="Comments"
+              className={styles.button}
+            >
+              <CiChat2 size="48" />
+            </button>
+          )}
+        </div>
+        <div className={styles.title}>Information</div>
+        <div className={styles.headerButton}>
+          {buildId && (
+            <NavLink
+              title="Create build"
+              className={styles.toCreate}
+              to="/create"
+            >
+              <CiSquarePlus size="50" />
+            </NavLink>
+          )}
+        </div>
+      </div>
+      <div className={styles.mainClass}>
         {build_classes[0] && (
           <img src={Images.classes[build_classes[0].name]} />
         )}
@@ -53,9 +83,11 @@ export default function Information({ currentBuild }) {
           ))}
         </div>
         <div className={styles.infoCharacter}>
-          <div className={styles.char}>{currentBuild.character_name}</div>
-          |<div className={styles.char}>{Races[currentBuild.race].name}</div>
-          |<div className={styles.char}>{Backgrounds[currentBuild.background].name}</div>
+          <div className={styles.char}>{currentBuild.character_name}</div>|
+          <div className={styles.char}>{Races[currentBuild.race].name}</div>|
+          <div className={styles.char}>
+            {Backgrounds[currentBuild.background].name}
+          </div>
         </div>
       </div>
     </>

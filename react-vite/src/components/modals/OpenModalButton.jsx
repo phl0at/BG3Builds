@@ -1,6 +1,7 @@
 import { useModal } from "../../context/Modal";
 
 function OpenModalButton({
+  id,
   className,
   title,
   modalComponent, // component to render inside the modal
@@ -17,7 +18,7 @@ function OpenModalButton({
   };
 
   return (
-    <button title={title} className={className} onClick={onClick}>
+    <button id={id} title={title} className={className} onClick={onClick}>
       {buttonText}
     </button>
   );

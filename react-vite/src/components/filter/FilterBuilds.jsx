@@ -26,10 +26,6 @@ export default function FilterBuildComponent({ filters, setFilters }) {
   const [showClasses, setShowClasses] = useState(false);
   const [selectedItem, setSelectedItem] = useState("");
 
-  useEffect(() => {
-    console.log(filters);
-  }, [filters]);
-
   return (
     <main className={styles.main}>
       <div className={styles.title}>Filters</div>

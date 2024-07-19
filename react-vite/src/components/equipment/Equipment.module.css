@@ -16,6 +16,8 @@
 }
 
 .title {
+  position: relative;
+  top: 4px;
   margin-top: 10px;
   font-size: 17pt;
   color: #e69a28;

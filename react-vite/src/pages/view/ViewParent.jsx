@@ -8,6 +8,7 @@ import { thunkPreloadData } from "../../redux/static";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { ClipLoader } from "react-spinners";
 
 export default function ViewParentPage() {
   const dispatch = useDispatch();
@@ -22,7 +23,13 @@ export default function ViewParentPage() {
     }
   }, []);
 
-  if (!builds || !staticData["classes"]) return "";
+  if (!builds || !staticData["classes"]) {
+    return (
+      <main className={styles.loading}>
+        <ClipLoader color="rgb(101, 71, 42)" size="100" />
+      </main>
+    );
+  }
 
   return (
     <main className={styles.main}>

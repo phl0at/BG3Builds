@@ -1,6 +1,8 @@
 .main {
   display: flex;
-  height: 100%;
+  align-items: center;
+  justify-content: center;
+  height: 95%;
   min-height: 475px;
   column-gap: 20px;
 }

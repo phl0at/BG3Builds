@@ -7,22 +7,24 @@ import { thunkGetAllUsers } from "../../../redux/users";
 // Packages
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
+import { CiSquareAlert, CiSquarePlus } from "react-icons/ci";
 
-export default function Comments() {
+export default function Comments({ setDisplay }) {
   const dispatch = useDispatch();
   const { buildId } = useParams();
   const [newComment, setNewComment] = useState("");
   const comments = useSelector(getCommentsArray);
   const allUsers = useSelector((state) => state.users);
   const currUser = useSelector((state) => state.session.user);
+  const usersLoaded = Object.values(allUsers).length;
 
   useEffect(() => {
-    if (!Object.values(allUsers).length) dispatch(thunkGetAllUsers());
+    if (!usersLoaded) dispatch(thunkGetAllUsers());
   }, []);
 
-  if (!Object.values(allUsers).length)
+  if (!usersLoaded)
     return <ClipLoader color="#e4c274" className={styles.loading} />;
 
   const onSubmit = (e) => {
@@ -32,7 +34,32 @@ export default function Comments() {
   };
   return (
     <>
-      <div className={styles.title}>Comments</div>
+      <div className={styles.header}>
+        <div className={styles.headerButton}>
+          {buildId && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setDisplay("Info");
+              }}
+              title="Information"
+              className={styles.button}
+            >
+              <CiSquareAlert size="50" />
+            </button>
+          )}
+        </div>
+        <div className={styles.title}>Comments</div>
+        <div className={styles.headerButton}>
+          <NavLink
+            title="Create build"
+            className={styles.toCreate}
+            to="/create"
+          >
+            <CiSquarePlus size="50" />
+          </NavLink>
+        </div>
+      </div>
       <div className={styles.scroll}>
         <div className={styles.commentsList}>
           {comments.map((message) => {
@@ -47,7 +74,7 @@ export default function Comments() {
           })}
         </div>
       </div>
-      <form type="submit" onSubmit={onSubmit}>
+      <form className={styles.form} type="submit" onSubmit={onSubmit}>
         {currUser && (
           <input
             value={newComment}
