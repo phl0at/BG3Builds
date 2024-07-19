@@ -1,18 +1,18 @@
 import styles from "./FilterBuilds.module.css";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import {
-  CiSquareChevRight,
-  CiSquareChevDown,
-  CiStop1,
-  CiSquareRemove,
-} from "react-icons/ci";
 import {
   getBackgroundArray,
   getClassArray,
   getOriginArray,
   getRaceArray,
 } from "../../redux/static";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import {
+  CiSquareChevRight,
+  CiSquareChevDown,
+  CiStop1,
+  CiSquareRemove,
+} from "react-icons/ci";
 
 export default function FilterBuildComponent({ filters, setFilters }) {
   const currentUser = useSelector((state) => state.session.user);

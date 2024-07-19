@@ -1,10 +1,15 @@
-import { createBrowserRouter } from "react-router-dom";
-
+// Files
+// Functions/Components
 import LandingPage from "../pages/landing";
 import CreateBuildPage from "../pages/create";
 import EditBuildPage from "../pages/edit";
 import ViewBuildPage from "../pages/view";
+import FAQPage from "../pages/faq";
 import Layout from "./Layout";
+// Packages
+import { createBrowserRouter } from "react-router-dom";
+
+
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "/browse",
         element: <ViewBuildPage />,
+      },
+      {
+        path: "/faq",
+        element: <FAQPage />,
       },
     ],
   },

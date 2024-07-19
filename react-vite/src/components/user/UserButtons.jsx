@@ -41,7 +41,7 @@ export default function UserButtons() {
     navigateTo("/");
   };
 
-  if (pathname === "/") return "";
+  if (pathname === "/" || pathname === "/faq") return "";
 
   return (
     <main className={styles.header}>

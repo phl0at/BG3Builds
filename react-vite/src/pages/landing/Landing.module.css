@@ -6,8 +6,8 @@
   justify-content: center;
 }
 .intro {
-  width: 55%;
-  height: 100%;
+  width: 685px;
+  height: 365px;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -34,13 +34,9 @@
   font-size: 29pt;
   color: #e69a28;
 }
-.preStep {
-  font-size: 16pt;
-}
-.scroll {
-  width: 80%;
-  overflow-y: auto;
-  padding: 6px;
+p {
+  text-align: center;
+  width: 90%;
 }
 .startContainer {
   height: 85px;
