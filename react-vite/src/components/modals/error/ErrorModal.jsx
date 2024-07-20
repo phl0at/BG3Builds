@@ -39,10 +39,7 @@ export default function ErrorModal({ errors }) {
       </div>
       {errorKeys[0] === "feature" ? (
         <div className={styles.close}>
-          {"Visit our public repository on"}{" "}
-          <NavLink to="https://github.com/phl0at/BG3Builds/wiki">
-            {"GitHub"}
-          </NavLink>{" "}
+          {"Visit our"} <NavLink onClick={closeModal} to="/faq">{"FAQ page"}</NavLink>{" "}
           {"for more info on planned features"}
         </div>
       ) : (

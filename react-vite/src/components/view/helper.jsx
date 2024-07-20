@@ -13,7 +13,6 @@ export function SelectedBuildPanel({
   build,
   setSelected,
   Backgrounds,
-  Origins,
   Races,
 }) {
   const dispatch = useDispatch();

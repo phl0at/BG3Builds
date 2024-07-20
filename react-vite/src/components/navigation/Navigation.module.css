@@ -13,6 +13,16 @@
   border-radius: 4px;
 }
 
+.title {
+  font-size: 17pt;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e69a28;
+}
+
 .menuItem {
   display: flex;
   justify-content: flex-start;

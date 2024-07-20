@@ -11,20 +11,13 @@ import ErrorModal from "../modals/error/ErrorModal";
 import { useModal } from "../../context/Modal";
 //Packages
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-import {
-  CiTrash,
-  CiFloppyDisk,
-  CiShare2,
-  CiCalculator2,
-  CiBoxList,
-} from "react-icons/ci";
+import { GiDiceTwentyFacesTwenty } from "react-icons/gi";
+import { CiTrash, CiFloppyDisk, CiShare2, CiBoxList } from "react-icons/ci";
 
 export default function InfoComponent({ currentBuild, points }) {
   const currentUser = useSelector((state) => state.session.user);
-  const { buildId } = useParams();
   const navigateTo = useNavigate();
   const { setModalContent } = useModal();
   const [display, setDisplay] = useState("Info");
@@ -45,11 +38,11 @@ export default function InfoComponent({ currentBuild, points }) {
           <div className={styles.userBar}>
             {currentUser && (
               <>
-                <div className={styles.buildButtonsContainer}>
+                <div className={styles.buildButtonsContainer1}>
                   <OpenModalButton
                     buttonText={<CiFloppyDisk size="27" />}
                     id={styles.fade}
-                    className={styles.buildButton}
+                    className={styles.buildButton1}
                     title="Save"
                     modalComponent={
                       currentUser.id === currentBuild.user_id ? (
@@ -63,16 +56,16 @@ export default function InfoComponent({ currentBuild, points }) {
                     <OpenModalButton
                       buttonText={<CiTrash size="27" />}
                       id={styles.fade}
-                      className={styles.buildButton}
+                      className={styles.buildButton1}
                       title="Delete"
                       modalComponent={<DeleteBuildModal />}
                     />
                   )}
                 </div>
-                <div className={styles.buildButtonsContainer}>
+                <div className={styles.buildButtonsContainer1}>
                   <button
                     id={styles.fade}
-                    className={styles.buildButton}
+                    className={styles.buildButton1}
                     title="Import/Export"
                     onClick={() =>
                       setModalContent(
@@ -90,7 +83,7 @@ export default function InfoComponent({ currentBuild, points }) {
                   </button>
                   <button
                     id={styles.fade}
-                    className={styles.buildButton}
+                    className={styles.buildButton1}
                     title="Calculate"
                     onClick={() =>
                       setModalContent(
@@ -104,16 +97,24 @@ export default function InfoComponent({ currentBuild, points }) {
                       )
                     }
                   >
-                    <CiCalculator2 size="32" />
+                    <GiDiceTwentyFacesTwenty size="32" />
                   </button>
                 </div>
               </>
             )}
 
-            <div className={styles.buildButtonsContainer}>
+            <div
+              className={
+                currentUser
+                  ? styles.buildButtonsContainer1
+                  : styles.buildButtonsContainer2
+              }
+            >
               <button
                 id={styles.fade}
-                className={styles.buildButton}
+                className={
+                  currentUser ? styles.buildButton1 : styles.buildButton2
+                }
                 title="Browse Other Builds"
                 onClick={(e) => {
                   e.preventDefault();
@@ -125,7 +126,9 @@ export default function InfoComponent({ currentBuild, points }) {
 
               <button
                 id={styles.fade}
-                className={styles.buildButton}
+                className={
+                  currentUser ? styles.buildButton1 : styles.buildButton2
+                }
                 title="FAQ Page"
                 onClick={(e) => {
                   e.preventDefault();
