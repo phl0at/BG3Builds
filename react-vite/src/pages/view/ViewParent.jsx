@@ -26,7 +26,7 @@ export default function ViewParentPage() {
   if (!builds || !staticData["classes"]) {
     return (
       <main className={styles.loading}>
-        <ClipLoader color="rgb(101, 71, 42)" size="100" />
+        <ClipLoader color="#e4c274" size="100px" />
       </main>
     );
   }
@@ -34,7 +34,7 @@ export default function ViewParentPage() {
   return (
     <main className={styles.main}>
       <FilterBuildComponent filters={filters} setFilters={setFilters} />
-      <ViewBuildsComponent filters={filters} />
+      <ViewBuildsComponent filters={filters} setFilters={setFilters} />
     </main>
   );
 }

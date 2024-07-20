@@ -6,15 +6,10 @@ import { thunkAddFavorite, thunkDeleteFavorite } from "../../redux/session";
 //Packages
 import { useSelector, useDispatch } from "react-redux";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { CiCircleRemove, CiViewBoard } from "react-icons/ci";
+import { CiViewBoard } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 
-export function SelectedBuildPanel({
-  build,
-  setSelected,
-  Backgrounds,
-  Races,
-}) {
+export function SelectedBuildPanel({ build, Backgrounds, Races }) {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
   const attributes = [
@@ -61,17 +56,7 @@ export function SelectedBuildPanel({
             "No classes"
           )}
         </div>
-        <div>
-          <button
-            className={styles.close}
-            onClick={(e) => {
-              e.preventDefault();
-              setSelected(null);
-            }}
-          >
-            <CiCircleRemove size="40" />
-          </button>
-        </div>
+        <div className={styles.headerRight}></div>
       </div>
       <div className={styles.selectedBody}>
         <div
@@ -121,17 +106,20 @@ export function SelectedBuildPanel({
 
 export function filteredBuilds(builds, filters, currentUser) {
   let arr = [];
+  const filtersApplied = Object.values(filters).length;
 
-  if (filters["owned"]) {
-    builds.forEach((build) => {
-      if (build.user_id === currentUser.id) arr.push(build);
-    });
-  }
+  if (currentUser) {
+    if (filters["owned"]) {
+      builds.forEach((build) => {
+        if (build.user_id === currentUser.id) arr.push(build);
+      });
+    }
 
-  if (filters["favorites"]) {
-    builds.forEach((build) => {
-      if (currentUser.favorites[build.id]) arr.push(build);
-    });
+    if (filters["favorites"]) {
+      builds.forEach((build) => {
+        if (currentUser.favorites[build.id]) arr.push(build);
+      });
+    }
   }
 
   if (filters["origin"]) {
@@ -161,5 +149,5 @@ export function filteredBuilds(builds, filters, currentUser) {
     });
   }
 
-  return Object.values(filters).length ? arr : builds;
+  return filtersApplied ? arr : builds;
 }

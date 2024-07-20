@@ -7,13 +7,12 @@ import SignupFormModal from "../modals/signup";
 import { thunkLogin, thunkLogout } from "../../redux/session";
 // Packages
 import { useState } from "react";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { PulseLoader } from "react-spinners";
 
 export default function UserButtons() {
   const dispatch = useDispatch();
-  const navigateTo = useNavigate();
   const { pathname } = useLocation();
   const { buildId } = useParams();
   const [awaitLogin, setAwaitLogin] = useState(false);
@@ -40,7 +39,7 @@ export default function UserButtons() {
     dispatch(thunkLogout());
   };
 
-  if (pathname === "/" || !currentBuild) return "";
+  if (pathname === "/") return "";
 
   return (
     <main className={styles.header}>

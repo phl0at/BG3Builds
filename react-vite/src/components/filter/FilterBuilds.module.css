@@ -24,6 +24,13 @@
   color: #e69a28;
 }
 
+.filterContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  width: 100%;
+}
+
 .filter {
   display: flex;
   justify-content: flex-start;
@@ -40,13 +47,12 @@
 
 .list {
   font-size: 12pt;
-  width: 110px;
+  width: 100px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 5px;
-  padding: 15px;
-  row-gap: 3px;
+  padding-left: 15px;
+  row-gap: 5px;
 }
 .listItem:hover {
   color: antiquewhite;
@@ -58,9 +64,13 @@
 .selected:hover {
   color: antiquewhite;
 }
+.clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 .button {
-  position: relative;
-  left: 5px;
   color: #e4c274;
   outline: 2px solid rgb(101, 71, 42);
   background-color: rgba(17, 13, 12, 0.92);
