@@ -38,19 +38,26 @@ export default function UserButtons() {
     e.preventDefault();
     setAwaitLogin(false);
     dispatch(thunkLogout());
-    navigateTo("/");
   };
 
-  if (pathname === "/" || pathname === "/faq") return "";
+  if (pathname === "/") return "";
 
   return (
     <main className={styles.header}>
       <div className={styles.container}>
         <div className={styles.buildName}>
-          {pathname === "/browse" ? "Browse" : buildName}
+          {pathname === "/browse"
+            ? "Browse"
+            : pathname === "/create"
+            ? "New Build"
+            : pathname === `/build/${buildId}`
+            ? buildName
+            : "FAQ"}
         </div>
 
         <div className={styles.userButtons}>
+
+          
           {awaitLogin & !currentUser ? (
             <PulseLoader
               color="#e4c274"

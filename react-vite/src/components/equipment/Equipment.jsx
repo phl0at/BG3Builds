@@ -6,8 +6,19 @@ import OpenModalButton from "../modals";
 import ItemsTableModal from "./items";
 //Packages
 import { useSelector } from "react-redux";
-import { CiNoWaitingSign } from "react-icons/ci";
-import { GiElfHelmet, GiCape, GiCapeArmor, GiGloves, GiLegArmor, GiBroadsword, GiBroadDagger, GiCrossbow, GiBowArrow, GiEmeraldNecklace, GiDiamondRing     } from "react-icons/gi";
+import {
+  GiElfHelmet,
+  GiCape,
+  GiCapeArmor,
+  GiGloves,
+  GiLegArmor,
+  GiBroadsword,
+  GiBroadDagger,
+  GiCrossbow,
+  GiBowArrow,
+  GiEmeraldNecklace,
+  GiDiamondRing,
+} from "react-icons/gi";
 
 export default function EquipmentComponent() {
   const currentBuild = useSelector((state) => state.builds.current);
@@ -105,7 +116,7 @@ export default function EquipmentComponent() {
                       }
                     />
                   ) : (
-                    <GiGloves  size="40" />
+                    <GiGloves size="40" />
                   )
                 }
                 modalComponent={
@@ -127,7 +138,7 @@ export default function EquipmentComponent() {
                       }
                     />
                   ) : (
-                    <GiLegArmor  size="40" />
+                    <GiLegArmor size="40" />
                   )
                 }
                 modalComponent={
@@ -177,7 +188,7 @@ export default function EquipmentComponent() {
                       }
                     />
                   ) : (
-                    <GiBroadDagger  size="40" />
+                    <GiBroadDagger size="40" />
                   )
                 }
                 modalComponent={
@@ -208,7 +219,7 @@ export default function EquipmentComponent() {
                       }
                     />
                   ) : (
-                    <GiEmeraldNecklace  size="40" />
+                    <GiEmeraldNecklace size="40" />
                   )
                 }
                 modalComponent={
@@ -232,7 +243,7 @@ export default function EquipmentComponent() {
                       }
                     />
                   ) : (
-                    <GiDiamondRing   size="40" />
+                    <GiDiamondRing size="40" />
                   )
                 }
                 modalComponent={
@@ -256,7 +267,7 @@ export default function EquipmentComponent() {
                       }
                     />
                   ) : (
-                    <GiDiamondRing  size="40" />
+                    <GiDiamondRing size="40" />
                   )
                 }
                 modalComponent={
@@ -282,7 +293,7 @@ export default function EquipmentComponent() {
                       }
                     />
                   ) : (
-                    <GiBowArrow  size="40" />
+                    <GiBowArrow size="40" />
                   )
                 }
                 modalComponent={
@@ -306,7 +317,7 @@ export default function EquipmentComponent() {
                       }
                     />
                   ) : (
-                    <GiCrossbow  size="40" />
+                    <GiCrossbow size="40" />
                   )
                 }
                 modalComponent={
