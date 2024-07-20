@@ -19,7 +19,7 @@ export default function UserButtons() {
   const [awaitLogin, setAwaitLogin] = useState(false);
   const currentUser = useSelector((state) => state.session.user);
   const currentBuild = useSelector((state) => state.builds.current);
-  const buildName = buildId ? currentBuild.name : "New Build";
+  const buildName = buildId ? currentBuild?.name : "New Build";
 
   const onClick = (e) => {
     e.preventDefault();
@@ -40,7 +40,7 @@ export default function UserButtons() {
     dispatch(thunkLogout());
   };
 
-  if (pathname === "/") return "";
+  if (pathname === "/" || !currentBuild) return "";
 
   return (
     <main className={styles.header}>
@@ -57,7 +57,7 @@ export default function UserButtons() {
 
         <div className={styles.userButtons}>
 
-          
+
           {awaitLogin & !currentUser ? (
             <PulseLoader
               color="#e4c274"
