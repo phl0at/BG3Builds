@@ -13,8 +13,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    builds = db.relationship("Build", backref="user", cascade="all, delete-orphan")
-    favorites = db.relationship("Favorite", backref="user")
+    builds = db.relationship("Build", backref="user", cascade="all, delete")
+    favorites = db.relationship("Favorite", backref="user", cascade="all, delete")
 
     @property
     def password(self):
