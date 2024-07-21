@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User
+from app.models import User, Favorite
 from sqlalchemy.orm import joinedload
 
 user_routes = Blueprint('users', __name__)
@@ -13,7 +13,6 @@ def users():
     """
     users = User.query \
         .options(joinedload(User.builds)) \
-        .options(joinedload(User.favorites)) \
         .all()
     return {'users': [user.to_dict() for user in users]}
 
@@ -25,6 +24,5 @@ def user(id):
     """
     user = User.query \
         .options(joinedload(User.builds)) \
-        .options(joinedload(User.favorites)) \
         .get(id)
     return user.to_dict()

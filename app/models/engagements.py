@@ -30,13 +30,12 @@ class Favorite(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), cascade="all, delete", nullable=False)
-    build_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('builds.id')), cascade="all, delete", nullable=False)
+
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True, nullable=False)
+    build_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('builds.id')), primary_key=True, nullable=False)
 
     def to_dict(self):
         return {
-            'id': self.id,
             'user_id': self.user_id,
             'build_id': self.build_id,
         }
