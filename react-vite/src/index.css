@@ -12,15 +12,16 @@ input {
   background-color: rgb(101, 71, 42);
 }
 
-
 body {
   background-color: #0a0e15;
   max-height: 100vh;
   max-width: 100vw;
-  background-image: url("https://cdn.openart.ai/uploads/upscaled/a-giant-dark-and-ancient-forge-with-lava-pouring-from-the-walls_p1hySp6n_upscaled.jpg");
+  background-image: url(./background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
+
 
 a {
   text-decoration: none;

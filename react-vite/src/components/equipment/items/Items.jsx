@@ -5,23 +5,25 @@ import { Images } from "../../images";
 import { getEquipmentArray } from "../../../redux/build";
 import { equipItem, action } from "../../../redux/build";
 //Packages
+import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ItemsTableModal({ type, Equipment }) {
+  const { buildId } = useParams();
   const dispatch = useDispatch();
   const currentBuild = useSelector((state) => state.builds.current);
   const currentUser = useSelector((state) => state.session.user);
   const EquipmentArray = useSelector(getEquipmentArray);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(
+    currentBuild[type] ? currentBuild[type] : null
+  );
   const formatType = type.split("_")[0];
 
   const onClick = (e, id) => {
     e.preventDefault();
     setSelectedItem(id);
   };
-
-  console.log(selectedItem);
 
   return (
     <>
@@ -38,7 +40,7 @@ export default function ItemsTableModal({ type, Equipment }) {
                     onClick={(e) => onClick(e, item.id)}
                     id={selectedItem === item.id ? styles.selectedItem : ""}
                     className={
-                      currentBuild[type]?.name === item.name
+                      Equipment[currentBuild[type]]?.name === item.name
                         ? styles.equippedItem
                         : styles.item
                     }
@@ -68,7 +70,11 @@ export default function ItemsTableModal({ type, Equipment }) {
               <div className={styles.description}>
                 {Equipment[selectedItem].description}
               </div>
-              {currentUser && (
+              {!currentUser & (buildId != undefined) ? (
+                <div className={styles.buttons}>
+                  Sign in to change Equipment
+                </div>
+              ) : (
                 <div className={styles.buttons}>
                   {currentBuild[type] !== selectedItem && (
                     <button

@@ -1,4 +1,5 @@
-import Sadowheart from "../../../images/error_icon/Sadowheart.png"
+// CHARACTERS
+import Sadowheart from "../../../images/error_icon/Sadowheart.png";
 import Astarion from "../../../images/char_icons/Astarion.png";
 import Gale from "../../../images/char_icons/Gale.png";
 import Custom from "../../../images/char_icons/Custom.png";
@@ -7,6 +8,7 @@ import Laezel from "../../../images/char_icons/Laezel.jpg";
 import Shadowheart from "../../../images/char_icons/Shadowheart.jpg";
 import Karlach from "../../../images/char_icons/Karlach.jpg";
 import Wyll from "../../../images/char_icons/Wyll.jpeg";
+// RACES
 import Elf from "../../../images/race_icons/Elf.png";
 import Tiefling from "../../../images/race_icons/Tiefling.png";
 import Drow from "../../../images/race_icons/Drow.png";
@@ -18,6 +20,7 @@ import Halfling from "../../../images/race_icons/Halfling.png";
 import Gnome from "../../../images/race_icons/Gnome.png";
 import Dragonborn from "../../../images/race_icons/Dragonborn.png";
 import Halforc from "../../../images/race_icons/Halforc.png";
+// CLASSES
 import Barbarian from "../../../images/class_icons/Barbarian.png";
 import Bard from "../../../images/class_icons/Bard.png";
 import Cleric from "../../../images/class_icons/Cleric.png";
@@ -30,6 +33,7 @@ import Rogue from "../../../images/class_icons/Rogue.png";
 import Sorcerer from "../../../images/class_icons/Sorcerer.png";
 import Warlock from "../../../images/class_icons/Warlock.png";
 import Wizard from "../../../images/class_icons/Wizard.png";
+// BACKGROUNDS
 import Acolyte from "../../../images/bg_icons/Acolyte.png";
 import Charlatan from "../../../images/bg_icons/Charlatan.png";
 import Criminal from "../../../images/bg_icons/Criminal.png";
@@ -42,23 +46,75 @@ import Outlander from "../../../images/bg_icons/Outlander.png";
 import Sage from "../../../images/bg_icons/Sage.png";
 import Soldier from "../../../images/bg_icons/Soldier.png";
 import Urchin from "../../../images/bg_icons/Urchin.png";
+// ABILITIES
 import Strength from "../../../images/stat_icons/Strength.png";
 import Dexterity from "../../../images/stat_icons/Dexterity.png";
 import Constitution from "../../../images/stat_icons/Constitution.png";
 import Intelligence from "../../../images/stat_icons/Intelligence.png";
 import Wisdom from "../../../images/stat_icons/Wisdom.png";
 import Charisma from "../../../images/stat_icons/Charisma.png";
+// ITEMS
+// ----------- HELMETS
 import HasteHelm from "../../../images/item_icons/HasteHelm.png";
-import BronzeNecklace from "../../../images/item_icons/BronzeNecklace.png";
+import DiademofArcaneSynergy from "../../../images/item_icons/DiademofArcaneSynergy.png";
+import MaskofSoulPerception from "../../../images/item_icons/MaskofSoulPerception.png";
+import Birthright from "../../../images/item_icons/Birthright.png";
+import CircletofHunting from "../../../images/item_icons/CircletofHunting.png";
+// ----------- AMULETS
+import AmuletofBhaal from "../../../images/item_icons/AmuletofBhaal.png";
+import AmuletoftheHarpers from "../../../images/item_icons/AmuletoftheHarpers.png";
+import PeriaptofWoundClosure from "../../../images/item_icons/PeriaptofWoundClosure.png";
+import AmuletofGreaterHealth from "../../../images/item_icons/AmuletofGreaterHealth.png";
+import AmuletoftheDevout from "../../../images/item_icons/AmuletoftheDevout.png";
+
+// ----------- RINGS
 import CausticBand from "../../../images/item_icons/CausticBand.png";
+import CallousGlowRing from "../../../images/item_icons/CallousGlowRing.png";
+import KillersSweetheart from "../../../images/item_icons/KillersSweetheart.png";
+import RingofArcaneSynergy from "../../../images/item_icons/RingofArcaneSynergy.png";
+import RingofFreeAction from "../../../images/item_icons/RingofFreeAction.png";
+
+// ----------- CLOAKS
 import CloakofProtection from "../../../images/item_icons/CloakofProtection.png";
-import ClubofHillGiantStrength from "../../../images/item_icons/ClubofHillGiantStrength.png";
-import CopperRing from "../../../images/item_icons/CopperRing.png";
-import Dagger from "../../../images/item_icons/Dagger.png";
-import DrowLeatherBoots from "../../../images/item_icons/DrowLeatherBoots.png";
-import GlovesofDexterity from "../../../images/item_icons/GlovesofDexterity.png";
+import TheDeathstalkerMantle from "../../../images/item_icons/TheDeathstalkerMantle.png";
+import ShadeSlayerCloak from "../../../images/item_icons/ShadeSlayerCloak.png";
+import CindermothCloak from "../../../images/item_icons/CindermothCloak.png";
+import ReverseRainCloak from "../../../images/item_icons/ReverseRainCloak.png";
+
+// ----------- ARMORS
 import LeatherArmour from "../../../images/item_icons/LeatherArmour.png";
-import TitanStringBow from "../../../images/item_icons/TitanStringBow.png";
+import YuanTiScaleMail from "../../../images/item_icons/YuanTiScaleMail.png";
+import BhaalistArmor from "../../../images/item_icons/BhaalistArmor.png";
+import DarkJusticiarHalfPlate from "../../../images/item_icons/DarkJusticiarHalfPlate.png";
+import HellduskArmour from "../../../images/item_icons/HellduskArmour.png";
+
+// ----------- GLOVES
+import GlovesofDexterity from "../../../images/item_icons/GlovesofDexterity.png";
+import BhaalistGloves from "../../../images/item_icons/BhaalistGloves.png";
+import CraterfleshGloves from "../../../images/item_icons/CraterfleshGloves.png";
+import DarkJusticiarGauntlets from "../../../images/item_icons/DarkJusticiarGauntlets.png";
+import GlovesofArchery from "../../../images/item_icons/GlovesofArchery.png";
+
+// ----------- BOOTS
+import DrowLeatherBoots from "../../../images/item_icons/DrowLeatherBoots.png";
+import BootsofStormyClamour from "../../../images/item_icons/BootsofStormyClamour.png";
+import DarkJusticiarBoots from "../../../images/item_icons/DarkJusticiarBoots.png";
+import DisintegratingNightWalkers from "../../../images/item_icons/DisintegratingNightWalkers.png";
+import BootsofPersistence from "../../../images/item_icons/BootsofPersistence.png";
+
+// ----------- MELEE WEAPONS
+import ClubofHillGiantStrength from "../../../images/item_icons/ClubofHillGiantStrength.png";
+import AssassinsTouch from "../../../images/item_icons/AssassinsTouch.png";
+import KnifeoftheUndermountainKing from "../../../images/item_icons/KnifeoftheUndermountainKing.png";
+import BalduransGiantslayer from "../../../images/item_icons/BalduransGiantslayer.png";
+import PooScraper from "../../../images/item_icons/PooScraper.png";
+
+// ----------- RANGED WEAPONS
+import TitanstringBow from "../../../images/item_icons/TitanstringBow.png";
+import GontrMael from "../../../images/item_icons/GontrMael.png";
+import HellfireHandCrossbow from "../../../images/item_icons/HellfireHandCrossbow.png";
+import NeverMisser from "../../../images/item_icons/NeverMisser.png";
+import Blightbringer from "../../../images/item_icons/Blightbringer.png";
 
 export const Images = {
   characters: {
@@ -121,19 +177,53 @@ export const Images = {
     Charisma,
   },
   equipment: {
+    Blightbringer,
+    NeverMisser,
+    HellfireHandCrossbow,
+    GontrMael,
+    RingofFreeAction,
+    RingofArcaneSynergy,
+    KillersSweetheart,
+    AmuletoftheDevout,
+    AmuletofGreaterHealth,
+    PeriaptofWoundClosure,
+    AmuletoftheHarpers,
+    PooScraper,
+    BalduransGiantslayer,
+    KnifeoftheUndermountainKing,
+    BootsofPersistence,
+    DisintegratingNightWalkers,
+    DarkJusticiarBoots,
+    BootsofStormyClamour,
+    GlovesofArchery,
+    DarkJusticiarGauntlets,
+    CraterfleshGloves,
+    BhaalistGloves,
+    HellduskArmour,
+    DarkJusticiarHalfPlate,
+    BhaalistArmor,
+    YuanTiScaleMail,
+    ReverseRainCloak,
+    CindermothCloak,
+    ShadeSlayerCloak,
+    TheDeathstalkerMantle,
+    CircletofHunting,
+    Birthright,
+    MaskofSoulPerception,
+    DiademofArcaneSynergy,
     HasteHelm,
     CloakofProtection,
     LeatherArmour,
     GlovesofDexterity,
     DrowLeatherBoots,
-    BronzeNecklace,
+    AmuletofBhaal,
     CausticBand,
-    CopperRing,
-    Dagger,
+    CallousGlowRing,
+    AssassinsTouch,
     ClubofHillGiantStrength,
-    TitanStringBow,
+    TitanstringBow,
   },
   error: {
-    Sadowheart
-  }
+    Sadowheart,
+  },
 };
