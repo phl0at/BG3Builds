@@ -178,10 +178,11 @@ export const thunkDeleteBuild = (buildId) => async (dispatch) => {
     const data = await res.json();
     dispatch(action(DELETE_BUILD, buildId));
     return data;
-  } else {
-    console.log(res)
+  } else if (res.status < 500) {
     const errorMessages = await res.json();
     return errorMessages;
+  } else {
+    return { server: "Something went wrong. Please try again" };
   }
 };
 
