@@ -179,6 +179,7 @@ export const thunkDeleteBuild = (buildId) => async (dispatch) => {
     dispatch(action(DELETE_BUILD, buildId));
     return data;
   } else {
+    console.log(res)
     const errorMessages = await res.json();
     return errorMessages;
   }
