@@ -83,13 +83,15 @@ export default function ViewBuildsComponent({ filters, setFilters }) {
               <div className={styles.noBuilds}>
                 <div className={styles.sorry}>{`Sorry, adventurer!`}</div>
                 <div className={styles.message}>
-                  {`It looks like there are currently no builds with that ${Object.keys(
-                    filters
-                  )}.`}{" "}
+                  {Object.keys(filters) != "owned"
+                    ? `It looks like there are currently no builds with that ${Object.keys(
+                        filters
+                      )}.`
+                    : "You haven't created any builds yet."}
                   <div>
                     {`Head over to the `}
                     <NavLink to="/create">Create Build Page</NavLink>
-                    {" to make one yourself!"}
+                    {" to make one!"}
                   </div>
                 </div>
               </div>
