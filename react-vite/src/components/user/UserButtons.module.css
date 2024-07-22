@@ -60,6 +60,7 @@
 
 .button:hover {
   color: #e69a28;
+  outline-color: #e69a28;
   background: none;
 }
 

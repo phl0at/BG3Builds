@@ -32,6 +32,24 @@ export default function CategoryComponent({ category, setCategory }) {
         <div>
           <button
             className={
+              category === "Classes" ? styles.selectedCategory : styles.category
+            }
+            onClick={(e) => {
+              e.preventDefault();
+              setCategory("Classes");
+            }}
+          >
+            {category === "Classes" ? (
+              <CiSquareRemove size="24" />
+            ) : (
+              <CiStop1 size="24" />
+            )}
+            Classes
+          </button>
+        </div>
+        <div>
+          <button
+            className={
               category === "Abilities"
                 ? styles.selectedCategory
                 : styles.category
@@ -47,24 +65,6 @@ export default function CategoryComponent({ category, setCategory }) {
               <CiStop1 size="24" />
             )}
             Abilities
-          </button>
-        </div>
-        <div>
-          <button
-            className={
-              category === "Classes" ? styles.selectedCategory : styles.category
-            }
-            onClick={(e) => {
-              e.preventDefault();
-              setCategory("Classes");
-            }}
-          >
-            {category === "Classes" ? (
-              <CiSquareRemove size="24" />
-            ) : (
-              <CiStop1 size="24" />
-            )}
-            Classes
           </button>
         </div>
         <div>

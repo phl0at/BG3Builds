@@ -40,6 +40,7 @@ export default function FilterBuildComponent({ filters, setFilters }) {
                   onClick={(e) => {
                     e.preventDefault();
                     setFilters(filters["owned"] ? {} : { owned: true });
+                    setSelectedItem("")
                   }}
                 >
                   {filters["owned"] ? (
@@ -60,6 +61,7 @@ export default function FilterBuildComponent({ filters, setFilters }) {
                   onClick={(e) => {
                     e.preventDefault();
                     setFilters(filters["favorites"] ? {} : { favorites: true });
+                    setSelectedItem("")
                   }}
                 >
                   {filters["favorites"] ? (
