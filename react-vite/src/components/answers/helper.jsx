@@ -66,18 +66,18 @@ export function AbilitiesFAQ() {
       <div className={styles.scroll}>
         <div className={styles.text}>
           <div className={styles.question}>
-            {"- Abilities are confusing, can you explain how they work?"}
+            {"- What are Abilities for?"}
           </div>
           <p className={styles.answer}>
             {
               "While a class will determine your overall path and role in combat, your abilities will determine how effective you are in fulfilling that role. \
           Without getting too far into the weeds (this can get rather complicated) each Ability governs a different set of skills. Strength will make you more effective with \
-          heavy weapons like Greatswords and Axes, while Intelligence, Wisdom, and Charisma will increase the potency of certain spells. (Spell implementation is planned for future builds)."
+          heavy weapons like Greatswords and Axes, while Intelligence, Wisdom, and Charisma will increase the potency of certain spells. (Spells coming soon...hopefully)."
             }
           </p>
           <p className={styles.answer}>
             {
-              "In future updates to the site, how these abilities effect skills and classes will be made more clear. For now, here's a general idea (note there are exceptions to\
+              "In future updates to the site, the ways each ability effect skills and classes will be made more clear. For now, here's a general idea (note there are exceptions to\
               these rules):"
             }
           </p>
@@ -100,6 +100,21 @@ export function AbilitiesFAQ() {
             </li>
           </ul>
         </div>
+        <div className={styles.question}>
+            {"- How does this point system work?"}
+          </div>
+          <p className={styles.answer}>
+            {
+              "You have a total of 27 Ability Points to distribute, as well as a +1 and a +2 bonus which can be \
+               applied to two different abilities of your choosing."
+            }
+          </p>
+          <p className={styles.answer}>
+            {
+              "Each ability can be increased up to 7 times (not counting any additional bonuses) to go from the minimum of 8, to the maximum base of 15. \
+               The first 5 times you increase an Ability's score, it will cost 1 Ability Point, with the final two improvements costing 2 Ability Points each."
+            }
+          </p>
       </div>
     </div>
   );
