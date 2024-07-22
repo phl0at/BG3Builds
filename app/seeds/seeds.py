@@ -197,7 +197,7 @@ def seed_all():
             "level": 12
         },
         {
-            'name': 'Build 2-1',
+            'name': 'Shadow Assassin',
             'user_id': 1,
             'character_name': 'Tav',
             'origin': 8,
