@@ -52,7 +52,7 @@ export default function FilterBuildComponent({ filters, setFilters }) {
               </>
             )}
           </div>
-          <div>
+          {/* <div>
             {currentUser && (
               <>
                 <button
@@ -71,7 +71,7 @@ export default function FilterBuildComponent({ filters, setFilters }) {
                 </button>
               </>
             )}
-          </div>
+          </div> */}
 
           <div>
             <button

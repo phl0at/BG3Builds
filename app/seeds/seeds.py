@@ -1,4 +1,4 @@
-from app.models import db, Origin, Background, Race, User, Build, Class, BuildClass, Comment, Favorite, Equipment, environment, SCHEMA
+from app.models import db, Origin, Background, Race, User, Build, Class, BuildClass, Comment, Equipment, Favorite, environment, SCHEMA
 from sqlalchemy.sql import text
 from werkzeug.security import generate_password_hash
 
@@ -355,16 +355,16 @@ def seed_all():
         db.session.add(new_comment)
 
     ################ SEED FAVORITES ################
-    fav_list = [
-        { 'user_id': 1, 'build_id': 3 },
-        { 'user_id': 2, 'build_id': 1 },
-    ]
-    for fav in fav_list:
-        new_fav = Favorite(
-            user_id=fav['user_id'],
-            build_id=fav['build_id'],
-        )
-        db.session.add(new_fav)
+    # fav_list = [
+    #     { 'user_id': 1, 'build_id': 3 },
+    #     { 'user_id': 2, 'build_id': 1 },
+    # ]
+    # for fav in fav_list:
+    #     new_fav = Favorite(
+    #         user_id=fav['user_id'],
+    #         build_id=fav['build_id'],
+    #     )
+    #     db.session.add(new_fav)
 
     db.session.commit()
 
