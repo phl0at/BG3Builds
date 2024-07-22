@@ -1,6 +1,7 @@
 // Files
 import styles from "./SignupForm.module.css";
 // Functions/Components
+import { thunkGetAllUsers } from "../../../redux/users";
 import { thunkSignup } from "../../../redux/session";
 import { useModal } from "../../../context/Modal";
 import ErrorModal from "../error/ErrorModal";
@@ -47,6 +48,7 @@ function SignupFormModal({ setLoading }) {
         setModalContent(<ErrorModal errors={serverResponse} />);
         setLoading(false);
       } else {
+        dispatch(thunkGetAllUsers())
         closeModal();
       }
     }
