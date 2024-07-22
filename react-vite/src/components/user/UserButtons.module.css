@@ -16,10 +16,10 @@
 
 .buildName {
   min-width: 150px;
-  max-width: 200px;
+  max-width: 400px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: 22pt;
   border-bottom: 1px solid;
 }
