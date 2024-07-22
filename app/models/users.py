@@ -30,7 +30,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    builds = db.relationship("Build", secondary="favorites", backref="user", cascade="all, delete")
+    builds = db.relationship("Build", secondary=Favorite, backref="user", cascade="all, delete")
 
     @property
     def password(self):
