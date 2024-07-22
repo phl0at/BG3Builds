@@ -1,6 +1,23 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+
+class Favorite(db.Model):
+    __tablename__ = 'favorites'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True, nullable=False)
+    build_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('builds.id')), primary_key=True, nullable=False)
+
+    def to_dict(self):
+        return {
+            'user_id': self.user_id,
+            'build_id': self.build_id,
+        }
+
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -31,7 +48,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'builds': [build.to_dict() for build in self.builds],
-            # 'favorites': [fav.to_dict() for fav in self.favorites]
         }
 
 

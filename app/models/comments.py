@@ -22,20 +22,3 @@ class Comment(db.Model):
             'message': self.message
         }
 
-################################################################################
-
-class Favorite(db.Model):
-    __tablename__ = 'favorites'
-
-    if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
-
-
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True, nullable=False)
-    build_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('builds.id')), primary_key=True, nullable=False)
-
-    def to_dict(self):
-        return {
-            'user_id': self.user_id,
-            'build_id': self.build_id,
-        }
