@@ -1,10 +1,9 @@
 // Files
 import styles from "../Info.module.css";
 // Functions/Components
-import {
-  thunkDeleteComment,
-  thunkEditComment,
-} from "../../../redux/build";
+import { thunkDeleteComment, thunkEditComment } from "../../../redux/build";
+import { useModal } from "../../../context/Modal";
+import ErrorModal from "../../modals/error/ErrorModal";
 // Packages
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -14,11 +13,22 @@ export function Message({ message, currUser }) {
   const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false);
   const [editMessage, setEditMessage] = useState(message.message);
+  const { setModalContent } = useModal();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(thunkEditComment({ id: message.id, message: editMessage }));
-    setEditMode(false);
+    if (editMessage.trim().length) {
+      dispatch(thunkEditComment({ id: message.id, message: editMessage }));
+      setEditMode(false);
+    } else {
+      setModalContent(
+        <ErrorModal
+          errors={{
+            error: ["Messages cannot be only whitespace"],
+          }}
+        />
+      );
+    }
   };
 
   const onDelete = (e) => {
