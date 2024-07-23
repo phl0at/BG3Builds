@@ -7,11 +7,13 @@ import {
   setBonus,
   clearBonus,
 } from "../../../../redux/build";
-
+import { useModal } from "../../../../context/Modal";
+import ErrorModal from "../../../modals/error/ErrorModal";
 //Packages
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
+import { NavLink } from "react-router-dom";
 
 export function Ability({
   name,
@@ -22,6 +24,7 @@ export function Ability({
   setPoints,
 }) {
   const dispatch = useDispatch();
+  const { setModalContent } = useModal()
   const [clicks, setClicks] = useState(abilityVal - 8);
   const titleCaseStat = name[0].toUpperCase() + name.slice(1);
   const bonusOne = plus_1 === name;
@@ -43,8 +46,21 @@ export function Ability({
 
   const clickRaise = (e, type) => {
     e.preventDefault();
-    setPoints(clicks < 5 ? points - 1 : points - 2);
-    dispatch(action("build/raiseAbility", type));
+    if(clicks < 5){
+      setPoints(points - 1)
+      dispatch(action("build/raiseAbility", type));
+    } else if (clicks >= 5 & points > 1){
+      setPoints(points - 2)
+      dispatch(action("build/raiseAbility", type));
+    } else {
+      setModalContent(
+        <ErrorModal
+          errors={{
+            points: ["Increasing this ability requires 2 points."],
+          }}
+        />
+      );
+    }
   };
 
   const clickPlusTwo = (e, ability) => {

@@ -18,7 +18,6 @@ export function Message({ message, currUser }) {
   const onSubmit = (e) => {
     e.preventDefault();
     if (editMessage.trim().length) {
-      
       dispatch(thunkEditComment({ id: message.id, message: editMessage }));
       setEditMode(false);
     } else {

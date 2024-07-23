@@ -4,6 +4,8 @@ import styles from "../Info.module.css";
 import { Message } from "./helper";
 import { getCommentsArray, thunkCreateComment } from "../../../redux/build";
 import { thunkGetAllUsers } from "../../../redux/users";
+import { useModal } from "../../../context/Modal";
+import ErrorModal from "../../modals/error/ErrorModal";
 // Packages
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,6 +16,7 @@ import { CiSquareAlert, CiSquarePlus } from "react-icons/ci";
 export default function Comments({ setDisplay }) {
   const dispatch = useDispatch();
   const { buildId } = useParams();
+  const { setModalContent } = useModal();
   const [newComment, setNewComment] = useState("");
   const comments = useSelector(getCommentsArray);
   const allUsers = useSelector((state) => state.users);
@@ -29,9 +32,20 @@ export default function Comments({ setDisplay }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(thunkCreateComment(buildId, { message: newComment }));
-    setNewComment("");
+    if (newComment.trim().length) {
+      dispatch(thunkCreateComment(buildId, { message: newComment }));
+      setNewComment("");
+    } else {
+      setModalContent(
+        <ErrorModal
+          errors={{
+            error: ["Messages cannot be only whitespace"],
+          }}
+        />
+      );
+    }
   };
+
   return (
     <>
       <div className={styles.header}>

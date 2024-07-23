@@ -39,8 +39,19 @@ export default function ErrorModal({ errors }) {
       </div>
       {errorKeys[0] === "feature" ? (
         <div className={styles.close}>
-          {"Visit our"} <NavLink onClick={closeModal} to="/faq">{"FAQ page"}</NavLink>{" "}
+          {"Visit our"}{" "}
+          <NavLink onClick={closeModal} to="/faq">
+            {"FAQ page"}
+          </NavLink>{" "}
           {"for more info on planned features"}
+        </div>
+      ) : errorKeys[0] === "points" ? (
+        <div className={styles.close}>
+          {"Visit our"}{" "}
+          <NavLink onClick={closeModal} to="/faq">
+            {"FAQ page"}
+          </NavLink>{" "}
+          {"for more info on how Ability Points work."}
         </div>
       ) : (
         <div className={styles.close}>
