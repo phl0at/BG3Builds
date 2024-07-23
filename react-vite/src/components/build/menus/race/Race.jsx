@@ -3,22 +3,28 @@ import styles from "./Race.module.css";
 import { Images } from "../../../images";
 //Functions/Components
 import { action } from "../../../../redux/build";
+import { useModal } from "../../../../context/Modal";
+import ErrorModal from "../../../modals/error/ErrorModal";
 //Packages
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function RaceComponent({ currentBuild }) {
   const dispatch = useDispatch();
+  const { setModalContent } = useModal();
   const Races = useSelector((state) => state.static.races);
-  const [errors, setErrors] = useState({});
 
   const onClick = (e, race) => {
     e.preventDefault();
-    setErrors({});
     if (currentBuild.origin === 7 || currentBuild.origin === 8) {
       dispatch(action("build/setRace", race));
     } else {
-      setErrors({ error: "Cannot change the race of an Origin character" });
+      setModalContent(
+        <ErrorModal
+          errors={{
+            FAQ: ["Cannot change an Origin Characters race"],
+          }}
+        />
+      );
     }
   };
 
@@ -167,7 +173,6 @@ export default function RaceComponent({ currentBuild }) {
               {Races[currentBuild.race].description}
             </div>
           </div>
-          <div className={styles.error}>{errors && errors.error}</div>
         </>
       }
     </>

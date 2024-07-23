@@ -39,7 +39,7 @@ export default function Comments({ setDisplay }) {
       setModalContent(
         <ErrorModal
           errors={{
-            error: ["Messages cannot be only whitespace"],
+            error: ["Comments must include valid text"],
           }}
         />
       );

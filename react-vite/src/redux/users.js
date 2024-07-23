@@ -3,6 +3,7 @@
 //! --------------------------------------------------------------------
 
 const GET_ALL_USERS = "users/getAll"
+const ADD_USER = "users/add"
 
 //! --------------------------------------------------------------------
 //*                         Action Creators
@@ -44,6 +45,13 @@ function usersReducer(state = initialState, action) {
       action.payload.forEach((user) => (newState[user.id] = user));
       return newState;
     }
+
+    case ADD_USER: {
+      const newState = { ...state };
+      newState[action.payload.id] = action.payload
+      return newState
+    }
+
     default:
       return state;
   }

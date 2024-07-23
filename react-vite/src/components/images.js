@@ -1,3 +1,10 @@
+// In an attempt to prevent DNS lookups through slow SSL connections,
+// I decided to save all images in the site's local environment, import them into this file
+// and then export them in an Images object - as opposed to doing fetch requests to a public API.
+// The idea is that I can import the object into any component,
+// and then dynamically key into an image based on user input to display it on screen
+
+
 // CHARACTERS
 import Sadowheart from "../../../images/error_icon/Sadowheart.png";
 import Astarion from "../../../images/char_icons/Astarion.png";

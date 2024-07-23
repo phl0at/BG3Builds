@@ -2,11 +2,7 @@
 import styles from "./Abilities.module.css";
 import { Images } from "../../../images";
 //Functions/Components
-import {
-  action,
-  setBonus,
-  clearBonus,
-} from "../../../../redux/build";
+import { action, setBonus, clearBonus } from "../../../../redux/build";
 import { useModal } from "../../../../context/Modal";
 import ErrorModal from "../../../modals/error/ErrorModal";
 //Packages
@@ -24,61 +20,81 @@ export function Ability({
   setPoints,
 }) {
   const dispatch = useDispatch();
-  const { setModalContent } = useModal()
+  const { setModalContent } = useModal();
   const [clicks, setClicks] = useState(abilityVal - 8);
   const titleCaseStat = name[0].toUpperCase() + name.slice(1);
-  const bonusOne = plus_1 === name;
-  const bonusTwo = plus_2 === name;
 
   useEffect(() => {
-    bonusTwo
-      ? setClicks(abilityVal - 10)
-      : bonusOne
-      ? setClicks(abilityVal - 9)
-      : setClicks(abilityVal - 8);
+    // An ability can only be clicked/increased 7 times.
+    // This will track the number of increases by setting the # of clicks
+    // to the ability's current value, minus its base value.
+    // The base value changes depending on whether a +1 or +2 bonus is applied to the ability.
+    if (plus_2 === name) {
+      setClicks(abilityVal - 10);
+    } else if (plus_1 === name) {
+      setClicks(abilityVal - 9);
+    } else {
+      setClicks(abilityVal - 8);
+    }
   }, [abilityVal]);
 
+
+  // The first 5 increases to an ability cost 1 point and the last two cost 2 points.
+  // These two functions ensure the correct amount of ability
+  // points are added or subtracted based on how many times
+  // an ability has been clicked/increased.
   const clickLower = (e, type) => {
     e.preventDefault();
-    setPoints(clicks < 6 ? points + 1 : points + 2);
-    dispatch(action("build/lowerAbility", type));
+    if (clicks < 6) {
+      setPoints(points + 1);
+      dispatch(action("build/lowerAbility", type));
+    } else {
+      setPoints(points + 2);
+      dispatch(action("build/lowerAbility", type));
+    }
   };
 
   const clickRaise = (e, type) => {
     e.preventDefault();
-    if(clicks < 5){
-      setPoints(points - 1)
+    if (clicks < 5) {
+      setPoints(points - 1);
       dispatch(action("build/raiseAbility", type));
-    } else if (clicks >= 5 & points > 1){
-      setPoints(points - 2)
+    } else if ((clicks >= 5) & (points > 1)) {
+      setPoints(points - 2);
       dispatch(action("build/raiseAbility", type));
     } else {
+      // Throw an error if the user tries increasing an ability
+      // that's been increased 5 times already.
       setModalContent(
         <ErrorModal
           errors={{
-            points: ["Increasing this ability requires 2 points."],
+            FAQ: ["Increasing this ability requires 2 points"],
           }}
         />
       );
     }
   };
 
+  // A user cannot set the +1 and +2 bonuses to the same ability.
+  // These functions will only set a bonus on an ability that does not already
+  // have a bonus applied to it.
+
   const clickPlusTwo = (e, ability) => {
     e.preventDefault();
-    plus_2 === ability
-      ? dispatch(clearBonus("plus_2", ability))
-      : plus_1 != ability
-      ? dispatch(setBonus("plus_2", ability))
-      : null;
+    if (plus_2 === ability) {
+      dispatch(clearBonus("plus_2", ability));
+    } else if (plus_1 != ability) {
+      dispatch(setBonus("plus_2", ability));
+    }
   };
 
   const clickPlusOne = (e, ability) => {
     e.preventDefault();
-    plus_1 === ability
-      ? dispatch(clearBonus("plus_1", ability))
-      : plus_2 != ability
-      ? dispatch(setBonus("plus_1", ability))
-      : null;
+    if (plus_1 === ability) {
+      dispatch(clearBonus("plus_1", ability));
+    } else if (plus_2 != ability) {
+      dispatch(setBonus("plus_1", ability));
+    }
   };
 
   return (

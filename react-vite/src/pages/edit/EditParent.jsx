@@ -3,7 +3,7 @@ import styles from "./EditParent.module.css";
 //Functions/Components
 import { thunkGetBuild } from "../../redux/build";
 import { thunkPreloadData } from "../../redux/static";
-import Navigation from "../../components/navigation";
+import Navigation from "../../components/build/navigation";
 import BuildComponent from "../../components/build";
 import EquipmentComponent from "../../components/equipment";
 import InfoComponent from "../../components/info";

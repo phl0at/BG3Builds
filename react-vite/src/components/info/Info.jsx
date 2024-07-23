@@ -71,7 +71,7 @@ export default function InfoComponent({ currentBuild, points }) {
                       setModalContent(
                         <ErrorModal
                           errors={{
-                            feature: [
+                            FAQ: [
                               "This feature is still under development",
                             ],
                           }}
@@ -89,7 +89,7 @@ export default function InfoComponent({ currentBuild, points }) {
                       setModalContent(
                         <ErrorModal
                           errors={{
-                            feature: [
+                            FAQ: [
                               "This feature is still under development",
                             ],
                           }}

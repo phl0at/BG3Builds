@@ -1,7 +1,7 @@
 import styles from "./FAQParent.module.css";
 import { useState } from "react";
-import CategoryComponent from "../../components/category/Categories";
-import AnswersComponent from "../../components/answers/Answers";
+import CategoryComponent from "../../components/faq/category/Categories";
+import AnswersComponent from "../../components/faq/answers/Answers";
 
 export default function FAQPage() {
   const [category, setCategory] = useState("Characters");

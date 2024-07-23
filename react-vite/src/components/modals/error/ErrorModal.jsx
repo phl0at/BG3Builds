@@ -2,31 +2,32 @@
 import styles from "./ErrorModal.module.css";
 import { Images } from "../../images";
 // Functions/Components
+import { useModal } from "../../../context/Modal";
 // Packages
 import { NavLink } from "react-router-dom";
-import { useModal } from "../../../context/Modal";
 
 export default function ErrorModal({ errors }) {
   const errorMessages = Object.values(errors);
   const errorKeys = Object.keys(errors);
   const { closeModal } = useModal();
+  const linkToFAQ = errorKeys[0] === "FAQ";
 
   return (
     <main className={styles.main}>
+
       <div className={styles.imgContainer}>
         <img className={styles.sadowheart} src={Images.error["Sadowheart"]} />
       </div>
+
       <div className={styles.title}>
         {"The Lady Shar has denied your request"}
       </div>
 
-      {errorKeys[0] === "feature" ? null : (
-        <div className={styles.message}>
-          {
-            "By her grace, she has blessed you with guidance to correct your errors...this time."
-          }
-        </div>
-      )}
+      <p className={styles.message}>
+        {
+          "By her grace, she has blessed you with guidance to correct your errors...this time."
+        }
+      </p>
 
       <div className={styles.errors}>
         <div className={styles.list}>
@@ -37,23 +38,18 @@ export default function ErrorModal({ errors }) {
           ))}
         </div>
       </div>
-      {errorKeys[0] === "feature" ? (
+
+      {linkToFAQ && (
         <div className={styles.close}>
-          {"Visit our"}{" "}
+          {`Visit the `}
           <NavLink onClick={closeModal} to="/faq">
-            {"FAQ page"}
-          </NavLink>{" "}
-          {"for more info on planned features"}
+            {`FAQ page`}
+          </NavLink>
+          {` for more details`}
         </div>
-      ) : errorKeys[0] === "points" ? (
-        <div className={styles.close}>
-          {"Visit our"}{" "}
-          <NavLink onClick={closeModal} to="/faq">
-            {"FAQ page"}
-          </NavLink>{" "}
-          {"for more info on how Ability Points work."}
-        </div>
-      ) : (
+      )}
+
+      {!linkToFAQ && (
         <div className={styles.close}>
           {`Please `}
           {

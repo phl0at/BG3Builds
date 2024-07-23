@@ -17,14 +17,17 @@ export function Message({ message, currUser }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
     if (editMessage.trim().length) {
       dispatch(thunkEditComment({ id: message.id, message: editMessage }));
       setEditMode(false);
+
     } else {
+      setEditMode(false);
       setModalContent(
         <ErrorModal
           errors={{
-            error: ["Messages cannot be only whitespace"],
+            error: ["Comments must include valid text"],
           }}
         />
       );
@@ -39,7 +42,8 @@ export function Message({ message, currUser }) {
   return (
     <>
       <div className={styles.message}>
-        {editMode ? (
+
+        {editMode && (
           <form type="submit" onSubmit={onSubmit}>
             <input
               value={editMessage}
@@ -53,9 +57,10 @@ export function Message({ message, currUser }) {
               required
             />
           </form>
-        ) : (
-          message.message
         )}
+
+        {!editMode && message.message}
+
       </div>
       {currUser?.id === message.user_id && (
         <div className={styles.commentButtons}>

@@ -19,6 +19,7 @@ export default function ItemsTableModal({ type, Equipment }) {
     currentBuild[type] ? currentBuild[type] : null
   );
   const formatType = type.split("_")[0];
+  const capitalizedType = formatType[0].toUpperCase() + formatType.slice(1);
 
   const onClick = (e, id) => {
     e.preventDefault();
@@ -30,7 +31,7 @@ export default function ItemsTableModal({ type, Equipment }) {
       <main className={styles.main}>
         <div className={styles.table}>
           <div className={styles.thead}>
-            <div className={styles.itemHead}>Select an item to equip</div>
+            <div className={styles.itemHead}>{`${capitalizedType}`}</div>
           </div>
           {EquipmentArray.map((item) => {
             if (item.type === formatType) {
@@ -60,12 +61,13 @@ export default function ItemsTableModal({ type, Equipment }) {
           })}
         </div>
       </main>
-      <main className={styles.sideMenu}>
-        <div className={styles.sideTable}>
-          <div className={styles.desHead}>
-            <div>Description</div>
-          </div>
-          {selectedItem && (
+      {selectedItem && (
+        <main className={styles.sideMenu}>
+          <div className={styles.sideTable}>
+            <div className={styles.desHead}>
+              <div>Description</div>
+            </div>
+
             <>
               <div className={styles.description}>
                 {Equipment[selectedItem].description}
@@ -101,9 +103,9 @@ export default function ItemsTableModal({ type, Equipment }) {
                 </div>
               )}
             </>
-          )}
-        </div>
-      </main>
+          </div>
+        </main>
+      )}
     </>
   );
 }
