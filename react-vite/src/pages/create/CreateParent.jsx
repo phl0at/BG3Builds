@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function CreateParentPage() {
   const dispatch = useDispatch();
   const currentBuild = useSelector((state) => state.builds.current);
+  const currentUser = useSelector((state) => state.session.user);
   const Origins = useSelector((state) => state.static.origins);
   const [activeMenu, setActiveMenu] = useState("Origin");
   const [points, setPoints] = useState(27);
@@ -23,6 +24,11 @@ export default function CreateParentPage() {
     dispatch(thunkPreloadData());
     dispatch(action("build/setDefault"));
   }, [dispatch]);
+
+  useEffect(() => {
+    setPoints(27)
+    dispatch(action("build/setDefault"));
+  }, [currentUser]);
 
   if (!currentBuild || !Origins) {
     return (

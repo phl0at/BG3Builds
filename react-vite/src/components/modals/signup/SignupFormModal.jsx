@@ -23,18 +23,17 @@ function SignupFormModal({ setLoading }) {
     const validTLDs = ["com", "net", "mil", "org", "edu"];
     const emailTLD = email.split(".")[email.split(".").length - 1];
 
-    if (!email.includes("@")) {
+    if (!email.includes("@") || email.split("@")[1][0] === ".") {
       setErrors("Please enter a valid email address");
     } else if (!validTLDs.includes(emailTLD)) {
       setErrors("Email must end in .com, .net, .mil, .org, or .edu");
     } else if (username.trim().length < 3 || username.trim().length > 25) {
       setErrors("Username must be 3 to 25 characters");
-    } else if(password.includes(" ")) {
-      setErrors("Passwords cannot have whitespace")
+    } else if (password.includes(" ")) {
+      setErrors("Passwords cannot have whitespace");
     } else if (password !== confirmPassword) {
       setErrors("Passwords must match");
     } else {
-
       setLoading(true);
       const serverResponse = await dispatch(
         thunkSignup({
@@ -48,7 +47,7 @@ function SignupFormModal({ setLoading }) {
         setModalContent(<ErrorModal errors={serverResponse} />);
         setLoading(false);
       } else {
-        dispatch(thunkGetAllUsers())
+        dispatch(thunkGetAllUsers());
         closeModal();
       }
     }
