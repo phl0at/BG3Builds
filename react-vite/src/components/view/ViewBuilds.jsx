@@ -8,19 +8,22 @@ import { filteredBuilds } from "./helper";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 import { CiSquarePlus } from "react-icons/ci";
 import { AiFillHeart } from "react-icons/ai";
 
 export default function ViewBuildsComponent({ filters, setFilters }) {
   const [selected, setSelected] = useState(null);
-  const allBuildsArr = useSelector(getBuildsArray);
-  const allUsers = useSelector((state) => state.users);
-  const selectedBuild = useSelector((state) => state.builds[selected]);
   const Backgrounds = useSelector((state) => state.static.backgrounds);
   const Origins = useSelector((state) => state.static.origins);
   const Races = useSelector((state) => state.static.races);
+  const allBuildsArr = useSelector(getBuildsArray);
+  const allUsers = useSelector((state) => state.users);
   const currentUser = useSelector((state) => state.session.user);
+  const selectedBuild = useSelector((state) => state.builds[selected]);
+
   const buildsArr = filteredBuilds(allBuildsArr, filters, currentUser);
+  const appliedFilter = Object.keys(filters);
 
   useEffect(() => {
     if (!currentUser) {
@@ -41,7 +44,7 @@ export default function ViewBuildsComponent({ filters, setFilters }) {
       <div className={styles.body}>
         <div className={styles.scroll}>
           <div className={styles.buildsList}>
-            {buildsArr.length ? (
+            {buildsArr != undefined &&
               buildsArr.map((build, i) => {
                 return (
                   <button
@@ -79,15 +82,13 @@ export default function ViewBuildsComponent({ filters, setFilters }) {
                     </>
                   </button>
                 );
-              })
-            ) : (
+              })}
+            {buildsArr === undefined && (
               <div className={styles.noBuilds}>
                 <div className={styles.sorry}>{`Sorry, adventurer!`}</div>
                 <div className={styles.message}>
-                  {Object.keys(filters) != "owned"
-                    ? `It looks like there are currently no builds with that ${Object.keys(
-                        filters
-                      )}.`
+                  {appliedFilter != "owned"
+                    ? `It looks like there are currently no builds with that ${appliedFilter}.`
                     : "You haven't created any builds yet."}
                   <div>
                     {`Head over to the `}
@@ -97,6 +98,11 @@ export default function ViewBuildsComponent({ filters, setFilters }) {
                 </div>
               </div>
             )}
+            {!buildsArr & !appliedFilter ? (
+              <div className={styles.noBuilds}>
+                <ClipLoader color="#e4c274" size="100px" />
+              </div>
+            ) : null}
           </div>
         </div>
         <div className={selected ? styles.selectedBuild : styles.hidden}>
