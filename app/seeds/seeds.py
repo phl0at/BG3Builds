@@ -18,6 +18,8 @@ def seed_all():
         )
         db.session.add(user)
 
+    db.session.commit()
+
     ################ SEED CLASSES ################
     class_list = [
         { 'id': 1, 'name': 'Barbarian', 'description': 'The strong embrace the wild that hides inside - keen instincts, primal physicality, and most of all, an unbridled, unquenchable rage.'},
@@ -42,6 +44,8 @@ def seed_all():
         )
         db.session.add(new_class)
 
+    db.session.commit()
+
     ################ SEED ORIGINS ################
     origin_list = [
         {'id': 1, 'name': 'Astarion', 'description': 'After two hundred years of serving a cruel master, the vampire spawn Astarion is finally free - free to walk in the sun, free to chase power, and free to take revenge.'},
@@ -60,6 +64,8 @@ def seed_all():
             description=origin['description'],
         )
         db.session.add(new_origin)
+
+    db.session.commit()
 
     ################ SEED RACES ################
     race_list = [
@@ -83,6 +89,8 @@ def seed_all():
         )
         db.session.add(new_race)
 
+    db.session.commit()
+
     ################ SEED BACKGROUNDS ################
     background_list = [
         {'id': 1, 'name':"Acolyte", "description": "You have spent your life in service to a temple, learning sacred rites and providing sacrifices to the god or gods you worship. Serving the gods and discovering their sacred works will guide you to greatness." },
@@ -105,6 +113,8 @@ def seed_all():
             description = background['description'],
         )
         db.session.add(new_background)
+
+    db.session.commit()
 
 
     ################ SEED EQUIPMENT ################
@@ -163,6 +173,8 @@ def seed_all():
             description=item['description'],
         )
         db.session.add(gear)
+
+    db.session.commit()
 
     ################ SEED BUILDS ################
     build_list = [
@@ -321,6 +333,8 @@ def seed_all():
         )
         db.session.add(build)
 
+    db.session.commit()
+
 
     ################ SEED BUILD CLASSES ################
     build_classes_list = [
@@ -339,6 +353,8 @@ def seed_all():
         )
         db.session.add(new_bc)
 
+    db.session.commit()
+
 
     ################ SEED COMMENTS ################
     comment_list = [
@@ -353,6 +369,8 @@ def seed_all():
             message = comment['message'],
         )
         db.session.add(new_comment)
+
+    db.session.commit()
 
     ################ SEED FAVORITES ################
     fav_list = [
