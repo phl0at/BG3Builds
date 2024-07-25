@@ -1,6 +1,18 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
+from sqlalchemy.ext.declarative import declarative_base
 
-################################################################################
+Base = declarative_base()
+
+favorites_table = db.Table(
+    "favorites",
+    Base.metadata,
+    db.Column("user_id", db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True),
+    db.Column("build_id", db.ForeignKey(add_prefix_for_prod('builds.id')), primary_key=True)
+
+)
+
 
 class Build(db.Model):
     __tablename__ = 'builds'
@@ -41,7 +53,7 @@ class Build(db.Model):
 
     classes = db.relationship("BuildClass", backref="build", cascade="all, delete-orphan")
     comments = db.relationship("Comment", backref="build", cascade="all, delete-orphan")
-    favored_by = db.relationship("User", secondary="favorites", back_populates="favorite_builds")
+    favored_by = db.relationship("User", secondary=favorites_table, back_populates="favorite_builds")
 
     def to_dict(self):
         return {
@@ -79,6 +91,67 @@ class Build(db.Model):
         }
 
 ################################################################################
+
+
+class User(db.Model, UserMixin):
+    __tablename__ = 'users'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(40), nullable=False, unique=True)
+    email = db.Column(db.String(255), nullable=False, unique=True)
+    hashed_password = db.Column(db.String(255), nullable=False)
+
+    builds = db.relationship("Build", backref="user", cascade="all, delete-orphan")
+    favorite_builds = db.relationship("Build", secondary=favorites_table, back_populates="favored_by", cascade="all, delete")
+
+
+    @property
+    def password(self):
+        return self.hashed_password
+
+    @password.setter
+    def password(self, password):
+        self.hashed_password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'builds': [build.to_dict() for build in self.builds],
+            'favorites': [favorite.to_dict() for favorite in self.favorite_builds]
+        }
+
+################################################################################
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    build_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('builds.id')), nullable=False)
+    message = db.Column(db.String(140), nullable=False)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'build_id': self.build_id,
+            'message': self.message
+        }
+
+
+
+################################################################################
+
 
 class BuildClass(db.Model):
     __tablename__ = 'build_classes'
@@ -181,6 +254,29 @@ class Background(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
+            'name': self.name,
+            'description': self.description
+        }
+
+################################################################################
+
+
+class Equipment(db.Model):
+    __tablename__ = 'equipment'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String(6), db.Enum("helmet", "cloak", "armor", "gloves",
+                                         "boots", "amulet", "ring", "melee", "ranged"), nullable=False)
+    name = db.Column(db.String(50), nullable=False, unique=True)
+    description = db.Column(db.String(500), nullable=True, unique=True)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'type': self.type,
             'name': self.name,
             'description': self.description
         }

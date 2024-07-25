@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import Comment, Favorite, Build, db
+from app.models import Comment, db
 from flask_login import current_user, login_required
 from sqlalchemy.orm import joinedload
 

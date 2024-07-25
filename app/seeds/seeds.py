@@ -1,8 +1,8 @@
-from app.models import db, Origin, Background, Race, User, Build, Class, BuildClass, Comment, Equipment, Favorite, environment, SCHEMA
+from app.models import db, Origin, Background, Race, User, Build, Class, BuildClass, Comment, Equipment, environment, SCHEMA
 from sqlalchemy.sql import text
 from werkzeug.security import generate_password_hash
 
-# Adds a demo user, you can add other users here if you want
+
 def seed_all():
     ################ SEED USERS ################
     user_list = [
@@ -18,7 +18,7 @@ def seed_all():
         )
         db.session.add(user)
 
-    db.session.commit()
+
 
     ################ SEED CLASSES ################
     class_list = [
@@ -44,7 +44,7 @@ def seed_all():
         )
         db.session.add(new_class)
 
-    db.session.commit()
+
 
     ################ SEED ORIGINS ################
     origin_list = [
@@ -65,7 +65,7 @@ def seed_all():
         )
         db.session.add(new_origin)
 
-    db.session.commit()
+
 
     ################ SEED RACES ################
     race_list = [
@@ -89,7 +89,6 @@ def seed_all():
         )
         db.session.add(new_race)
 
-    db.session.commit()
 
     ################ SEED BACKGROUNDS ################
     background_list = [
@@ -114,7 +113,7 @@ def seed_all():
         )
         db.session.add(new_background)
 
-    db.session.commit()
+
 
 
     ################ SEED EQUIPMENT ################
@@ -174,7 +173,7 @@ def seed_all():
         )
         db.session.add(gear)
 
-    db.session.commit()
+
 
     ################ SEED BUILDS ################
     build_list = [
@@ -333,7 +332,7 @@ def seed_all():
         )
         db.session.add(build)
 
-    db.session.commit()
+
 
 
     ################ SEED BUILD CLASSES ################
@@ -353,7 +352,7 @@ def seed_all():
         )
         db.session.add(new_bc)
 
-    db.session.commit()
+
 
 
     ################ SEED COMMENTS ################
@@ -373,18 +372,7 @@ def seed_all():
     db.session.commit()
 
     ################ SEED FAVORITES ################
-    fav_list = [
-        { 'user_id': 1, 'build_id': 3 },
-        { 'user_id': 2, 'build_id': 1 },
-    ]
-    for fav in fav_list:
-        new_fav = Favorite(
-            user_id=fav['user_id'],
-            build_id=fav['build_id'],
-        )
-        db.session.add(new_fav)
 
-    db.session.commit()
 
 
 
@@ -399,7 +387,6 @@ def undo_all():
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.builds RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.comments RESTART IDENTITY CASCADE;")
-        db.session.execute(f"TRUNCATE table {SCHEMA}.favorites RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.equipment RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.classes RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.build_classes RESTART IDENTITY CASCADE;")
@@ -410,7 +397,6 @@ def undo_all():
         db.session.execute(text("DELETE FROM users"))
         db.session.execute(text("DELETE FROM builds"))
         db.session.execute(text("DELETE FROM comments"))
-        db.session.execute(text("DELETE FROM favorites"))
         db.session.execute(text("DELETE FROM equipment"))
         db.session.execute(text("DELETE FROM classes"))
         db.session.execute(text("DELETE FROM build_classes"))

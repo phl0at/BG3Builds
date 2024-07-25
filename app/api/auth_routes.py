@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import User, Favorite, db
+from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -13,9 +13,9 @@ def authenticate():
     Authenticates a user.
     """
     if current_user.is_authenticated:
-        favorites = Favorite.query.filter(Favorite.user_id == current_user.id)
+        # favorites = Favorite.query.filter(Favorite.user_id == current_user.id)
         signed_in = current_user.to_dict()
-        signed_in['favorites'] = [fav.to_dict() for fav in favorites]
+        # signed_in['favorites'] = [fav.to_dict() for fav in favorites]
         return signed_in
     return {'errors': {'message': 'Unauthorized'}}, 401
 
@@ -33,9 +33,9 @@ def login():
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
-        favorites = Favorite.query.filter(Favorite.user_id == user.id)
+        # favorites = Favorite.query.filter(Favorite.user_id == user.id)
         signed_in = user.to_dict()
-        signed_in['favorites'] = [fav.to_dict() for fav in favorites]
+        # signed_in['favorites'] = [fav.to_dict() for fav in favorites]
         return signed_in
     return form.errors, 401
 
