@@ -41,6 +41,7 @@ class Build(db.Model):
 
     classes = db.relationship("BuildClass", backref="build", cascade="all, delete-orphan")
     comments = db.relationship("Comment", backref="build", cascade="all, delete-orphan")
+    favored_by = db.relationship("User", secondary="favorites", back_populates="favorite_builds")
 
     def to_dict(self):
         return {

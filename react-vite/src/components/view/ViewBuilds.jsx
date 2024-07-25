@@ -2,13 +2,14 @@
 import styles from "./ViewBuilds.module.css";
 //Functions/Components
 import { getBuildsArray } from "../../redux/build";
-import { filteredBuilds, SelectedBuildPanel } from "./helper";
+import { SelectedBuildPanel } from "./BuildInfoPanel";
+import { filteredBuilds } from "./helper";
 //Packages
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { CiSquarePlus } from "react-icons/ci";
-// import { AiFillHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 
 export default function ViewBuildsComponent({ filters, setFilters }) {
   const [selected, setSelected] = useState(null);
@@ -25,7 +26,7 @@ export default function ViewBuildsComponent({ filters, setFilters }) {
     if (!currentUser) {
       const newFilters = { ...filters };
       delete newFilters["owned"];
-      // delete newFilters["favorites"];
+      delete newFilters["favorites"];
       setFilters({ ...newFilters });
     }
   }, [currentUser]);
@@ -51,9 +52,9 @@ export default function ViewBuildsComponent({ filters, setFilters }) {
                     }
                   >
                     <>
-                      {/* {currentUser && currentUser.favorites[build.id] ? (
+                      {currentUser && currentUser.favorites[build.id] ? (
                         <AiFillHeart className={styles.favorited} size="17" />
-                      ) : null} */}
+                      ) : null}
 
                       <div className={styles.buildName}>{build.name}</div>
 

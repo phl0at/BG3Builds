@@ -355,16 +355,16 @@ def seed_all():
         db.session.add(new_comment)
 
     ################ SEED FAVORITES ################
-    # fav_list = [
-    #     { 'user_id': 1, 'build_id': 3 },
-    #     { 'user_id': 2, 'build_id': 1 },
-    # ]
-    # for fav in fav_list:
-    #     new_fav = Favorite(
-    #         user_id=fav['user_id'],
-    #         build_id=fav['build_id'],
-    #     )
-    #     db.session.add(new_fav)
+    fav_list = [
+        { 'user_id': 1, 'build_id': 3 },
+        { 'user_id': 2, 'build_id': 1 },
+    ]
+    for fav in fav_list:
+        new_fav = Favorite(
+            user_id=fav['user_id'],
+            build_id=fav['build_id'],
+        )
+        db.session.add(new_fav)
 
     db.session.commit()
 

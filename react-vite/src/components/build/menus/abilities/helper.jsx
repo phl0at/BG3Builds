@@ -9,7 +9,6 @@ import ErrorModal from "../../../modals/error/ErrorModal";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
-import { NavLink } from "react-router-dom";
 
 export function Ability({
   name,

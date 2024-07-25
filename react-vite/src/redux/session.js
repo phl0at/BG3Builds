@@ -124,12 +124,12 @@ function sessionReducer(state = initialState, action) {
     case SET_USER: {
       const newState = { ...state, user: action.payload };
 
-      //Normalize favorites
-      // const favorites = {};
-      // newState.user.favorites.forEach(
-      //   (favorite) => (favorites[favorite.build_id] = favorite)
-      // );
-      // newState.user.favorites = { ...favorites };
+      // Normalize favorites
+      const favorites = {};
+      newState.user.favorites.forEach(
+        (favorite) => (favorites[favorite.build_id] = favorite)
+      );
+      newState.user.favorites = { ...favorites };
 
       return newState;
     }
