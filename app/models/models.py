@@ -1,13 +1,11 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from sqlalchemy.ext.declarative import declarative_base
 
-Base = declarative_base()
 
 favorites_table = db.Table(
     "favorites",
-    Base.metadata,
+    db.metadata,
     db.Column("user_id", db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True),
     db.Column("build_id", db.ForeignKey(add_prefix_for_prod('builds.id')), primary_key=True)
 

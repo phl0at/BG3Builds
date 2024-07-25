@@ -373,6 +373,7 @@ def seed_all():
 
     ################ SEED FAVORITES ################
 
+    
 
 
 
@@ -386,6 +387,7 @@ def undo_all():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.builds RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.favorites RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.comments RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.equipment RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.classes RESTART IDENTITY CASCADE;")
@@ -396,6 +398,7 @@ def undo_all():
     else:
         db.session.execute(text("DELETE FROM users"))
         db.session.execute(text("DELETE FROM builds"))
+        db.session.execute(text("DELETE FROM favorites"))
         db.session.execute(text("DELETE FROM comments"))
         db.session.execute(text("DELETE FROM equipment"))
         db.session.execute(text("DELETE FROM classes"))
