@@ -26,7 +26,7 @@ export default function ViewBuildsComponent({ filters, setFilters }) {
     if (!currentUser) {
       const newFilters = { ...filters };
       delete newFilters["owned"];
-      delete newFilters["favorites"];
+      // delete newFilters["favorites"];
       setFilters({ ...newFilters });
     }
   }, [currentUser]);
@@ -52,9 +52,9 @@ export default function ViewBuildsComponent({ filters, setFilters }) {
                     }
                   >
                     <>
-                      {currentUser && currentUser.favorites[build.id] ? (
+                      {/* {currentUser && currentUser.favorites[build.id] ? (
                         <AiFillHeart className={styles.favorited} size="17" />
-                      ) : null}
+                      ) : null} */}
 
                       <div className={styles.buildName}>{build.name}</div>
 
