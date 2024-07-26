@@ -10,18 +10,27 @@ import DeleteBuildModal from "../modals/delete";
 import ShareModal from "../modals/share/";
 import ErrorModal from "../modals/error/";
 import { useModal } from "../../context/Modal";
+import { exportCode } from "../modals/share/helper";
 //Packages
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { GiDiceTwentyFacesTwenty } from "react-icons/gi";
-import { CiTrash, CiFloppyDisk, CiShare2, CiBoxList } from "react-icons/ci";
+import {
+  CiTrash,
+  CiFloppyDisk,
+  CiBoxList,
+  CiExport,
+  CiImport,
+} from "react-icons/ci";
 
-export default function InfoComponent({ currentBuild, points }) {
+export default function InfoComponent({ currentBuild, points, setPoints }) {
   const currentUser = useSelector((state) => state.session.user);
   const navigateTo = useNavigate();
+  const { buildId } = useParams();
   const { setModalContent } = useModal();
   const [display, setDisplay] = useState("Info");
+  const code = exportCode(currentBuild);
 
   return (
     <main className={styles.main}>
@@ -67,16 +76,17 @@ export default function InfoComponent({ currentBuild, points }) {
                   <button
                     id={styles.fade}
                     className={styles.buildButton1}
-                    title="Import/Export"
+                    title={buildId ? "Export" : "Import"}
                     onClick={() =>
                       setModalContent(
                         <ShareModal
-                          currentBuild={currentBuild}
+                          code={buildId ? code : ""}
+                          setPoints={setPoints}
                         />
                       )
                     }
                   >
-                    <CiShare2 size="30" />
+                    {buildId ? <CiExport size="32" /> : <CiImport size="32" />}
                   </button>
                   <button
                     id={styles.fade}
@@ -86,9 +96,7 @@ export default function InfoComponent({ currentBuild, points }) {
                       setModalContent(
                         <ErrorModal
                           errors={{
-                            FAQ: [
-                              "This feature is still under development",
-                            ],
+                            FAQ: ["This feature is still under development"],
                           }}
                         />
                       )

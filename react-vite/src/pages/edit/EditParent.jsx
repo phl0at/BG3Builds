@@ -23,12 +23,13 @@ export default function EditParentPage() {
   const [points, setPoints] = useState(0);
 
   useEffect(() => {
-    dispatch(thunkPreloadData());
-    dispatch(thunkGetBuild(buildId));
-  }, []);
+    if (!Origins) {
+      dispatch(thunkPreloadData());
+    }
+  }, [dispatch]);
 
   useEffect(() => {
-    setPoints(0)
+    setPoints(0);
     dispatch(thunkGetBuild(buildId));
   }, [currentUser]);
 
@@ -49,7 +50,11 @@ export default function EditParentPage() {
         activeMenu={activeMenu}
       />
       <EquipmentComponent />
-      <InfoComponent currentBuild={currentBuild} points={points} />
+      <InfoComponent
+        currentBuild={currentBuild}
+        points={points}
+        setPoints={setPoints}
+      />
     </main>
   );
 }

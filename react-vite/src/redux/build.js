@@ -9,6 +9,7 @@ const GET_BUILD = "build/getBuild";
 const GET_ALL_BUILDS = "build/getAll";
 const SET_DEFAULTS = "build/setDefault";
 const DELETE_BUILD = "build/delete";
+const IMPORT_BUILD = "build/import"
 // USER ACTIONS
 const GET_ALL_USERS = "users/getAll";
 // CHARACTER ACTIONS
@@ -306,6 +307,16 @@ function buildReducer(state = initialState, action) {
       );
       newState.current.comments = { ...comments };
 
+      return newState;
+    }
+
+    case IMPORT_BUILD: {
+      const newState = {...state }
+      delete action.payload["id"]
+      delete action.payload["user_id"]
+      delete action.payload["comments"]
+      delete action.payload["name"]
+      newState.current = action.payload;
       return newState;
     }
 

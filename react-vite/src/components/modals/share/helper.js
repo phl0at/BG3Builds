@@ -1,8 +1,10 @@
 import CryptoJS from "crypto-js/";
 
-export function BuildCodeGenerator(build) {
-    
-  const code = CryptoJS.AES.encrypt(JSON.stringify(build), "bg").toString();
+export function exportCode(build) {
+  return CryptoJS.AES.encrypt(JSON.stringify(build), "shadowheart").toString();
+}
 
-  return code;
+export function importCode(code) {
+  const bytes = CryptoJS.AES.decrypt(code, "shadowheart");
+  return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 }

@@ -21,12 +21,13 @@ export default function CreateParentPage() {
   const [points, setPoints] = useState(27);
 
   useEffect(() => {
-    dispatch(thunkPreloadData());
-    dispatch(action("build/setDefault"));
+    if (!Origins) {
+      dispatch(thunkPreloadData());
+    }
   }, [dispatch]);
 
   useEffect(() => {
-    setPoints(27)
+    setPoints(27);
     dispatch(action("build/setDefault"));
   }, [currentUser]);
 
@@ -48,7 +49,11 @@ export default function CreateParentPage() {
           activeMenu={activeMenu}
         />
         <EquipmentComponent />
-        <InfoComponent currentBuild={currentBuild} points={points} />
+        <InfoComponent
+          currentBuild={currentBuild}
+          points={points}
+          setPoints={setPoints}
+        />
       </main>
     </>
   );

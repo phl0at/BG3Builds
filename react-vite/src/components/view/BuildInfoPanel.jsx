@@ -24,11 +24,11 @@ export function SelectedBuildPanel({ build, Backgrounds, Races }) {
   const clickFavorite = (e) => {
     e.preventDefault();
 
-    // if (currentUser.favorites[build.id]) {
-    //   dispatch(thunkDeleteFavorite(build.id));
-    // } else {
-    //   dispatch(thunkAddFavorite(build.id));
-    // }
+    if (currentUser.favorites[build.id]) {
+      dispatch(thunkDeleteFavorite(build.id));
+    } else {
+      dispatch(thunkAddFavorite(build.id));
+    }
   };
 
   return (
@@ -41,11 +41,11 @@ export function SelectedBuildPanel({ build, Backgrounds, Races }) {
               className={styles.favorite}
               onClick={clickFavorite}
             >
-              {/* {currentUser.favorites[build.id] ? (
+              {currentUser.favorites[build.id] ? (
                 <AiFillHeart size="40" />
               ) : (
                 <AiOutlineHeart size="40" />
-              )} */}
+              )}
             </button>
           )}
         </div>
