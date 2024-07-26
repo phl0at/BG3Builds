@@ -25,7 +25,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     builds = db.relationship("Build", backref="user", cascade="all, delete-orphan")
-    favorites = db.relationship("Favorite", back_populates="user", cascade="all, delete")
+    favorites = db.relationship("Favorite", back_populates="user", cascade="all, delete-orphan")
 
 
     @property
@@ -131,7 +131,7 @@ class Build(db.Model):
 
     classes = db.relationship("BuildClass", backref="build", cascade="all, delete-orphan")
     comments = db.relationship("Comment", backref="build", cascade="all, delete-orphan")
-    favorites = db.relationship("Favorite", back_populates="build")
+    favorites = db.relationship("Favorite", back_populates="build", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
