@@ -1,4 +1,4 @@
-from app.models import db, Origin, Background, Race, User, Build, Class, BuildClass, Comment, Equipment, environment, SCHEMA
+from app.models import db, Origin, Background, Race, User, Favorite, Build, Class, BuildClass, Comment, Equipment, environment, SCHEMA
 from sqlalchemy.sql import text
 from werkzeug.security import generate_password_hash
 
@@ -369,12 +369,22 @@ def seed_all():
         )
         db.session.add(new_comment)
 
-    db.session.commit()
 
     ################ SEED FAVORITES ################
 
-    
+    favorite_list = [
+        {'user_id': 1, 'build_id': 3},
+        {'user_id': 2, 'build_id': 1}
+    ]
 
+    for favorite in favorite_list:
+        new_fav = Favorite(
+            user_id = favorite['user_id'],
+            build_id = favorite['build_id']
+        )
+        db.session.add(new_fav)
+
+    db.session.commit()
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
