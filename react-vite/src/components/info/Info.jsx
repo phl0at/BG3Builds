@@ -7,7 +7,8 @@ import OpenModalButton from "../modals";
 import SaveBuildModal from "../modals/save";
 import UpdateBuildModal from "../modals/update";
 import DeleteBuildModal from "../modals/delete";
-import ErrorModal from "../modals/error/ErrorModal";
+import ShareModal from "../modals/share/";
+import ErrorModal from "../modals/error/";
 import { useModal } from "../../context/Modal";
 //Packages
 import { useState } from "react";
@@ -69,12 +70,8 @@ export default function InfoComponent({ currentBuild, points }) {
                     title="Import/Export"
                     onClick={() =>
                       setModalContent(
-                        <ErrorModal
-                          errors={{
-                            FAQ: [
-                              "This feature is still under development",
-                            ],
-                          }}
+                        <ShareModal
+                          currentBuild={currentBuild}
                         />
                       )
                     }
