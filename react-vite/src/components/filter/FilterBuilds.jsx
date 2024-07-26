@@ -40,7 +40,7 @@ export default function FilterBuildComponent({ filters, setFilters }) {
                   onClick={(e) => {
                     e.preventDefault();
                     setFilters(filters["owned"] ? {} : { owned: true });
-                    setSelectedItem("")
+                    setSelectedItem("");
                   }}
                 >
                   {filters["owned"] ? (
@@ -53,7 +53,7 @@ export default function FilterBuildComponent({ filters, setFilters }) {
               </>
             )}
           </div>
-          {/* <div>
+          <div>
             {currentUser && (
               <>
                 <button
@@ -61,7 +61,7 @@ export default function FilterBuildComponent({ filters, setFilters }) {
                   onClick={(e) => {
                     e.preventDefault();
                     setFilters(filters["favorites"] ? {} : { favorites: true });
-                    setSelectedItem("")
+                    setSelectedItem("");
                   }}
                 >
                   {filters["favorites"] ? (
@@ -73,7 +73,7 @@ export default function FilterBuildComponent({ filters, setFilters }) {
                 </button>
               </>
             )}
-          </div> */}
+          </div>
 
           <div>
             <button
