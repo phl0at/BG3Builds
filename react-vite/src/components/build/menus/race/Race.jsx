@@ -8,14 +8,16 @@ import ErrorModal from "../../../modals/error/ErrorModal";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
 
-export default function RaceComponent({ currentBuild }) {
+export default function RaceComponent() {
   const dispatch = useDispatch();
   const { setModalContent } = useModal();
+  const currentOrigin = useSelector((state) => state.builds.current.origin);
+  const currentRace = useSelector((state) => state.builds.current.race);
   const Races = useSelector((state) => state.static.races);
 
   const onClick = (e, race) => {
     e.preventDefault();
-    if (currentBuild.origin === 7 || currentBuild.origin === 8) {
+    if (currentOrigin === 7 || currentOrigin === 8) {
       dispatch(action("build/setRace", race));
     } else {
       setModalContent(
@@ -39,9 +41,7 @@ export default function RaceComponent({ currentBuild }) {
                 onClick={(e) => onClick(e, 1)}
                 src={Images.races["Elf"]}
                 className={
-                  currentBuild.race === 1
-                    ? styles.selected_raceImg
-                    : styles.raceImg
+                  currentRace === 1 ? styles.selected_raceImg : styles.raceImg
                 }
               ></img>
               Elf
@@ -51,9 +51,7 @@ export default function RaceComponent({ currentBuild }) {
                 onClick={(e) => onClick(e, 2)}
                 src={Images.races["Tiefling"]}
                 className={
-                  currentBuild.race === 2
-                    ? styles.selected_raceImg
-                    : styles.raceImg
+                  currentRace === 2 ? styles.selected_raceImg : styles.raceImg
                 }
               ></img>
               Tiefling
@@ -63,9 +61,7 @@ export default function RaceComponent({ currentBuild }) {
                 onClick={(e) => onClick(e, 3)}
                 src={Images.races["Drow"]}
                 className={
-                  currentBuild.race === 3
-                    ? styles.selected_raceImg
-                    : styles.raceImg
+                  currentRace === 3 ? styles.selected_raceImg : styles.raceImg
                 }
               ></img>
               Drow
@@ -75,9 +71,7 @@ export default function RaceComponent({ currentBuild }) {
                 onClick={(e) => onClick(e, 4)}
                 src={Images.races["Human"]}
                 className={
-                  currentBuild.race === 4
-                    ? styles.selected_raceImg
-                    : styles.raceImg
+                  currentRace === 4 ? styles.selected_raceImg : styles.raceImg
                 }
               ></img>
               Human
@@ -87,9 +81,7 @@ export default function RaceComponent({ currentBuild }) {
                 onClick={(e) => onClick(e, 5)}
                 src={Images.races["Githyanki"]}
                 className={
-                  currentBuild.race === 5
-                    ? styles.selected_raceImg
-                    : styles.raceImg
+                  currentRace === 5 ? styles.selected_raceImg : styles.raceImg
                 }
               ></img>
               Githyanki
@@ -99,9 +91,7 @@ export default function RaceComponent({ currentBuild }) {
                 onClick={(e) => onClick(e, 6)}
                 src={Images.races["Dwarf"]}
                 className={
-                  currentBuild.race === 6
-                    ? styles.selected_raceImg
-                    : styles.raceImg
+                  currentRace === 6 ? styles.selected_raceImg : styles.raceImg
                 }
               ></img>
               Dwarf
@@ -111,9 +101,7 @@ export default function RaceComponent({ currentBuild }) {
                 onClick={(e) => onClick(e, 7)}
                 src={Images.races["Halfelf"]}
                 className={
-                  currentBuild.race === 7
-                    ? styles.selected_raceImg
-                    : styles.raceImg
+                  currentRace === 7 ? styles.selected_raceImg : styles.raceImg
                 }
               ></img>
               Half-Elf
@@ -123,9 +111,7 @@ export default function RaceComponent({ currentBuild }) {
                 onClick={(e) => onClick(e, 8)}
                 src={Images.races["Halfling"]}
                 className={
-                  currentBuild.race === 8
-                    ? styles.selected_raceImg
-                    : styles.raceImg
+                  currentRace === 8 ? styles.selected_raceImg : styles.raceImg
                 }
               ></img>
               Halfling
@@ -135,9 +121,7 @@ export default function RaceComponent({ currentBuild }) {
                 onClick={(e) => onClick(e, 9)}
                 src={Images.races["Gnome"]}
                 className={
-                  currentBuild.race === 9
-                    ? styles.selected_raceImg
-                    : styles.raceImg
+                  currentRace === 9 ? styles.selected_raceImg : styles.raceImg
                 }
               ></img>
               Gnome
@@ -147,9 +131,7 @@ export default function RaceComponent({ currentBuild }) {
                 onClick={(e) => onClick(e, 10)}
                 src={Images.races["Dragonborn"]}
                 className={
-                  currentBuild.race === 10
-                    ? styles.selected_raceImg
-                    : styles.raceImg
+                  currentRace === 10 ? styles.selected_raceImg : styles.raceImg
                 }
               ></img>
               Dragonborn
@@ -159,18 +141,16 @@ export default function RaceComponent({ currentBuild }) {
                 onClick={(e) => onClick(e, 11)}
                 src={Images.races["Halforc"]}
                 className={
-                  currentBuild.race === 11
-                    ? styles.selected_raceImg
-                    : styles.raceImg
+                  currentRace === 11 ? styles.selected_raceImg : styles.raceImg
                 }
               ></img>
               Half-Orc
             </div>
           </div>
           <div className={styles.select}>
-            <div className={styles.name}>{Races[currentBuild.race].name}</div>
+            <div className={styles.name}>{Races[currentRace].name}</div>
             <div className={styles.description}>
-              {Races[currentBuild.race].description}
+              {Races[currentRace].description}
             </div>
           </div>
         </>

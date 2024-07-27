@@ -6,13 +6,12 @@ import OpenModalButton from "../../../modals";
 import ResetAbilitiesModal from "./ResetModal";
 //Packages
 import { CiUndo } from "react-icons/ci";
+import { useSelector } from "react-redux";
 
-export default function AbilitiesComponent({
-  points,
-  setPoints,
-  currentBuild,
-}) {
-  const { plus_1, plus_2 } = currentBuild;
+export default function AbilitiesComponent() {
+  const points = useSelector((state) => state.builds.current.points);
+  const plus_1 = useSelector((state) => state.builds.current.plus_1);
+  const plus_2 = useSelector((state) => state.builds.current.plus_2);
 
   const abilities = [
     "strength",
@@ -30,7 +29,7 @@ export default function AbilitiesComponent({
           {points < 27 ? (
             <OpenModalButton
               buttonText={<CiUndo size="40" />}
-              modalComponent={<ResetAbilitiesModal setPoints={setPoints} />}
+              modalComponent={<ResetAbilitiesModal />}
             />
           ) : null}
         </div>
@@ -43,17 +42,7 @@ export default function AbilitiesComponent({
           <div className={!plus_1 ? styles.red : ""}>+1</div>
         </div>
         {abilities.map((ability) => {
-          return (
-            <Ability
-              key={ability}
-              name={ability}
-              abilityVal={currentBuild[ability]}
-              plus_1={plus_1}
-              plus_2={plus_2}
-              points={points}
-              setPoints={setPoints}
-            />
-          );
+          return <Ability key={ability} ability={ability} />;
         })}
       </div>
     </>

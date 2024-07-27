@@ -24,128 +24,111 @@ import {
   CiImport,
 } from "react-icons/ci";
 
-export default function InfoComponent({ currentBuild, points, setPoints }) {
-  const currentUser = useSelector((state) => state.session.user);
+export default function InfoComponent() {
   const navigateTo = useNavigate();
   const { buildId } = useParams();
   const { setModalContent } = useModal();
+  const currentBuild = useSelector((state) => state.builds.current);
+  const currentUser = useSelector((state) => state.session.user);
   const [display, setDisplay] = useState("Info");
   const code = exportCode(currentBuild);
 
   return (
     <main className={styles.main}>
-      {currentBuild && (
-        <>
-          <div className={styles.infoPanel}>
-            {display === "Info" && (
-              <Information
-                setDisplay={setDisplay}
-                currentBuild={currentBuild}
+      <div className={styles.infoPanel}>
+        {display === "Info" && <Information setDisplay={setDisplay} />}
+        {display === "Comments" && <Comments setDisplay={setDisplay} />}
+      </div>
+      <div className={styles.userBar}>
+        {currentUser && (
+          <>
+            <div className={styles.buildButtonsContainer1}>
+              <OpenModalButton
+                buttonText={<CiFloppyDisk size="27" />}
+                id={styles.fade}
+                className={styles.buildButton1}
+                title="Save"
+                modalComponent={
+                  currentUser.id === currentBuild.user_id ? (
+                    <UpdateBuildModal />
+                  ) : (
+                    <SaveBuildModal />
+                  )
+                }
               />
-            )}
-            {display === "Comments" && <Comments setDisplay={setDisplay} />}
-          </div>
-          <div className={styles.userBar}>
-            {currentUser && (
-              <>
-                <div className={styles.buildButtonsContainer1}>
-                  <OpenModalButton
-                    buttonText={<CiFloppyDisk size="27" />}
-                    id={styles.fade}
-                    className={styles.buildButton1}
-                    title="Save"
-                    modalComponent={
-                      currentUser.id === currentBuild.user_id ? (
-                        <UpdateBuildModal points={points} />
-                      ) : (
-                        <SaveBuildModal points={points} />
-                      )
-                    }
-                  />
-                  {currentUser.id === currentBuild.user_id && (
-                    <OpenModalButton
-                      buttonText={<CiTrash size="27" />}
-                      id={styles.fade}
-                      className={styles.buildButton1}
-                      title="Delete"
-                      modalComponent={<DeleteBuildModal />}
-                    />
-                  )}
-                </div>
-                <div className={styles.buildButtonsContainer1}>
-                  <button
-                    id={styles.fade}
-                    className={styles.buildButton1}
-                    title={buildId ? "Export" : "Import"}
-                    onClick={() =>
-                      setModalContent(
-                        <ShareModal
-                          code={buildId ? code : ""}
-                          setPoints={setPoints}
-                        />
-                      )
-                    }
-                  >
-                    {buildId ? <CiExport size="32" /> : <CiImport size="32" />}
-                  </button>
-                  <button
-                    id={styles.fade}
-                    className={styles.buildButton1}
-                    title="Calculate"
-                    onClick={() =>
-                      setModalContent(
-                        <ErrorModal
-                          errors={{
-                            FAQ: ["This feature is still under development"],
-                          }}
-                        />
-                      )
-                    }
-                  >
-                    <GiDiceTwentyFacesTwenty size="32" />
-                  </button>
-                </div>
-              </>
-            )}
-
-            <div
-              className={
-                currentUser
-                  ? styles.buildButtonsContainer1
-                  : styles.buildButtonsContainer2
-              }
-            >
+              {currentUser.id === currentBuild.user_id && (
+                <OpenModalButton
+                  buttonText={<CiTrash size="27" />}
+                  id={styles.fade}
+                  className={styles.buildButton1}
+                  title="Delete"
+                  modalComponent={<DeleteBuildModal />}
+                />
+              )}
+            </div>
+            <div className={styles.buildButtonsContainer1}>
               <button
                 id={styles.fade}
-                className={
-                  currentUser ? styles.buildButton1 : styles.buildButton2
+                className={styles.buildButton1}
+                title={buildId ? "Export" : "Import"}
+                onClick={() =>
+                  setModalContent(<ShareModal code={buildId ? code : ""} />)
                 }
-                title="Browse Other Builds"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigateTo("/browse");
-                }}
               >
-                <CiBoxList size="32" />
+                {buildId ? <CiExport size="32" /> : <CiImport size="32" />}
               </button>
-
               <button
                 id={styles.fade}
-                className={
-                  currentUser ? styles.buildButton1 : styles.buildButton2
+                className={styles.buildButton1}
+                title="Calculate"
+                onClick={() =>
+                  setModalContent(
+                    <ErrorModal
+                      errors={{
+                        FAQ: ["This feature is still under development"],
+                      }}
+                    />
+                  )
                 }
-                title="FAQ Page"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigateTo("/faq");
-                }}
               >
-                ?
+                <GiDiceTwentyFacesTwenty size="32" />
               </button>
             </div>
-          </div>
-        </>
-      )}
+          </>
+        )}
+
+        <div
+          className={
+            currentUser
+              ? styles.buildButtonsContainer1
+              : styles.buildButtonsContainer2
+          }
+        >
+          <button
+            id={styles.fade}
+            className={currentUser ? styles.buildButton1 : styles.buildButton2}
+            title="Browse Other Builds"
+            onClick={(e) => {
+              e.preventDefault();
+              navigateTo("/browse");
+            }}
+          >
+            <CiBoxList size="32" />
+          </button>
+
+          <button
+            id={styles.fade}
+            className={currentUser ? styles.buildButton1 : styles.buildButton2}
+            title="FAQ Page"
+            onClick={(e) => {
+              e.preventDefault();
+              navigateTo("/faq");
+            }}
+          >
+            ?
+          </button>
+        </div>
+      </div>
     </main>
   );
 }

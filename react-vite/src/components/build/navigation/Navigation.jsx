@@ -5,6 +5,7 @@ import styles from "./Navigation.module.css";
 import { CiSquareRemove, CiStop1 } from "react-icons/ci";
 
 function Navigation({ setActiveMenu, activeMenu }) {
+  
   return (
     <main className={styles.main}>
       <div className={styles.title}>Build Menus</div>

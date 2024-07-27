@@ -9,11 +9,13 @@ import ResetClassesModal from "./reset";
 import { useDispatch, useSelector } from "react-redux";
 import { CiUndo } from "react-icons/ci";
 
-export default function ClassComponent({ currentBuild }) {
-  const notMaxLevel = !currentBuild.level || currentBuild.level < 12;
+export default function ClassComponent() {
   const dispatch = useDispatch();
-  const Classes = useSelector((state) => state.static.classes);
   const buildClasses = useSelector(getBuildClassArray);
+  const currentLevel = useSelector((state) => state.builds.current.level);
+  const currentClass = useSelector(state=>state.builds.current.class)
+  const Classes = useSelector((state) => state.static.classes);
+  const notMaxLevel = !currentLevel || currentLevel < 12;
 
   const clickClass = (e, _class) => {
     e.preventDefault();
@@ -49,7 +51,7 @@ export default function ClassComponent({ currentBuild }) {
             onClick={(e) => clickClass(e, 1)}
             src={Images.classes["Barbarian"]}
             className={
-              currentBuild.class === 1
+              currentClass === 1
                 ? styles.selected_classImg
                 : styles.classImg
             }
@@ -61,7 +63,7 @@ export default function ClassComponent({ currentBuild }) {
             onClick={(e) => clickClass(e, 2)}
             src={Images.classes["Bard"]}
             className={
-              currentBuild.class === 2
+              currentClass === 2
                 ? styles.selected_classImg
                 : styles.classImg
             }
@@ -73,7 +75,7 @@ export default function ClassComponent({ currentBuild }) {
             onClick={(e) => clickClass(e, 3)}
             src={Images.classes["Cleric"]}
             className={
-              currentBuild.class === 3
+              currentClass === 3
                 ? styles.selected_classImg
                 : styles.classImg
             }
@@ -85,7 +87,7 @@ export default function ClassComponent({ currentBuild }) {
             onClick={(e) => clickClass(e, 4)}
             src={Images.classes["Druid"]}
             className={
-              currentBuild.class === 4
+              currentClass === 4
                 ? styles.selected_classImg
                 : styles.classImg
             }
@@ -97,7 +99,7 @@ export default function ClassComponent({ currentBuild }) {
             onClick={(e) => clickClass(e, 5)}
             src={Images.classes["Fighter"]}
             className={
-              currentBuild.class === 5
+              currentClass === 5
                 ? styles.selected_classImg
                 : styles.classImg
             }
@@ -109,7 +111,7 @@ export default function ClassComponent({ currentBuild }) {
             onClick={(e) => clickClass(e, 6)}
             src={Images.classes["Monk"]}
             className={
-              currentBuild.class === 6
+              currentClass === 6
                 ? styles.selected_classImg
                 : styles.classImg
             }
@@ -121,7 +123,7 @@ export default function ClassComponent({ currentBuild }) {
             onClick={(e) => clickClass(e, 7)}
             src={Images.classes["Paladin"]}
             className={
-              currentBuild.class === 7
+              currentClass === 7
                 ? styles.selected_classImg
                 : styles.classImg
             }
@@ -133,7 +135,7 @@ export default function ClassComponent({ currentBuild }) {
             onClick={(e) => clickClass(e, 8)}
             src={Images.classes["Ranger"]}
             className={
-              currentBuild.class === 8
+              currentClass === 8
                 ? styles.selected_classImg
                 : styles.classImg
             }
@@ -145,7 +147,7 @@ export default function ClassComponent({ currentBuild }) {
             onClick={(e) => clickClass(e, 9)}
             src={Images.classes["Rogue"]}
             className={
-              currentBuild.class === 9
+              currentClass === 9
                 ? styles.selected_classImg
                 : styles.classImg
             }
@@ -157,7 +159,7 @@ export default function ClassComponent({ currentBuild }) {
             onClick={(e) => clickClass(e, 10)}
             src={Images.classes["Sorcerer"]}
             className={
-              currentBuild.class === 10
+              currentClass === 10
                 ? styles.selected_classImg
                 : styles.classImg
             }
@@ -169,7 +171,7 @@ export default function ClassComponent({ currentBuild }) {
             onClick={(e) => clickClass(e, 11)}
             src={Images.classes["Warlock"]}
             className={
-              currentBuild.class === 11
+              currentClass === 11
                 ? styles.selected_classImg
                 : styles.classImg
             }
@@ -181,7 +183,7 @@ export default function ClassComponent({ currentBuild }) {
             onClick={(e) => clickClass(e, 12)}
             src={Images.classes["Wizard"]}
             className={
-              currentBuild.class === 12
+              currentClass === 12
                 ? styles.selected_classImg
                 : styles.classImg
             }
@@ -191,14 +193,14 @@ export default function ClassComponent({ currentBuild }) {
       </div>
       <div className={styles.select}>
         <div className={styles.nameSection}>
-          {currentBuild.class && (
+          {currentClass && (
             <>
-              {Classes[currentBuild.class]?.name}
+              {Classes[currentClass]?.name}
               {notMaxLevel && (
                 <button
                   className={styles.addButton}
                   onClick={(e) =>
-                    clickAddClass(e, Classes[currentBuild.class], null)
+                    clickAddClass(e, Classes[currentClass], null)
                   }
                 >
                   Add Class
@@ -208,7 +210,7 @@ export default function ClassComponent({ currentBuild }) {
           )}
         </div>
         <div className={styles.description}>
-          {Classes[currentBuild.class]?.description}
+          {Classes[currentClass]?.description}
         </div>
       </div>
       <div className={styles.buildClassList}>

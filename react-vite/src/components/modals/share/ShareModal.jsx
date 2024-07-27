@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
-export default function ShareModal({ setPoints, code }) {
+export default function ShareModal({ code }) {
   const dispatch = useDispatch();
   const { buildId } = useParams();
   const { closeModal } = useModal();
@@ -36,7 +36,6 @@ export default function ShareModal({ setPoints, code }) {
     e.preventDefault();
     const importedBuild = importCode(existingCode);
     dispatch(action("build/import", importedBuild));
-    setPoints(0);
     closeModal();
   };
 

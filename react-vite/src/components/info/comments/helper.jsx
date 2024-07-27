@@ -6,14 +6,15 @@ import { useModal } from "../../../context/Modal";
 import ErrorModal from "../../modals/error/ErrorModal";
 // Packages
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CiTrash, CiEdit } from "react-icons/ci";
 
-export function Message({ message, currUser }) {
+export function Message({ message }) {
   const dispatch = useDispatch();
-  const [editMode, setEditMode] = useState(false);
-  const [editMessage, setEditMessage] = useState(message.message);
   const { setModalContent } = useModal();
+  const currentUser = useSelector((state) => state.session.user);
+  const [editMessage, setEditMessage] = useState(message.message);
+  const [editMode, setEditMode] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +22,6 @@ export function Message({ message, currUser }) {
     if (editMessage.trim().length) {
       dispatch(thunkEditComment({ id: message.id, message: editMessage }));
       setEditMode(false);
-
     } else {
       setEditMode(false);
       setModalContent(
@@ -42,7 +42,6 @@ export function Message({ message, currUser }) {
   return (
     <>
       <div className={styles.message}>
-
         {editMode && (
           <form type="submit" onSubmit={onSubmit}>
             <input
@@ -60,9 +59,8 @@ export function Message({ message, currUser }) {
         )}
 
         {!editMode && message.message}
-
       </div>
-      {currUser?.id === message.user_id && (
+      {currentUser?.id === message.user_id && (
         <div className={styles.commentButtons}>
           <button
             onClick={(e) => {

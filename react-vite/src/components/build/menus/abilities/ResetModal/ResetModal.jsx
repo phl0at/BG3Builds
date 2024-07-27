@@ -7,14 +7,13 @@ import { action } from "../../../../../redux/build";
 import { CiCircleCheck, CiCircleRemove } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 
-export default function ResetAbilitiesModal({ setPoints }) {
-  const { closeModal } = useModal();
+export default function ResetAbilitiesModal() {
   const dispatch = useDispatch();
+  const { closeModal } = useModal();
 
   const reset = (e) => {
     e.preventDefault();
     dispatch(action("build/resetAbilities"));
-    setPoints(27);
     closeModal();
   };
   const cancel = (e) => {

@@ -8,13 +8,14 @@ import { useSelector } from "react-redux";
 import { CiChat2, CiSquarePlus } from "react-icons/ci";
 import { useParams, NavLink } from "react-router-dom";
 
-export default function Information({ currentBuild, setDisplay }) {
+export default function Information({ setDisplay }) {
+  const { buildId } = useParams();
   const build_classes = useSelector(getBuildClassArray);
+  const currentBuild = useSelector((state) => state.builds.current);
   const Backgrounds = useSelector((state) => state.static.backgrounds);
   const Races = useSelector((state) => state.static.races);
-  const { buildId } = useParams();
 
-  const attributes = [
+  const abilities = [
     "strength",
     "dexterity",
     "constitution",
@@ -60,12 +61,12 @@ export default function Information({ currentBuild, setDisplay }) {
       </div>
       <div className={styles.infoBody}>
         <div className={styles.infoAttributes}>
-          {attributes.map((att) => {
-            const cont = `${att[0].toUpperCase()}${att.slice(1, 3)}`;
+          {abilities.map((ability) => {
+            const cont = `${ability[0].toUpperCase()}${ability.slice(1, 3)}`;
             return (
-              <div key={att} className={styles.stat}>
+              <div key={ability} className={styles.stat}>
                 <div className={styles.orange}>{cont}</div>
-                <div>{currentBuild[att]}</div>
+                <div>{currentBuild[ability]}</div>
               </div>
             );
           })}

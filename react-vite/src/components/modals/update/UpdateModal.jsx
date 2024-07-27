@@ -7,13 +7,13 @@ import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
-export default function UpdateBuildModal({ points }) {
+export default function UpdateBuildModal() {
+  const dispatch = useDispatch();
+  const { closeModal } = useModal();
   const currentBuild = useSelector((state) => state.builds.current);
   const [charName, setCharName] = useState(currentBuild.character_name);
   const [buildName, setBuildName] = useState(currentBuild.name);
   const [errors, setErrors] = useState({});
-  const dispatch = useDispatch();
-  const { closeModal } = useModal();
 
   const submit = async (e) => {
     setErrors({});
@@ -22,7 +22,7 @@ export default function UpdateBuildModal({ points }) {
       setErrors({ error: "Names must be 3 to 25 characters" });
     } else if (charName.trim().length < 3 || charName.length > 25) {
       setErrors({ error: "Names must be 3 to 25 characters" });
-    } else if (points > 0) {
+    } else if (currentBuild.points > 0) {
       setErrors({ error: "Please spend all ability points" });
     } else if (!currentBuild.plus_1 || !currentBuild.plus_2) {
       setErrors({ error: "Please select both ability bonuses" });

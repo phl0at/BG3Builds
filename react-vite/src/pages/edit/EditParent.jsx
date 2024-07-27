@@ -20,7 +20,6 @@ export default function EditParentPage() {
   const currentUser = useSelector((state) => state.session.user);
   const Origins = useSelector((state) => state.static.origins);
   const [activeMenu, setActiveMenu] = useState("Origin");
-  const [points, setPoints] = useState(0);
 
   useEffect(() => {
     if (!Origins) {
@@ -29,7 +28,6 @@ export default function EditParentPage() {
   }, [dispatch]);
 
   useEffect(() => {
-    setPoints(0);
     dispatch(thunkGetBuild(buildId));
   }, [currentUser]);
 
@@ -44,17 +42,9 @@ export default function EditParentPage() {
   return (
     <main className={styles.main}>
       <Navigation setActiveMenu={setActiveMenu} activeMenu={activeMenu} />
-      <BuildComponent
-        points={points}
-        setPoints={setPoints}
-        activeMenu={activeMenu}
-      />
+      <BuildComponent activeMenu={activeMenu} />
       <EquipmentComponent />
-      <InfoComponent
-        currentBuild={currentBuild}
-        points={points}
-        setPoints={setPoints}
-      />
+      <InfoComponent />
     </main>
   );
 }

@@ -14,11 +14,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function CreateParentPage() {
   const dispatch = useDispatch();
-  const currentBuild = useSelector((state) => state.builds.current);
   const currentUser = useSelector((state) => state.session.user);
+  const currentBuild = useSelector((state) => state.builds.current);
   const Origins = useSelector((state) => state.static.origins);
   const [activeMenu, setActiveMenu] = useState("Origin");
-  const [points, setPoints] = useState(27);
 
   useEffect(() => {
     if (!Origins) {
@@ -27,7 +26,6 @@ export default function CreateParentPage() {
   }, [dispatch]);
 
   useEffect(() => {
-    setPoints(27);
     dispatch(action("build/setDefault"));
   }, [currentUser]);
 
@@ -43,17 +41,9 @@ export default function CreateParentPage() {
     <>
       <main className={styles.main}>
         <Navigation setActiveMenu={setActiveMenu} activeMenu={activeMenu} />
-        <BuildComponent
-          points={points}
-          setPoints={setPoints}
-          activeMenu={activeMenu}
-        />
+        <BuildComponent activeMenu={activeMenu} />
         <EquipmentComponent />
-        <InfoComponent
-          currentBuild={currentBuild}
-          points={points}
-          setPoints={setPoints}
-        />
+        <InfoComponent />
       </main>
     </>
   );

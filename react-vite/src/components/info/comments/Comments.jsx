@@ -17,11 +17,11 @@ export default function Comments({ setDisplay }) {
   const dispatch = useDispatch();
   const { buildId } = useParams();
   const { setModalContent } = useModal();
-  const [newComment, setNewComment] = useState("");
   const comments = useSelector(getCommentsArray);
   const allUsers = useSelector((state) => state.users);
-  const currUser = useSelector((state) => state.session.user);
+  const currentUser = useSelector((state) => state.session.user);
   const usersLoaded = Object.values(allUsers).length;
+  const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
     if (!usersLoaded) dispatch(thunkGetAllUsers());
@@ -82,14 +82,14 @@ export default function Comments({ setDisplay }) {
                 <div className={styles.userName}>
                   {allUsers[message.user_id].username}
                 </div>
-                <Message message={message} currUser={currUser} />
+                <Message message={message} />
               </div>
             );
           })}
         </div>
       </div>
       <form className={styles.form} type="submit" onSubmit={onSubmit}>
-        {currUser && (
+        {currentUser && (
           <input
             value={newComment}
             onChange={(e) => {

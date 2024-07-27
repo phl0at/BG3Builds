@@ -6,36 +6,35 @@ import { action, setBonus, clearBonus } from "../../../../redux/build";
 import { useModal } from "../../../../context/Modal";
 import ErrorModal from "../../../modals/error/ErrorModal";
 //Packages
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 
-export function Ability({
-  name,
-  abilityVal,
-  plus_1,
-  plus_2,
-  points,
-  setPoints,
-}) {
+export function Ability({ ability }) {
   const dispatch = useDispatch();
   const { setModalContent } = useModal();
-  const [clicks, setClicks] = useState(abilityVal - 8);
-  const titleCaseStat = name[0].toUpperCase() + name.slice(1);
+  const currentAbilityValue = useSelector(
+    (state) => state.builds.current[ability]
+  );
+  const points = useSelector((state) => state.builds.current.points);
+  const plus_1 = useSelector((state) => state.builds.current.plus_1);
+  const plus_2 = useSelector((state) => state.builds.current.plus_2);
+  const [clicks, setClicks] = useState(currentAbilityValue - 8);
+  const titleCaseStat = ability[0].toUpperCase() + ability.slice(1);
 
+  // An ability can only be clicked/increased 7 times.
+  // This will track the number of increases by setting the # of clicks
+  // to the ability's current value, minus its base value.
+  // The base value changes depending on whether a +1 or +2 bonus is applied to the ability.
   useEffect(() => {
-    // An ability can only be clicked/increased 7 times.
-    // This will track the number of increases by setting the # of clicks
-    // to the ability's current value, minus its base value.
-    // The base value changes depending on whether a +1 or +2 bonus is applied to the ability.
-    if (plus_2 === name) {
-      setClicks(abilityVal - 10);
-    } else if (plus_1 === name) {
-      setClicks(abilityVal - 9);
+    if (plus_2 === ability) {
+      setClicks(currentAbilityValue - 10);
+    } else if (plus_1 === ability) {
+      setClicks(currentAbilityValue - 9);
     } else {
-      setClicks(abilityVal - 8);
+      setClicks(currentAbilityValue - 8);
     }
-  }, [abilityVal]);
+  }, [currentAbilityValue]);
 
 
   // The first 5 increases to an ability cost 1 point and the last two cost 2 points.
@@ -45,10 +44,10 @@ export function Ability({
   const clickLower = (e, type) => {
     e.preventDefault();
     if (clicks < 6) {
-      setPoints(points + 1);
+      dispatch(action("build/raisePoints", 1));
       dispatch(action("build/lowerAbility", type));
     } else {
-      setPoints(points + 2);
+      dispatch(action("build/raisePoints", 2));
       dispatch(action("build/lowerAbility", type));
     }
   };
@@ -56,14 +55,14 @@ export function Ability({
   const clickRaise = (e, type) => {
     e.preventDefault();
     if (clicks < 5) {
-      setPoints(points - 1);
+      dispatch(action("build/lowerPoints", 1));
       dispatch(action("build/raiseAbility", type));
     } else if ((clicks >= 5) & (points > 1)) {
-      setPoints(points - 2);
+      dispatch(action("build/lowerPoints", 2));
       dispatch(action("build/raiseAbility", type));
     } else {
       // Throw an error if the user tries increasing an ability
-      // that's been increased 5 times already.
+      // that's been increased 5 times but only 1 point remains.
       setModalContent(
         <ErrorModal
           errors={{
@@ -74,10 +73,10 @@ export function Ability({
     }
   };
 
+  
   // A user cannot set the +1 and +2 bonuses to the same ability.
   // These functions will only set a bonus on an ability that does not already
   // have a bonus applied to it.
-
   const clickPlusTwo = (e, ability) => {
     e.preventDefault();
     if (plus_2 === ability) {
@@ -109,29 +108,29 @@ export function Ability({
             className={
               clicks < 1 || points > 26 ? styles.disabled : styles.enabled
             }
-            onClick={(e) => clickLower(e, name)}
+            onClick={(e) => clickLower(e, ability)}
           >
             <CiCircleMinus size="35" />
           </button>
-          <div className={styles.num}>{abilityVal}</div>
+          <div className={styles.num}>{currentAbilityValue}</div>
           <button
             disabled={clicks > 6 || points < 1}
             className={
               clicks > 6 || points < 1 ? styles.disabled : styles.enabled
             }
-            onClick={(e) => clickRaise(e, name)}
+            onClick={(e) => clickRaise(e, ability)}
           >
             <CiCirclePlus size="35" />
           </button>
         </div>
         <div className={styles.bonuses}>
           <button
-            onClick={(e) => clickPlusTwo(e, name)}
-            className={plus_2 == name ? styles.plusSelected : styles.plus}
+            onClick={(e) => clickPlusTwo(e, ability)}
+            className={plus_2 === ability ? styles.plusSelected : styles.plus}
           ></button>
           <button
-            onClick={(e) => clickPlusOne(e, name)}
-            className={plus_1 == name ? styles.plusSelected : styles.plus}
+            onClick={(e) => clickPlusOne(e, ability)}
+            className={plus_1 === ability ? styles.plusSelected : styles.plus}
           ></button>
         </div>
       </div>

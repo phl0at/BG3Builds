@@ -6,9 +6,10 @@ import { action, setOrigin } from "../../../../redux/build";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
 
-export default function OriginComponent({ currentBuild }) {
-  const Origins = useSelector((state) => state.static.origins);
+export default function OriginComponent() {
   const dispatch = useDispatch();
+  const currentOrigin = useSelector(state=>state.builds.current.origin)
+  const Origins = useSelector((state) => state.static.origins);
 
   const onClick = (e, origin) => {
     e.preventDefault();
@@ -64,7 +65,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 8)}
                 className={
-                  currentBuild.origin === 8
+                  currentOrigin === 8
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -76,7 +77,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 1)}
                 className={
-                  currentBuild.origin === 1
+                  currentOrigin === 1
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -88,7 +89,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 2)}
                 className={
-                  currentBuild.origin === 2
+                  currentOrigin === 2
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -100,7 +101,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 3)}
                 className={
-                  currentBuild.origin === 3
+                  currentOrigin === 3
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -112,7 +113,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 4)}
                 className={
-                  currentBuild.origin === 4
+                  currentOrigin === 4
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -124,7 +125,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 5)}
                 className={
-                  currentBuild.origin === 5
+                  currentOrigin === 5
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -136,7 +137,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 6)}
                 className={
-                  currentBuild.origin === 6
+                  currentOrigin === 6
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -148,7 +149,7 @@ export default function OriginComponent({ currentBuild }) {
               <img
                 onClick={(e) => onClick(e, 7)}
                 className={
-                  currentBuild.origin === 7
+                  currentOrigin === 7
                     ? styles.selected_charImg
                     : styles.charImg
                 }
@@ -158,13 +159,13 @@ export default function OriginComponent({ currentBuild }) {
             </div>
           </div>
           <div className={styles.select}>
-            {Origins[currentBuild.origin] && (
+            {Origins[currentOrigin] && (
               <>
                 <div className={styles.name}>
-                  {Origins[currentBuild.origin].name}
+                  {Origins[currentOrigin].name}
                 </div>
                 <div className={styles.description}>
-                  {Origins[currentBuild.origin].description}
+                  {Origins[currentOrigin].description}
                 </div>
               </>
             )}

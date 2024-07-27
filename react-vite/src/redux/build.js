@@ -9,7 +9,7 @@ const GET_BUILD = "build/getBuild";
 const GET_ALL_BUILDS = "build/getAll";
 const SET_DEFAULTS = "build/setDefault";
 const DELETE_BUILD = "build/delete";
-const IMPORT_BUILD = "build/import"
+const IMPORT_BUILD = "build/import";
 // USER ACTIONS
 const GET_ALL_USERS = "users/getAll";
 // CHARACTER ACTIONS
@@ -17,6 +17,8 @@ const SET_ORIGIN = "build/setOrigin";
 const SET_RACE = "build/setRace";
 const SET_BG = "build/setBackground";
 // ABILITY ACTIONS
+const RAISE_POINTS = "build/raisePoints";
+const LOWER_POINTS = "build/lowerPoints";
 const RAISE_ABILITY = "build/raiseAbility";
 const LOWER_ABILITY = "build/lowerAbility";
 const RESET_ABILITIES = "build/resetAbilities";
@@ -292,6 +294,7 @@ function buildReducer(state = initialState, action) {
 
       newState[action.payload.id] = action.payload;
       newState.current = action.payload;
+      newState.current.points = 0;
 
       //Normalize classes
       const build_classes = {};
@@ -311,12 +314,13 @@ function buildReducer(state = initialState, action) {
     }
 
     case IMPORT_BUILD: {
-      const newState = {...state }
-      delete action.payload["id"]
-      delete action.payload["user_id"]
-      delete action.payload["comments"]
-      delete action.payload["name"]
+      const newState = { ...state };
+      delete action.payload["id"];
+      delete action.payload["user_id"];
+      delete action.payload["comments"];
+      delete action.payload["name"];
       newState.current = action.payload;
+      newState.current.points = 0;
       return newState;
     }
 
@@ -406,8 +410,21 @@ function buildReducer(state = initialState, action) {
       return newState;
     }
 
+    case RAISE_POINTS: {
+      const newState = { ...state, current: { ...state.current } };
+      newState.current.points += action.payload;
+      return newState;
+    }
+
+    case LOWER_POINTS: {
+      const newState = { ...state, current: { ...state.current } };
+      newState.current.points -= action.payload;
+      return newState;
+    }
+
     case RESET_ABILITIES: {
       const newState = { ...state, current: { ...state.current } };
+      newState.current.points = 27;
       newState.current.strength = 8;
       newState.current.dexterity = 8;
       newState.current.constitution = 8;
@@ -479,6 +496,7 @@ function buildReducer(state = initialState, action) {
           intelligence: 8,
           wisdom: 8,
           charisma: 8,
+          points: 27,
           plus_1: "",
           plus_2: "",
           level: 0,
