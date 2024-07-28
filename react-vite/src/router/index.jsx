@@ -1,9 +1,8 @@
 // Files
 // Functions/Components
 import LandingPage from "../pages/landing";
-import CreateBuildPage from "../pages/create";
-import EditBuildPage from "../pages/edit";
-import ViewBuildPage from "../pages/view";
+import BuildPage from "../pages/build";
+import ViewPage from "../pages/view";
 import FAQPage from "../pages/faq";
 import Layout from "./Layout";
 // Packages
@@ -21,15 +20,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "/create",
-        element: <CreateBuildPage />,
+        element: <BuildPage />,
       },
       {
         path: "/build/:buildId",
-        element: <EditBuildPage />,
+        element: <BuildPage />,
       },
       {
         path: "/browse",
-        element: <ViewBuildPage />,
+        element: <ViewPage />,
       },
       {
         path: "/faq",

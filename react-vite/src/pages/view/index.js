@@ -1,2 +1,2 @@
-import ViewParentPage from "./ViewParent";
-export default ViewParentPage
+import ViewPage from "./View";
+export default ViewPage

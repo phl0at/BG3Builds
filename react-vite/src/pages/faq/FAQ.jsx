@@ -1,4 +1,4 @@
-import styles from "./FAQParent.module.css";
+import styles from "./FAQ.module.css";
 import { useState } from "react";
 import CategoryComponent from "../../components/faq/category/Categories";
 import AnswersComponent from "../../components/faq/answers/Answers";

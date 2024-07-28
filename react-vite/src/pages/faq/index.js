@@ -1,2 +1,2 @@
-import FAQPage from "./FAQParent";
+import FAQPage from "./FAQ";
 export default FAQPage;

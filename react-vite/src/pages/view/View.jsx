@@ -1,5 +1,5 @@
 //Files
-import styles from "./ViewParent.module.css";
+import styles from "./View.module.css";
 //Functions/Components
 import ViewBuildsComponent from "../../components/view";
 import FilterBuildComponent from "../../components/filter";
@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 
-export default function ViewParentPage() {
+export default function ViewPage() {
   const dispatch = useDispatch();
   const [filters, setFilters] = useState({});
   const builds = useSelector((state) => state.builds);

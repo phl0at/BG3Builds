@@ -1,7 +1,7 @@
 //Files
-import styles from "./EditParent.module.css";
+import styles from "./Build.module.css";
 //Functions/Components
-import { thunkGetBuild } from "../../redux/build";
+import { action, thunkGetBuild } from "../../redux/build";
 import { thunkPreloadData } from "../../redux/static";
 import Navigation from "../../components/build/navigation";
 import BuildComponent from "../../components/build";
@@ -13,11 +13,11 @@ import { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function EditParentPage() {
+export default function BuildPage() {
   const { buildId } = useParams();
   const dispatch = useDispatch();
-  const currentBuild = useSelector((state) => state.builds.current);
   const currentUser = useSelector((state) => state.session.user);
+  const currentBuild = useSelector((state) => state.builds.current);
   const Origins = useSelector((state) => state.static.origins);
   const [activeMenu, setActiveMenu] = useState("Origin");
 
@@ -28,8 +28,12 @@ export default function EditParentPage() {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(thunkGetBuild(buildId));
-  }, [currentUser]);
+    if (buildId) {
+      dispatch(thunkGetBuild(buildId));
+    } else {
+      dispatch(action("build/setDefault"));
+    }
+  }, [currentUser, buildId]);
 
   if (!currentBuild || !Origins) {
     return (
@@ -40,11 +44,13 @@ export default function EditParentPage() {
   }
 
   return (
-    <main className={styles.main}>
-      <Navigation setActiveMenu={setActiveMenu} activeMenu={activeMenu} />
-      <BuildComponent activeMenu={activeMenu} />
-      <EquipmentComponent />
-      <InfoComponent />
-    </main>
+    <>
+      <main className={styles.main}>
+        <Navigation setActiveMenu={setActiveMenu} activeMenu={activeMenu} />
+        <BuildComponent activeMenu={activeMenu} />
+        <EquipmentComponent />
+        <InfoComponent />
+      </main>
+    </>
   );
 }

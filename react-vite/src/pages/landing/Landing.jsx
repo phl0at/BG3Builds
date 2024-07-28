@@ -1,4 +1,7 @@
+// Files
 import styles from "./Landing.module.css";
+// Functions/Components
+// Packages
 import { NavLink } from "react-router-dom";
 
 export default function LandingPage() {
