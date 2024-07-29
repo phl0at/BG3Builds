@@ -17,8 +17,8 @@ export default function UserButtons() {
   const { buildId } = useParams();
   const [awaitLogin, setAwaitLogin] = useState(false);
   const currentUser = useSelector((state) => state.session.user);
-  const currentBuild = useSelector((state) => state.builds.current);
-  const buildName = buildId ? currentBuild?.name : "New Build";
+  const currentBuildName = useSelector((state) => state.builds.current.name);
+
 
   const onClick = (e) => {
     e.preventDefault();
@@ -50,13 +50,11 @@ export default function UserButtons() {
             : pathname === "/create"
             ? "New Build"
             : pathname === `/build/${buildId}`
-            ? buildName
+            ? currentBuildName
             : "FAQ"}
         </div>
 
         <div className={styles.userButtons}>
-
-
           {awaitLogin & !currentUser ? (
             <PulseLoader
               color="#e4c274"

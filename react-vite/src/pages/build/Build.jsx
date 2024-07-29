@@ -1,47 +1,15 @@
 //Files
 import styles from "./Build.module.css";
 //Functions/Components
-import { action, thunkGetBuild } from "../../redux/build";
-import { thunkPreloadData } from "../../redux/static";
 import Navigation from "../../components/build/navigation";
 import BuildComponent from "../../components/build";
 import EquipmentComponent from "../../components/equipment";
 import InfoComponent from "../../components/info";
 //Packages
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { ClipLoader } from "react-spinners";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
 export default function BuildPage() {
-  const { buildId } = useParams();
-  const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.session.user);
-  const currentBuild = useSelector((state) => state.builds.current);
-  const Origins = useSelector((state) => state.static.origins);
   const [activeMenu, setActiveMenu] = useState("Origin");
-
-  useEffect(() => {
-    if (!Origins) {
-      dispatch(thunkPreloadData());
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (buildId) {
-      dispatch(thunkGetBuild(buildId));
-    } else {
-      dispatch(action("build/setDefault"));
-    }
-  }, [currentUser, buildId]);
-
-  if (!currentBuild || !Origins) {
-    return (
-      <main className={styles.loading}>
-        <ClipLoader color="#e4c274" size="100px" />
-      </main>
-    );
-  }
 
   return (
     <>
