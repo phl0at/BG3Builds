@@ -257,10 +257,30 @@ export const getEquipmentArray = createSelector(
 );
 
 //! --------------------------------------------------------------------
+// Recursive quick sort function to sort build_classes
+// by the order in which they were added to the build
+const sortClasses = (classArr) => {
+  // Base Case
+  if (classArr.length <= 1) return classArr;
+
+  // Set pivot to last item in the array
+  const pivot = classArr.pop();
+  const left = [];
+  const right = [];
+
+  // Push the classes into left or right based on the order
+  for (const _class of classArr) {
+    _class.order < pivot.order ? left.push(_class) : right.push(_class);
+  }
+
+  // Recursively call the sort function, spreading in the results
+  // on the left and right, with the pivot in the middle
+  return [...sortClasses(left), pivot, ...sortClasses(right)];
+};
 
 export const getBuildClassArray = createSelector(
   (state) => state.builds.current.build_classes,
-  (_class) => Object.values(_class)
+  (_class) => sortClasses(Object.values(_class))
 );
 
 //! --------------------------------------------------------------------
@@ -326,7 +346,10 @@ function buildReducer(state = initialState, action) {
 
     case GET_ALL_BUILDS: {
       const newState = { ...state };
-      action.payload.forEach((build) => (newState[build.id] = build));
+      action.payload.forEach((build) => {
+        build.build_classes = sortClasses(build.build_classes);
+        return (newState[build.id] = build);
+      });
       return newState;
     }
 
@@ -385,11 +408,13 @@ function buildReducer(state = initialState, action) {
       };
 
       if (newState.current.build_classes[action.payload.class_id]) {
-        //If the build has this class, simply increment the level
+        //If the build has this class, simply increment the classes level
         newState.current.build_classes[action.payload.class_id].level++;
       } else {
-        //Otherwise, set the class level to 1 and add it to the build
+        //Otherwise, set the class level to 1, set its order, and add it to the build
         action.payload.level = 1;
+        action.payload.order =
+          Object.values(newState.current.build_classes).length + 1;
         newState.current.build_classes[action.payload.class_id] =
           action.payload;
       }

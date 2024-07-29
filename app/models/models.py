@@ -3,16 +3,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 
-# favorites_table = db.Table(
-#     "favorites",
-#     db.metadata,
-#     db.Column("user_id", db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True),
-#     db.Column("build_id", db.ForeignKey(add_prefix_for_prod('builds.id')), primary_key=True)
-
-# )
-
-
-
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -186,6 +176,7 @@ class BuildClass(db.Model):
                                             'Wizard'), nullable=False)
     level = db.Column(db.Integer, nullable=False)
     sub_class = db.Column(db.String(50), nullable=True)
+    order = db.Column(db.Integer, nullable=False)
 
     def to_dict(self):
         return {
@@ -194,7 +185,8 @@ class BuildClass(db.Model):
             'class_id': self.class_id,
             'name': self.name,
             'level': self.level,
-            'sub_class': self.sub_class
+            'sub_class': self.sub_class,
+            'order': self.order
         }
 
 ################################################################################

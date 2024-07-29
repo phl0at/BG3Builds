@@ -162,7 +162,8 @@ def create_build():
                     class_id = build_class['class_id'],
                     sub_class = build_class['sub_class'],
                     name = build_class['name'],
-                    level = build_class['level']
+                    level = build_class['level'],
+                    order = build_class['order']
                 )
                 db.session.add(new_build_class)
 
@@ -281,7 +282,8 @@ def edit_build(id):
                     class_id = build_class['class_id'],
                     sub_class = build_class['sub_class'],
                     name = build_class['name'],
-                    level = build_class['level']
+                    level = build_class['level'],
+                    order = build_class['order']
                 )
                 db.session.add(new_build_class)
 
