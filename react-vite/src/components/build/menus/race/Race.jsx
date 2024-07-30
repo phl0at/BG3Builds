@@ -5,6 +5,8 @@ import { action } from "../../../../redux/build";
 import { useModal } from "../../../../context/Modal";
 import ErrorModal from "../../../modals/error/ErrorModal";
 //Packages
+import { Suspense } from "react";
+import { FadeLoader } from "react-spinners";
 import { useDispatch, useSelector } from "react-redux";
 import { IKImage } from "imagekitio-react";
 const urlEndpoint = "https://ik.imagekit.io/phl0at/images/race_icons/";
@@ -39,17 +41,19 @@ export default function RaceComponent() {
           <div className={styles.raceList}>
             {Object.values(Races).map((race) => (
               <div key={race.id} className={styles.race}>
-                <IKImage
-                  loading="lazy"
-                  onClick={(e) => onClick(e, race.id)}
-                  urlEndpoint={urlEndpoint}
-                  path={`${race.name}.png`}
-                  className={
-                    currentRace === race.id
-                      ? styles.selected_raceImg
-                      : styles.raceImg
-                  }
-                />
+                <Suspense fallback={<FadeLoader />}>
+                  <IKImage
+                    loading="lazy"
+                    onClick={(e) => onClick(e, race.id)}
+                    urlEndpoint={urlEndpoint}
+                    path={`${race.name}.png`}
+                    className={
+                      currentRace === race.id
+                        ? styles.selected_raceImg
+                        : styles.raceImg
+                    }
+                  />
+                </Suspense>
                 {race.name}
               </div>
             ))}

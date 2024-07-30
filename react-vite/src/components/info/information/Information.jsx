@@ -6,6 +6,8 @@ import { getBuildClassArray } from "../../../redux/build";
 import { useSelector } from "react-redux";
 import { CiChat2, CiSquarePlus } from "react-icons/ci";
 import { useParams, NavLink } from "react-router-dom";
+import { FadeLoader } from "react-spinners";
+import { Suspense } from "react";
 import { IKImage } from "imagekitio-react";
 const urlEndpoint = "https://ik.imagekit.io/phl0at/images/class_icons/";
 
@@ -57,11 +59,13 @@ export default function Information({ setDisplay }) {
       </div>
       <div className={styles.mainClass}>
         {build_classes[0] && (
-          <IKImage
-            lazy="true"
-            urlEndpoint={urlEndpoint}
-            path={`${build_classes[0].name}.png`}
-          />
+          <Suspense fallback={<FadeLoader />}>
+            <IKImage
+              lazy="true"
+              urlEndpoint={urlEndpoint}
+              path={`${build_classes[0].name}.png`}
+            />
+          </Suspense>
         )}
       </div>
       <div className={styles.infoBody}>
@@ -79,11 +83,14 @@ export default function Information({ setDisplay }) {
         <div className={styles.infoClasses}>
           {build_classes.map((_class) => (
             <div className={styles.infoClass} key={_class.class_id}>
-              <img
-                title={_class.name}
-                className={styles.listImage}
-                src={`https://ik.imagekit.io/phl0at/images/class_icons/${_class.name}.png`}
-              />
+              <Suspense fallback={<FadeLoader />}>
+                <IKImage
+                  title={_class.name}
+                  className={styles.listImage}
+                  urlEndpoint={urlEndpoint}
+                  path={`${_class.name}.png`}
+                />
+              </Suspense>
               <div>{_class.level}</div>
             </div>
           ))}

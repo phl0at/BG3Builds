@@ -5,6 +5,8 @@ import OpenModalButton from "../modals";
 import ItemsTableModal from "./items";
 //Packages
 import { IKImage } from "imagekitio-react";
+import { Suspense } from "react";
+import { FadeLoader } from "react-spinners";
 import { useSelector } from "react-redux";
 import {
   GiElfHelmet,
@@ -36,15 +38,17 @@ export default function EquipmentComponent() {
                 className={styles.slot}
                 buttonText={
                   currentBuild.helmet ? (
-                    <IKImage
-                      loading="lazy"
-                      className={styles.itemImg}
-                      urlEndpoint={urlEndpoint}
-                      path={`${Equipment[currentBuild.helmet].name.replaceAll(
-                        " ",
-                        ""
-                      )}.png`}
-                    />
+                    <Suspense fallback={<FadeLoader />}>
+                      <IKImage
+                        loading="lazy"
+                        className={styles.itemImg}
+                        urlEndpoint={urlEndpoint}
+                        path={`${Equipment[currentBuild.helmet].name.replaceAll(
+                          " ",
+                          ""
+                        )}.png`}
+                      />
+                    </Suspense>
                   ) : (
                     <GiElfHelmet size="40" />
                   )

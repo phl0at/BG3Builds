@@ -6,6 +6,8 @@ import { useModal } from "../../../../context/Modal";
 import ErrorModal from "../../../modals/error/ErrorModal";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
+import { Suspense } from "react";
+import { FadeLoader } from "react-spinners";
 import { IKImage } from "imagekitio-react";
 const urlEndpoint = "https://ik.imagekit.io/phl0at/images/bg_icons/";
 
@@ -41,17 +43,19 @@ export default function BackgroundComponent() {
           <>
             {bg.id != 12 && (
               <div key={bg.id} className={styles.background}>
-                <IKImage
-                  loading="lazy"
-                  onClick={(e) => onClick(e, bg.id)}
-                  urlEndpoint={urlEndpoint}
-                  path={`${bg.name.replace(" ", "")}.png`}
-                  className={
-                    currentBackground === bg.id
-                      ? styles.selected_bgImg
-                      : styles.bgImg
-                  }
-                />
+                <Suspense fallback={<FadeLoader />}>
+                  <IKImage
+                    loading="lazy"
+                    onClick={(e) => onClick(e, bg.id)}
+                    urlEndpoint={urlEndpoint}
+                    path={`${bg.name.replace(" ", "")}.png`}
+                    className={
+                      currentBackground === bg.id
+                        ? styles.selected_bgImg
+                        : styles.bgImg
+                    }
+                  />
+                </Suspense>
                 {bg.name}
               </div>
             )}

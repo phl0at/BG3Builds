@@ -4,6 +4,8 @@ import styles from "./Origin.module.css";
 import { action, setOrigin } from "../../../../redux/build";
 //Packages
 import { useSelector, useDispatch } from "react-redux";
+import { Suspense } from "react";
+import { FadeLoader } from "react-spinners";
 import { IKImage } from "imagekitio-react";
 const urlEndpoint = "https://ik.imagekit.io/phl0at/images/char_icons/";
 
@@ -69,17 +71,19 @@ export default function OriginComponent() {
           <div className={styles.characterList}>
             {Object.values(Origins).map((origin) => (
               <div key={origin.id} className={styles.character}>
-                <IKImage
-                  loading="lazy"
-                  onClick={(e) => onClick(e, origin.id)}
-                  className={
-                    currentOrigin === origin.id
-                      ? styles.selected_charImg
-                      : styles.charImg
-                  }
-                  urlEndpoint={urlEndpoint}
-                  path={`${origin.name}.png`}
-                />
+                <Suspense fallback={<FadeLoader />}>
+                  <IKImage
+                    loading="lazy"
+                    onClick={(e) => onClick(e, origin.id)}
+                    className={
+                      currentOrigin === origin.id
+                        ? styles.selected_charImg
+                        : styles.charImg
+                    }
+                    urlEndpoint={urlEndpoint}
+                    path={`${origin.name}.png`}
+                  />
+                </Suspense>
                 {Origins[origin.id].name}
               </div>
             ))}

@@ -7,6 +7,8 @@ import { equipItem, action } from "../../../redux/build";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Suspense } from "react";
+import { FadeLoader } from "react-spinners";
 import { IKImage } from "imagekitio-react";
 const urlEndpoint = "https://ik.imagekit.io/phl0at/images/item_icons/";
 
@@ -48,13 +50,13 @@ export default function ItemsTableModal({ type, Equipment }) {
                     }
                   >
                     <div className={styles.itemImg}>
-                      {
+                      <Suspense fallback={<FadeLoader />}>
                         <IKImage
                           loading="lazy"
                           urlEndpoint={urlEndpoint}
                           path={`${item.name.replaceAll(" ", "")}.png`}
                         />
-                      }
+                      </Suspense>
                     </div>
                     <div className={styles.itemName}>{item.name}</div>
                   </button>
