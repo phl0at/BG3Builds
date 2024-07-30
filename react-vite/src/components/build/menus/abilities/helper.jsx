@@ -1,6 +1,6 @@
 //Files
 import styles from "./Abilities.module.css";
-import { Images } from "../../../images";
+import { abilityImages } from "../../../images/images";
 //Functions/Components
 import { action, setBonus, clearBonus } from "../../../../redux/build";
 import { useModal } from "../../../../context/Modal";
@@ -73,7 +73,7 @@ export function Ability({ ability }) {
     }
   };
 
-  
+
   // A user cannot set the +1 and +2 bonuses to the same ability.
   // These functions will only set a bonus on an ability that does not already
   // have a bonus applied to it.
@@ -98,7 +98,7 @@ export function Ability({ ability }) {
   return (
     <div className={styles.stat}>
       <div className={styles.label}>
-        <img className={styles.statImg} src={Images.abilities[titleCaseStat]} />
+        <img loading="lazy" className={styles.statImg} src={abilityImages[titleCaseStat]} />
         <div className={styles.name}>{titleCaseStat}</div>
       </div>
       <div className={styles.values}>

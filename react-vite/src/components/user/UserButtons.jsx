@@ -19,7 +19,6 @@ export default function UserButtons() {
   const currentUser = useSelector((state) => state.session.user);
   const currentBuildName = useSelector((state) => state.builds.current.name);
 
-
   const onClick = (e) => {
     e.preventDefault();
 

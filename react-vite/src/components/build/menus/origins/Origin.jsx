@@ -1,22 +1,22 @@
 //Files
 import styles from "./Origin.module.css";
-import { Images } from "../../../images";
+import { characterImages } from "../../../images/images";
 //Functions/Components
 import { action, setOrigin } from "../../../../redux/build";
 //Packages
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function OriginComponent() {
   const dispatch = useDispatch();
-  const currentOrigin = useSelector(state=>state.builds.current.origin)
+  const currentOrigin = useSelector((state) => state.builds.current.origin);
   const Origins = useSelector((state) => state.static.origins);
 
-  const onClick = (e, origin) => {
+  const onClick = (e, originId) => {
     e.preventDefault();
 
-    dispatch(setOrigin(origin, Origins[origin].name));
+    dispatch(setOrigin(originId, Origins[originId].name));
 
-    switch (origin) {
+    switch (originId) {
       case 1:
         return (
           dispatch(action("build/setRace", 1)),
@@ -52,6 +52,11 @@ export default function OriginComponent() {
           dispatch(action("build/setRace", 10)),
           dispatch(action("build/setBackground", 12))
         );
+      case 8:
+        return (
+          dispatch(action("build/setRace", 1)),
+          dispatch(action("build/setBackground", 1))
+        );
     }
   };
 
@@ -61,109 +66,32 @@ export default function OriginComponent() {
         <>
           <div className={styles.title}>Origin</div>
           <div className={styles.characterList}>
-            <div className={styles.character}>
-              <img
-                onClick={(e) => onClick(e, 8)}
-                className={
-                  currentOrigin === 8
-                    ? styles.selected_charImg
-                    : styles.charImg
-                }
-                src={Images.characters["Custom"]}
-              />
-              {"Custom"}
-            </div>
-            <div className={styles.character}>
-              <img
-                onClick={(e) => onClick(e, 1)}
-                className={
-                  currentOrigin === 1
-                    ? styles.selected_charImg
-                    : styles.charImg
-                }
-                src={Images.characters["Astarion"]}
-              />
-              {"Astarion"}
-            </div>
-            <div className={styles.character}>
-              <img
-                onClick={(e) => onClick(e, 2)}
-                className={
-                  currentOrigin === 2
-                    ? styles.selected_charImg
-                    : styles.charImg
-                }
-                src={Images.characters["Laezel"]}
-              />
-              {"Lae'zel"}
-            </div>
-            <div className={styles.character}>
-              <img
-                onClick={(e) => onClick(e, 3)}
-                className={
-                  currentOrigin === 3
-                    ? styles.selected_charImg
-                    : styles.charImg
-                }
-                src={Images.characters["Gale"]}
-              />
-              {"Gale"}
-            </div>
-            <div className={styles.character}>
-              <img
-                onClick={(e) => onClick(e, 4)}
-                className={
-                  currentOrigin === 4
-                    ? styles.selected_charImg
-                    : styles.charImg
-                }
-                src={Images.characters["Shadowheart"]}
-              />
-              {"Shadowheart"}
-            </div>
-            <div className={styles.character}>
-              <img
-                onClick={(e) => onClick(e, 5)}
-                className={
-                  currentOrigin === 5
-                    ? styles.selected_charImg
-                    : styles.charImg
-                }
-                src={Images.characters["Wyll"]}
-              />
-              {"Wyll"}
-            </div>
-            <div className={styles.character}>
-              <img
-                onClick={(e) => onClick(e, 6)}
-                className={
-                  currentOrigin === 6
-                    ? styles.selected_charImg
-                    : styles.charImg
-                }
-                src={Images.characters["Karlach"]}
-              />
-              {"Karlach"}
-            </div>
-            <div className={styles.character}>
-              <img
-                onClick={(e) => onClick(e, 7)}
-                className={
-                  currentOrigin === 7
-                    ? styles.selected_charImg
-                    : styles.charImg
-                }
-                src={Images.characters["DarkUrge"]}
-              />
-              {"The Dark Urge"}
-            </div>
+            {Object.values(Origins).map((origin) => (
+              <div key={origin.id} className={styles.character}>
+                <img
+                  loading="lazy"
+                  onClick={(e) => onClick(e, origin.id)}
+                  className={
+                    currentOrigin === origin.id
+                      ? styles.selected_charImg
+                      : styles.charImg
+                  }
+                  src={
+                    characterImages[
+                      origin.id != 2
+                        ? origin.name.replaceAll(" ", "")
+                        : "Laezel"
+                    ]
+                  }
+                />
+                {Origins[origin.id].name}
+              </div>
+            ))}
           </div>
           <div className={styles.select}>
-            {Origins[currentOrigin] && (
+            {Origins[currentOrigin] != undefined && (
               <>
-                <div className={styles.name}>
-                  {Origins[currentOrigin].name}
-                </div>
+                <div className={styles.name}>{Origins[currentOrigin].name}</div>
                 <div className={styles.description}>
                   {Origins[currentOrigin].description}
                 </div>

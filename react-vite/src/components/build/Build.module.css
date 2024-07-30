@@ -22,7 +22,10 @@
   -o-animation: fadeIn 0.5s;
   -ms-animation: fadeIn 0.5s;
 }
-
+.load{
+  position: relative;
+  top: 40%;
+}
 /*
 FADE-IN ANIMATIONS !!!!!!!!!!!
 */

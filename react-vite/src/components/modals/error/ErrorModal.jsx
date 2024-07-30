@@ -1,6 +1,6 @@
 // Files
 import styles from "./ErrorModal.module.css";
-import { Images } from "../../images";
+import { errorImage } from "../../images/images";
 // Functions/Components
 import { useModal } from "../../../context/Modal";
 // Packages
@@ -14,9 +14,8 @@ export default function ErrorModal({ errors }) {
 
   return (
     <main className={styles.main}>
-
       <div className={styles.imgContainer}>
-        <img className={styles.sadowheart} src={Images.error["Sadowheart"]} />
+        <img className={styles.sadowheart} src={errorImage["Sadowheart"]} />
       </div>
 
       <div className={styles.title}>

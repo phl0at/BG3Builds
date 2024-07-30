@@ -1,6 +1,6 @@
 // Files
 import styles from "../Info.module.css";
-import { Images } from "../../images";
+import { classImages } from "../../images/images";
 // Functions/Components
 import { getBuildClassArray } from "../../../redux/build";
 // Packages
@@ -56,7 +56,7 @@ export default function Information({ setDisplay }) {
       </div>
       <div className={styles.mainClass}>
         {build_classes[0] && (
-          <img src={Images.classes[build_classes[0].name]} />
+          <img src={classImages[build_classes[0].name]} />
         )}
       </div>
       <div className={styles.infoBody}>
@@ -77,7 +77,7 @@ export default function Information({ setDisplay }) {
               <img
                 title={_class.name}
                 className={styles.listImage}
-                src={Images.classes[_class.name]}
+                src={classImages[_class.name]}
               />
               <div>{_class.level}</div>
             </div>
