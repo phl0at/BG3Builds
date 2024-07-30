@@ -6,6 +6,8 @@ import { useModal } from "../../../../context/Modal";
 import ErrorModal from "../../../modals/error/ErrorModal";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
+import { IKImage } from "imagekitio-react";
+const urlEndpoint = "https://ik.imagekit.io/phl0at/images/race_icons/";
 
 export default function RaceComponent() {
   const dispatch = useDispatch();
@@ -37,19 +39,17 @@ export default function RaceComponent() {
           <div className={styles.raceList}>
             {Object.values(Races).map((race) => (
               <div key={race.id} className={styles.race}>
-                <img
+                <IKImage
                   loading="lazy"
                   onClick={(e) => onClick(e, race.id)}
-                  src={`https://ik.imagekit.io/phl0at/images/race_icons/${race.name.replace(
-                    "-",
-                    ""
-                  )}.png`}
+                  urlEndpoint={urlEndpoint}
+                  path={`${race.name}.png`}
                   className={
                     currentRace === race.id
                       ? styles.selected_raceImg
                       : styles.raceImg
                   }
-                ></img>
+                />
                 {race.name}
               </div>
             ))}

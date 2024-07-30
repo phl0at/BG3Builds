@@ -4,6 +4,8 @@ import styles from "./Origin.module.css";
 import { action, setOrigin } from "../../../../redux/build";
 //Packages
 import { useSelector, useDispatch } from "react-redux";
+import { IKImage } from "imagekitio-react";
+const urlEndpoint = "https://ik.imagekit.io/phl0at/images/char_icons/";
 
 export default function OriginComponent() {
   const dispatch = useDispatch();
@@ -67,7 +69,7 @@ export default function OriginComponent() {
           <div className={styles.characterList}>
             {Object.values(Origins).map((origin) => (
               <div key={origin.id} className={styles.character}>
-                <img
+                <IKImage
                   loading="lazy"
                   onClick={(e) => onClick(e, origin.id)}
                   className={
@@ -75,9 +77,8 @@ export default function OriginComponent() {
                       ? styles.selected_charImg
                       : styles.charImg
                   }
-                  src={`https://ik.imagekit.io/phl0at/images/char_icons/${
-                    origin.id != 2 ? origin.name.replaceAll(" ", "") : "Laezel"
-                  }.png`}
+                  urlEndpoint={urlEndpoint}
+                  path={`${origin.name}.png`}
                 />
                 {Origins[origin.id].name}
               </div>

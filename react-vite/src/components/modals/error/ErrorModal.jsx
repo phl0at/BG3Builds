@@ -4,6 +4,8 @@ import styles from "./ErrorModal.module.css";
 import { useModal } from "../../../context/Modal";
 // Packages
 import { NavLink } from "react-router-dom";
+import { IKImage } from "imagekitio-react";
+const urlEndpoint = "https://ik.imagekit.io/phl0at/images/error_icon/";
 
 export default function ErrorModal({ errors }) {
   const errorMessages = Object.values(errors);
@@ -14,10 +16,11 @@ export default function ErrorModal({ errors }) {
   return (
     <main className={styles.main}>
       <div className={styles.imgContainer}>
-        <img
+        <IKImage
           loading="lazy"
           className={styles.sadowheart}
-          src={"https://ik.imagekit.io/phl0at/images/error_icon/Sadowheart.png"}
+          urlEndpoint={urlEndpoint}
+          path={"Sadowheart.png"}
         />
       </div>
 

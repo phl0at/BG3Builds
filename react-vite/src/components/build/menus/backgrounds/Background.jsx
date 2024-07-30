@@ -6,6 +6,8 @@ import { useModal } from "../../../../context/Modal";
 import ErrorModal from "../../../modals/error/ErrorModal";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
+import { IKImage } from "imagekitio-react";
+const urlEndpoint = "https://ik.imagekit.io/phl0at/images/bg_icons/";
 
 export default function BackgroundComponent() {
   const dispatch = useDispatch();
@@ -39,19 +41,17 @@ export default function BackgroundComponent() {
           <>
             {bg.id != 12 && (
               <div key={bg.id} className={styles.background}>
-                <img
+                <IKImage
                   loading="lazy"
                   onClick={(e) => onClick(e, bg.id)}
-                  src={`https://ik.imagekit.io/phl0at/images/bg_icons/${bg.name.replace(
-                    " ",
-                    ""
-                  )}.png`}
+                  urlEndpoint={urlEndpoint}
+                  path={`${bg.name.replace(" ", "")}.png`}
                   className={
                     currentBackground === bg.id
                       ? styles.selected_bgImg
                       : styles.bgImg
                   }
-                ></img>
+                />
                 {bg.name}
               </div>
             )}

@@ -8,6 +8,9 @@ import ErrorModal from "../../../modals/error/ErrorModal";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
+import { IKImage } from "imagekitio-react";
+
+const urlEndpoint = "https://ik.imagekit.io/phl0at/images/stat_icons/";
 
 export function Ability({ ability }) {
   const dispatch = useDispatch();
@@ -95,10 +98,11 @@ export function Ability({ ability }) {
   return (
     <div className={styles.stat}>
       <div className={styles.label}>
-        <img
+        <IKImage
           loading="lazy"
           className={styles.statImg}
-          src={`https://ik.imagekit.io/phl0at/images/stat_icons/${titleCaseStat}.png`}
+          urlEndpoint={urlEndpoint}
+          path={`${titleCaseStat}.png`}
         />
         <div className={styles.name}>{titleCaseStat}</div>
       </div>

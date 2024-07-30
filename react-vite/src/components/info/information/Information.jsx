@@ -6,6 +6,8 @@ import { getBuildClassArray } from "../../../redux/build";
 import { useSelector } from "react-redux";
 import { CiChat2, CiSquarePlus } from "react-icons/ci";
 import { useParams, NavLink } from "react-router-dom";
+import { IKImage } from "imagekitio-react";
+const urlEndpoint = "https://ik.imagekit.io/phl0at/images/class_icons/";
 
 export default function Information({ setDisplay }) {
   const { buildId } = useParams();
@@ -55,8 +57,10 @@ export default function Information({ setDisplay }) {
       </div>
       <div className={styles.mainClass}>
         {build_classes[0] && (
-          <img
-            src={`https://ik.imagekit.io/phl0at/images/class_icons/${build_classes[0].name}.png?updatedAt=1722366962678`}
+          <IKImage
+            lazy="true"
+            urlEndpoint={urlEndpoint}
+            path={`${build_classes[0].name}.png`}
           />
         )}
       </div>
@@ -78,7 +82,7 @@ export default function Information({ setDisplay }) {
               <img
                 title={_class.name}
                 className={styles.listImage}
-                src={`https://ik.imagekit.io/phl0at/images/class_icons/${_class.name}.png?updatedAt=1722366962678`}
+                src={`https://ik.imagekit.io/phl0at/images/class_icons/${_class.name}.png`}
               />
               <div>{_class.level}</div>
             </div>

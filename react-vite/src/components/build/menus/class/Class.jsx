@@ -7,6 +7,8 @@ import ResetClassesModal from "./reset";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
 import { CiUndo } from "react-icons/ci";
+import { IKImage } from "imagekitio-react";
+const urlEndpoint = "https://ik.imagekit.io/phl0at/images/class_icons/";
 
 export default function ClassComponent() {
   const dispatch = useDispatch();
@@ -47,16 +49,17 @@ export default function ClassComponent() {
       <div className={styles.classList}>
         {Object.values(Classes).map((_class) => (
           <div key={_class.class_id} className={styles.class}>
-            <img
+            <IKImage
               loading="lazy"
               onClick={(e) => clickClass(e, _class.class_id)}
-              src={`https://ik.imagekit.io/phl0at/images/class_icons/${_class.name}.png`}
+              urlEndpoint={urlEndpoint}
+              path={`${_class.name}.png`}
               className={
                 currentClass === _class.class_id
                   ? styles.selected_classImg
                   : styles.classImg
               }
-            ></img>
+            />
             {_class.name}
           </div>
         ))}
@@ -85,10 +88,11 @@ export default function ClassComponent() {
         {buildClasses.map((_class) => {
           return (
             <div key={_class.class_id} className={styles.buildClass}>
-              <img
+              <IKImage
                 loading="lazy"
                 className={styles.classImg}
-                src={`https://ik.imagekit.io/phl0at/images/class_icons/${_class.name}.png?updatedAt=1722366962678`}
+                urlEndpoint={urlEndpoint}
+                path={`${_class.name}.png`}
               />
               {`${_class.name}: ${_class.level}`}
               {/* {_class.sub_class && `Subclass: ${_class.sub_class}`} */}

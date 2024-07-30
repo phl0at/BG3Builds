@@ -4,6 +4,7 @@ import styles from "./Equipment.module.css";
 import OpenModalButton from "../modals";
 import ItemsTableModal from "./items";
 //Packages
+import { IKImage } from "imagekitio-react";
 import { useSelector } from "react-redux";
 import {
   GiElfHelmet,
@@ -18,6 +19,7 @@ import {
   GiEmeraldNecklace,
   GiDiamondRing,
 } from "react-icons/gi";
+const urlEndpoint = "https://ik.imagekit.io/phl0at/images/item_icons/";
 
 export default function EquipmentComponent() {
   const currentBuild = useSelector((state) => state.builds.current);
@@ -34,12 +36,14 @@ export default function EquipmentComponent() {
                 className={styles.slot}
                 buttonText={
                   currentBuild.helmet ? (
-                    <img
+                    <IKImage
                       loading="lazy"
                       className={styles.itemImg}
-                      src={`https://ik.imagekit.io/phl0at/images/item_icons/${Equipment[
-                        currentBuild.helmet
-                      ].name.replaceAll(" ", "")}.png`}
+                      urlEndpoint={urlEndpoint}
+                      path={`${Equipment[currentBuild.helmet].name.replaceAll(
+                        " ",
+                        ""
+                      )}.png`}
                     />
                   ) : (
                     <GiElfHelmet size="40" />

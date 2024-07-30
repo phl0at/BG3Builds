@@ -7,6 +7,8 @@ import { equipItem, action } from "../../../redux/build";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { IKImage } from "imagekitio-react";
+const urlEndpoint = "https://ik.imagekit.io/phl0at/images/item_icons/";
 
 export default function ItemsTableModal({ type, Equipment }) {
   const { buildId } = useParams();
@@ -47,12 +49,10 @@ export default function ItemsTableModal({ type, Equipment }) {
                   >
                     <div className={styles.itemImg}>
                       {
-                        <img
+                        <IKImage
                           loading="lazy"
-                          src={`https://ik.imagekit.io/phl0at/images/item_icons/${item.name.replaceAll(
-                            " ",
-                            ""
-                          )}.png`}
+                          urlEndpoint={urlEndpoint}
+                          path={`${item.name.replaceAll(" ", "")}.png`}
                         />
                       }
                     </div>
