@@ -1,6 +1,5 @@
 // Files
 import styles from "./ErrorModal.module.css";
-import { errorImage } from "../../images/images";
 // Functions/Components
 import { useModal } from "../../../context/Modal";
 // Packages
@@ -15,7 +14,11 @@ export default function ErrorModal({ errors }) {
   return (
     <main className={styles.main}>
       <div className={styles.imgContainer}>
-        <img className={styles.sadowheart} src={errorImage["Sadowheart"]} />
+        <img
+          loading="lazy"
+          className={styles.sadowheart}
+          src={"https://ik.imagekit.io/phl0at/images/error_icon/Sadowheart.png"}
+        />
       </div>
 
       <div className={styles.title}>

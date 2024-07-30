@@ -1,6 +1,5 @@
 //Files
 import styles from "./Race.module.css";
-import { raceImages } from "../../../images/images";
 //Functions/Components
 import { action } from "../../../../redux/build";
 import { useModal } from "../../../../context/Modal";
@@ -41,7 +40,10 @@ export default function RaceComponent() {
                 <img
                   loading="lazy"
                   onClick={(e) => onClick(e, race.id)}
-                  src={raceImages[race.name.replace("-", "")]}
+                  src={`https://ik.imagekit.io/phl0at/images/race_icons/${race.name.replace(
+                    "-",
+                    ""
+                  )}.png`}
                   className={
                     currentRace === race.id
                       ? styles.selected_raceImg

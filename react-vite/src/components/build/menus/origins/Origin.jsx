@@ -1,6 +1,5 @@
 //Files
 import styles from "./Origin.module.css";
-import { characterImages } from "../../../images/images";
 //Functions/Components
 import { action, setOrigin } from "../../../../redux/build";
 //Packages
@@ -76,13 +75,9 @@ export default function OriginComponent() {
                       ? styles.selected_charImg
                       : styles.charImg
                   }
-                  src={
-                    characterImages[
-                      origin.id != 2
-                        ? origin.name.replaceAll(" ", "")
-                        : "Laezel"
-                    ]
-                  }
+                  src={`https://ik.imagekit.io/phl0at/images/char_icons/${
+                    origin.id != 2 ? origin.name.replaceAll(" ", "") : "Laezel"
+                  }.png`}
                 />
                 {Origins[origin.id].name}
               </div>

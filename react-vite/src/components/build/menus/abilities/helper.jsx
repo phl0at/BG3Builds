@@ -1,6 +1,5 @@
 //Files
 import styles from "./Abilities.module.css";
-import { abilityImages } from "../../../images/images";
 //Functions/Components
 import { action, setBonus, clearBonus } from "../../../../redux/build";
 import { useModal } from "../../../../context/Modal";
@@ -35,7 +34,6 @@ export function Ability({ ability }) {
       setClicks(currentAbilityValue - 8);
     }
   }, [currentAbilityValue]);
-
 
   // The first 5 increases to an ability cost 1 point and the last two cost 2 points.
   // These two functions ensure the correct amount of ability
@@ -73,7 +71,6 @@ export function Ability({ ability }) {
     }
   };
 
-
   // A user cannot set the +1 and +2 bonuses to the same ability.
   // These functions will only set a bonus on an ability that does not already
   // have a bonus applied to it.
@@ -98,7 +95,11 @@ export function Ability({ ability }) {
   return (
     <div className={styles.stat}>
       <div className={styles.label}>
-        <img loading="lazy" className={styles.statImg} src={abilityImages[titleCaseStat]} />
+        <img
+          loading="lazy"
+          className={styles.statImg}
+          src={`https://ik.imagekit.io/phl0at/images/stat_icons/${titleCaseStat}.png?updatedAt=1722366957543`}
+        />
         <div className={styles.name}>{titleCaseStat}</div>
       </div>
       <div className={styles.values}>

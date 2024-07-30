@@ -1,6 +1,5 @@
 //Files
 import styles from "./Background.module.css";
-import { backgroundImages } from "../../../images/images";
 //Functions/Components
 import { action } from "../../../../redux/build";
 import { useModal } from "../../../../context/Modal";
@@ -43,7 +42,10 @@ export default function BackgroundComponent() {
                 <img
                   loading="lazy"
                   onClick={(e) => onClick(e, bg.id)}
-                  src={backgroundImages[bg.name.replace(" ", "")]}
+                  src={`https://ik.imagekit.io/phl0at/images/bg_icons/${bg.name.replace(
+                    " ",
+                    ""
+                  )}.png?updatedAt=1722366961640`}
                   className={
                     currentBackground === bg.id
                       ? styles.selected_bgImg
@@ -61,7 +63,9 @@ export default function BackgroundComponent() {
           <img
             loading="lazy"
             className={styles.bgImg}
-            src={backgroundImages["HauntedOne"]}
+            src={
+              "https://ik.imagekit.io/phl0at/images/bg_icons/HauntedOne.png?updatedAt=1722366961215"
+            }
           />
         )}
         <div className={styles.name}>{Backgrounds[currentBackground].name}</div>

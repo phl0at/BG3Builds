@@ -1,6 +1,5 @@
 //Files
 import styles from "./ViewBuilds.module.css";
-import { classImages } from "../images/images";
 //Functions/Components
 import { thunkAddFavorite, thunkDeleteFavorite } from "../../redux/session";
 //Packages
@@ -51,7 +50,9 @@ export function SelectedBuildPanel({ build, Backgrounds, Races }) {
         </div>
         <div className={styles.selectedClassImg}>
           {build.build_classes.length ? (
-            <img src={classImages[build.build_classes[0].name]} />
+            <img
+              src={`https://ik.imagekit.io/phl0at/images/class_icons/${build.build_classes[0].name}.png?updatedAt=1722366962678`}
+            />
           ) : (
             "No classes"
           )}
@@ -79,7 +80,7 @@ export function SelectedBuildPanel({ build, Backgrounds, Races }) {
               <img
                 title={bc.name}
                 className={styles.listImage}
-                src={classImages[bc.name]}
+                src={`https://ik.imagekit.io/phl0at/images/class_icons/${bc.name}.png?updatedAt=1722366962678`}
               />
               <div>{bc.level}</div>
             </div>

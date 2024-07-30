@@ -1,6 +1,5 @@
 //Files
 import styles from "./Equipment.module.css";
-import { equipmentImages } from "../images/images";
 //Functions/Components
 import OpenModalButton from "../modals";
 import ItemsTableModal from "./items";
@@ -36,16 +35,11 @@ export default function EquipmentComponent() {
                 buttonText={
                   currentBuild.helmet ? (
                     <img
+                      loading="lazy"
                       className={styles.itemImg}
-                      src={
-                        Equipment &&
-                        equipmentImages[
-                          Equipment[currentBuild.helmet].name.replaceAll(
-                            " ",
-                            ""
-                          )
-                        ]
-                      }
+                      src={`https://ik.imagekit.io/phl0at/images/item_icons/${Equipment[
+                        currentBuild.helmet
+                      ].name.replaceAll(" ", "")}.png`}
                     />
                   ) : (
                     <GiElfHelmet size="40" />
@@ -61,13 +55,11 @@ export default function EquipmentComponent() {
                 buttonText={
                   currentBuild.cloak ? (
                     <img
+                      loading="lazy"
                       className={styles.itemImg}
-                      src={
-                        Equipment &&
-                        equipmentImages[
-                          Equipment[currentBuild.cloak].name.replaceAll(" ", "")
-                        ]
-                      }
+                      src={`https://ik.imagekit.io/phl0at/images/item_icons/${Equipment[
+                        currentBuild.cloak
+                      ].name.replaceAll(" ", "")}.png`}
                     />
                   ) : (
                     <GiCape size="40" />
@@ -83,12 +75,10 @@ export default function EquipmentComponent() {
                 buttonText={
                   currentBuild.armor ? (
                     <img
-                      src={
-                        Equipment &&
-                        equipmentImages[
-                          Equipment[currentBuild.armor].name.replaceAll(" ", "")
-                        ]
-                      }
+                      loading="lazy"
+                      src={`https://ik.imagekit.io/phl0at/images/item_icons/${Equipment[
+                        currentBuild.armor
+                      ].name.replaceAll(" ", "")}.png`}
                     />
                   ) : (
                     <GiCapeArmor size="40" />
@@ -104,16 +94,11 @@ export default function EquipmentComponent() {
                 buttonText={
                   currentBuild.gloves ? (
                     <img
+                      loading="lazy"
                       className={styles.itemImg}
-                      src={
-                        Equipment &&
-                        equipmentImages[
-                          Equipment[currentBuild.gloves].name.replaceAll(
-                            " ",
-                            ""
-                          )
-                        ]
-                      }
+                      src={`https://ik.imagekit.io/phl0at/images/item_icons/${Equipment[
+                        currentBuild.gloves
+                      ].name.replaceAll(" ", "")}.png`}
                     />
                   ) : (
                     <GiGloves size="40" />
@@ -129,13 +114,11 @@ export default function EquipmentComponent() {
                 buttonText={
                   currentBuild.boots ? (
                     <img
+                      loading="lazy"
                       className={styles.itemImg}
-                      src={
-                        Equipment &&
-                        equipmentImages[
-                          Equipment[currentBuild.boots].name.replaceAll(" ", "")
-                        ]
-                      }
+                      src={`https://ik.imagekit.io/phl0at/images/item_icons/${Equipment[
+                        currentBuild.boots
+                      ].name.replaceAll(" ", "")}.png`}
                     />
                   ) : (
                     <GiLegArmor size="40" />
@@ -152,16 +135,11 @@ export default function EquipmentComponent() {
                 buttonText={
                   currentBuild.melee_mh ? (
                     <img
+                      loading="lazy"
                       className={styles.itemImg}
-                      src={
-                        Equipment &&
-                        equipmentImages[
-                          Equipment[currentBuild.melee_mh].name.replaceAll(
-                            " ",
-                            ""
-                          )
-                        ]
-                      }
+                      src={`https://ik.imagekit.io/phl0at/images/item_icons/${Equipment[
+                        currentBuild.melee_mh
+                      ].name.replaceAll(" ", "")}.png`}
                     />
                   ) : (
                     <GiBroadsword size="40" />
@@ -176,16 +154,11 @@ export default function EquipmentComponent() {
                 buttonText={
                   currentBuild.melee_oh ? (
                     <img
+                      loading="lazy"
                       className={styles.itemImg}
-                      src={
-                        Equipment &&
-                        equipmentImages[
-                          Equipment[currentBuild.melee_oh].name.replaceAll(
-                            " ",
-                            ""
-                          )
-                        ]
-                      }
+                      src={`https://ik.imagekit.io/phl0at/images/item_icons/${Equipment[
+                        currentBuild.melee_oh
+                      ].name.replaceAll(" ", "")}.png`}
                     />
                   ) : (
                     <GiBroadDagger size="40" />
@@ -207,16 +180,11 @@ export default function EquipmentComponent() {
                 buttonText={
                   currentBuild.amulet ? (
                     <img
+                      loading="lazy"
                       className={styles.itemImg}
-                      src={
-                        Equipment &&
-                        equipmentImages[
-                          Equipment[currentBuild.amulet].name.replaceAll(
-                            " ",
-                            ""
-                          )
-                        ]
-                      }
+                      src={`https://ik.imagekit.io/phl0at/images/item_icons/${Equipment[
+                        currentBuild.amulet
+                      ].name.replaceAll(" ", "")}.png`}
                     />
                   ) : (
                     <GiEmeraldNecklace size="40" />
@@ -231,16 +199,11 @@ export default function EquipmentComponent() {
                 buttonText={
                   currentBuild.ring_1 ? (
                     <img
+                      loading="lazy"
                       className={styles.itemImg}
-                      src={
-                        Equipment &&
-                        equipmentImages[
-                          Equipment[currentBuild.ring_1].name.replaceAll(
-                            " ",
-                            ""
-                          )
-                        ]
-                      }
+                      src={`https://ik.imagekit.io/phl0at/images/item_icons/${Equipment[
+                        currentBuild.ring_1
+                      ].name.replaceAll(" ", "")}.png`}
                     />
                   ) : (
                     <GiDiamondRing size="40" />
@@ -255,16 +218,11 @@ export default function EquipmentComponent() {
                 buttonText={
                   currentBuild.ring_2 ? (
                     <img
+                      loading="lazy"
                       className={styles.itemImg}
-                      src={
-                        Equipment &&
-                        equipmentImages[
-                          Equipment[currentBuild.ring_2].name.replaceAll(
-                            " ",
-                            ""
-                          )
-                        ]
-                      }
+                      src={`https://ik.imagekit.io/phl0at/images/item_icons/${Equipment[
+                        currentBuild.ring_2
+                      ].name.replaceAll(" ", "")}.png`}
                     />
                   ) : (
                     <GiDiamondRing size="40" />
@@ -281,16 +239,11 @@ export default function EquipmentComponent() {
                 buttonText={
                   currentBuild.ranged_mh ? (
                     <img
+                      loading="lazy"
                       className={styles.itemImg}
-                      src={
-                        Equipment &&
-                        equipmentImages[
-                          Equipment[currentBuild.ranged_mh].name.replaceAll(
-                            " ",
-                            ""
-                          )
-                        ]
-                      }
+                      src={`https://ik.imagekit.io/phl0at/images/item_icons/${Equipment[
+                        currentBuild.ranged_mh
+                      ].name.replaceAll(" ", "")}.png`}
                     />
                   ) : (
                     <GiBowArrow size="40" />
@@ -305,16 +258,11 @@ export default function EquipmentComponent() {
                 buttonText={
                   currentBuild.ranged_oh ? (
                     <img
+                      loading="lazy"
                       className={styles.itemImg}
-                      src={
-                        Equipment &&
-                        equipmentImages[
-                          Equipment[currentBuild.ranged_oh].name.replaceAll(
-                            " ",
-                            ""
-                          )
-                        ]
-                      }
+                      src={`https://ik.imagekit.io/phl0at/images/item_icons/${Equipment[
+                        currentBuild.ranged_oh
+                      ].name.replaceAll(" ", "")}.png`}
                     />
                   ) : (
                     <GiCrossbow size="40" />

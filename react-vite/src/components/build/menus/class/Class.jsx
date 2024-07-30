@@ -1,6 +1,5 @@
 //Files
 import styles from "./Class.module.css";
-import { classImages } from "../../../images/images";
 //Functions/Components
 import { getBuildClassArray, action } from "../../../../redux/build";
 import OpenModalButton from "../../../modals";
@@ -51,7 +50,7 @@ export default function ClassComponent() {
             <img
               loading="lazy"
               onClick={(e) => clickClass(e, _class.class_id)}
-              src={classImages[_class.name]}
+              src={`https://ik.imagekit.io/phl0at/images/class_icons/${_class.name}.png?updatedAt=1722366962678`}
               className={
                 currentClass === _class.class_id
                   ? styles.selected_classImg
@@ -84,10 +83,13 @@ export default function ClassComponent() {
       </div>
       <div className={styles.buildClassList}>
         {buildClasses.map((_class) => {
-          const titleCase = _class.name[0].toUpperCase() + _class.name.slice(1);
           return (
             <div key={_class.class_id} className={styles.buildClass}>
-              <img className={styles.classImg} src={classImages[titleCase]} />
+              <img
+                loading="lazy"
+                className={styles.classImg}
+                src={`https://ik.imagekit.io/phl0at/images/class_icons/${_class.name}.png?updatedAt=1722366962678`}
+              />
               {`${_class.name}: ${_class.level}`}
               {/* {_class.sub_class && `Subclass: ${_class.sub_class}`} */}
             </div>

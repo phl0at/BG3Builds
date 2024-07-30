@@ -1,6 +1,5 @@
 //Files
 import styles from "./Items.module.css";
-import { equipmentImages } from "../../images/images";
 //Functions/Components
 import { getEquipmentArray } from "../../../redux/build";
 import { equipItem, action } from "../../../redux/build";
@@ -49,7 +48,11 @@ export default function ItemsTableModal({ type, Equipment }) {
                     <div className={styles.itemImg}>
                       {
                         <img
-                          src={equipmentImages[item.name.replaceAll(" ", "")]}
+                          loading="lazy"
+                          src={`https://ik.imagekit.io/phl0at/images/item_icons/${item.name.replaceAll(
+                            " ",
+                            ""
+                          )}.png`}
                         />
                       }
                     </div>
