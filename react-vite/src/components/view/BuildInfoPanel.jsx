@@ -51,7 +51,7 @@ export function SelectedBuildPanel({ build, Backgrounds, Races }) {
         <div className={styles.selectedClassImg}>
           {build.build_classes.length ? (
             <img
-              src={`https://ik.imagekit.io/phl0at/images/class_icons/${build.build_classes[0].name}.png?updatedAt=1722366962678`}
+              src={`https://ik.imagekit.io/phl0at/images/class_icons/${build.build_classes[0].name}.png`}
             />
           ) : (
             "No classes"

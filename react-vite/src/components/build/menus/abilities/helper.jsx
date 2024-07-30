@@ -98,7 +98,7 @@ export function Ability({ ability }) {
         <img
           loading="lazy"
           className={styles.statImg}
-          src={`https://ik.imagekit.io/phl0at/images/stat_icons/${titleCaseStat}.png?updatedAt=1722366957543`}
+          src={`https://ik.imagekit.io/phl0at/images/stat_icons/${titleCaseStat}.png`}
         />
         <div className={styles.name}>{titleCaseStat}</div>
       </div>

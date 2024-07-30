@@ -45,7 +45,7 @@ export default function BackgroundComponent() {
                   src={`https://ik.imagekit.io/phl0at/images/bg_icons/${bg.name.replace(
                     " ",
                     ""
-                  )}.png?updatedAt=1722366961640`}
+                  )}.png`}
                   className={
                     currentBackground === bg.id
                       ? styles.selected_bgImg

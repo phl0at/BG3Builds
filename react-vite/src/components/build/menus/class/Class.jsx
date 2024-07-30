@@ -50,7 +50,7 @@ export default function ClassComponent() {
             <img
               loading="lazy"
               onClick={(e) => clickClass(e, _class.class_id)}
-              src={`https://ik.imagekit.io/phl0at/images/class_icons/${_class.name}.png?updatedAt=1722366962678`}
+              src={`https://ik.imagekit.io/phl0at/images/class_icons/${_class.name}.png`}
               className={
                 currentClass === _class.class_id
                   ? styles.selected_classImg
