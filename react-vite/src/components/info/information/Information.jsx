@@ -6,10 +6,6 @@ import { getBuildClassArray } from "../../../redux/build";
 import { useSelector } from "react-redux";
 import { CiChat2, CiSquarePlus } from "react-icons/ci";
 import { useParams, NavLink } from "react-router-dom";
-import { FadeLoader } from "react-spinners";
-import { Suspense } from "react";
-import { IKImage } from "imagekitio-react";
-const urlEndpoint = "https://ik.imagekit.io/phl0at/images/class_icons/";
 
 export default function Information({ setDisplay }) {
   const { buildId } = useParams();
@@ -19,12 +15,12 @@ export default function Information({ setDisplay }) {
   const Races = useSelector((state) => state.static.races);
 
   const abilities = [
-    "strength",
-    "dexterity",
-    "constitution",
-    "intelligence",
-    "wisdom",
-    "charisma",
+    "Strength",
+    "Dexterity",
+    "Constitution",
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
   ];
 
   return (
@@ -59,23 +55,18 @@ export default function Information({ setDisplay }) {
       </div>
       <div className={styles.mainClass}>
         {build_classes[0] && (
-          <Suspense fallback={<FadeLoader />}>
-            <IKImage
-              lazy="true"
-              urlEndpoint={urlEndpoint}
-              path={`${build_classes[0].name}.png`}
-            />
-          </Suspense>
+          <img
+            src={`https://ik.imagekit.io/phl0at/images/class_icons/${build_classes[0].name}.png`}
+          />
         )}
       </div>
       <div className={styles.infoBody}>
         <div className={styles.infoAttributes}>
           {abilities.map((ability) => {
-            const cont = `${ability[0].toUpperCase()}${ability.slice(1, 3)}`;
             return (
               <div key={ability} className={styles.stat}>
-                <div className={styles.orange}>{cont}</div>
-                <div>{currentBuild[ability]}</div>
+                <div className={styles.orange}>{ability.slice(0, 3)}</div>
+                <div>{currentBuild[ability.toLowerCase()]}</div>
               </div>
             );
           })}
@@ -83,14 +74,11 @@ export default function Information({ setDisplay }) {
         <div className={styles.infoClasses}>
           {build_classes.map((_class) => (
             <div className={styles.infoClass} key={_class.class_id}>
-              <Suspense fallback={<FadeLoader />}>
-                <IKImage
-                  title={_class.name}
-                  className={styles.listImage}
-                  urlEndpoint={urlEndpoint}
-                  path={`${_class.name}.png`}
-                />
-              </Suspense>
+              <img
+                title={_class.name}
+                className={styles.listImage}
+                src={`https://ik.imagekit.io/phl0at/images/class_icons/${_class.name}.png`}
+              />
               <div>{_class.level}</div>
             </div>
           ))}

@@ -8,11 +8,7 @@ import ErrorModal from "../../../modals/error/ErrorModal";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
-import { Suspense } from "react";
-import { FadeLoader } from "react-spinners";
 import { IKImage } from "imagekitio-react";
-
-const urlEndpoint = "https://ik.imagekit.io/phl0at/images/stat_icons/";
 
 export function Ability({ ability }) {
   const dispatch = useDispatch();
@@ -100,14 +96,11 @@ export function Ability({ ability }) {
   return (
     <div className={styles.stat}>
       <div className={styles.label}>
-        <Suspense fallback={<FadeLoader />}>
-          <IKImage
-            loading="lazy"
-            className={styles.statImg}
-            urlEndpoint={urlEndpoint}
-            path={`${titleCaseStat}.png`}
-          />
-        </Suspense>
+        <IKImage
+          loading="lazy"
+          className={styles.statImg}
+          path={`stat_icons/${titleCaseStat}.png`}
+        />
         <div className={styles.name}>{titleCaseStat}</div>
       </div>
       <div className={styles.values}>

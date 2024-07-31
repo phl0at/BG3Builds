@@ -87,14 +87,18 @@ export default function ViewBuildsComponent({ filters, setFilters }) {
               <div className={styles.noBuilds}>
                 <div className={styles.sorry}>{`Sorry, adventurer!`}</div>
                 <div className={styles.message}>
-                  {appliedFilter != "owned"
-                    ? `It looks like there are currently no builds with that ${appliedFilter}.`
-                    : "You haven't created any builds yet."}
-                  <div>
-                    {`Head over to the `}
-                    <NavLink to="/create">Create Build Page</NavLink>
-                    {" to make one!"}
-                  </div>
+                  {appliedFilter == "owned"
+                    ? "You haven't created any builds yet."
+                    : appliedFilter == "favorites"
+                    ? "You don't have any favorite builds."
+                    : `There are no builds with that ${appliedFilter}.`}
+                  {appliedFilter != "favorites" && (
+                    <div>
+                      {`Head over to the `}
+                      <NavLink to="/create">Create Build Page</NavLink>
+                      {" to make one!"}
+                    </div>
+                  )}
                 </div>
               </div>
             )}

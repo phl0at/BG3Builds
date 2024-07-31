@@ -6,10 +6,7 @@ import { useModal } from "../../../../context/Modal";
 import ErrorModal from "../../../modals/error/ErrorModal";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
-import { Suspense } from "react";
-import { FadeLoader } from "react-spinners";
 import { IKImage } from "imagekitio-react";
-const urlEndpoint = "https://ik.imagekit.io/phl0at/images/bg_icons/";
 
 export default function BackgroundComponent() {
   const dispatch = useDispatch();
@@ -43,19 +40,15 @@ export default function BackgroundComponent() {
           <>
             {bg.id != 12 && (
               <div key={bg.id} className={styles.background}>
-                <Suspense fallback={<FadeLoader />}>
-                  <IKImage
-                    loading="lazy"
-                    onClick={(e) => onClick(e, bg.id)}
-                    urlEndpoint={urlEndpoint}
-                    path={`${bg.name.replace(" ", "")}.png`}
-                    className={
-                      currentBackground === bg.id
-                        ? styles.selected_bgImg
-                        : styles.bgImg
-                    }
-                  />
-                </Suspense>
+                <IKImage
+                  onClick={(e) => onClick(e, bg.id)}
+                  path={`bg_icons/${bg.name}.png`}
+                  className={
+                    currentBackground === bg.id
+                      ? styles.selected_bgImg
+                      : styles.bgImg
+                  }
+                />
                 {bg.name}
               </div>
             )}
@@ -64,13 +57,7 @@ export default function BackgroundComponent() {
       </div>
       <div className={styles.select}>
         {currentOrigin === 7 && (
-          <img
-            loading="lazy"
-            className={styles.bgImg}
-            src={
-              "https://ik.imagekit.io/phl0at/images/bg_icons/HauntedOne.png?updatedAt=1722366961215"
-            }
-          />
+          <IKImage className={styles.bgImg} path={"bg_icons/Haunted One.png"} />
         )}
         <div className={styles.name}>{Backgrounds[currentBackground].name}</div>
         <div className={styles.description}>

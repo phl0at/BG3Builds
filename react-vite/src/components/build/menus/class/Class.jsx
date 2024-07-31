@@ -6,11 +6,8 @@ import OpenModalButton from "../../../modals";
 import ResetClassesModal from "./reset";
 //Packages
 import { useDispatch, useSelector } from "react-redux";
-import { Suspense } from "react";
-import { FadeLoader } from "react-spinners";
 import { CiUndo } from "react-icons/ci";
 import { IKImage } from "imagekitio-react";
-const urlEndpoint = "https://ik.imagekit.io/phl0at/images/class_icons/";
 
 export default function ClassComponent() {
   const dispatch = useDispatch();
@@ -51,19 +48,16 @@ export default function ClassComponent() {
       <div className={styles.classList}>
         {Object.values(Classes).map((_class) => (
           <div key={_class.class_id} className={styles.class}>
-            <Suspense fallback={<FadeLoader />}>
-              <IKImage
-                loading="lazy"
-                onClick={(e) => clickClass(e, _class.class_id)}
-                urlEndpoint={urlEndpoint}
-                path={`${_class.name}.png`}
-                className={
-                  currentClass === _class.class_id
-                    ? styles.selected_classImg
-                    : styles.classImg
-                }
-              />
-            </Suspense>
+            <IKImage
+              loading="lazy"
+              onClick={(e) => clickClass(e, _class.class_id)}
+              path={`class_icons/${_class.name}.png`}
+              className={
+                currentClass === _class.class_id
+                  ? styles.selected_classImg
+                  : styles.classImg
+              }
+            />
             {_class.name}
           </div>
         ))}
@@ -93,10 +87,8 @@ export default function ClassComponent() {
           return (
             <div key={_class.class_id} className={styles.buildClass}>
               <IKImage
-                loading="lazy"
                 className={styles.classImg}
-                urlEndpoint={urlEndpoint}
-                path={`${_class.name}.png`}
+                path={`class_icons/${_class.name}.png`}
               />
               {`${_class.name}: ${_class.level}`}
               {/* {_class.sub_class && `Subclass: ${_class.sub_class}`} */}

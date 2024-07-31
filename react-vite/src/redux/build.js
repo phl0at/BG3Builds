@@ -251,10 +251,7 @@ export const thunkDeleteComment = (id) => async (dispatch) => {
 //*                            Selectors
 //! --------------------------------------------------------------------
 
-export const getEquipmentArray = createSelector(
-  (state) => state.static.equipment,
-  (item) => Object.values(item)
-);
+
 
 //! --------------------------------------------------------------------
 // Recursive quick sort function to sort build_classes

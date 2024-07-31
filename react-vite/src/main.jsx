@@ -11,7 +11,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider as ReduxProvider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
+import { IKContext } from "imagekitio-react";
 
+const urlEndpoint = "https://ik.imagekit.io/phl0at/images/";
 const store = configureStore();
 
 if (import.meta.env.MODE !== "production") {
@@ -21,10 +23,12 @@ if (import.meta.env.MODE !== "production") {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ErrorBoundary fallback={<ErrorMessage />}>
-      <ReduxProvider store={store}>
-        <RouterProvider router={router} />
-      </ReduxProvider>
-    </ErrorBoundary>
+    <IKContext urlEndpoint={urlEndpoint}>
+      <ErrorBoundary fallback={<ErrorMessage />}>
+        <ReduxProvider store={store}>
+          <RouterProvider router={router} />
+        </ReduxProvider>
+      </ErrorBoundary>
+    </IKContext>
   </React.StrictMode>
 );

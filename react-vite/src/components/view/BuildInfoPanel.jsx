@@ -12,12 +12,12 @@ export function SelectedBuildPanel({ build, Backgrounds, Races }) {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
   const attributes = [
-    "strength",
-    "dexterity",
-    "constitution",
-    "intelligence",
-    "wisdom",
-    "charisma",
+    "Strength",
+    "Dexterity",
+    "Constitution",
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
   ];
 
   const clickFavorite = (e) => {
@@ -60,16 +60,13 @@ export function SelectedBuildPanel({ build, Backgrounds, Races }) {
         <div className={styles.headerRight}></div>
       </div>
       <div className={styles.selectedBody}>
-        <div
-          className={styles.selectedName}
-        >{`${build.name[0].toUpperCase()}${build.name.slice(1)}`}</div>
+        <div className={styles.selectedName}>{build.name}</div>
         <div className={styles.selectedAttributes}>
           {attributes.map((att) => {
-            const cont = `${att[0].toUpperCase()}${att.slice(1, 3)}`;
             return (
               <div key={att} className={styles.stat}>
-                <div className={styles.orange}>{cont}</div>
-                <div>{build[att]}</div>
+                <div className={styles.orange}>{att.slice(0, 3)}</div>
+                <div>{build[att.toLowerCase()]}</div>
               </div>
             );
           })}
@@ -80,7 +77,7 @@ export function SelectedBuildPanel({ build, Backgrounds, Races }) {
               <img
                 title={bc.name}
                 className={styles.listImage}
-                src={`https://ik.imagekit.io/phl0at/images/class_icons/${bc.name}.png?updatedAt=1722366962678`}
+                src={`https://ik.imagekit.io/phl0at/images/class_icons/${bc.name}.png`}
               />
               <div>{bc.level}</div>
             </div>

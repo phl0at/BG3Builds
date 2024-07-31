@@ -1,6 +1,5 @@
 import styles from "./Error.module.css";
 import { IKImage } from "imagekitio-react";
-const urlEndpoint = "https://ik.imagekit.io/phl0at/images/error_icon/";
 
 export function ErrorMessage() {
   return (
@@ -10,8 +9,7 @@ export function ErrorMessage() {
           <IKImage
             loading="lazy"
             className={styles.sadowheart}
-            urlEndpoint={urlEndpoint}
-            path={"Sadowheart.png"}
+            path={"error_icon/Sadowheart.png"}
           />
         </div>
         <div className={styles.title}>{"You've entered the Shadowfell..."}</div>
