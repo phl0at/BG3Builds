@@ -20,7 +20,7 @@ def favorite_build(build_id):
 
 
     if len([fav.to_dict() for fav in favorite]):
-        return { 'errors': 'User has already favorited this build' }, 400
+        return { 'errors': ['User has already favorited this build'] }, 400
     else:
         new_favorite = Favorite(
             user_id=current_user.id,
@@ -47,9 +47,9 @@ def un_favorite_build(build_id):
     favorite = [fav.to_dict() for fav in favoritesList][0]
 
     if not favorite:
-        return { 'errors': 'Favorite could not be found' }, 404
+        return { 'errors': ['Favorite could not be found'] }, 404
     elif favorite["user_id"] != current_user.id:
-        return { 'errors': 'Unauthorized Action' }, 403
+        return { 'errors': ['Unauthorized Action'] }, 403
     else:
         db.session.delete(favoritesList[0])
         db.session.commit()

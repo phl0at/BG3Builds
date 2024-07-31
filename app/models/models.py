@@ -177,6 +177,7 @@ class BuildClass(db.Model):
     level = db.Column(db.Integer, nullable=False)
     sub_class = db.Column(db.String(50), nullable=True)
     order = db.Column(db.Integer, nullable=False)
+    modifier = db.Column(db.String(50), db.Enum('strength', 'dexterity', 'intelligence', 'wisdom', 'charisma'), nullable=False)
 
     def to_dict(self):
         return {
@@ -186,7 +187,8 @@ class BuildClass(db.Model):
             'name': self.name,
             'level': self.level,
             'sub_class': self.sub_class,
-            'order': self.order
+            'order': self.order,
+            'modifier': self.modifier
         }
 
 ################################################################################
@@ -203,12 +205,14 @@ class Class(db.Model):
                                             'Rogue', 'Sorcerer', 'Warlock',
                                             'Wizard'), nullable=False)
     description = db.Column(db.String(250), nullable=False)
+    modifier = db.Column(db.String(50), db.Enum('strength', 'dexterity', 'intelligence', 'wisdom', 'charisma'), nullable=False)
 
     def to_dict(self):
         return {
             'class_id': self.id,
             'name': self.name,
-            'description': self.description
+            'description': self.description,
+            'modifier': self.modifier
         }
 
 ################################################################################

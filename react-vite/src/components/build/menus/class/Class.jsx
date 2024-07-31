@@ -27,6 +27,7 @@ export default function ClassComponent() {
     const newClass = {
       class_id: _class.class_id,
       name: _class.name,
+      modifier: _class.modifier,
       sub_class,
     };
     dispatch(action("build/addBuildClass", newClass));

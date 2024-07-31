@@ -51,7 +51,7 @@ def get_build(id):
         .get(id)
 
     if not build:
-        return {'errors': 'Build could not be found'}, 404
+        return {'errors': ['Build could not be found']}, 404
 
     return build.to_dict(), 200
 
@@ -163,7 +163,8 @@ def create_build():
                     sub_class = build_class['sub_class'],
                     name = build_class['name'],
                     level = build_class['level'],
-                    order = build_class['order']
+                    order = build_class['order'],
+                    modifier = build_class['modifier']
                 )
                 db.session.add(new_build_class)
 
@@ -182,9 +183,9 @@ def edit_build(id):
     existing_build_classes = BuildClass.query.filter(BuildClass.build_id == id)
 
     if not build:
-        return { 'errors': 'Build could not be found'}, 404
+        return { 'errors': ['Build could not be found']}, 404
     elif build.user_id != current_user.id:
-        return { 'errors': 'Unauthorized Action' }, 403
+        return { 'errors': ['Unauthorized Action'] }, 403
 
     data = request.get_json()
 
@@ -283,7 +284,8 @@ def edit_build(id):
                     sub_class = build_class['sub_class'],
                     name = build_class['name'],
                     level = build_class['level'],
-                    order = build_class['order']
+                    order = build_class['order'],
+                    modifier = build_class['modifier']
                 )
                 db.session.add(new_build_class)
 
@@ -302,9 +304,9 @@ def delete_build(id):
     build = Build.query.get(id)
 
     if not build:
-        return { 'errors': 'Build could not be found'}, 404
+        return { 'errors': ['Build could not be found']}, 404
     elif build.user_id != current_user.id:
-        return { 'errors': 'Unauthorized Action' }, 403
+        return { 'errors': ['Unauthorized Action'] }, 403
     else:
         db.session.delete(build)
         db.session.commit()

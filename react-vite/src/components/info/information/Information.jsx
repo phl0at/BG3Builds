@@ -5,6 +5,7 @@ import { getBuildClassArray } from "../../../redux/build";
 // Packages
 import { useSelector } from "react-redux";
 import { CiChat2, CiSquarePlus } from "react-icons/ci";
+import { BsHexagon  } from "react-icons/bs";
 import { useParams, NavLink } from "react-router-dom";
 
 export default function Information({ setDisplay }) {
@@ -13,7 +14,6 @@ export default function Information({ setDisplay }) {
   const currentBuild = useSelector((state) => state.builds.current);
   const Backgrounds = useSelector((state) => state.static.backgrounds);
   const Races = useSelector((state) => state.static.races);
-
   const abilities = [
     "Strength",
     "Dexterity",
@@ -65,6 +65,11 @@ export default function Information({ setDisplay }) {
           {abilities.map((ability) => {
             return (
               <div key={ability} className={styles.stat}>
+                <div className={styles.modifier}>
+                  {build_classes[0]?.modifier === ability.toLowerCase() && (
+                    <BsHexagon  className={styles.orange} size="33" />
+                  )}
+                </div>
                 <div className={styles.orange}>{ability.slice(0, 3)}</div>
                 <div>{currentBuild[ability.toLowerCase()]}</div>
               </div>

@@ -82,8 +82,14 @@
 .infoAttributes {
   height: 15%;
   display: flex;
-  column-gap: 12px;
+  align-items: center;
+  justify-content: center;
+  column-gap: 17px;
   font-size: 16pt;
+}
+.modifier {
+  position: absolute;
+  margin-top: 30px;
 }
 .stat {
   display: flex;

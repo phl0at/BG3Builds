@@ -36,7 +36,7 @@ export default function ErrorModal({ errors }) {
         <div className={styles.list}>
           {errorMessages.map((err, i) => (
             <div key={i} className={styles.error}>
-              {err[0]}
+              {typeof err == Array ? err[0] : err}
             </div>
           ))}
         </div>
