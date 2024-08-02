@@ -8,9 +8,13 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { CiViewBoard } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 
-export function SelectedBuildPanel({ build, Backgrounds, Races }) {
+export function SelectedBuildPanel({ build }) {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.session.user);
+  const userFavorites = useSelector((state) => state.session.user?.favorites);
+  const buildRace = useSelector((state) => state.static.races[build.race].name);
+  const buildBackground = useSelector(
+    (state) => state.static.backgrounds[build.background].name
+  );
   const attributes = [
     "Strength",
     "Dexterity",
@@ -23,7 +27,7 @@ export function SelectedBuildPanel({ build, Backgrounds, Races }) {
   const clickFavorite = (e) => {
     e.preventDefault();
 
-    if (currentUser.favorites[build.id]) {
+    if (userFavorites[build.id]) {
       dispatch(thunkDeleteFavorite(build.id));
     } else {
       dispatch(thunkAddFavorite(build.id));
@@ -34,13 +38,13 @@ export function SelectedBuildPanel({ build, Backgrounds, Races }) {
     <>
       <div className={styles.selectedHeader}>
         <div className={styles.favoriteContainer}>
-          {currentUser && (
+          {userFavorites && (
             <button
               title="Add to favorites"
               className={styles.favorite}
               onClick={clickFavorite}
             >
-              {currentUser.favorites[build.id] ? (
+              {userFavorites[build.id] ? (
                 <AiFillHeart size="40" />
               ) : (
                 <AiOutlineHeart size="40" />
@@ -49,12 +53,10 @@ export function SelectedBuildPanel({ build, Backgrounds, Races }) {
           )}
         </div>
         <div className={styles.selectedClassImg}>
-          {build.build_classes.length ? (
+          {build.build_classes.length > 0 && (
             <img
               src={`https://ik.imagekit.io/phl0at/images/class_icons/${build.build_classes[0].name}.png`}
             />
-          ) : (
-            "No classes"
           )}
         </div>
         <div className={styles.headerRight}></div>
@@ -85,10 +87,8 @@ export function SelectedBuildPanel({ build, Backgrounds, Races }) {
         </div>
         <div className={styles.selectedCharacter}>
           <div className={styles.char}>{build.character_name}</div>|
-          <div className={styles.char}>{Races[build.race].name}</div>|
-          <div className={styles.char}>
-            {Backgrounds[build.background].name}
-          </div>
+          <div className={styles.char}>{buildRace}</div>|
+          <div className={styles.char}>{buildBackground}</div>
         </div>
         <NavLink
           title="Go to build"

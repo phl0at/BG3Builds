@@ -1,2 +1,2 @@
-import FilterBuildComponent from "./FilterBuilds";
+import FilterBuildComponent from "./FilterList";
 export default FilterBuildComponent

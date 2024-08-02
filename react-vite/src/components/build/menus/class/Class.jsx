@@ -87,9 +87,9 @@ export default function ClassComponent() {
         {buildClasses.map((_class) => {
           return (
             <div key={_class.class_id} className={styles.buildClass}>
-              <IKImage
+              <img
                 className={styles.classImg}
-                path={`class_icons/${_class.name}.png`}
+                src={`https://ik.imagekit.io/phl0at/images/class_icons/${_class.name}.png`}
               />
               {`${_class.name}: ${_class.level}`}
               {/* {_class.sub_class && `Subclass: ${_class.sub_class}`} */}

@@ -7,7 +7,7 @@ import { thunkAuthenticate } from "../redux/session";
 import { action, thunkGetBuild } from "../redux/build";
 import { thunkPreloadData } from "../redux/static";
 // Packages
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ClipLoader } from "react-spinners";
@@ -19,7 +19,6 @@ export default function Layout() {
   const currentBuild = useSelector((state) => state.builds.current);
   const currentUser = useSelector((state) => state.session.user);
   const Origins = useSelector((state) => state.static.origins);
-  
 
   useEffect(() => {
     if (buildId) {
@@ -48,15 +47,7 @@ export default function Layout() {
     <>
       <ModalProvider>
         <UserButtons />
-        <Suspense
-          fallback={
-            <main className={styles.loading}>
-              <ClipLoader color="#e4c274" size="100px" />
-            </main>
-          }
-        >
-          {isLoaded && <Outlet errors />}
-        </Suspense>
+        {isLoaded && <Outlet errors />}
         <Modal />
       </ModalProvider>
     </>

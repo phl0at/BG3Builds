@@ -1,28 +1,27 @@
 //Files
 import styles from "./ViewBuilds.module.css";
 //Functions/Components
-import { getBuildsArray } from "../../redux/build";
+// import { getBuildsArray } from "../../redux/build";
 import { SelectedBuildPanel } from "./BuildInfoPanel";
 import { filteredBuilds } from "./helper";
 //Packages
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { ClipLoader } from "react-spinners";
+import { ClipLoader, PulseLoader } from "react-spinners";
 import { CiSquarePlus } from "react-icons/ci";
 import { AiFillHeart } from "react-icons/ai";
 
 export default function ViewBuildsComponent({ filters, setFilters }) {
   const [selected, setSelected] = useState(null);
-  const Backgrounds = useSelector((state) => state.static.backgrounds);
-  const Origins = useSelector((state) => state.static.origins);
-  const Races = useSelector((state) => state.static.races);
-  const allBuildsArr = useSelector(getBuildsArray);
+  const selectedBuild = useSelector((state) => state.builds[selected]);
   const allUsers = useSelector((state) => state.users);
   const currentUser = useSelector((state) => state.session.user);
-  const selectedBuild = useSelector((state) => state.builds[selected]);
-
-  const buildsArr = filteredBuilds(allBuildsArr, filters, currentUser);
+  const allBuilds = useSelector((state) => state.builds);
+  const buildsArr = useMemo(
+    () => filteredBuilds(allBuilds, filters, currentUser),
+    [allBuilds, filters, currentUser]
+  );
   const appliedFilter = Object.keys(filters);
 
   useEffect(() => {
@@ -38,6 +37,14 @@ export default function ViewBuildsComponent({ filters, setFilters }) {
     e.preventDefault();
     setSelected(id);
   };
+
+  if (!buildsArr) {
+    return (
+      <main className={styles.main}>
+        <PulseLoader color="#e4c274" size="20px" />
+      </main>
+    );
+  }
 
   return (
     <main className={styles.main}>
@@ -112,13 +119,7 @@ export default function ViewBuildsComponent({ filters, setFilters }) {
         <div className={selected ? styles.selectedBuild : styles.hidden}>
           {selected && (
             <>
-              <SelectedBuildPanel
-                setSelected={setSelected}
-                build={selectedBuild}
-                Backgrounds={Backgrounds}
-                Origins={Origins}
-                Races={Races}
-              />
+              <SelectedBuildPanel build={selectedBuild} />
             </>
           )}
         </div>
