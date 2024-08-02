@@ -43,7 +43,6 @@ export function EquipmentSlot({ type }) {
       buttonText={
         equippedItem ? (
           <IKImage
-            loading="lazy"
             className={styles.itemImg}
             path={`item_icons/${Equipment[equippedItem].name}.png`}
           />
