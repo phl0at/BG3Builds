@@ -9,7 +9,6 @@
   outline: 3px solid rgb(101, 71, 42);
   border-radius: 4px;
   display: flex;
-
 }
 .navButton {
   display: flex;
@@ -54,7 +53,7 @@
   padding-top: 20px;
 }
 
-.noBuilds{
+.noBuilds {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,14 +61,14 @@
   text-align: center;
   row-gap: 10px;
 }
-.sorry{
+.sorry {
   font-size: 20pt;
 }
 .favorited {
   position: absolute;
 }
 .build {
-  width: 230px;
+  width: 220px;
   display: flex;
   outline: 1px solid rgb(101, 71, 42);
   border-radius: 10px;
@@ -86,7 +85,7 @@
   color: antiquewhite;
 }
 .select {
-  width: 30%;
+  width: 220px;
   display: flex;
   background-color: rgba(46, 31, 18, 0.9);
   outline: 1px solid rgb(101, 71, 42);
@@ -153,7 +152,7 @@
 .favorite:hover {
   color: pink;
 }
-.headerRight{
+.headerRight {
   width: 50px;
 }
 .selectedClassImg {
@@ -257,6 +256,12 @@
 
 .hidden {
   display: none;
+}
+
+.loading{
+  position: absolute;
+  left: 35%;
+  top: 15%;
 }
 
 /*

@@ -1,4 +1,5 @@
 import { createSelector } from "reselect";
+import { sortClasses } from "../utils/helper";
 
 //! --------------------------------------------------------------------
 //*                          Action Types
@@ -251,29 +252,6 @@ export const thunkDeleteComment = (id) => async (dispatch) => {
 //*                            Selectors
 //! --------------------------------------------------------------------
 
-
-
-//! --------------------------------------------------------------------
-// Recursive quick sort function to sort build_classes
-// by the order in which they were added to the build
-const sortClasses = (classArr) => {
-  // Base Case
-  if (classArr.length <= 1) return classArr;
-
-  // Set pivot to last item in the array
-  const pivot = classArr.pop();
-  const left = [];
-  const right = [];
-
-  // Push the classes into left or right based on the order
-  for (const _class of classArr) {
-    _class.order < pivot.order ? left.push(_class) : right.push(_class);
-  }
-
-  // Recursively call the sort function, spreading in the results
-  // on the left and right, with the pivot in the middle
-  return [...sortClasses(left), pivot, ...sortClasses(right)];
-};
 
 export const getBuildClassArray = createSelector(
   (state) => state.builds.current.build_classes,

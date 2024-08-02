@@ -3,12 +3,12 @@ import styles from "./ViewBuilds.module.css";
 //Functions/Components
 // import { getBuildsArray } from "../../redux/build";
 import { SelectedBuildPanel } from "./BuildInfoPanel";
-import { filteredBuilds } from "./helper";
+import { filteredBuilds } from "../../utils/helper";
 //Packages
 import { useEffect, useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { ClipLoader, PulseLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners";
 import { CiSquarePlus } from "react-icons/ci";
 import { AiFillHeart } from "react-icons/ai";
 
@@ -18,11 +18,11 @@ export default function ViewBuildsComponent({ filters, setFilters }) {
   const allUsers = useSelector((state) => state.users);
   const currentUser = useSelector((state) => state.session.user);
   const allBuilds = useSelector((state) => state.builds);
+  const filtersApplied = Object.values(filters).find((val) => val != null)
   const buildsArr = useMemo(
     () => filteredBuilds(allBuilds, filters, currentUser),
     [allBuilds, filters, currentUser]
   );
-  const appliedFilter = Object.keys(filters);
 
   useEffect(() => {
     if (!currentUser) {
@@ -38,10 +38,15 @@ export default function ViewBuildsComponent({ filters, setFilters }) {
     setSelected(id);
   };
 
-  if (!buildsArr) {
+  if (
+    (buildsArr.length < 1) &
+    !filtersApplied
+  ) {
     return (
       <main className={styles.main}>
-        <PulseLoader color="#e4c274" size="20px" />
+        <div className={styles.scroll}>
+          <PulseLoader className={styles.loading} color="#e4c274" size="20px" />
+        </div>
       </main>
     );
   }
@@ -90,30 +95,19 @@ export default function ViewBuildsComponent({ filters, setFilters }) {
                   </button>
                 );
               })}
-            {buildsArr === undefined && (
+            {buildsArr.length < 1 && (
               <div className={styles.noBuilds}>
                 <div className={styles.sorry}>{`Sorry, adventurer!`}</div>
                 <div className={styles.message}>
-                  {appliedFilter == "owned"
-                    ? "You haven't created any builds yet."
-                    : appliedFilter == "favorites"
-                    ? "You don't have any favorite builds."
-                    : `There are no builds with that ${appliedFilter}.`}
-                  {appliedFilter != "favorites" && (
-                    <div>
-                      {`Head over to the `}
-                      <NavLink to="/create">Create Build Page</NavLink>
-                      {" to make one!"}
-                    </div>
-                  )}
+                  {`There are no builds matching the current filters`}
+                  <div>
+                    {`Head over to the `}
+                    <NavLink to="/create">Create Build Page</NavLink>
+                    {" to make one!"}
+                  </div>
                 </div>
               </div>
             )}
-            {!buildsArr & !appliedFilter ? (
-              <div className={styles.noBuilds}>
-                <ClipLoader color="#e4c274" size="100px" />
-              </div>
-            ) : null}
           </div>
         </div>
         <div className={selected ? styles.selectedBuild : styles.hidden}>

@@ -1,15 +1,21 @@
 // Files
 import styles from "./UserButtons.module.css";
 // Functions/Components
+/*
 import OpenModalButton from "../modals";
 import LoginFormModal from "../modals/login";
 import SignupFormModal from "../modals/signup";
+*/
 import { thunkLogin, thunkLogout } from "../../redux/session";
 // Packages
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { PulseLoader } from "react-spinners";
+
+const OpenModalButton = lazy(() => import("../modals"));
+const LoginFormModal = lazy(() => import("../modals/login"));
+const SignupFormModal = lazy(() => import("../modals/signup"));
 
 export default function UserButtons() {
   const dispatch = useDispatch();
@@ -53,39 +59,43 @@ export default function UserButtons() {
             : "FAQ"}
         </div>
 
-        <div className={styles.userButtons}>
-          {awaitLogin & !currentUser ? (
-            <PulseLoader
-              color="#e4c274"
-              size="10px"
-              className={styles.loggingIn}
-            />
-          ) : currentUser ? (
-            <button
-              id={styles.logout}
-              className={styles.button}
-              onClick={logout}
-            >
-              Log Out
-            </button>
-          ) : (
-            <>
-              <OpenModalButton
-                className={styles.button}
-                buttonText={"Log In"}
-                modalComponent={<LoginFormModal setLoading={setAwaitLogin} />}
+        <Suspense fallback={<PulseLoader color="#e4c274" />}>
+          <div className={styles.userButtons}>
+            {awaitLogin & !currentUser ? (
+              <PulseLoader
+                color="#e4c274"
+                size="10px"
+                className={styles.loggingIn}
               />
-              <OpenModalButton
+            ) : currentUser ? (
+              <button
+                id={styles.logout}
                 className={styles.button}
-                buttonText={"Sign up"}
-                modalComponent={<SignupFormModal setLoading={setAwaitLogin} />}
-              />
-              <button className={styles.button} onClick={onClick}>
-                Demo Features
+                onClick={logout}
+              >
+                Log Out
               </button>
-            </>
-          )}
-        </div>
+            ) : (
+              <>
+                <OpenModalButton
+                  className={styles.button}
+                  buttonText={"Log In"}
+                  modalComponent={<LoginFormModal setLoading={setAwaitLogin} />}
+                />
+                <OpenModalButton
+                  className={styles.button}
+                  buttonText={"Sign up"}
+                  modalComponent={
+                    <SignupFormModal setLoading={setAwaitLogin} />
+                  }
+                />
+                <button className={styles.button} onClick={onClick}>
+                  Demo Features
+                </button>
+              </>
+            )}
+          </div>
+        </Suspense>
       </div>
     </main>
   );

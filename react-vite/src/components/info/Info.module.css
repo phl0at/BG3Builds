@@ -89,7 +89,7 @@
 }
 .modifier {
   position: absolute;
-  margin-top: 30px;
+  margin-bottom: 65px;
 }
 .stat {
   display: flex;
@@ -99,6 +99,7 @@
 }
 .orange {
   color: #e69a28;
+  /* color: #3b2b13 */
 }
 .infoClasses {
   width: 80%;

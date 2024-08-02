@@ -5,7 +5,7 @@ import { getBuildClassArray } from "../../../redux/build";
 // Packages
 import { useSelector } from "react-redux";
 import { CiChat2, CiSquarePlus } from "react-icons/ci";
-import { BsHexagon  } from "react-icons/bs";
+import { BsFillHexagonFill   } from "react-icons/bs";
 import { useParams, NavLink } from "react-router-dom";
 
 export default function Information({ setDisplay }) {
@@ -67,7 +67,7 @@ export default function Information({ setDisplay }) {
               <div key={ability} className={styles.stat}>
                 <div className={styles.modifier}>
                   {build_classes[0]?.modifier === ability.toLowerCase() && (
-                    <BsHexagon  className={styles.orange} size="33" />
+                    <BsFillHexagonFill color="#3b2b15" size="20" />
                   )}
                 </div>
                 <div className={styles.orange}>{ability.slice(0, 3)}</div>
