@@ -1,11 +1,5 @@
 // Files
 // Functions/Components
-/*
-import LandingPage from "../pages/landing"
-import ViewPage from "../pages/view"
-import BuildPage from "../pages/build"
-import FAQPage from "../pages/faq"
-*/
 import Layout from "./Layout";
 // Packages
 import { PulseLoader } from "react-spinners";
@@ -56,7 +50,7 @@ export const router = createBrowserRouter([
       {
         path: "/faq",
         element: (
-          <Suspense fallback={<PulseLoader color="#e4c274" size="20px" />}>
+          <Suspense fallback={<PulseLoader color="#e4c274" />}>
             <FAQPage />
           </Suspense>
         ),

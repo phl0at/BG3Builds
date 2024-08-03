@@ -62,10 +62,6 @@ p {
   box-shadow: rgb(180, 135, 92) 0px 5px 8px;
 }
 
-.red {
-  color: red;
-}
-
 .main > * {
   animation: fadeIn 0.5s;
   -webkit-animation: fadeIn 0.5s;

@@ -9,26 +9,29 @@
   width: 10%;
   height: 93%;
   background: rgba(17, 13, 12, 0.92);
-  outline: 3px solid rgb(101, 71, 42);
+  outline: 2px solid rgb(101, 71, 42);
   border-radius: 4px;
-  overflow-y: auto;
+
 }
 
 .title {
   font-size: 17pt;
-  width: 100%;
+  width: 85%;
   height: 40px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding-left: 15px;
   color: #e69a28;
 }
 
 .filterContainer {
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
   width: 100%;
+  transition: all ease-in-out;
 }
 
 .filter {
@@ -68,15 +71,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-}
-.button {
-  color: #e4c274;
-  outline: 2px solid rgb(101, 71, 42);
-  background-color: rgba(17, 13, 12, 0.92);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
 }

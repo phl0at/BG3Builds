@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./FilterList.module.css";
 import {
   CiSquareChevRight,
@@ -8,7 +9,7 @@ import {
 import { useSelector } from "react-redux";
 
 export function UserFilter({ type, filters, setFilters }) {
-  
+
   const label = type[0].toUpperCase() + type.slice(1);
 
   return (
@@ -35,14 +36,13 @@ export function UserFilter({ type, filters, setFilters }) {
 
 export function Category({
   type,
-  show,
-  setShow,
   selectedItem,
   setSelectedItem,
   filters,
   setFilters,
 }) {
 
+  const [show, setShow] = useState(false)
   const label = type[0].toUpperCase() + type.slice(1);
   const typeArray = useSelector((state) => state.static[type]);
 

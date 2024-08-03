@@ -7,31 +7,17 @@
   font-size: 17pt;
   color: #e69a28;
 }
-.select {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  height: 180px;
-}
-.name {
-  font-size: 14pt;
-  color: #e69a28;
-}
 
 .description {
   padding-top: 5px;
-  text-align: center;
-  max-width: 90%;
+  text-align: left;
+  width: 100%;
 }
 .raceList {
-  display: flex;
-  justify-content: center;
-  column-gap: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   row-gap: 15px;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-width: 440px;
+  min-width: 440px;
 }
 
 .race {
@@ -40,6 +26,8 @@
   flex-direction: column;
   align-items: center;
   text-wrap: nowrap;
+  cursor: pointer;
+  font-size: 12pt;
 }
 
 .race:hover {
@@ -49,7 +37,7 @@
 
 .raceImg {
   width: 60px;
-  height: 67px;
+  height: 60px;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -58,11 +46,42 @@
   outline: 3.5px solid rgb(180, 135, 92);
   box-shadow: rgb(180, 135, 92) 0px 5px 12px;
   width: 60px;
-  height: 67px;
+  height: 60px;
   border-radius: 10px;
   cursor: pointer;
+}
+.name {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 35px;
+  color: #e69a28;
+  column-gap: 10px;
+}
+
+.select {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  height: 180px;
+  width: 80%;
 }
 
 .error {
   color: red;
+}
+@media (min-width: 1924px) {
+  .raceImg {
+    height: 90px;
+    width: 90px;
+  }
+  .selected_raceImg {
+    height: 90px;
+    width: 90px;
+  }
+  .raceList {
+    column-gap: 50px;
+  }
 }

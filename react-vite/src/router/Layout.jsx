@@ -1,4 +1,5 @@
 // Files
+import "../index.css";
 // Functions/Components
 import UserButtons from "../components/user";
 import { ModalProvider, Modal } from "../context/Modal";
@@ -9,7 +10,6 @@ import { thunkPreloadData } from "../redux/static";
 import { useEffect, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { PulseLoader } from "react-spinners";
 
 export default function Layout() {
   const dispatch = useDispatch();
@@ -34,9 +34,7 @@ export default function Layout() {
     }
   }, [dispatch]);
 
-  if (!currentBuild || !Origins) {
-    return <PulseLoader color="#e4c274" />;
-  }
+  if (!currentBuild || !Origins) return "";
 
   return (
     <>

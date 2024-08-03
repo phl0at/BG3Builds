@@ -11,7 +11,7 @@
   height: 93%;
   gap: 20px;
   overflow-y: auto;
-  outline: 3px solid rgb(101, 71, 42);
+  outline: 2px solid rgb(101, 71, 42);
   background: rgb(21, 16, 14, 0.92);
 }
 
