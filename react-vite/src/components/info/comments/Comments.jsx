@@ -9,13 +9,14 @@ import ErrorModal from "../../modals/error/ErrorModal";
 // Packages
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { CiSquareAlert, CiSquarePlus } from "react-icons/ci";
 
 export default function Comments({ setDisplay }) {
   const dispatch = useDispatch();
   const { buildId } = useParams();
+  const navTo = useNavigate();
   const { setModalContent } = useModal();
   const comments = useSelector(getCommentsArray);
   const allUsers = useSelector((state) => state.users);
@@ -65,13 +66,17 @@ export default function Comments({ setDisplay }) {
         </div>
         <div className={styles.title}>Comments</div>
         <div className={styles.headerButton}>
-          <NavLink
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setDisplay("Info");
+              navTo("/create");
+            }}
             title="Create build"
             className={styles.toCreate}
-            to="/create"
           >
             <CiSquarePlus size="50" />
-          </NavLink>
+          </button>
         </div>
       </div>
       <div className={styles.scroll}>

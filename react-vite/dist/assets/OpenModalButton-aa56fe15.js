@@ -1,1 +1,0 @@
-import{h as c,j as p}from"./index-4420b638.js";function l({id:o,className:s,title:e,modalComponent:i,buttonText:r,onButtonClick:t,onModalClose:n}){const{setModalContent:a,setOnModalClose:f}=c(),u=()=>{n&&f(n),a(i),typeof t=="function"&&t()};return p.jsx("button",{id:o,title:e,className:s,onClick:u,children:r})}export{l as O};
