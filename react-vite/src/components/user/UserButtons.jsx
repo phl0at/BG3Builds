@@ -90,7 +90,7 @@ export default function UserButtons() {
                   }
                 />
                 <button className={styles.button} onClick={onClick}>
-                  Demo Features
+                  Demo Login
                 </button>
               </>
             )}

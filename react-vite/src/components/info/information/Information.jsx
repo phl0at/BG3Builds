@@ -67,7 +67,7 @@ export default function Information({ setDisplay }) {
               <div key={ability} className={styles.stat}>
                 <div className={styles.modifier}>
                   {build_classes[0]?.modifier === ability.toLowerCase() && (
-                    <BsFillHexagonFill color="#3b2b15" size="20" />
+                    <BsFillHexagonFill color="#e69a28" size="14" />
                   )}
                 </div>
                 <div className={styles.orange}>{ability.slice(0, 3)}</div>
