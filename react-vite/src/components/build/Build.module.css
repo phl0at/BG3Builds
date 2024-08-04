@@ -10,11 +10,11 @@
   width: 30%;
   height: 93%;
   gap: 20px;
+  overflow-x: hidden;
   overflow-y: auto;
   outline: 2px solid rgb(101, 71, 42);
   background: rgb(21, 16, 14, 0.92);
 }
-
 .main > * {
   animation: fadeIn 0.5s;
   -webkit-animation: fadeIn 0.5s;
@@ -22,10 +22,179 @@
   -o-animation: fadeIn 0.5s;
   -ms-animation: fadeIn 0.5s;
 }
-.load{
+.load {
   position: relative;
   top: 40%;
 }
+.header {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.reset {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  color: #e69a28;
+}
+.title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 17pt;
+  color: #e69a28;
+}
+.spacer{
+  height: 50px;
+  width: 50px;
+}
+
+.list {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  row-gap: 15px;
+  min-width: 440px;
+}
+
+.item {
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-wrap: nowrap;
+  cursor: pointer;
+  font-size: 12pt;
+}
+.item:hover {
+  color: rgb(251, 224, 136);
+  text-decoration: underline;
+}
+.img {
+  border-radius: 10px;
+  cursor: pointer;
+}
+.selected_img {
+  border-radius: 10px;
+  cursor: pointer;
+  outline: 3.5px solid rgb(180, 135, 92);
+  box-shadow: rgb(180, 135, 92) 0px 5px 12px;
+}
+
+#charImg {
+  height: 110px;
+  width: 75px;
+  object-fit: cover;
+}
+#raceImg {
+  width: 75px;
+  height: 75px;
+}
+#bgImg {
+  width: 67px;
+  height: 67px;
+}
+#classImg {
+  width: 60px;
+  height: 60px;
+}
+#bcImg {
+  height: 50px;
+  width: 50px;
+}
+.select {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  height: 180px;
+  width: 85%;
+}
+.name {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 35px;
+  color: #e69a28;
+  column-gap: 10px;
+}
+.description {
+  padding-top: 5px;
+  text-align: left;
+  width: 100%;
+  font-size: 12pt;
+}
+
+/* Class component */
+.addClasses {
+  width: 95%;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.addButton {
+  height: 35px;
+  width: 85px;
+  color: #e4c274;
+  outline: 2px solid rgb(101, 71, 42);
+  background-color: rgba(17, 13, 12, 0.78);
+  border-radius: 4px;
+}
+.buildClassList {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.buildClass {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 10pt;
+}
+/*  */
+
+
+::-webkit-scrollbar {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(101, 71, 42);
+  border-radius: 20px;
+}
+
+@media (min-width: 1924px) {
+  #charImg {
+    height: 140px;
+    width: 95px;
+  }
+  #raceImg {
+    height: 90px;
+    width: 90px;
+  }
+  #bgImg {
+    height: 90px;
+    width: 90px;
+  }
+  #classImg {
+    height: 90px;
+    width: 90px;
+  }
+  .list {
+    column-gap: 30px;
+  }
+}
+
 /*
 FADE-IN ANIMATIONS !!!!!!!!!!!
 */

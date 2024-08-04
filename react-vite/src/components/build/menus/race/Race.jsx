@@ -1,5 +1,5 @@
 //Files
-import styles from "./Race.module.css";
+import styles from "../../Build.module.css";
 //Functions/Components
 import { action } from "../../../../redux/build";
 import { useModal } from "../../../../context/Modal";
@@ -35,16 +35,18 @@ export default function RaceComponent() {
       {
         <>
           <div className={styles.title}>Race</div>
-          <div className={styles.raceList}>
+          <div className={styles.list}>
             {Object.values(Races).map((race) => (
-              <div key={race.id} className={styles.race}>
+              <div
+                onClick={(e) => onClick(e, race.id)}
+                key={race.id}
+                className={styles.item}
+              >
                 <IKImage
-                  onClick={(e) => onClick(e, race.id)}
                   path={`race_icons/${race.name}.png`}
+                  id={styles.raceImg}
                   className={
-                    currentRace === race.id
-                      ? styles.selected_raceImg
-                      : styles.raceImg
+                    currentRace === race.id ? styles.selected_img : styles.img
                   }
                 />
                 {race.name}

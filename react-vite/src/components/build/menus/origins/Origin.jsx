@@ -1,5 +1,5 @@
 //Files
-import styles from "./Origin.module.css";
+import styles from "../../Build.module.css";
 //Functions/Components
 import { action, setOrigin } from "../../../../redux/build";
 //Packages
@@ -65,15 +65,19 @@ export default function OriginComponent() {
       {
         <>
           <div className={styles.title}>Origin</div>
-          <div className={styles.characterList}>
+          <div className={styles.list}>
             {Object.values(Origins).map((origin) => (
-              <div key={origin.id} className={styles.character}>
+              <div
+                onClick={(e) => onClick(e, origin.id)}
+                key={origin.id}
+                className={styles.item}
+              >
                 <IKImage
-                  onClick={(e) => onClick(e, origin.id)}
+                  id={styles.charImg}
                   className={
                     currentOrigin === origin.id
-                      ? styles.selected_charImg
-                      : styles.charImg
+                      ? styles.selected_img
+                      : styles.img
                   }
                   path={`char_icons/${origin.name}.png`}
                 />

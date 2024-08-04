@@ -1,5 +1,5 @@
 //Files
-import styles from "./Class.module.css";
+import styles from "../../Build.module.css";
 //Functions/Components
 import { getBuildClassArray, action } from "../../../../redux/build";
 import OpenModalButton from "../../../modals";
@@ -45,18 +45,23 @@ export default function ClassComponent() {
           )}
         </div>
         <div className={styles.title}>Class</div>
+        <div className={styles.spacer}></div>
       </div>
-      <div className={styles.classList}>
+      <div className={styles.list}>
         {Object.values(Classes).map((_class) => (
-          <div key={_class.class_id} className={styles.class}>
+          <div
+            onClick={(e) => clickClass(e, _class.class_id)}
+            key={_class.class_id}
+            className={styles.item}
+          >
             <IKImage
               loading="lazy"
-              onClick={(e) => clickClass(e, _class.class_id)}
               path={`class_icons/${_class.name}.png`}
+              id={styles.classImg}
               className={
                 currentClass === _class.class_id
-                  ? styles.selected_classImg
-                  : styles.classImg
+                  ? styles.selected_img
+                  : styles.img
               }
             />
             {_class.name}
@@ -64,7 +69,7 @@ export default function ClassComponent() {
         ))}
       </div>
       <div className={styles.select}>
-        <div className={styles.nameSection}>
+        <div className={styles.name}>
           {currentClass && (
             <>
               {Classes[currentClass]?.name}
@@ -88,7 +93,7 @@ export default function ClassComponent() {
           return (
             <div key={_class.class_id} className={styles.buildClass}>
               <img
-                className={styles.classImg}
+                id={styles.bcImg}
                 src={`https://ik.imagekit.io/phl0at/images/class_icons/${_class.name}.png`}
               />
               {`${_class.name}: ${_class.level}`}

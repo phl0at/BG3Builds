@@ -1,5 +1,5 @@
 //Files
-import styles from "./Background.module.css";
+import styles from "../../Build.module.css";
 //Functions/Components
 import { action } from "../../../../redux/build";
 import { useModal } from "../../../../context/Modal";
@@ -35,18 +35,22 @@ export default function BackgroundComponent() {
   return (
     <>
       <div className={styles.title}>Background</div>
-      <div className={styles.bgList}>
+      <div className={styles.list}>
         {Object.values(Backgrounds).map((bg) => (
           <>
             {bg.id != 12 && (
-              <div key={bg.id} className={styles.background}>
+              <div
+                onClick={(e) => onClick(e, bg.id)}
+                key={bg.id}
+                className={styles.item}
+              >
                 <IKImage
-                  onClick={(e) => onClick(e, bg.id)}
                   path={`bg_icons/${bg.name}.png`}
+                  id={styles.bgImg}
                   className={
                     currentBackground === bg.id
-                      ? styles.selected_bgImg
-                      : styles.bgImg
+                      ? styles.selected_img
+                      : styles.img
                   }
                 />
                 {bg.name}
