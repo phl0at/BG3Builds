@@ -10,6 +10,7 @@ import { CiUndo } from "react-icons/ci";
 export default function FilterBuildComponent({ filters, setFilters }) {
   const currentUser = useSelector((state) => state.session.user);
   const [selectedItem, setSelectedItem] = useState({});
+  const types = ["origins", "races", "backgrounds", "classes"];
 
   return (
     <main className={styles.main}>
@@ -44,38 +45,16 @@ export default function FilterBuildComponent({ filters, setFilters }) {
               />
             </>
           )}
-          <Category
-            key={1}
-            type={"origins"}
-            selectedItem={selectedItem}
-            setSelectedItem={setSelectedItem}
-            filters={filters}
-            setFilters={setFilters}
-          />
-          <Category
-            key={2}
-            type={"races"}
-            selectedItem={selectedItem}
-            setSelectedItem={setSelectedItem}
-            filters={filters}
-            setFilters={setFilters}
-          />
-          <Category
-            key={3}
-            type={"backgrounds"}
-            selectedItem={selectedItem}
-            setSelectedItem={setSelectedItem}
-            filters={filters}
-            setFilters={setFilters}
-          />
-          <Category
-            key={4}
-            type={"classes"}
-            selectedItem={selectedItem}
-            setSelectedItem={setSelectedItem}
-            filters={filters}
-            setFilters={setFilters}
-          />
+          {types.map((type, i) => (
+            <Category
+              key={i}
+              type={type}
+              selectedItem={selectedItem}
+              setSelectedItem={setSelectedItem}
+              filters={filters}
+              setFilters={setFilters}
+            />
+          ))}
         </div>
       </div>
     </main>

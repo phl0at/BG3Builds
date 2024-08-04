@@ -9,7 +9,6 @@ import {
 import { useSelector } from "react-redux";
 
 export function UserFilter({ type, filters, setFilters }) {
-
   const label = type[0].toUpperCase() + type.slice(1);
 
   return (
@@ -41,10 +40,9 @@ export function Category({
   filters,
   setFilters,
 }) {
-
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
   const label = type[0].toUpperCase() + type.slice(1);
-  const typeArray = useSelector((state) => state.static[type]);
+  const filterOption = useSelector((state) => state.static[type]);
 
   return (
     <>
@@ -64,39 +62,38 @@ export function Category({
           {label}
         </button>
       </div>
-      {show && (
-        <div className={styles.list}>
-          {Object.values(typeArray).map((element, i) => {
-            const elId = element.class_id ? "class_id" : "id";
-            return (
-              <div key={i}>
-                <button
-                  className={
+
+      <div className={show ? styles.list : styles.hidden}>
+        {Object.values(filterOption).map((element, i) => {
+          const elId = element.class_id ? "class_id" : "id";
+          return (
+            <div key={i}>
+              <button
+                className={
+                  selectedItem[type] === element.name
+                    ? styles.selected
+                    : styles.listItem
+                }
+                onClick={(e) => {
+                  e.preventDefault();
+                  setFilters((prev) =>
+                    filters[type] === element[elId]
+                      ? { ...prev, [type]: null }
+                      : { ...prev, [type]: element[elId] }
+                  );
+                  setSelectedItem((prev) =>
                     selectedItem[type] === element.name
-                      ? styles.selected
-                      : styles.listItem
-                  }
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setFilters((prev) =>
-                      filters[type] === element[elId]
-                        ? { ...prev, [type]: null }
-                        : { ...prev, [type]: element[elId] }
-                    );
-                    setSelectedItem((prev) =>
-                      selectedItem[type] === element.name
-                        ? { ...prev, [type]: null }
-                        : { ...prev, [type]: element.name }
-                    );
-                  }}
-                >
-                  {element.name}
-                </button>
-              </div>
-            );
-          })}
-        </div>
-      )}
+                      ? { ...prev, [type]: null }
+                      : { ...prev, [type]: element.name }
+                  );
+                }}
+              >
+                {element.name}
+              </button>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }
