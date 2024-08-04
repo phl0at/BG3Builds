@@ -32,6 +32,7 @@
 .header {
   display: flex;
   width: 100%;
+  height: 50px;
 }
 .headerButton {
   width: 50px;
@@ -68,7 +69,7 @@
 }
 .infoBody {
   width: 100%;
-  height: 70%;
+  height: 290px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -143,6 +144,11 @@
   width: 85%;
   overflow-y: auto;
 }
+.noComment {
+  font-size: 11pt;
+  position: relative;
+  margin-top: 40%;
+}
 .commentsList {
   display: flex;
   flex-direction: column-reverse;
@@ -155,34 +161,75 @@
 .comment {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   row-gap: 2px;
   padding: 5px;
   background: rgba(3, 3, 3, 0.358);
   border-radius: 5px;
   width: 95%;
-  min-height: 75px;
+  min-height: 100px;
   max-height: 250px;
   overflow-wrap: break-word;
   overflow-y: auto;
 }
+.userName {
+  width: 80%;
+  height: 25px;
+  padding-left: 5px;
+  color: #e69a28;
+}
+.dots {
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+}
+.message {
+  width: 80%;
+  min-height: 50px;
+  padding-left: 10px;
+  padding-top: 7px;
+}
+.edit {
+  padding-left: 6px;
+  width: 90%;
+}
 .commentButtons {
+  position: relative;
+  z-index: 7;
+  border: 2px solid rgb(101, 71, 42);
   display: flex;
-  column-gap: 5px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 5px;
+  padding: 5px;
+  background: rgb(21, 16, 14);
 }
 .form {
   background: rgb(21, 16, 14, 0.92);
-  width: 85%;
   position: relative;
   bottom: 4px;
+  width: 85%;
 }
 .textBox {
   color: #e4c274;
-  background-color: rgba(15, 13, 13, 0.795);
-  width: 300px;
-  height: 25px;
+  background-color: rgba(44, 42, 41, 0.92);
+  width: 100%;
+  min-height: 25px;
+  max-height: 200px;
+  font-size: 13pt;
+  font-family: "Times New Roman", Times, serif;
 }
-
-.userBar {
+.cancel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  font-size: 10pt;
+  color: red;
+}
+.buttonPanel {
   outline: 2px solid rgb(101, 71, 42);
   background: rgb(21, 16, 14, 0.92);
   border-radius: 4px;

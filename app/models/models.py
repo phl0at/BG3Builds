@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
 
     builds = db.relationship("Build", backref="user", cascade="all, delete-orphan")
     favorites = db.relationship("Favorite", back_populates="user", cascade="all, delete-orphan")
-
+    comments = db.relationship("Comment", back_populates="user", cascade="all, delete-orphan")
 
     @property
     def password(self):
@@ -49,10 +49,13 @@ class Comment(db.Model):
     build_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('builds.id')), nullable=False)
     message = db.Column(db.String(140), nullable=False)
 
+    user = db.relationship("User", back_populates="comments")
+
     def to_dict(self):
         return {
             'id': self.id,
             'user_id': self.user_id,
+            'user_name': self.user.username,
             'build_id': self.build_id,
             'message': self.message
         }

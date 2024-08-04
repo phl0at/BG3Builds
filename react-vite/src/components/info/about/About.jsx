@@ -3,17 +3,19 @@ import styles from "../Info.module.css";
 // Functions/Components
 import { getBuildClassArray } from "../../../redux/build";
 // Packages
-import { useSelector } from "react-redux";
-import { CiChat2, CiSquarePlus } from "react-icons/ci";
-import { BsFillHexagonFill   } from "react-icons/bs";
-import { useParams, NavLink } from "react-router-dom";
 
-export default function Information({ setDisplay }) {
+import { useSelector } from "react-redux";
+import { BsFillHexagonFill } from "react-icons/bs";
+import { useParams } from "react-router-dom";
+import { CreateButton, DisplayButton } from "../Button";
+
+export default function AboutBuild({ display, setDisplay }) {
   const { buildId } = useParams();
   const build_classes = useSelector(getBuildClassArray);
   const currentBuild = useSelector((state) => state.builds.current);
   const Backgrounds = useSelector((state) => state.static.backgrounds);
   const Races = useSelector((state) => state.static.races);
+
   const abilities = [
     "Strength",
     "Dexterity",
@@ -26,32 +28,9 @@ export default function Information({ setDisplay }) {
   return (
     <>
       <div className={styles.header}>
-        <div className={styles.headerButton}>
-          {buildId && (
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                setDisplay("Comments");
-              }}
-              title="Comments"
-              className={styles.button}
-            >
-              <CiChat2 size="48" />
-            </button>
-          )}
-        </div>
+        {buildId && <DisplayButton display={display} setDisplay={setDisplay} />}
         <div className={styles.title}>Information</div>
-        <div className={styles.headerButton}>
-          {buildId && (
-            <NavLink
-              title="Create build"
-              className={styles.toCreate}
-              to="/create"
-            >
-              <CiSquarePlus size="50" />
-            </NavLink>
-          )}
-        </div>
+        {buildId && <CreateButton display={display} setDisplay={setDisplay} />}
       </div>
       <div className={styles.mainClass}>
         {build_classes[0] && (
