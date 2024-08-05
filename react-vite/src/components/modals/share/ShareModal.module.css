@@ -33,6 +33,12 @@
   font-size: 12pt;
   column-gap: 8px;
 }
+
+.hidden{
+  font-size: 12pt;
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
 .copied {
   width: 100%;
   display: flex;
@@ -40,7 +46,8 @@
   justify-content: center;
   font-size: 12pt;
   height: 20px;
-  transition: all ease-in-out;
+  opacity: 1;
+  transition: opacity 300ms ease-in;
 }
 
 .codeContainer {

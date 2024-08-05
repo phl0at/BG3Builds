@@ -22,7 +22,7 @@ export default function ShareModal({ code }) {
     if (copied) {
       setTimeout(() => {
         setCopied(false);
-      }, 2500);
+      }, 1500);
     }
   }, [copied]);
 
@@ -44,7 +44,9 @@ export default function ShareModal({ code }) {
       {buildId && (
         <div className={styles.outer}>
           <div className={styles.title}>Export Build</div>
-          <div className={styles.copied}>{copied && "Copied to clipboard"}</div>
+          <div className={copied ? styles.copied : styles.hidden}>
+            Copied to clipboard
+          </div>
           <div className={styles.container}>
             <div className={styles.codeContainer}>
               <div className={styles.code}>{code}</div>

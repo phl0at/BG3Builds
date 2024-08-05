@@ -12,20 +12,20 @@ export function EditMenu({ id, setEditMode, setEditDisplay }) {
   };
 
   return (
-    <div className={styles.commentButtons}>
+    <>
       <button
         onClick={(e) => {
           e.preventDefault();
           setEditMode((prev) => !prev);
-          setEditDisplay(false)
+          setEditDisplay(null);
         }}
         className={styles.button}
       >
         Edit <CiEdit size="18" />
       </button>
       <button onClick={onDelete} className={styles.button}>
-       Delete <CiTrash size="18" />
+        Delete <CiTrash size="18" />
       </button>
-    </div>
+    </>
   );
 }

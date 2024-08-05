@@ -10,7 +10,7 @@ import { BsThreeDots } from "react-icons/bs";
 
 export function Message({ message }) {
   const currentUser = useSelector((state) => state.session.user);
-  const [editDisplay, setEditDisplay] = useState(false);
+  const [editDisplay, setEditDisplay] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [editMessage, setEditMessage] = useState(message.message);
 
@@ -32,17 +32,24 @@ export function Message({ message }) {
           {currentUser?.id === message.user_id && (
             <BsThreeDots
               size="25"
-              onClick={() => setEditDisplay((prev) => !prev)}
+              onClick={() =>
+                setEditDisplay((prev) =>
+                  prev === message.id ? null : message.id
+                )
+              }
             />
           )}
         </div>
-        {editDisplay && (
+
+          <div className={editDisplay === message.id ? styles.commentButtons : styles.hidden}>
+
           <EditMenu
             id={message.id}
             setEditMode={setEditMode}
             setEditDisplay={setEditDisplay}
           />
-        )}
+
+          </div>
       </div>
     </>
   );
