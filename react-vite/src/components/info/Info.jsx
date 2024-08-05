@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 export default function InfoComponent() {
   const currentUser = useSelector((state) => state.session.user);
-  const [display, setDisplay] = useState("Comments");
+  const [display, setDisplay] = useState("Info");
 
   return (
     <main className={styles.main}>
