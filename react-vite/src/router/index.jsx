@@ -1,8 +1,9 @@
 // Files
+import "../index.css";
 // Functions/Components
 import Layout from "./Layout";
 // Packages
-import { PulseLoader } from "react-spinners";
+import { GridLoader } from "react-spinners";
 import { createBrowserRouter } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
@@ -18,7 +19,15 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: (
-          <Suspense fallback={<PulseLoader color="#e4c274" />}>
+          <Suspense
+            fallback={
+              <GridLoader
+                size="30"
+                className="suspense"
+                color="rgb(21, 16, 14, 0.92)"
+              />
+            }
+          >
             <LandingPage />
           </Suspense>
         ),
@@ -26,7 +35,15 @@ export const router = createBrowserRouter([
       {
         path: "/create",
         element: (
-          <Suspense fallback={<PulseLoader color="#e4c274" />}>
+          <Suspense
+            fallback={
+              <GridLoader
+                size="30"
+                className="suspense"
+                color="rgb(21, 16, 14, 0.92)"
+              />
+            }
+          >
             <BuildPage />
           </Suspense>
         ),
@@ -34,7 +51,15 @@ export const router = createBrowserRouter([
       {
         path: "/build/:buildId",
         element: (
-          <Suspense fallback={<PulseLoader color="#e4c274" />}>
+          <Suspense
+            fallback={
+              <GridLoader
+                size="30"
+                className="suspense"
+                color="rgb(21, 16, 14, 0.92)"
+              />
+            }
+          >
             <BuildPage />
           </Suspense>
         ),
@@ -42,7 +67,15 @@ export const router = createBrowserRouter([
       {
         path: "/browse",
         element: (
-          <Suspense fallback={<PulseLoader color="#e4c274" />}>
+          <Suspense
+            fallback={
+              <GridLoader
+                size="30"
+                className="suspense"
+                color="rgb(21, 16, 14, 0.92)"
+              />
+            }
+          >
             <ViewPage />
           </Suspense>
         ),
@@ -50,7 +83,11 @@ export const router = createBrowserRouter([
       {
         path: "/faq",
         element: (
-          <Suspense fallback={<PulseLoader color="#e4c274" />}>
+          <Suspense
+            fallback={
+              <GridLoader size="30" className="suspense" color="#e4c274" />
+            }
+          >
             <FAQPage />
           </Suspense>
         ),
