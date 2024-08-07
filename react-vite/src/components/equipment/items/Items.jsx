@@ -19,6 +19,8 @@ export default function ItemsTableModal({ type }) {
   );
   const formatType = type.split("_")[0];
   const capitalizedType = formatType[0].toUpperCase() + formatType.slice(1);
+  const viewedItem = Equipment[selectedItem];
+  const descriptions = viewedItem?.description.split("&*&");
 
   const onClick = (e, id) => {
     e.preventDefault();
@@ -62,45 +64,58 @@ export default function ItemsTableModal({ type }) {
       {selectedItem && (
         <main className={styles.sideMenu}>
           <div className={styles.sideTable}>
-            <div className={styles.desHead}>
-              <div>Description</div>
-            </div>
-
-            <>
-              <div className={styles.description}>
-                {Equipment[selectedItem].description}
+            <div className={styles.sideInfo}>
+              <div className={styles.desHead}>
+                <div>{viewedItem.name}</div>
               </div>
-              {!currentUser & (buildId != undefined) ? (
-                <div className={styles.buttons}>
-                  Sign in to change Equipment
-                </div>
-              ) : (
-                <div className={styles.buttons}>
-                  {currentBuild[type] !== selectedItem && (
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        dispatch(equipItem(type, selectedItem));
-                      }}
-                      className={styles.equip}
-                    >
-                      Equip
-                    </button>
-                  )}
-                  {currentBuild[type] === selectedItem && (
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        dispatch(action("build/remove", type));
-                      }}
-                      className={styles.equip}
-                    >
-                      Remove
-                    </button>
-                  )}
+              <div className={styles.rarity}>{viewedItem.rarity}</div>
+              {viewedItem.damage_type != null && (
+                <div className={styles.damage_type}>
+                  {viewedItem.damage_type} weapon
                 </div>
               )}
-            </>
+              {viewedItem.damage != null && (
+                <div className={styles.damage}>
+                  Damage | {viewedItem.damage}
+                </div>
+              )}
+            </div>
+            {descriptions.length > 1 ? (
+              <>
+                <div className={styles.description}>{descriptions[0]}</div>
+                <div className={styles.description}>{descriptions[1]}</div>
+              </>
+            ) : (
+              <div className={styles.description}>{descriptions[0]}</div>
+            )}
+            {!currentUser & (buildId != undefined) ? (
+              <div className={styles.buttons}>Sign in to change Equipment</div>
+            ) : (
+              <div className={styles.buttons}>
+                {currentBuild[type] !== selectedItem && (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(equipItem(type, selectedItem));
+                    }}
+                    className={styles.equip}
+                  >
+                    Equip
+                  </button>
+                )}
+                {currentBuild[type] === selectedItem && (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(action("build/remove", type));
+                    }}
+                    className={styles.equip}
+                  >
+                    Remove
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         </main>
       )}

@@ -119,58 +119,558 @@ def seed_all():
 
     ################ SEED EQUIPMENT ################
     equip_list = [
-        { 'id': 1, 'type': 'helmet', 'name': 'Haste Helm', 'rarity': 'Rare Light Armour', 'description': 'Smooth Start: At the start of combat, the wearer gains Momentum for 3 turns.', 'modifiers': 'Movement:3' },
-        { 'id': 2, 'type': 'cloak', 'name': 'Cloak of Protection', 'rarity': 'Uncommon Cloak', 'description': 'A very protective cloak.', 'modifiers': None },
-        { 'id': 3, 'type': 'armor', 'name': 'Leather Armour', 'rarity': 'Common Light Armour', 'description': 'A worn-out leather cuirass.', 'modifiers': None },
-        { 'id': 4, 'type': 'gloves', 'name': 'Gloves of Dexterity', 'rarity': 'Very Rare Clothing', 'description': "Set the wearer's Dexterity score to 18. This enchantment has no effect if their Dexterity is higher without it.", 'modifiers': 'Dexterity:=18, Attack:1' },
-        { 'id': 5, 'type': 'boots', 'name': 'Drow Leather Boots', 'rarity': 'Common Clothing', 'description': 'Old boots nicked from a dead Drow.', 'modifiers': None  },
-        { 'id': 6, 'type': 'amulet', 'name': 'Amulet of Bhaal', 'rarity': 'Legendary Amulet', 'description': 'First Blood: On a hit, inflict Bleeding upon targets that have maximum Hit Points.', 'modifiers': None  },
-        { 'id': 7, 'type': 'ring', 'name': 'Caustic Band', 'rarity': 'Very Rare Ring', 'description': 'Malefic Excretion: Your weapon attacks also deal 2 Acid damage.', 'modifiers': 'Damage:2' },
-        { 'id': 8, 'type': 'ring', 'name': 'Callous Glow Ring', 'rarity': 'Uncommon Ring', 'description': 'Callous Glow: The wearer deals an additional 2 points of Radiant damage against creatures that are illuminated.', 'modifiers': 'Damage:2' },
-        { 'id': 9, 'type': 'melee', 'name': 'Club of Hill Giant Strength', 'rarity': 'Uncommon Club', 'description': "Splinters of a Giant's Might: Increase Strength to 19.", 'modifiers': 'Strength:=19', 'damage': 'Bludgeoning:1-4', 'damage_bonus': 0, 'class': 'Strength' },
-        { 'id': 10, 'type': 'melee', 'name': "Assassin's Touch", 'rarity': 'Unommon Dagger +1', 'description': 'Deathly Slumber: Deals an additional 1d4 Necrotic damage to creatures that are Knocked out or Sleeping.', 'modifiers': None, 'damage': 'Piercing:1-4', 'damage_bonus': 0, 'class': 'Dexterity'},
-        { 'id': 11, 'type': 'ranged', 'name': 'Titanstring Bow', 'rarity': 'Rare Longbow +1', 'description': 'Titan Weapon: This weapon deals additional damage equal to your Strength Modifier.', 'modifiers': 'Damage:strmod', 'damage': 'Piercing:1-4', 'damage_bonus': 1, 'class': 'Dexterity' },
-        { 'id': 12, 'type': 'helmet', 'name': 'Diadem of Arcane Synergy', 'rarity': 'Uncommon Clothing', 'description': 'Synergetic Moments: When you inflict a condition, gain Arcane Synergy for 2 turns.', 'modifiers': 'Arcane Synergy'},
-        { 'id': 13, 'type': 'helmet', 'name': 'Mask of Soul Perception', 'rarity': 'Very Rare Clothing', 'description': 'Soul Perception: Gain a +2 bonus to Attack rolls, Initiative Rolls, and Perception Checks.', 'modifiers': 'Detect Thoughts'},
-        { 'id': 14, 'type': 'helmet', 'name': 'Birthright', 'rarity': 'Very Rare Clothing', 'description': 'Everyone looks better in a pointy hat.', 'modifiers': 'Charisma:2'},
-        { 'id': 15, 'type': 'helmet', 'name': 'Circlet of Hunting', 'rarity': 'Very Rare Clothing', 'description': "Hunter's Eye: You gain a +1d4 bonus to Attack rolls against creatures marked by Hunter's Mark, True Strike, Faerie Fire, or Guiding Bolt.", 'modifiers': 'Attack:1-4'},
-        { 'id': 16, 'type': 'cloak', 'name': 'The Deathstalker Mantle', 'rarity': 'Rare Cloak', 'description': 'The Shadow Itself: Once per turn when you kill an enemy, shroud yourself in primaeval darkness to become Invisible for 2 turns.', 'modifiers': None},
-        { 'id': 17, 'type': 'cloak', 'name': 'Shade Slayer Cloak', 'rarity': 'Very Rare Cloak', 'description': 'Stealthy Critical: While Hiding, the number you need to roll a Critical Hit while attacking is reduced by 1. This effect can stack.', 'modifiers': None},
-        { 'id': 18, 'type': 'cloak', 'name': 'Cindermoth Cloak', 'rarity': 'Uncommon Cloak', 'description': 'Flaming Shroud: A creature that damages the wearer within 2m / 7ft receives Burning.', 'modifiers': None},
-        { 'id': 19, 'type': 'cloak', 'name': 'Reverse Rain Cloak', 'rarity': 'Uncommon Cloak', 'description': 'Wet.', 'modifiers': None},
-        { 'id': 20, 'type': 'armor', 'name': 'Yuan Ti Scale Mail', 'rarity': 'Rare Medium Armor', 'description': 'Exotic Material: Add your full Dexterity Modifier to your Armour Class. Additionally, this armour does not impose Disadvantage on Stealth Ability Checks.', 'modifiers': 'Initiative:1'},
-        { 'id': 21, 'type': 'armor', 'name': 'Bhaalist Armor', 'rarity': 'Very Rare Light Armor', 'description': 'Aura of Murder: Enemies within 2m / 6.5ft become Vulnerable to Piercing damage, unless they are Resistant or Immune to it.', 'modifiers': 'Initiative:2'},
-        { 'id': 22, 'type': 'armor', 'name': 'Dark Justiciar Half Plate', 'rarity': 'Rare Medium Armor', 'description': "Shar's Umbrae: While obscured, the wearer has Advantage on Stealth Checks. Additionally, gain advantage on Constitution Saving Throws", 'modifiers': "Shar's Aegis"},
-        { 'id': 23, 'type': 'armor', 'name': 'Helldusk Armour', 'rarity': 'Legendary Heavy Armor', 'description': "Infernal Retribution & Prime Aegis of Fire: When you succeed a Saving Throw, the caster receives Burning for 3 turns & you have Resistance to Fire damage and cannot be Burned. Additionally, you are considered Proficient with this armor while wearing it and you take 3 less damage from all sources.", 'modifiers': "Fly"},
-        { 'id': 24, 'type': 'gloves', 'name': 'Bhaalist Gloves', 'rarity': 'Very Rare Clothing', 'description': "Garrotte: Wrap a shadow rope around a Humanoid creature's throat to deal 1d10 Bludgeoning damage and start Garrotting it (DC 14 Strength saving throw to avoid becoming Garrotted for 3 turns).", 'modifiers': "Attack:1"},
-        { 'id': 25, 'type': 'gloves', 'name': 'Craterflesh Gloves', 'rarity': 'Rare Clothing', 'description': "Craterous Wounds: Whenever you score a Critical Hit, deal an additional 1d6 Force damage.", 'modifiers': "Damage:1-6"},
-        { 'id': 26, 'type': 'gloves', 'name': 'Dark Justiciar Gauntlets', 'rarity': 'Uncommon Clothing', 'description': "Umbral Attack: Your weapon attacks deal an additional 1d4 Necrotic damage.", 'modifiers': "Damage:1-4"},
-        { 'id': 27, 'type': 'gloves', 'name': 'Gloves of Archery', 'rarity': 'Uncommon Clothing', 'description': "Corellon's Guiding Hand: You gain Proficiency with Longbows and Shortbows. Additionally, your ranged weapon attacks deal +2 damage.", 'modifiers': "Damage:2"},
-        { 'id': 28, 'type': 'boots', 'name': 'Boots of Stormy Clamour', 'rarity': 'Uncommon Clothing', 'description': "Arcane Echomalefaction: When the wearer inflicts a condition upon a hostile creature, they also inflict 2 turns of Reverberation.", 'modifiers': "Reverberation"},
-        { 'id': 29, 'type': 'boots', 'name': 'Dark Justiciar Boots', 'rarity': 'Rare Medium Armor', 'description': "Shadow Teleportation: Teleport to an unoccupied, obscured spot.", 'modifiers': None},
-        { 'id': 30, 'type': 'boots', 'name': 'Disintegrating Night Walkers', 'rarity': 'Very Rare Clothing', 'description': "Night Walker: Can't be Enwebbed, Entangled, or Ensnared and can't slip on Grease or Ice.", 'modifiers': "Misty Step"},
-        { 'id': 31, 'type': 'boots', 'name': 'Boots of Persistence', 'rarity': 'Very Rare Medium Armor', 'description': "Legendary Mobility: You gain Freedom of Movement and Longstrider.", 'modifiers': None},
-        { 'id': 32, 'type': 'melee', 'name': 'Knife of the Undermountain King', 'rarity': 'Very Rare Shortsword +2', 'description': 'Organ Rearranger & Shadow Blade: Reduce the number you need to roll a Critical Hit while attacking by 1. When you roll 2 damage or less, reroll the dice, taking the highest result & you have Advantage on Attack rolls against Lightly or Heavily Obscured targets when using this blade.', 'modifiers': None, 'damage': 'Piercing:1-6', 'damage_bonus': 2, 'class': 'Dexterity'},
-        { 'id': 33, 'type': 'melee', 'name': "Balduran's Giantslayer", 'rarity': 'Legendary Greatsword +3', 'description': 'Giantslayer: On a hit, double the damage from your Strength modifier. This weapon grants you Advantage on Attack rolls against Large, Huge or Gargantuan creatures.', 'modifiers': 'Giantslayer, Damage:strmod', 'damage': 'Slashing:2-12', 'damage_bonus': 3, 'class': 'Strength'},
-        { 'id': 34, 'type': 'melee', 'name': 'Poo Scraper', 'rarity': 'Common', 'description': 'This thing smells funny...', 'modifiers': None, 'damage': 'Piercing:1-4', 'damage_bonus': 0, 'class': 'Dexterity'},
-        { 'id': 35, 'type': 'amulet', 'name': 'Amulet of the Harpers', 'rarity': 'Rare Amulet', 'description': 'Advantage with Wisdom Saving Throws.', 'modifiers': 'Shield'  },
-        { 'id': 36, 'type': 'amulet', 'name': 'Periapt of Wound Closure', 'rarity': 'Rare Amulet', 'description': 'Wound Closure & Potent Healing: When Downed, automatically stabilize at the start of the turn & maximize the number of Hit Points restored.', 'modifiers': None  },
-        { 'id': 37, 'type': 'amulet', 'name': 'Amulet of Greater Health', 'rarity': 'Very Rare Amulet', 'description': "Set the wearer's Constitution score to 23. The enchantment ahs no effect if their Constitution score is higher without it. Additionally, gain Advantage on Constitution Saving Throws.", 'modifiers': 'Constitution:=23'  },
-        { 'id': 38, 'type': 'amulet', 'name': 'Amulet of the Devout', 'rarity': 'Very Rare Amulet', 'description': "High Spellcasting & Godswill: You gain a 2 bonus to Spell Save DC & you gain an additional use of Channel Divinity.", 'modifiers': 'Godswill'  },
-        { 'id': 39, 'type': 'ring', 'name': "Killer's Sweetheart", 'rarity': 'Very Rare Ring', 'description': 'Executioner: When you kill a creature, your next Attack roll will be a Critical Hit. This can only happen once per long rest.', 'modifiers': None },
-        { 'id': 40, 'type': 'ring', 'name': 'Ring of Arcane Synergy', 'rarity': 'Rare Ring', 'description': 'Synergetic Cantrip: When you deal damage with a Cantrip, you gain Arcane Synergy for 2 turns.', 'modifiers': 'Arcane Synergy'},
-        { 'id': 41, 'type': 'ring', 'name': 'Ring of Free Action', 'rarity': 'Rare Ring', 'description': 'Unwavering: You ignore the effects of Difficult Terrain, and cannot be Paralyzed or Restrained.', 'modifiers': None},
-        { 'id': 42, 'type': 'ranged', 'name': 'Gontr Mael', 'rarity': 'Legendary Longbow +3', 'description': 'Promised Victory & Gontr Mael: On a hit, possibly inflict Guiding Bolt upon the target & this object shines with a glowing light radius of 6m / 20ft.', 'modifiers': 'Haste', 'damage': 'Piercing:1-8', 'damage_bonus': 3, 'class': 'Dexterity' },
-        { 'id': 43, 'type': 'ranged', 'name': 'Hellfire Hand Crossbow', 'rarity': 'Very Rare Hand Crossbow +2', 'description': 'Hellstalker: Possibly inflict Burning when attacking while Hiding or Invisible.', 'modifiers': 'Scorching Ray', 'damage': 'Piercing:1-6', 'damage_bonus': 2, 'class': 'Dexterity' },
-        { 'id': 44, 'type': 'ranged', 'name': "Ne'er Misser", 'rarity': 'Rare Hand Crossbow +1', 'description': 'Attacks with this weapon deal Force damage.', 'modifiers': 'Magic Missile', 'damage': 'Force:1-6', 'damage_bonus': 1, 'class': 'Dexterity' },
-        { 'id': 45, 'type': 'ranged', 'name': 'Blightbringer', 'rarity': 'Very Rare Shortbow +1', 'description': 'Blightbringer & Prey Decelerator: Attacking Gnomes or Dwarves with this weapon receives a 1d4 bonus to Attack and Damage rolls & When this weapon lands a Critical Hit, it also Slows the target.', 'modifiers': 'Blightbringer,Prey Decelerator', 'damage': 'Piercing:1-6', 'damage_bonus': 1, 'class': 'Dexterity' },
+        {
+         'id': 1,
+         'type': 'helmet',
+         'name': 'Haste Helm',
+         'rarity': 'Rare Light Armour',
+         'description': 'Smooth Start: At the start of combat, the wearer gains Momentum for 3 turns.',
+         'modifiers': 'Movement:3',
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 2,
+         'type': 'cloak',
+         'name': 'Cloak of Protection',
+         'rarity': 'Uncommon Cloak',
+         'description': 'Grants a +1 bonus to Armor Class and Saving Throw.',
+         'modifiers': None,
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 3,
+         'type': 'armor',
+         'name': 'Leather Armour',
+         'rarity': 'Common Light Armour',
+         'description': 'A worn-out leather cuirass.',
+         'modifiers': None,
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 4,
+         'type': 'gloves',
+         'name': 'Gloves of Dexterity',
+         'rarity': 'Very Rare Clothing',
+         'description': "Set the wearer's Dexterity score to 18. This enchantment has no effect if their Dexterity is higher without it.",
+         'modifiers': 'Dexterity:=18, Attack:1',
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 5,
+         'type': 'boots',
+         'name': 'Drow Leather Boots',
+         'rarity': 'Common Clothing',
+         'description': 'Old boots nicked from a dead Drow.',
+         'modifiers': None,
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 6,
+         'type': 'amulet',
+         'name': 'Amulet of Bhaal',
+         'rarity': 'Legendary Amulet',
+         'description': 'First Blood: On a hit, inflict Bleeding upon targets that have maximum Hit Points.',
+         'modifiers': None,
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 7,
+         'type': 'ring',
+         'name': 'Caustic Band',
+         'rarity': 'Very Rare Ring',
+         'description': 'Malefic Excretion: Your weapon attacks also deal 2 Acid damage.',
+         'modifiers': 'Damage:2',
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 8,
+         'type': 'ring',
+         'name': 'Callous Glow Ring',
+         'rarity': 'Uncommon Ring',
+         'description': 'Callous Glow: The wearer deals an additional 2 points of Radiant damage against creatures that are illuminated.',
+         'modifiers': 'Damage:2',
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 9,
+         'type': 'melee',
+         'name': 'Club of Hill Giant Strength',
+         'rarity': 'Uncommon Club',
+         'description': "Splinters of a Giant's Might: Increase Strength to 19.",
+         'modifiers': 'Strength:=19',
+         'damage': 'Bludgeoning:1-4',
+         'damage_bonus': 0,
+         'damage_type': 'Strength'
+        },
+
+        {
+         'id': 10,
+         'type': 'melee',
+         'name': "Assassin's Touch",
+         'rarity': 'Unommon Dagger +1',
+         'description': 'Deathly Slumber: Deals an additional 1d4 Necrotic damage to creatures that are Knocked out or Sleeping.',
+         'modifiers': None,
+         'damage': 'Piercing:1-4',
+         'damage_bonus': 0,
+         'damage_type': 'Dexterity',
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 11,
+         'type': 'ranged',
+         'name': 'Titanstring Bow',
+         'rarity': 'Rare Longbow +1',
+         'description': 'Titan Weapon: This weapon deals additional damage equal to your Strength Modifier.',
+         'modifiers': 'Damage:strmod',
+         'damage': 'Piercing:1-4',
+         'damage_bonus': 1,
+         'damage_type': 'Dexterity'
+        },
+
+        {
+         'id': 12,
+         'type': 'helmet',
+         'name': 'Diadem of Arcane Synergy',
+         'rarity': 'Uncommon Clothing',
+         'description': 'Synergetic Moments: When you inflict a condition, gain Arcane Synergy for 2 turns.',
+         'modifiers': 'Arcane Synergy',
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 13,
+         'type': 'helmet',
+         'name': 'Mask of Soul Perception',
+         'rarity': 'Very Rare Clothing',
+         'description': 'Soul Perception: Gain a +2 bonus to Attack rolls, Initiative Rolls, and Perception Checks.',
+         'modifiers': 'Detect Thoughts',
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 14,
+         'type': 'helmet',
+         'name': 'Birthright',
+         'rarity': 'Very Rare Clothing',
+         'description': 'Everyone looks better in a pointy hat.',
+         'modifiers': 'Charisma:2',
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 15,
+         'type': 'helmet',
+         'name': 'Circlet of Hunting',
+         'rarity': 'Very Rare Clothing',
+         'description': "Hunter's Eye: You gain a +1d4 bonus to Attack rolls against creatures marked by Hunter's Mark, True Strike, Faerie Fire, or Guiding Bolt.",
+         'modifiers': 'Attack:1-4',
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 16,
+         'type': 'cloak',
+         'name': 'The Deathstalker Mantle',
+         'rarity': 'Rare Cloak',
+         'description': 'The Shadow Itself: Once per turn when you kill an enemy, shroud yourself in primaeval darkness to become Invisible for 2 turns.',
+         'modifiers': None,
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 17,
+         'type': 'cloak',
+         'name': 'Shade Slayer Cloak',
+         'rarity': 'Very Rare Cloak',
+         'description': 'Stealthy Critical: While Hiding, the number you need to roll a Critical Hit while attacking is reduced by 1. This effect can stack.',
+         'modifiers': None,
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 18,
+         'type': 'cloak',
+         'name': 'Cindermoth Cloak',
+         'rarity': 'Uncommon Cloak',
+         'description': 'Flaming Shroud: A creature that damages the wearer within 2m / 7ft receives Burning.',
+         'modifiers': None,
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 19,
+         'type': 'cloak',
+         'name': 'Reverse Rain Cloak',
+         'rarity': 'Uncommon Cloak',
+         'description': 'Wet.',
+         'modifiers': None,
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 20,
+         'type': 'armor',
+         'name': 'Yuan Ti Scale Mail',
+         'rarity': 'Rare Medium Armor',
+         'description': 'Exotic Material: Add your full Dexterity Modifier to your Armour Class. Additionally, this armour does not impose Disadvantage on Stealth Ability Checks.',
+         'modifiers': 'Initiative:1',
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 21,
+         'type': 'armor',
+         'name': 'Bhaalist Armor',
+         'rarity': 'Very Rare Light Armor',
+         'description': 'Aura of Murder: Enemies within 2m / 6.5ft become Vulnerable to Piercing damage, unless they are Resistant or Immune to it.',
+         'modifiers': 'Initiative:2',
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 22,
+         'type': 'armor',
+         'name': 'Dark Justiciar Half Plate',
+         'rarity': 'Rare Medium Armor',
+         'description': "Shar's Umbrae: While obscured, the wearer has Advantage on Stealth Checks. Additionally, gain advantage on Constitution Saving Throws",
+         'modifiers': "Shar's Aegis",
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 23,
+         'type': 'armor',
+         'name': 'Helldusk Armour',
+         'rarity': 'Legendary Heavy Armor',
+         'description': "Infernal Retribution: When you succeed a Saving Throw, the caster receives Burning for 3 turns &*& Prime Aegis of Fire: You have Resistance to Fire damage and cannot be Burned. Additionally, you are considered Proficient with this armor while wearing it and you take 3 less damage from all sources.",
+         'modifiers': "Fly",
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 24,
+         'type': 'gloves',
+         'name': 'Bhaalist Gloves',
+         'rarity': 'Very Rare Clothing',
+         'description': "Garrotte: Wrap a shadow rope around a Humanoid creature's throat to deal 1d10 Bludgeoning damage and start Garrotting it (DC 14 Strength saving throw to avoid becoming Garrotted for 3 turns).",
+         'modifiers': "Attack:1",
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 25,
+         'type': 'gloves',
+         'name': 'Craterflesh Gloves',
+         'rarity': 'Rare Clothing',
+         'description': "Craterous Wounds: Whenever you score a Critical Hit, deal an additional 1d6 Force damage.",
+         'modifiers': "Damage:1-6",
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 26,
+         'type': 'gloves',
+         'name': 'Dark Justiciar Gauntlets',
+         'rarity': 'Uncommon Clothing',
+         'description': "Umbral Attack: Your weapon attacks deal an additional 1d4 Necrotic damage.",
+         'modifiers': "Damage:1-4",
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 27,
+         'type': 'gloves',
+         'name': 'Gloves of Archery',
+         'rarity': 'Uncommon Clothing',
+         'description': "Corellon's Guiding Hand: You gain Proficiency with Longbows and Shortbows. Additionally, your ranged weapon attacks deal +2 damage.",
+         'modifiers': "Damage:2",
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 28,
+         'type': 'boots',
+         'name': 'Boots of Stormy Clamour',
+         'rarity': 'Uncommon Clothing',
+         'description': "Arcane Echomalefaction: When the wearer inflicts a condition upon a hostile creature, they also inflict 2 turns of Reverberation.",
+         'modifiers': "Reverberation",
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 29,
+         'type': 'boots',
+         'name': 'Dark Justiciar Boots',
+         'rarity': 'Rare Medium Armor',
+         'description': "Shadow Teleportation: Teleport to an unoccupied, obscured spot.",
+         'modifiers': None,
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 30,
+         'type': 'boots',
+         'name': 'Disintegrating Night Walkers',
+         'rarity': 'Very Rare Clothing',
+         'description': "Night Walker: Can't be Enwebbed, Entangled, or Ensnared and can't slip on Grease or Ice.",
+         'modifiers': "Misty Step",
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 31,
+         'type': 'boots',
+         'name': 'Boots of Persistence',
+         'rarity': 'Very Rare Medium Armor',
+         'description': "Legendary Mobility: You gain Freedom of Movement and Longstrider.",
+         'modifiers': None,
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 32,
+         'type': 'melee',
+         'name': 'Knife of the Undermountain King',
+         'rarity': 'Very Rare Shortsword +2',
+         'description': 'Organ Rearranger: Reduce the number you need to roll a Critical Hit while attacking by 1. When you roll 2 damage or less, reroll the dice, taking the highest result &*& Shadow Blade: You have Advantage on Attack rolls against Lightly or Heavily Obscured targets when using this blade.',
+         'modifiers': None,
+         'damage': 'Piercing:1-6',
+         'damage_bonus': 2,
+         'damage_type': 'Dexterity'
+        },
+
+        {
+         'id': 33,
+         'type': 'melee',
+         'name': "Balduran's Giantslayer",
+         'rarity': 'Legendary Greatsword +3',
+         'description': 'Giantslayer: On a hit, double the damage from your Strength modifier. This weapon grants you Advantage on Attack rolls against Large, Huge or Gargantuan creatures.',
+         'modifiers': 'Giantslayer, Damage:strmod',
+         'damage': 'Slashing:2-12',
+         'damage_bonus': 3,
+         'damage_type': 'Strength'
+        },
+
+        {
+         'id': 34,
+         'type': 'melee',
+         'name': 'Poo Scraper',
+         'rarity': 'Common',
+         'description': 'This thing smells funny...',
+         'modifiers': None,
+         'damage': 'Piercing:1-4',
+         'damage_bonus': 0,
+         'damage_type': 'Dexterity'
+        },
+
+        {
+         'id': 35,
+         'type': 'amulet',
+         'name': 'Amulet of the Harpers',
+         'rarity': 'Rare Amulet',
+         'description': 'Advantage with Wisdom Saving Throws.',
+         'modifiers': 'Shield',
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 36,
+         'type': 'amulet',
+         'name': 'Periapt of Wound Closure',
+         'rarity': 'Rare Amulet',
+         'description': 'Wound Closure: When Downed, automatically stabilize at the start of the turn &*& Potent Healing: Maximize the number of Hit Points restored.',
+         'modifiers': None,
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 37,
+         'type': 'amulet',
+         'name': 'Amulet of Greater Health',
+         'rarity': 'Very Rare Amulet',
+         'description': "Set the wearer's Constitution score to 23. The enchantment has no effect if their Constitution score is higher without it. Additionally, gain Advantage on Constitution Saving Throws.",
+         'modifiers': 'Constitution:=23',
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 38,
+         'type': 'amulet',
+         'name': 'Amulet of the Devout',
+         'rarity': 'Very Rare Amulet',
+         'description': "High Spellcasting: You gain a 2 bonus to Spell Save DC &*& Godswill: You gain an additional use of Channel Divinity.",
+         'modifiers': 'Godswill',
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 39,
+         'type': 'ring',
+         'name': "Killer's Sweetheart",
+         'rarity': 'Very Rare Ring',
+         'description': 'Executioner: When you kill a creature, your next Attack roll will be a Critical Hit. This can only happen once per long rest.',
+         'modifiers': None,
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 40,
+         'type': 'ring',
+         'name': 'Ring of Arcane Synergy',
+         'rarity': 'Rare Ring',
+         'description': 'Synergetic Cantrip: When you deal damage with a Cantrip, you gain Arcane Synergy for 2 turns.',
+         'modifiers': 'Arcane Synergy',
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 41,
+         'type': 'ring',
+         'name': 'Ring of Free Action',
+         'rarity': 'Rare Ring',
+         'description': 'Unwavering: You ignore the effects of Difficult Terrain, and cannot be Paralyzed or Restrained.',
+         'modifiers': None,
+         'damage': None,
+         'damage_bonus': None,
+         'damage_type': None
+        },
+
+        {
+         'id': 42,
+         'type': 'ranged',
+         'name': 'Gontr Mael',
+         'rarity': 'Legendary Longbow +3',
+         'description': 'Promised Victory: On a hit, possibly inflict Guiding Bolt upon the target &*& Gontr Mael: This object shines with a glowing light radius of 6m / 20ft.',
+         'modifiers': 'Haste',
+         'damage': 'Piercing:1-8',
+         'damage_bonus': 3,
+         'damage_type': 'Dexterity'
+        },
+
+        {
+         'id': 43,
+         'type': 'ranged',
+         'name': 'Hellfire Hand Crossbow',
+         'rarity': 'Very Rare Hand Crossbow +2',
+         'description': 'Hellstalker: Possibly inflict Burning when attacking while Hiding or Invisible.',
+         'modifiers': 'Scorching Ray',
+         'damage': 'Piercing:1-6',
+         'damage_bonus': 2,
+         'damage_type': 'Dexterity'
+        },
+
+        {
+         'id': 44,
+         'type': 'ranged',
+         'name': "Ne'er Misser",
+         'rarity': 'Rare Hand Crossbow +1',
+         'description': 'Attacks with this weapon deal Force damage.',
+         'modifiers': 'Magic Missile',
+         'damage': 'Force:1-6',
+         'damage_bonus': 1,
+         'damage_type': 'Dexterity'
+        },
+
+        {
+         'id': 45,
+         'type': 'ranged',
+         'name': 'Blightbringer',
+         'rarity': 'Very Rare Shortbow +1',
+         'description': 'Blightbringer: Attacking Gnomes or Dwarves with this weapon receives a 1d4 bonus to Attack and Damage rolls &*& Prey Decelerator: When this weapon lands a Critical Hit, it also Slows the target.',
+         'modifiers': 'Blightbringer,Prey Decelerator',
+         'damage': 'Piercing:1-6',
+         'damage_bonus': 1,
+         'damage_type': 'Dexterity'
+        },
     ]
     for item in equip_list:
         gear = Equipment(
             id=item['id'],
             type=item['type'],
             name=item['name'],
+            rarity=item['rarity'],
             description=item['description'],
+            damage=item['damage'],
+            damage_type=item['damage_type']
         )
         db.session.add(gear)
 

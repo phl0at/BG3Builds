@@ -289,12 +289,20 @@ class Equipment(db.Model):
     type = db.Column(db.String(6), db.Enum("helmet", "cloak", "armor", "gloves",
                                          "boots", "amulet", "ring", "melee", "ranged"), nullable=False)
     name = db.Column(db.String(50), nullable=False, unique=True)
+    rarity = db.Column(db.String(50), nullable=True)
     description = db.Column(db.String(500), nullable=True, unique=True)
+    modifiers = db.Column(db.String(100), nullable=True)
+    damage = db.Column(db.String(50), nullable=True)
+    damage_type = db.Column(db.String(20), nullable=True)
 
     def to_dict(self):
         return {
             'id': self.id,
             'type': self.type,
             'name': self.name,
-            'description': self.description
+            'rarity': self.rarity,
+            'description': self.description,
+            'modifiers': self.modifiers,
+            'damage': self.damage,
+            'damage_type': self.damage_type
         }
