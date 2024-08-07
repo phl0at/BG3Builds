@@ -15,7 +15,7 @@
   justify-content: center;
   outline: 3px solid rgb(101, 71, 42);
   overflow-y: auto;
-  background: rgba(21, 16, 14, 0.95);
+  background: rgba(17, 13, 12, 0.96);
 }
 .container {
   height: 95%;
@@ -69,11 +69,6 @@ p {
   -o-animation: fadeIn 0.5s;
   -ms-animation: fadeIn 0.5s;
 }
-
-
-
-
-
 
 /*
 FADE-IN ANIMATIONS !!!!!!!!!!!

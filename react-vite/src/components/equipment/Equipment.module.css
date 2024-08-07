@@ -12,7 +12,7 @@
   height: 93%;
   gap: 20px;
   overflow-y: auto;
-  background: rgb(21, 16, 14, 0.92);
+  background: rgba(17, 13, 12, 0.965);
 }
 
 .title {
@@ -55,7 +55,7 @@
   border-radius: 4px;
   height: 150px;
   width: 120px;
-  background-color: rgba(17, 13, 12, 0.65);
+  background-color: rgba(17, 13, 12, 0.98);
 }
 
 .armorClass > span {

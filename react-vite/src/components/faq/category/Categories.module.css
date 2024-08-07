@@ -9,18 +9,19 @@
   width: 10%;
   height: 93%;
   outline: 2px solid rgb(101, 71, 42);
-  background: rgb(21, 16, 14, 0.92);
+  background: rgba(17, 13, 12, 0.965);
   border-radius: 4px;
   overflow-y: auto;
 }
 
 .title {
-  font-size: 16pt;
-  width: 90%;
-  height: 8%;
+  font-size: 17pt;
+  width: 85%;
+  height: 40px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-left: 15px;
   color: #e69a28;
 }
 

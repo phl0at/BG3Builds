@@ -9,11 +9,11 @@
   min-height: 615px;
   width: 30%;
   height: 93%;
-  gap: 10px;
+  gap: 15px;
   overflow-x: hidden;
   overflow-y: auto;
   outline: 2px solid rgb(101, 71, 42);
-  background: rgb(21, 16, 14, 0.92);
+  background: rgba(17, 13, 12, 0.965);
 }
 .main > * {
   animation: fadeIn 0.5s;
@@ -147,6 +147,11 @@
   outline: 2px solid rgb(101, 71, 42);
   background-color: rgba(17, 13, 12, 0.78);
   border-radius: 4px;
+  transition: all 0.3s;
+}
+.addButton:hover{
+  background: none;
+  color: #e69a28;
 }
 .buildClassList {
   width: 90%;

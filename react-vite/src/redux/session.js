@@ -130,7 +130,6 @@ function sessionReducer(state = initialState, action) {
         (favorite) => (favorites[favorite.build_id] = favorite)
       );
       newState.user.favorites = { ...favorites };
-
       return newState;
     }
 
@@ -152,7 +151,7 @@ function sessionReducer(state = initialState, action) {
         ...state,
         user: { ...state.user, favorites: { ...state.user.favorites } },
       };
-      delete newState.user.favorites[action.payload]
+      delete newState.user.favorites[action.payload];
       return newState;
     }
 

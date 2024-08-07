@@ -1,29 +1,29 @@
 //Files
 import styles from "./DeleteModal.module.css";
 //Functions/Components
-import { thunkDeleteBuild } from "../../../redux/build";
 import { useModal } from "../../../context/Modal";
 import ErrorModal from "../error/ErrorModal";
 //Packages
 import { CiCircleCheck, CiCircleRemove } from "react-icons/ci";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-export default function DeleteBuildModal() {
+export default function DeleteModal({ thunk, title, id }) {
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
-  const currentBuildId = useSelector((state) => state.builds.current.id);
   const { closeModal, setModalContent } = useModal();
 
   const deleteClick = async (e) => {
     e.preventDefault();
 
-    const serverResponse = await dispatch(thunkDeleteBuild(currentBuildId));
+    const serverResponse = await dispatch(thunk(id));
 
     if (!serverResponse.status === 200) {
       setModalContent(<ErrorModal errors={serverResponse} />);
     } else {
-      navigateTo("/create");
+      if (title === "BUILD") {
+        navigateTo("/create");
+      }
       closeModal();
     }
   };
@@ -35,7 +35,7 @@ export default function DeleteBuildModal() {
 
   return (
     <main className={styles.main}>
-      <span className={styles.title}>DELETE BUILD</span>
+      <span className={styles.title}>{`DELETE ${title}`}</span>
       <span className={styles.confirm}>Are you sure?</span>
       <div className={styles.buttons}>
         <button onClick={deleteClick}>

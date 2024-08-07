@@ -15,7 +15,7 @@
 }
 .links {
   position: absolute;
-  right: 1%;
+  right: 10px;
 }
 
 .buildName {
@@ -30,7 +30,7 @@
 
 .userButtons {
   position: relative;
-  right: 5%;
+  margin-right: 70px;
   display: flex;
   column-gap: 8px;
 }

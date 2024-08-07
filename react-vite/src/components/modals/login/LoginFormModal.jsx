@@ -26,7 +26,6 @@ function LoginFormModal({ setLoading }) {
     } else if (!validTLDs.includes(emailTLD)) {
       setErrors("Email must end in .com, .net, .mil, .org, or .edu");
     } else {
-
       setLoading(true);
       const serverResponse = await dispatch(
         thunkLogin({
@@ -36,6 +35,7 @@ function LoginFormModal({ setLoading }) {
       );
 
       if (serverResponse) {
+        closeModal();
         setModalContent(<ErrorModal errors={serverResponse} />);
         setLoading(false);
       } else {

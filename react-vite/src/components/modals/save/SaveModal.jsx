@@ -1,7 +1,6 @@
 //Files
 import styles from "./SaveModal.module.css";
 //Functions/Components
-import { thunkCreateBuild } from "../../../redux/build";
 import { useModal } from "../../../context/Modal";
 import ErrorModal from "../error/ErrorModal";
 //Packages
@@ -9,13 +8,15 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
-export default function SaveBuildModal() {
+export default function SaveBuildModal({ title, thunk }) {
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
   const { closeModal, setModalContent } = useModal();
   const currentBuild = useSelector((state) => state.builds.current);
   const [charName, setCharName] = useState(currentBuild.character_name);
-  const [buildName, setBuildName] = useState("");
+  const [buildName, setBuildName] = useState(
+    title === "Update" ? currentBuild.name : ""
+  );
   const [errors, setErrors] = useState("");
 
   const submit = async (e) => {
@@ -31,14 +32,16 @@ export default function SaveBuildModal() {
       setErrors("Please select both ability bonuses");
     } else {
       const serverResponse = await dispatch(
-        thunkCreateBuild(currentBuild, {
+        thunk(currentBuild, {
           name: buildName,
           character_name: charName,
         })
       );
 
       if (serverResponse.id) {
-        navigateTo(`/build/${serverResponse.id}`);
+        if (title === "Create") {
+          navigateTo(`/build/${serverResponse.id}`);
+        }
         closeModal();
       } else {
         setModalContent(<ErrorModal errors={serverResponse} />);
@@ -47,7 +50,7 @@ export default function SaveBuildModal() {
   };
   return (
     <main className={styles.main}>
-      <div className={styles.title}>Create</div>
+      <div className={styles.title}>{title}</div>
       <div className={styles.error}>{errors}</div>
       <form className={styles.form} type="submit" onSubmit={submit}>
         {currentBuild.origin === 8 || currentBuild.origin === 7 ? (

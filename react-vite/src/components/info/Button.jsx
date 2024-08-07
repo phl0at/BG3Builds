@@ -3,12 +3,16 @@ import styles from "./Info.module.css";
 // Functions/Components
 import OpenModalButton from "../modals";
 import SaveBuildModal from "../modals/save";
-import UpdateBuildModal from "../modals/update";
-import DeleteBuildModal from "../modals/delete";
+import DeleteModal from "../modals/delete";
 import ShareModal from "../modals/share/";
 import ErrorModal from "../modals/error/";
 import { exportCode } from "../modals/share/helper";
 import { useModal } from "../../context/Modal";
+import {
+  thunkDeleteBuild,
+  thunkCreateBuild,
+  thunkUpdateBuild,
+} from "../../redux/build";
 //Packages
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
@@ -81,7 +85,10 @@ export function BuildButtons() {
           className={styles.buildButton1}
           title="Save"
           modalComponent={
-            isBuildOwner ? <UpdateBuildModal /> : <SaveBuildModal />
+            <SaveBuildModal
+              thunk={isBuildOwner ? thunkUpdateBuild : thunkCreateBuild}
+              title={isBuildOwner ? "Update" : "Create"}
+            />
           }
         />
         {isBuildOwner && (
@@ -90,7 +97,13 @@ export function BuildButtons() {
             id={styles.fade}
             className={styles.buildButton1}
             title="Delete"
-            modalComponent={<DeleteBuildModal />}
+            modalComponent={
+              <DeleteModal
+                title={"BUILD"}
+                thunk={thunkDeleteBuild}
+                id={buildId}
+              />
+            }
           />
         )}
       </div>

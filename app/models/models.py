@@ -33,7 +33,8 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'builds': [build.to_dict() for build in self.builds]
+            'builds': [build.to_dict() for build in self.builds],
+            'favorites': [favorite.to_dict() for favorite in self.favorites]
         }
 
 ################################################################################

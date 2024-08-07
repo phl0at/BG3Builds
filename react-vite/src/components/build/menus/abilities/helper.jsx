@@ -73,13 +73,16 @@ export function Ability({ ability }) {
   };
 
   // A user cannot set the +1 and +2 bonuses to the same ability.
-  // These functions will only set a bonus on an ability that does not already
-  // have a bonus applied to it.
+  // These functions will clear any existing bonuses
+  // to the chosen ability before applying new ones
   const clickPlusTwo = (e, ability) => {
     e.preventDefault();
     if (plus_2 === ability) {
       dispatch(clearBonus("plus_2", ability));
-    } else if (plus_1 != ability) {
+    } else {
+      if (plus_1 === ability) {
+        dispatch(clearBonus("plus_1", ability));
+      }
       dispatch(setBonus("plus_2", ability));
     }
   };
@@ -88,7 +91,10 @@ export function Ability({ ability }) {
     e.preventDefault();
     if (plus_1 === ability) {
       dispatch(clearBonus("plus_1", ability));
-    } else if (plus_2 != ability) {
+    } else {
+      if (plus_2 === ability) {
+        dispatch(clearBonus("plus_2", ability));
+      }
       dispatch(setBonus("plus_1", ability));
     }
   };

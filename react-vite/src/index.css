@@ -13,7 +13,7 @@ input {
 }
 
 body {
-  background-color: #0a0e15;
+  background-color: rgb(46, 34, 29);
   max-height: 100vh;
   max-width: 100vw;
   background-image: url("https://ik.imagekit.io/phl0at/images/background.jpg");

@@ -16,7 +16,7 @@ export default function Layout() {
   const { buildId } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
   const currentBuild = useSelector((state) => state.builds.current);
-  const currentUser = useSelector((state) => state.session.user);
+  const currentUserId = useSelector((state) => state.session.user?.id);
   const Origins = useSelector((state) => state.static.origins);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function Layout() {
     } else {
       dispatch(action("build/setDefault"));
     }
-  }, [currentUser, buildId]);
+  }, [currentUserId, buildId]);
 
   useEffect(() => {
     dispatch(thunkAuthenticate()).then(() => setIsLoaded(true));

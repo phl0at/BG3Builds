@@ -38,8 +38,8 @@ export default function AbilitiesComponent() {
       <div className={styles.points}>{`Ability Points: ${points}`}</div>
       <div className={styles.abilityList}>
         <div className={styles.heading}>
-          <div className={plus_2 === "" && styles.red}>+2</div>
-          <div className={plus_1 === "" && styles.red}>+1</div>
+          <div className={plus_2 === "" ? styles.red : ""}>+2</div>
+          <div className={plus_1 === "" ? styles.red : ""}>+1</div>
         </div>
         {abilities.map((ability) => {
           return <Ability key={ability} ability={ability} />;
