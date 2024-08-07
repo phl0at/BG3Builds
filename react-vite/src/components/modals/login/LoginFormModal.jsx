@@ -7,8 +7,9 @@ import ErrorModal from "../error/ErrorModal";
 // Packages
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { PulseLoader } from "react-spinners";
 
-function LoginFormModal({ setLoading }) {
+function LoginFormModal({ loading, setLoading }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,14 +36,21 @@ function LoginFormModal({ setLoading }) {
       );
 
       if (serverResponse) {
-        closeModal();
-        setModalContent(<ErrorModal errors={serverResponse} />);
         setLoading(false);
+        setModalContent(<ErrorModal errors={serverResponse} />);
       } else {
+        setLoading(false);
         closeModal();
       }
     }
   };
+
+  if (loading)
+    return (
+      <main className={styles.main}>
+        <PulseLoader color="#e4c274" className={styles.loggingIn} />
+      </main>
+    );
 
   return (
     <main className={styles.main}>

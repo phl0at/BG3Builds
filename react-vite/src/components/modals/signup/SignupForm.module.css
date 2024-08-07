@@ -53,3 +53,8 @@
   font-size: 10pt;
   color: red;
 }
+
+.loggingIn{
+  position: relative;
+  top: 100px;
+}

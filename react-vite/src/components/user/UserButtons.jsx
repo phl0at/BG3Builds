@@ -20,7 +20,7 @@ export default function UserButtons() {
   const [awaitLogin, setAwaitLogin] = useState(false);
   const currentUser = useSelector((state) => state.session.user);
   const currentBuildName = useSelector((state) => state.builds.current.name);
-  const loadingUser = awaitLogin & !currentUser;
+  const loadingUser = (awaitLogin === true) & (currentUser === null);
 
   const onClick = (e) => {
     e.preventDefault();
@@ -91,7 +91,10 @@ export default function UserButtons() {
                   buttonText={"Log In"}
                   modalComponent={
                     <Suspense fallback={<PulseLoader color="#e4c274" />}>
-                      <LoginFormModal setLoading={setAwaitLogin} />
+                      <LoginFormModal
+                        loading={loadingUser}
+                        setLoading={setAwaitLogin}
+                      />
                     </Suspense>
                   }
                 />
@@ -100,7 +103,10 @@ export default function UserButtons() {
                   buttonText={"Sign up"}
                   modalComponent={
                     <Suspense fallback={<PulseLoader color="#e4c274" />}>
-                      <SignupFormModal setLoading={setAwaitLogin} />
+                      <SignupFormModal
+                        loading={loadingUser}
+                        setLoading={setAwaitLogin}
+                      />
                     </Suspense>
                   }
                 />
