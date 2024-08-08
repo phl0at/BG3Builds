@@ -14,7 +14,7 @@ export default function ItemInfo({ wearingItem, selectedItem, type }) {
   const viewedItem = Equipment[selectedItem];
   const descriptions = viewedItem?.description.split("&*&");
 
-  if (!viewedItem) return <main className={styles.hiddenMenu}></main>;
+  if (!viewedItem) return ""
 
   return (
     <main className={styles.sideMenu}>

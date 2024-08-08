@@ -8,9 +8,8 @@ import ErrorModal from "../error/ErrorModal";
 // Packages
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { PulseLoader } from "react-spinners";
 
-function SignupFormModal({ loading, setLoading }) {
+function SignupFormModal({ setLoading }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -36,6 +35,7 @@ function SignupFormModal({ loading, setLoading }) {
       setErrors("Passwords must match");
     } else {
       setLoading(true);
+      closeModal();
       const serverResponse = await dispatch(
         thunkSignup({
           email,
@@ -54,13 +54,6 @@ function SignupFormModal({ loading, setLoading }) {
       }
     }
   };
-
-  if (loading)
-    return (
-      <main className={styles.main}>
-        <PulseLoader color="#e4c274" className={styles.loggingIn} />
-      </main>
-    );
 
   return (
     <main className={styles.main}>
