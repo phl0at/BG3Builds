@@ -1,7 +1,6 @@
+// Files
 import styles from "./Equipment.module.css";
-import { useSelector } from "react-redux";
-import OpenModalButton from "../modals";
-import ItemsTableModal from "./items";
+// Packages
 import {
   GiElfHelmet,
   GiCape,
@@ -16,6 +15,12 @@ import {
   GiDiamondRing,
 } from "react-icons/gi";
 import { IKImage } from "imagekitio-react";
+import { lazy, Suspense } from "react";
+import { useSelector } from "react-redux";
+import { PulseLoader } from "react-spinners";
+// Functions/Components
+const OpenModalButton = lazy(() => import("../modals"));
+const ItemsTableModal = lazy(() => import("./items"));
 
 export function EquipmentSlot({ type }) {
   const Equipment = useSelector((state) => state.static.equipment);
@@ -32,10 +37,8 @@ export function EquipmentSlot({ type }) {
     ring_1: <GiDiamondRing size="40" />,
     ring_2: <GiDiamondRing size="40" />,
     ranged_mh: <GiBowArrow size="40" />,
-    ranged_oh: <GiCrossbow size="40" />
-
-  }
-
+    ranged_oh: <GiCrossbow size="40" />,
+  };
 
   return (
     <OpenModalButton
@@ -50,7 +53,11 @@ export function EquipmentSlot({ type }) {
           slotIcon[type]
         )
       }
-      modalComponent={<ItemsTableModal type={type} />}
+      modalComponent={
+        <Suspense fallback={<PulseLoader color="#e4c274" />}>
+          <ItemsTableModal type={type} />
+        </Suspense>
+      }
     />
   );
 }

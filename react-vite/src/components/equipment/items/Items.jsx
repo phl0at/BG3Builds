@@ -3,10 +3,9 @@ import styles from "./Items.module.css";
 //Packages
 import { useSelector } from "react-redux";
 import { IKImage } from "imagekitio-react";
-import { PulseLoader } from "react-spinners";
-import { useState, lazy, Suspense } from "react";
+import { useState } from "react";
 //Functions/Components
-const ItemInfo = lazy(() => import("./ItemInfoPanel"));
+import ItemInfo from "./ItemInfoPanel";
 
 export default function ItemsTableModal({ type }) {
   const currentBuild = useSelector((state) => state.builds.current);
@@ -56,19 +55,11 @@ export default function ItemsTableModal({ type }) {
         </div>
       </main>
       {selectedItem != undefined && (
-        <Suspense
-          fallback={
-            <main className={styles.sideMenu}>
-              <PulseLoader color="#e4c274" />
-            </main>
-          }
-        >
-          <ItemInfo
-            wearingItem={wearingItem}
-            selectedItem={selectedItem}
-            type={type}
-          />
-        </Suspense>
+        <ItemInfo
+          wearingItem={wearingItem}
+          selectedItem={selectedItem}
+          type={type}
+        />
       )}
     </>
   );
