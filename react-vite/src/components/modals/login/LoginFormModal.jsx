@@ -7,14 +7,26 @@ import ErrorModal from "../error/ErrorModal";
 // Packages
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { PulseLoader } from "react-spinners";
 
-function LoginFormModal({ loading, setLoading }) {
+function LoginFormModal({ setLoading }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState("");
   const { closeModal, setModalContent } = useModal();
+
+  const onClick = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    closeModal();
+    const loggedIn = await dispatch(
+      thunkLogin({
+        email: "demo@aa.com",
+        password: "password",
+      })
+    );
+    if (loggedIn) setLoading(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,6 +40,7 @@ function LoginFormModal({ loading, setLoading }) {
       setErrors("Email must end in .com, .net, .mil, .org, or .edu");
     } else {
       setLoading(true);
+      closeModal();
       const serverResponse = await dispatch(
         thunkLogin({
           email,
@@ -40,22 +53,17 @@ function LoginFormModal({ loading, setLoading }) {
         setModalContent(<ErrorModal errors={serverResponse} />);
       } else {
         setLoading(false);
-        closeModal();
       }
     }
   };
-
-  if (loading)
-    return (
-      <main className={styles.main}>
-        <PulseLoader color="#e4c274" className={styles.loggingIn} />
-      </main>
-    );
 
   return (
     <main className={styles.main}>
       <div className={styles.title}>Log In</div>
       <div className={styles.error}>{errors}</div>
+      <button className={styles.demo} onClick={onClick}>
+        Demo Account
+      </button>
       <form className={styles.form} onSubmit={handleSubmit}>
         <input
           type="text"

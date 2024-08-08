@@ -1,17 +1,16 @@
 // Files
 import styles from "./UserButtons.module.css";
 // Functions/Components
-import { thunkLogin, thunkLogout } from "../../redux/session";
+import { thunkLogout } from "../../redux/session";
+import OpenModalButton from "../modals";
+import LoginFormModal from "../modals/login";
+import SignupFormModal from "../modals/signup";
 // Packages
-import { useState, lazy, Suspense } from "react";
+import { useState } from "react";
 import { useLocation, useParams, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { PulseLoader } from "react-spinners";
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
-
-const OpenModalButton = lazy(() => import("../modals"));
-const LoginFormModal = lazy(() => import("../modals/login"));
-const SignupFormModal = lazy(() => import("../modals/signup"));
 
 export default function UserButtons() {
   const dispatch = useDispatch();
@@ -22,22 +21,13 @@ export default function UserButtons() {
   const currentBuildName = useSelector((state) => state.builds.current.name);
   const loadingUser = (awaitLogin === true) & (currentUser === null);
 
-  const onClick = (e) => {
+  const logout = async (e) => {
     e.preventDefault();
-
     setAwaitLogin(true);
-    dispatch(
-      thunkLogin({
-        email: "demo@aa.com",
-        password: "password",
-      })
-    );
-  };
-
-  const logout = (e) => {
-    e.preventDefault();
-    setAwaitLogin(false);
-    dispatch(thunkLogout());
+    const loggedOut = await dispatch(thunkLogout());
+    if (loggedOut) {
+      setAwaitLogin(false);
+    }
   };
 
   if (pathname === "/")
@@ -67,14 +57,9 @@ export default function UserButtons() {
         </div>
 
         <div className={styles.userButtons}>
-          {loadingUser === true && (
-            <PulseLoader
-              color="#e4c274"
-              size="10px"
-              className={styles.loggingIn}
-            />
-          )}
-          {currentUser != null && (
+          {loadingUser ? (
+            <PulseLoader color="#e4c274" />
+          ) : currentUser != null ? (
             <button
               id={styles.logout}
               className={styles.button}
@@ -82,39 +67,29 @@ export default function UserButtons() {
             >
               Log Out
             </button>
-          )}
-          {currentUser === null && (
-            <Suspense fallback={<PulseLoader color="#e4c274" />}>
-              <>
-                <OpenModalButton
-                  className={styles.button}
-                  buttonText={"Log In"}
-                  modalComponent={
-                    <Suspense fallback={<PulseLoader color="#e4c274" />}>
-                      <LoginFormModal
-                        loading={loadingUser}
-                        setLoading={setAwaitLogin}
-                      />
-                    </Suspense>
-                  }
-                />
-                <OpenModalButton
-                  className={styles.button}
-                  buttonText={"Sign up"}
-                  modalComponent={
-                    <Suspense fallback={<PulseLoader color="#e4c274" />}>
-                      <SignupFormModal
-                        loading={loadingUser}
-                        setLoading={setAwaitLogin}
-                      />
-                    </Suspense>
-                  }
-                />
-                <button className={styles.button} onClick={onClick}>
-                  Demo Login
-                </button>
-              </>
-            </Suspense>
+          ) : (
+            <>
+              <OpenModalButton
+                className={styles.button}
+                buttonText={"Log In"}
+                modalComponent={
+                  <LoginFormModal
+                    loading={loadingUser}
+                    setLoading={setAwaitLogin}
+                  />
+                }
+              />
+              <OpenModalButton
+                className={styles.button}
+                buttonText={"Sign up"}
+                modalComponent={
+                  <SignupFormModal
+                    loading={loadingUser}
+                    setLoading={setAwaitLogin}
+                  />
+                }
+              />
+            </>
           )}
         </div>
         <div className={styles.links}>
