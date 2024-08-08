@@ -55,19 +55,21 @@ export default function ItemsTableModal({ type }) {
           })}
         </div>
       </main>
-      <Suspense
-        fallback={
-          <main className={styles.sideMenu}>
-            <PulseLoader />
-          </main>
-        }
-      >
-        <ItemInfo
-          wearingItem={wearingItem}
-          selectedItem={selectedItem}
-          type={type}
-        />
-      </Suspense>
+      {selectedItem != undefined && (
+        <Suspense
+          fallback={
+            <main className={styles.sideMenu}>
+              <PulseLoader color="#e4c274" />
+            </main>
+          }
+        >
+          <ItemInfo
+            wearingItem={wearingItem}
+            selectedItem={selectedItem}
+            type={type}
+          />
+        </Suspense>
+      )}
     </>
   );
 }
