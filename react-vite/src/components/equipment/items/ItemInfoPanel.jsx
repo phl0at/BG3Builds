@@ -14,25 +14,24 @@ export default function ItemInfo({ wearingItem, selectedItem, type }) {
   const viewedItem = Equipment[selectedItem];
   const descriptions = viewedItem?.description.split("&*&");
 
-  if(!viewedItem) return <main className={styles.hiddenMenu}></main>
+  if (!viewedItem) return <main className={styles.hiddenMenu}></main>;
 
   return (
     <main className={styles.sideMenu}>
       <div className={styles.sideTable}>
+        <div className={styles.sideHeader}>
+          <div>{viewedItem.name}</div>
+        </div>
         <div className={styles.sideInfo}>
-          <div className={styles.desHead}>
-            <div>{viewedItem.name}</div>
-          </div>
           <div className={styles.rarity}>{viewedItem.rarity}</div>
-          {viewedItem.damage_type != null && (
-            <div className={styles.damage_type}>
-              {viewedItem.damage_type} weapon
+          {(viewedItem.damage && viewedItem.damage_type) != null && (
+            <div className={styles.damage}>
+              <div>{`(${viewedItem.damage_type})`}</div>
+              <div>{viewedItem.damage}</div>
             </div>
           )}
-          {viewedItem.damage != null && (
-            <div className={styles.damage}>Damage | {viewedItem.damage}</div>
-          )}
         </div>
+
         <div className={styles.description}>
           {descriptions.map((des) => {
             const title = des.split(":")[0];

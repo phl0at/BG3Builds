@@ -22,7 +22,7 @@ export default function ItemsTableModal({ type }) {
   };
 
   return (
-    <div className={styles.itemsModal}>
+    <>
       <main className={styles.itemsList}>
         <div className={styles.table}>
           <div className={styles.thead}>
@@ -68,6 +68,6 @@ export default function ItemsTableModal({ type }) {
           type={type}
         />
       </Suspense>
-    </div>
+    </>
   );
 }
