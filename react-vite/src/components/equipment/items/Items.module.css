@@ -1,4 +1,4 @@
-.main {
+.itemsList {
   min-width: 400px;
   min-height: 450px;
   border-radius: 4px;
@@ -126,6 +126,14 @@
 }
 .desHead > * {
   color: #e69a28;
+}
+
+.orange{
+  color: #e69a28;
+  text-decoration: underline;
+}
+.text{
+  font-size: 12pt;
 }
 
 .description {
