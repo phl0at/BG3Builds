@@ -1,14 +1,15 @@
 //Files
 import styles from "../../Build.module.css";
-//Functions/Components
-import { getBuildClassArray, action } from "../../../../redux/build";
-import OpenModalButton from "../../../modals";
-import ResetClassesModal from "./reset";
-import { SubClass } from "./SubClass";
 //Packages
+import { lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CiUndo } from "react-icons/ci";
 import { IKImage } from "imagekitio-react";
+//Functions/Components
+import { action } from "../../../../redux/build";
+import OpenModalButton from "../../../modals";
+import ResetClassesModal from "./reset";
+const SubClass = lazy(() => import("./SubClass"));
 
 export default function ClassComponent() {
   const dispatch = useDispatch();
@@ -91,7 +92,7 @@ export default function ClassComponent() {
                     clickAddClass(e, Classes[selectedClass], null)
                   }
                 >
-                  {selectedClassInBuild ? "Level Up" : "Add Class"}
+                  {selectedClassInBuild ? "Add Level" : "Add Class"}
                 </button>
               )}
             </>
@@ -100,8 +101,12 @@ export default function ClassComponent() {
         <div className={styles.description}>
           {Classes[selectedClass]?.description}
         </div>
-        <br/>
-        <SubClass />
+        <br />
+        {selectedClassInBuild && (
+          <Suspense fallback="">
+            <SubClass />
+          </Suspense>
+        )}
       </div>
     </>
   );

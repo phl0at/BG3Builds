@@ -177,6 +177,7 @@
   font-size: 11pt;
 }
 .button {
+  font-size: 12pt;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -186,16 +187,30 @@
   width: 30px;
   height: 30px;
 }
-.chosenSubImg{
-  height: 40px;
-  width: 40px;
+.chosenSubClass {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 5px;
+}
+.subImgName {
+  font-size: 11pt;
+  text-align: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.subDescription {
+  font-size: 11pt;
 }
 /*  */
 
 ::-webkit-scrollbar {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 20px;
-  width: 8px;
+  width: 2px;
+  display: none;
 }
 ::-webkit-scrollbar-thumb {
   background: rgb(101, 71, 42);
