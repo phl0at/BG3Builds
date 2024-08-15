@@ -27,6 +27,7 @@ const SET_BONUS = "build/setBonus";
 const CLEAR_BONUS = "build/clearBonus";
 // CLASS ACTIONS
 const SET_CLASS = "build/setClass";
+const SET_SUB_CLASS = "build/setSubClass";
 const ADD_BUILD_CLASS = "build/addBuildClass";
 const RESET_CLASSES = "build/resetClasses";
 // ITEM ACTIONS
@@ -252,7 +253,6 @@ export const thunkDeleteComment = (id) => async (dispatch) => {
 //*                            Selectors
 //! --------------------------------------------------------------------
 
-
 export const getBuildClassArray = createSelector(
   (state) => state.builds.current.build_classes,
   (_class) => sortClasses(Object.values(_class))
@@ -370,6 +370,18 @@ function buildReducer(state = initialState, action) {
     case SET_CLASS: {
       const newState = { ...state, current: { ...state.current } };
       newState.current.class = action.payload;
+      return newState;
+    }
+
+    case SET_SUB_CLASS: {
+      const newState = {
+        ...state,
+        current: {
+          ...state.current,
+          build_classes: { ...state.current.build_classes },
+        },
+      };
+      newState.current.build_classes[action.payload.class_id] = action.payload;
       return newState;
     }
 
@@ -500,7 +512,7 @@ function buildReducer(state = initialState, action) {
           plus_1: "",
           plus_2: "",
           level: 0,
-          build_classes: [],
+          build_classes: {},
         },
       };
       return newState;
