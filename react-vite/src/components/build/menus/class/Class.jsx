@@ -37,7 +37,7 @@ export default function ClassComponent() {
   };
 
   return (
-    <>
+    <div>
       <div className={styles.header}>
         <div className={styles.reset}>
           {buildLevel > 0 && (
@@ -108,6 +108,6 @@ export default function ClassComponent() {
           </Suspense>
         )}
       </div>
-    </>
+    </div>
   );
 }

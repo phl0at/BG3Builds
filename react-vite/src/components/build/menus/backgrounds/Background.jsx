@@ -33,7 +33,7 @@ export default function BackgroundComponent() {
   };
 
   return (
-    <>
+    <div>
       <div className={styles.title}>Background</div>
       <div className={styles.list}>
         {Object.values(Backgrounds).map((bg) => (
@@ -68,6 +68,6 @@ export default function BackgroundComponent() {
           {Backgrounds[currentBackground].description}
         </div>
       </div>
-    </>
+    </div>
   );
 }

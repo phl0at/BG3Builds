@@ -121,15 +121,16 @@ export const levelTwoSubClasses = {
     {
       name: "Circle of the Moon",
       description:
-        "	The Circle of the Moon Subclass has a much heavier focus on the Wild Shape Class Feature of the Druid. If you like shapeshifting, \
+        "The Circle of the Moon Subclass has a much heavier focus on the Wild Shape Class Feature of the Druid. If you like shapeshifting, \
         and want to do so more effectively then you'll likely enjoy this Subclass.",
     },
     {
       name: "Circle of the Spores",
       description:
-        "	Druids of the Circle of Spores find beauty in decay. They see within mold and \
+        "Druids of the Circle of Spores find beauty in decay. They see within mold and \
         other fungi the ability to transform lifeless material into abundant, albeit somewhat strange, life. \
-        These druids believe that life and death are parts of a grand cycle, with one leading to the other and then back again. Death isn't the end of life, but instead a change of state that sees life shift into a new form.",
+        These druids believe that life and death are parts of a grand cycle, with one leading to the other and then back again. \
+        Death isn't the end of life, but instead a change of state that sees life shift into a new form.",
     },
   ],
   Wizard: [
@@ -194,33 +195,131 @@ export const levelTwoSubClasses = {
 
 export const levelThreeSubClasses = {
   Fighter: [
-    { name: "Battle Master" },
-    { name: "Champion" },
-    { name: "Eldritch Knight" },
+    {
+      name: "Battle Master",
+      description:
+        "Battle Masters are paragons of tactical superiority, \
+      combining combat maneuvers and experience in the field to dominate every fight.",
+    },
+    {
+      name: "Champion",
+      description:
+        "You approach the complex problems posed by combat with one \
+      distinctively effective solution - you hit those problems, really quite hard.",
+    },
+    {
+      name: "Eldritch Knight",
+      description:
+        "Eldritch Knights study magic to supplement their weaponry, \
+      allowing them to overcome resistance from the toughest foes.",
+    },
   ],
   Monk: [
-    { name: "Way of Shadow" },
-    { name: "Way of the Four Elements" },
-    { name: "Way of the Open Hand" },
+    {
+      name: "Way of Shadow",
+      description:
+        "Monks of the Way of Shadow follow a tradition that values stealth and subterfuge. \
+      These monks might be called ninjas or shadowdancers, and they serve as spies and assassins. Sometimes the members of a ninja monastery are family members, \
+      forming a clan sworn to secrecy about their arts and missions. Other monasteries are more like thieves' guilds, hiring out their services to nobles, rich merchants, \
+      or anyone else who can pay their fees. Regardless of their methods, the heads of these monasteries expect the unquestioning obedience of their students.",
+    },
+    {
+      name: "Way of the Four Elements",
+      description:
+        "These monks 'bend' the four elements at will, \
+      becoming 'avatars' of balance.",
+    },
+    {
+      name: "Way of the Open Hand",
+      description:
+        "Monks of the Way of the Open Hand are the ultimate masters of martial arts combat, \
+      whether armed or unarmed.",
+    },
   ],
   Barbarian: [
-    { name: "Berserker" },
-    { name: "Wild Magic" },
-    { name: "Wildheart" },
+    {
+      name: "Berserker",
+      description:
+        "Violence is both a means and an end. You follow a path of untrammeled fury, \
+      slick with blood, as you thrill in the chaos of battle, heedless of your own well-being.",
+    },
+    {
+      name: "Wild Magic",
+      description:
+        "Many places in the multiverse abound with beauty, intense emotion, and rampant magic; the Feywild, \
+      the Upper Planes, and other realms of supernatural power radiate with such forces and can profoundly influence people. As folk of deep feeling, \
+      barbarians are especially susceptible to these wild influences, with some barbarians being transformed by the magic. These magic-suffused barbarians walk \
+      the Path of Wild Magic. Elf, tiefling, aasimar, and genasi barbarians often seek this path, eager to manifest the otherworldly magic of their ancestors.",
+    },
+    {
+      name: "Wildheart",
+      description:
+        "Your attunement with nature and its beasts inspires your rage, \
+      empowering you with supernatural might.",
+    },
   ],
   Bard: [
-    { name: "College of Lore" },
-    { name: "College of Swords" },
-    { name: "College of Valour" },
+    {
+      name: "College of Lore",
+      description:
+        "You pursue beauty and truth, collecting knowledge from scholarly tomes to peasants' tales, \
+      and use your gifts to hold both audiences and enemies spellbound.",
+    },
+    {
+      name: "College of Swords",
+      description:
+        "Bards of the College of Swords are called blades, and they entertain through daring feats of weapon prowess. \
+      Blades perform stunts such as sword swallowing, knife throwing and juggling, and mock combats. \
+      Though they use their weapons to entertain, they are also highly trained and skilled warriors in their own right.",
+    },
+    {
+      name: "College of Valour",
+      description:
+        "You wander the land to witness and relate the deeds of the mighty, \
+      keeping alive the memory of heroes of the past and inspiring heroes of the future.",
+    },
   ],
   Ranger: [
-    { name: "Beast Master" },
-    { name: "Gloomstalker" },
-    { name: "Hunter" },
+    {
+      name: "Beast Master",
+      description:
+        "Beast Masters bind themselves to an animal companion, \
+      sharing an intelligent bond that flourishes in and out of combat.",
+    },
+    {
+      name: "Gloomstalker",
+      description:
+        "Gloom stalkers are at home in the darkest places: deep under the earth, \
+      in gloomy alleyways, in primeval forests, and wherever else the light dims. Most folk enter such places with trepidation, \
+      but a gloom stalker ventures boldly into the darkness, seeking to ambush threats before they can reach the broader world. \
+      Such rangers are often found in the Underdark, but they will go any place where evil lurks in the shadows.",
+    },
+    {
+      name: "Hunter",
+      description:
+        "Hunters seek the most dangerous prey in Faerun, \
+      from ancient dragons to massive hordes of undead, and excel at slaying them all.",
+    },
   ],
   Rogue: [
-    { name: "Arcane Trickster" },
-    { name: "Assassin" },
-    { name: "Thief" },
+    {
+      name: "Arcane Trickster",
+      description:
+        "Arcane Tricksters are rogues with a clever touch of magic, \
+      using illusions and enchantments to keep their opponents on the backfoot.",
+    },
+    {
+      name: "Assassin",
+      description:
+        "You focus your training on the grim art of death. Those who adhere to this archetype are diverse: \
+      hired killers, spies, bounty hunters, and even specially anointed priests trained to exterminate the enemies of their deity. \
+      Stealth, poison, and disguise help you eliminate your foes with deadly efficiency.",
+    },
+    {
+      name: "Thief",
+      description:
+        "Thieves use their skills in stealth and larceny to acquire whatever they wish, \
+      whether from a third story window or the depths of long-forgotten ruins.",
+    },
   ],
 };

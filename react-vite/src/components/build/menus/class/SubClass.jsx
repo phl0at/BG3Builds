@@ -118,6 +118,7 @@ export default function SubClass() {
             {selectedClassInBuild.sub_class}
           </div>
           <div className={styles.subDescription}>{description}</div>
+          <br />
         </div>
       </div>
     );

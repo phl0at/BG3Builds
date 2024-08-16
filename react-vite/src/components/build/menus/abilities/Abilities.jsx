@@ -23,7 +23,7 @@ export default function AbilitiesComponent() {
   ];
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.reset}>
           {points < 27 && (
@@ -45,6 +45,6 @@ export default function AbilitiesComponent() {
           return <Ability key={ability} ability={ability} />;
         })}
       </div>
-    </>
+    </div>
   );
 }

@@ -12,6 +12,8 @@ export default function BuildComponent({ activeMenu }) {
   const ClassComponent = lazy(() => import("./menus/class"));
   const AbilitiesComponent = lazy(() => import("./menus/abilities"));
 
+
+
   return (
     <main className={styles.main}>
       <Suspense fallback={<PulseLoader className={styles.load} color="#e4c274" size="20px" />}>

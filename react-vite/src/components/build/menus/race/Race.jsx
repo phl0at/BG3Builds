@@ -31,7 +31,7 @@ export default function RaceComponent() {
   };
 
   return (
-    <>
+    <div>
       {
         <>
           <div className={styles.title}>Race</div>
@@ -61,6 +61,6 @@ export default function RaceComponent() {
           </div>
         </>
       }
-    </>
+    </div>
   );
 }

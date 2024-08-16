@@ -1,7 +1,4 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   border-radius: 4px;
   max-width: 600px;
   min-width: 440px;
@@ -9,11 +6,19 @@
   min-height: 615px;
   width: 30%;
   height: 93%;
+
+  outline: 2px solid rgb(101, 71, 42);
+  background: rgba(17, 13, 12, 0.965);
+}
+.main > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 15px;
   overflow-x: hidden;
   overflow-y: auto;
-  outline: 2px solid rgb(101, 71, 42);
-  background: rgba(17, 13, 12, 0.965);
+  width: 100%;
+  height: 100%;
 }
 .main > * {
   animation: fadeIn 0.5s;
