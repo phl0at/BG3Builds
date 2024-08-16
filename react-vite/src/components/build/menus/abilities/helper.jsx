@@ -1,7 +1,7 @@
 //Files
 import styles from "./Abilities.module.css";
 //Functions/Components
-import { action, setBonus, clearBonus } from "../../../../redux/build";
+import { action } from "../../../../redux/build";
 import { useModal } from "../../../../context/Modal";
 import ErrorModal from "../../../modals/error/ErrorModal";
 //Packages
@@ -78,24 +78,24 @@ export function Ability({ ability }) {
   const clickPlusTwo = (e, ability) => {
     e.preventDefault();
     if (plus_2 === ability) {
-      dispatch(clearBonus("plus_2", ability));
+      dispatch(action("build/clearBonus", { amount: "plus_2", ability }));
     } else {
       if (plus_1 === ability) {
-        dispatch(clearBonus("plus_1", ability));
+        dispatch(action("build/clearBonus", { amount: "plus_1", ability }));
       }
-      dispatch(setBonus("plus_2", ability));
+      dispatch(action("build/setBonus", { amount: "plus_2", ability }));
     }
   };
 
   const clickPlusOne = (e, ability) => {
     e.preventDefault();
     if (plus_1 === ability) {
-      dispatch(clearBonus("plus_1", ability));
+      dispatch(action("build/clearBonus", { amount: "plus_1", ability }));
     } else {
       if (plus_2 === ability) {
-        dispatch(clearBonus("plus_2", ability));
+        dispatch(action("build/clearBonus", { amount: "plus_2", ability }));
       }
-      dispatch(setBonus("plus_1", ability));
+      dispatch(action("build/setBonus", { amount: "plus_1", ability }));
     }
   };
 

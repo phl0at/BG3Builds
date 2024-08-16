@@ -37,7 +37,7 @@ const COMMENT = "comment";
 const DELETE_COMMENT = "comment/delete";
 
 //! --------------------------------------------------------------------
-//*                         Action Creators
+//*                         Action Creator
 //! --------------------------------------------------------------------
 
 export const action = (type, payload) => ({
@@ -45,45 +45,6 @@ export const action = (type, payload) => ({
   payload,
 });
 
-//! --------------------------------------------------------------------
-
-export const setOrigin = (payload, name) => {
-  return {
-    type: SET_ORIGIN,
-    payload,
-    name,
-  };
-};
-
-//! --------------------------------------------------------------------
-
-export const setBonus = (amount, payload) => {
-  return {
-    type: SET_BONUS,
-    payload,
-    amount,
-  };
-};
-
-//! --------------------------------------------------------------------
-
-export const clearBonus = (amount, payload) => {
-  return {
-    type: CLEAR_BONUS,
-    payload,
-    amount,
-  };
-};
-
-//! --------------------------------------------------------------------
-
-export const equipItem = (itemType, payload) => {
-  return {
-    type: EQUIP_ITEM,
-    payload,
-    itemType,
-  };
-};
 
 //! --------------------------------------------------------------------
 //*                             Thunks
@@ -95,6 +56,7 @@ export const thunkCreateBuild =
     build.name = name;
     build.character_name = character_name;
     build.build_classes = Object.values(build.build_classes);
+    
     const res = await fetch("/api/builds/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -353,9 +315,9 @@ function buildReducer(state = initialState, action) {
 
     case SET_ORIGIN: {
       const newState = { ...state, current: { ...state.current } };
-      newState.current.origin = action.payload;
-      action.payload != 8
-        ? (newState.current.character_name = action.name)
+      newState.current.origin = action.payload.id;
+      action.payload.id != 8
+        ? (newState.current.character_name = action.payload.name)
         : (newState.current.character_name = "Tav");
       return newState;
     }
@@ -455,29 +417,29 @@ function buildReducer(state = initialState, action) {
 
     case SET_BONUS: {
       const newState = { ...state, current: { ...state.current } };
-      const existingBonus = newState.current[action.amount];
-      const bonusAmount = Number(action.amount.split("_")[1]);
+      const existingBonus = newState.current[action.payload.amount];
+      const bonusAmount = Number(action.payload.amount.split("_")[1]);
 
       if (existingBonus) {
         newState.current[existingBonus] -= bonusAmount;
       }
-      newState.current[action.amount] = action.payload;
-      newState.current[action.payload] += bonusAmount;
+      newState.current[action.payload.amount] = action.payload.ability;
+      newState.current[action.payload.ability] += bonusAmount;
 
       return newState;
     }
 
     case CLEAR_BONUS: {
       const newState = { ...state, current: { ...state.current } };
-      const bonusAmount = Number(action.amount.split("_")[1]);
-      newState.current[action.amount] = "";
-      newState.current[action.payload] -= bonusAmount;
+      const bonusAmount = Number(action.payload.amount.split("_")[1]);
+      newState.current[action.payload.amount] = "";
+      newState.current[action.payload.ability] -= bonusAmount;
       return newState;
     }
 
     case EQUIP_ITEM: {
       const newState = { ...state, current: { ...state.current } };
-      newState.current[action.itemType] = action.payload;
+      newState.current[action.payload.type] = action.payload.item;
       return newState;
     }
 

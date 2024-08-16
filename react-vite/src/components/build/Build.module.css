@@ -191,6 +191,9 @@
   text-align: center;
   font-size: 11pt;
 }
+.subButton:hover{
+  text-decoration: underline;
+}
 .subImg {
   width: 50px;
   height: 50px;
@@ -242,6 +245,10 @@
   #classImg {
     height: 90px;
     width: 90px;
+  }
+  .subImg{
+    height: 75px;
+    width: 75px;
   }
   .list {
     column-gap: 30px;

@@ -1,7 +1,7 @@
 //Files
 import styles from "../../Build.module.css";
 //Functions/Components
-import { action, setOrigin } from "../../../../redux/build";
+import { action } from "../../../../redux/build";
 //Packages
 import { useSelector, useDispatch } from "react-redux";
 import { IKImage } from "imagekitio-react";
@@ -14,7 +14,7 @@ export default function OriginComponent() {
   const onClick = (e, originId) => {
     e.preventDefault();
 
-    dispatch(setOrigin(originId, Origins[originId].name));
+    dispatch(action("build/setOrigin", {id: originId, name: Origins[originId].name}));
 
     switch (originId) {
       case 1:

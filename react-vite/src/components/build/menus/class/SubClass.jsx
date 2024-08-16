@@ -8,9 +8,8 @@ import styles from "../../Build.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { IKImage } from "imagekitio-react";
 
-export default function SubClass() {
+export default function SubClass({ selectedClass }) {
   const dispatch = useDispatch();
-  const selectedClass = useSelector((state) => state.builds.current.class);
   const selectedClassInBuild = useSelector(
     (state) => state.builds.current.build_classes[selectedClass]
   );

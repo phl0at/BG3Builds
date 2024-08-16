@@ -1,7 +1,7 @@
 // Files
 import styles from "./Items.module.css";
 // Functions/Components
-import { action, equipItem } from "../../../redux/build";
+import { action } from "../../../redux/build";
 // Packages
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,6 @@ export default function ItemInfo({ wearingItem, selectedItem, type }) {
   const currentUser = useSelector((state) => state.session.user);
   const viewedItem = Equipment[selectedItem];
   const descriptions = viewedItem?.description.split("&*&");
-
 
   return (
     <main className={styles.sideMenu}>
@@ -52,7 +51,7 @@ export default function ItemInfo({ wearingItem, selectedItem, type }) {
               <button
                 onClick={(e) => {
                   e.preventDefault();
-                  dispatch(equipItem(type, selectedItem));
+                  dispatch(action("build/equip", { type, item: selectedItem }));
                 }}
                 className={styles.equip}
               >

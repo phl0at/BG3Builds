@@ -16,7 +16,7 @@ export default function ClassComponent() {
   const dispatch = useDispatch();
   const Classes = useSelector((state) => state.static.classes);
   const buildLevel = useSelector((state) => state.builds.current.level);
-  const [selectedClass, setSelectedClass] = useState(null);
+  const [selectedClass, setSelectedClass] = useState(1);
   const selectedClassInBuild = useSelector(
     (state) => state.builds.current.build_classes[selectedClass]
   );
@@ -74,29 +74,23 @@ export default function ClassComponent() {
       </div>
       <div className={styles.select}>
         <div className={styles.name}>
-          {selectedClass && (
-            <>
-              <div className={styles.levels}>
-                <div className={styles.classLevel}>
-                  {`${Classes[selectedClass].name} Level: ${
-                    selectedClassInBuild ? selectedClassInBuild.level : 0
-                  } `}
-                </div>
-                <div
-                  className={styles.charLevel}
-                >{`Character Level: ${buildLevel} / 12`}</div>
-              </div>
-              {notMaxLevel && (
-                <button
-                  className={styles.button}
-                  onClick={(e) =>
-                    clickAddClass(e, Classes[selectedClass], null)
-                  }
-                >
-                  {selectedClassInBuild ? "Add Level" : "Add Class"}
-                </button>
-              )}
-            </>
+          <div className={styles.levels}>
+            <div className={styles.classLevel}>
+              {`${Classes[selectedClass].name}: ${
+                selectedClassInBuild ? selectedClassInBuild.level : 0
+              } `}
+            </div>
+            <div
+              className={styles.charLevel}
+            >{`Total: ${buildLevel} / 12`}</div>
+          </div>
+          {notMaxLevel && (
+            <button
+              className={styles.button}
+              onClick={(e) => clickAddClass(e, Classes[selectedClass], null)}
+            >
+              {selectedClassInBuild ? "Add Level" : "Add Class"}
+            </button>
           )}
         </div>
         <div className={styles.description}>
@@ -104,7 +98,7 @@ export default function ClassComponent() {
         </div>
         {selectedClassInBuild && (
           <Suspense fallback="">
-            <SubClass />
+            <SubClass selectedClass={selectedClass} />
           </Suspense>
         )}
       </div>
