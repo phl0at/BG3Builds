@@ -33,12 +33,12 @@ export default function BackgroundComponent() {
   };
 
   return (
-    <div>
+    <>
       <div className={styles.title}>Background</div>
       <div className={styles.list}>
-        {Object.values(Backgrounds).map((bg) => (
-          <>
-            {bg.id != 12 && (
+        {Object.values(Backgrounds).map((bg) => {
+          return (
+            bg.id != 12 && (
               <div
                 onClick={(e) => onClick(e, bg.id)}
                 key={bg.id}
@@ -55,9 +55,9 @@ export default function BackgroundComponent() {
                 />
                 {bg.name}
               </div>
-            )}
-          </>
-        ))}
+            )
+          );
+        })}
       </div>
       <div className={styles.select}>
         {currentOrigin === 7 && (
@@ -68,6 +68,6 @@ export default function BackgroundComponent() {
           {Backgrounds[currentBackground].description}
         </div>
       </div>
-    </div>
+    </>
   );
 }

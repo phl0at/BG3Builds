@@ -61,7 +61,7 @@ export default function OriginComponent() {
   };
 
   return (
-    <div>
+    <>
       {
         <>
           <div className={styles.title}>Origin</div>
@@ -97,6 +97,6 @@ export default function OriginComponent() {
           </div>
         </>
       }
-    </div>
+    </>
   );
 }

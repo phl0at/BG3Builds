@@ -6,20 +6,16 @@
   min-height: 615px;
   width: 30%;
   height: 93%;
-
-  outline: 2px solid rgb(101, 71, 42);
-  background: rgba(17, 13, 12, 0.965);
-}
-.main > div {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  width: 100%;
-  height: 100%;
+  overflow-x: auto;
+  overflow-y: scroll;
+  outline: 2px solid rgb(101, 71, 42);
+  background: rgba(17, 13, 12, 0.965);
 }
+
 .main > * {
   animation: fadeIn 0.5s;
   -webkit-animation: fadeIn 0.5s;
@@ -88,8 +84,7 @@
 .selected_img {
   border-radius: 10px;
   cursor: pointer;
-  outline: 3.5px solid rgb(180, 135, 92);
-  box-shadow: rgb(180, 135, 92) 0px 5px 12px;
+  outline: 3px solid rgb(180, 135, 92);
 }
 
 #charImg {
@@ -118,6 +113,8 @@
   flex-direction: column;
   align-items: center;
   width: 85%;
+  row-gap: 5px;
+  font-size: 12pt;
 }
 .name {
   display: flex;
@@ -129,16 +126,12 @@
   column-gap: 10px;
 }
 .description {
-  padding-top: 5px;
   text-align: left;
   width: 100%;
-  font-size: 12pt;
+  font-size: 11.3pt;
 }
 
 /* Class component */
-.levels {
-  font-size: 12pt;
-}
 .addClasses {
   width: 95%;
   min-height: 220px;
@@ -148,24 +141,26 @@
   justify-content: flex-start;
 }
 .addButton {
-  font-size: 11pt;
   height: 35px;
   width: 85px;
   color: #e4c274;
-  outline: 2px solid rgb(101, 71, 42);
+  outline: 1px solid;
   background-color: rgba(17, 13, 12, 0.78);
   border-radius: 4px;
-  transition: all 0.3s;
+  transition: color 0.3s;
 }
 .addButton:hover {
-  background: none;
+  background-color: rgba(0, 0, 0, 0);
   color: #e69a28;
 }
 .subClass {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  row-gap: 5px;
+}
+.subClass > * {
   animation: fadeIn 0.5s;
   -webkit-animation: fadeIn 0.5s;
   -moz-animation: fadeIn 0.5s;
@@ -173,49 +168,47 @@
   -ms-animation: fadeIn 0.5s;
 }
 .subTitle {
-  font-size: 13pt;
   color: #e69a28;
 }
 .subButtons {
   display: flex;
-  column-gap: 8px;
-  font-size: 11pt;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  column-gap: 40px;
+  row-gap: 20px;
 }
-.button {
-  font-size: 12pt;
+
+.subImg {
+  width: 45px;
+  height: 45px;
+}
+.chosenSubClass {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.subImgName {
+  color: #e69a28;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.subImg {
-  width: 30px;
-  height: 30px;
-}
-.chosenSubClass {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  row-gap: 5px;
-}
-.subImgName {
-  font-size: 11pt;
-  text-align: center;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
 .subDescription {
-  font-size: 11pt;
+  text-align: left;
+  font-size: 11.3pt;
 }
 /*  */
 
 ::-webkit-scrollbar {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 20px;
-  width: 2px;
-  display: none;
+  width: 5px;
 }
 ::-webkit-scrollbar-thumb {
   background: rgb(101, 71, 42);

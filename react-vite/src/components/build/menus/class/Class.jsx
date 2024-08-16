@@ -5,6 +5,7 @@ import { lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CiUndo } from "react-icons/ci";
 import { IKImage } from "imagekitio-react";
+
 //Functions/Components
 import { action } from "../../../../redux/build";
 import OpenModalButton from "../../../modals";
@@ -37,7 +38,7 @@ export default function ClassComponent() {
   };
 
   return (
-    <div>
+    <>
       <div className={styles.header}>
         <div className={styles.reset}>
           {buildLevel > 0 && (
@@ -101,13 +102,12 @@ export default function ClassComponent() {
         <div className={styles.description}>
           {Classes[selectedClass]?.description}
         </div>
-        <br />
         {selectedClassInBuild && (
           <Suspense fallback="">
             <SubClass />
           </Suspense>
         )}
       </div>
-    </div>
+    </>
   );
 }

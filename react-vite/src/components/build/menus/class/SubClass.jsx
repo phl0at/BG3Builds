@@ -6,6 +6,7 @@ import {
 } from "./allSubClasses";
 import styles from "../../Build.module.css";
 import { useSelector, useDispatch } from "react-redux";
+import { IKImage } from "imagekitio-react";
 
 export default function SubClass() {
   const dispatch = useDispatch();
@@ -41,7 +42,10 @@ export default function SubClass() {
                           onClick(e, selectedClassInBuild, subClass.name)
                         }
                       >
-                        <img className={styles.subImg} />
+                        <IKImage
+                          path={`sc_icons/${selectedClassInBuild.name}/${subClass.name}.png`}
+                          className={styles.subImg}
+                        />
                         {subClass.name}
                       </button>
                     );
@@ -66,7 +70,10 @@ export default function SubClass() {
                           onClick(e, selectedClassInBuild, subClass.name)
                         }
                       >
-                        <img className={styles.subImg} />
+                        <IKImage
+                          path={`sc_icons/${selectedClassInBuild.name}/${subClass.name}.png`}
+                          className={styles.subImg}
+                        />
                         {subClass.name}
                       </button>
                     );
@@ -79,7 +86,6 @@ export default function SubClass() {
           selectedClassInBuild.level >= 3 && (
             <>
               <div className={styles.subTitle}>Choose a Sub Class</div>
-              <br />
               <div className={styles.subButtons}>
                 {levelThreeSubClasses[selectedClassInBuild.name].map(
                   (subClass) => {
@@ -91,7 +97,10 @@ export default function SubClass() {
                           onClick(e, selectedClassInBuild, subClass.name)
                         }
                       >
-                        <img className={styles.subImg} />
+                        <IKImage
+                          path={`sc_icons/${selectedClassInBuild.name}/${subClass.name}.png`}
+                          className={styles.subImg}
+                        />
                         {subClass.name}
                       </button>
                     );
@@ -105,21 +114,24 @@ export default function SubClass() {
   } else {
     return (
       <div className={styles.subClass}>
-        <div className={styles.subTitle}>Sub Class</div>
-        <button
-          className={styles.button}
-          onClick={(e) => onClick(e, selectedClassInBuild, undefined)}
-        >
-          Change
-        </button>
         <div className={styles.chosenSubClass}>
+          <div className={styles.subTitle}>Sub Class</div>
           <div className={styles.subImgName}>
-            <img className={styles.subImg} />
+            <IKImage
+              path={`sc_icons/${selectedClassInBuild.name}/${selectedClassInBuild.sub_class}.png`}
+              className={styles.subImg}
+            />
             {selectedClassInBuild.sub_class}
           </div>
-          <div className={styles.subDescription}>{description}</div>
-          <br />
+          <button
+            className={styles.addButton}
+            onClick={(e) => onClick(e, selectedClassInBuild, undefined)}
+          >
+            Change
+          </button>
         </div>
+        <div className={styles.subDescription}>{description}</div>
+        <br />
       </div>
     );
   }
