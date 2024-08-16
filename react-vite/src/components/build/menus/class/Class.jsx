@@ -1,7 +1,7 @@
 //Files
 import styles from "../../Build.module.css";
 //Packages
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CiUndo } from "react-icons/ci";
 import { IKImage } from "imagekitio-react";
@@ -16,7 +16,7 @@ export default function ClassComponent() {
   const dispatch = useDispatch();
   const Classes = useSelector((state) => state.static.classes);
   const buildLevel = useSelector((state) => state.builds.current.level);
-  const selectedClass = useSelector((state) => state.builds.current.class);
+  const [selectedClass, setSelectedClass] = useState(null);
   const selectedClassInBuild = useSelector(
     (state) => state.builds.current.build_classes[selectedClass]
   );
@@ -24,7 +24,7 @@ export default function ClassComponent() {
 
   const clickClass = (e, id) => {
     e.preventDefault();
-    dispatch(action("build/setClass", id));
+    setSelectedClass(id);
   };
 
   const clickAddClass = (e, _class) => {
@@ -88,7 +88,7 @@ export default function ClassComponent() {
               </div>
               {notMaxLevel && (
                 <button
-                  className={styles.addButton}
+                  className={styles.button}
                   onClick={(e) =>
                     clickAddClass(e, Classes[selectedClass], null)
                   }

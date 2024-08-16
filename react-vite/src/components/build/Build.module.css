@@ -113,7 +113,7 @@
   flex-direction: column;
   align-items: center;
   width: 85%;
-  row-gap: 5px;
+  row-gap: 8px;
   font-size: 12pt;
 }
 .name {
@@ -140,7 +140,7 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
-.addButton {
+.button {
   height: 35px;
   width: 85px;
   color: #e4c274;
@@ -149,7 +149,7 @@
   border-radius: 4px;
   transition: color 0.3s;
 }
-.addButton:hover {
+.button:hover {
   background-color: rgba(0, 0, 0, 0);
   color: #e69a28;
 }
@@ -158,7 +158,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  row-gap: 5px;
+  row-gap: 8px;
 }
 .subClass > * {
   animation: fadeIn 0.5s;
@@ -170,7 +170,7 @@
 .subTitle {
   color: #e69a28;
 }
-.subButtons {
+.subButtonsContainer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -179,10 +179,21 @@
   column-gap: 40px;
   row-gap: 20px;
 }
-
+.subButton{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-wrap: break-word;
+  row-gap: 2px;
+  width: 75px;
+  height: 100px;
+  text-align: center;
+  font-size: 11pt;
+}
 .subImg {
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
 }
 .chosenSubClass {
   width: 100%;

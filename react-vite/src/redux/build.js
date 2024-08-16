@@ -26,7 +26,6 @@ const RESET_ABILITIES = "build/resetAbilities";
 const SET_BONUS = "build/setBonus";
 const CLEAR_BONUS = "build/clearBonus";
 // CLASS ACTIONS
-const SET_CLASS = "build/setClass";
 const SET_SUB_CLASS = "build/setSubClass";
 const ADD_BUILD_CLASS = "build/addBuildClass";
 const RESET_CLASSES = "build/resetClasses";
@@ -364,12 +363,6 @@ function buildReducer(state = initialState, action) {
     case SET_RACE: {
       const newState = { ...state, current: { ...state.current } };
       newState.current.race = action.payload;
-      return newState;
-    }
-
-    case SET_CLASS: {
-      const newState = { ...state, current: { ...state.current } };
-      newState.current.class = action.payload;
       return newState;
     }
 

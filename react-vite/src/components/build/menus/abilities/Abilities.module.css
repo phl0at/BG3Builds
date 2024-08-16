@@ -95,7 +95,7 @@
   justify-content: center;
 }
 .enabled:hover {
-  color: white;
+  color: #e69a28;
 }
 
 .bonuses {
@@ -111,7 +111,7 @@
 }
 
 .plus:hover {
-  color: white;
+  color: #e69a28;
 }
 
 .plusSelected {

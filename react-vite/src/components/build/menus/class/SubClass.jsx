@@ -30,14 +30,13 @@ export default function SubClass() {
           selectedClassInBuild.level >= 1 && (
             <>
               <div className={styles.subTitle}>Choose a Sub Class</div>
-              <br />
-              <div className={styles.subButtons}>
+              <div className={styles.subButtonsContainer}>
                 {levelOneSubClasses[selectedClassInBuild.name].map(
                   (subClass) => {
                     return (
                       <button
                         key={subClass.name}
-                        className={styles.button}
+                        className={styles.subButton}
                         onClick={(e) =>
                           onClick(e, selectedClassInBuild, subClass.name)
                         }
@@ -58,14 +57,13 @@ export default function SubClass() {
           selectedClassInBuild.level >= 2 && (
             <>
               <div className={styles.subTitle}>Choose a Sub Class</div>
-              <br />
-              <div className={styles.subButtons}>
+              <div className={styles.subButtonsContainer}>
                 {levelTwoSubClasses[selectedClassInBuild.name].map(
                   (subClass) => {
                     return (
                       <button
                         key={subClass.name}
-                        className={styles.button}
+                        className={styles.subButton}
                         onClick={(e) =>
                           onClick(e, selectedClassInBuild, subClass.name)
                         }
@@ -86,13 +84,13 @@ export default function SubClass() {
           selectedClassInBuild.level >= 3 && (
             <>
               <div className={styles.subTitle}>Choose a Sub Class</div>
-              <div className={styles.subButtons}>
+              <div className={styles.subButtonsContainer}>
                 {levelThreeSubClasses[selectedClassInBuild.name].map(
                   (subClass) => {
                     return (
                       <button
                         key={subClass.name}
-                        className={styles.button}
+                        className={styles.subButton}
                         onClick={(e) =>
                           onClick(e, selectedClassInBuild, subClass.name)
                         }
@@ -124,7 +122,7 @@ export default function SubClass() {
             {selectedClassInBuild.sub_class}
           </div>
           <button
-            className={styles.addButton}
+            className={styles.button}
             onClick={(e) => onClick(e, selectedClassInBuild, undefined)}
           >
             Change
