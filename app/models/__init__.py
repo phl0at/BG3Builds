@@ -1,3 +1,6 @@
 from .db import db
-from .models import User, Comment, Favorite, Build, Class, BuildClass, Origin, Race, Background, Equipment
+from .item import Helmet, Cloak, Armour, Glove, Boot, Amulet, Ring, Weapon
+from .build import Build, BuildClass
+from .user import User, Comment, Favorite
+from .static import Origin, Race, Background, Class
 from .db import environment, SCHEMA

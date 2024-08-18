@@ -5,7 +5,7 @@ import { EquipmentSlot } from "./Slot";
 //Packages
 
 export default function EquipmentComponent() {
-  const armorTypes = ["helmet", "cloak", "armor", "gloves", "boots"];
+  const armorTypes = ["helmet", "cloak", "armour", "gloves", "boots"];
   const accessoryTypes = ["amulet", "ring_1", "ring_2"];
   const meleeWeaponTypes = ["melee_mh", "melee_oh"];
   const rangeWeaponTypes = ["ranged_mh", "ranged_oh"];

@@ -25,6 +25,7 @@ const ItemsTableModal = lazy(() => import("./items"));
 export function EquipmentSlot({ type }) {
   const Equipment = useSelector((state) => state.static.equipment);
   const equippedItem = useSelector((state) => state.builds.current[type]);
+  const formatType = type.split("_")[0];
   const slotIcon = {
     helmet: <GiElfHelmet size="40" />,
     armor: <GiCapeArmor size="40" />,
