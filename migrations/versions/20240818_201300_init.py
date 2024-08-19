@@ -1,8 +1,8 @@
 """init
 
-Revision ID: e4f01460f8f7
+Revision ID: a19c27bc0e1d
 Revises: 
-Create Date: 2024-08-18 20:05:42.621177
+Create Date: 2024-08-18 20:13:00.889513
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e4f01460f8f7'
+revision = 'a19c27bc0e1d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,11 +21,11 @@ def upgrade():
     op.create_table('amulets',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
-    sa.Column('rarity', sa.String(length=20), nullable=False),
+    sa.Column('rarity', sa.String(length=50), nullable=False),
     sa.Column('description', sa.String(length=500), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
-    sa.Column('img', sa.String(length=20), nullable=False),
+    sa.Column('img', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('description'),
     sa.UniqueConstraint('name')
@@ -33,13 +33,13 @@ def upgrade():
     op.create_table('armours',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
-    sa.Column('type', sa.String(length=20), nullable=True),
-    sa.Column('rarity', sa.String(length=20), nullable=False),
+    sa.Column('type', sa.String(length=50), nullable=True),
+    sa.Column('rarity', sa.String(length=50), nullable=False),
     sa.Column('description', sa.String(length=500), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
     sa.Column('armour_class', sa.Integer(), nullable=False),
-    sa.Column('img', sa.String(length=20), nullable=False),
+    sa.Column('img', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('description'),
     sa.UniqueConstraint('name')
@@ -54,12 +54,12 @@ def upgrade():
     op.create_table('boots',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
-    sa.Column('type', sa.String(length=20), nullable=True),
-    sa.Column('rarity', sa.String(length=20), nullable=False),
+    sa.Column('type', sa.String(length=50), nullable=True),
+    sa.Column('rarity', sa.String(length=50), nullable=False),
     sa.Column('description', sa.String(length=500), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
-    sa.Column('img', sa.String(length=20), nullable=False),
+    sa.Column('img', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('description'),
     sa.UniqueConstraint('name')
@@ -74,11 +74,11 @@ def upgrade():
     op.create_table('cloaks',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
-    sa.Column('rarity', sa.String(length=20), nullable=False),
+    sa.Column('rarity', sa.String(length=50), nullable=False),
     sa.Column('description', sa.String(length=500), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
-    sa.Column('img', sa.String(length=20), nullable=False),
+    sa.Column('img', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('description'),
     sa.UniqueConstraint('name')
@@ -86,12 +86,12 @@ def upgrade():
     op.create_table('gloves',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
-    sa.Column('type', sa.String(length=20), nullable=True),
-    sa.Column('rarity', sa.String(length=20), nullable=False),
+    sa.Column('type', sa.String(length=50), nullable=True),
+    sa.Column('rarity', sa.String(length=50), nullable=False),
     sa.Column('description', sa.String(length=500), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
-    sa.Column('img', sa.String(length=20), nullable=False),
+    sa.Column('img', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('description'),
     sa.UniqueConstraint('name')
@@ -99,12 +99,12 @@ def upgrade():
     op.create_table('helmets',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
-    sa.Column('type', sa.String(length=20), nullable=True),
-    sa.Column('rarity', sa.String(length=20), nullable=False),
+    sa.Column('type', sa.String(length=50), nullable=True),
+    sa.Column('rarity', sa.String(length=50), nullable=False),
     sa.Column('description', sa.String(length=500), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
-    sa.Column('img', sa.String(length=20), nullable=False),
+    sa.Column('img', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('description'),
     sa.UniqueConstraint('name')
@@ -125,11 +125,11 @@ def upgrade():
     op.create_table('rings',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
-    sa.Column('rarity', sa.String(length=20), nullable=False),
+    sa.Column('rarity', sa.String(length=50), nullable=False),
     sa.Column('description', sa.String(length=500), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
-    sa.Column('img', sa.String(length=20), nullable=False),
+    sa.Column('img', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('description'),
     sa.UniqueConstraint('name')
@@ -146,17 +146,17 @@ def upgrade():
     op.create_table('weapons',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
-    sa.Column('type', sa.String(length=20), nullable=True),
+    sa.Column('type', sa.String(length=50), nullable=True),
     sa.Column('range', sa.String(length=6), nullable=False),
-    sa.Column('rarity', sa.String(length=20), nullable=False),
+    sa.Column('rarity', sa.String(length=50), nullable=False),
     sa.Column('description', sa.String(length=500), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
     sa.Column('damage', sa.String(length=50), nullable=True),
     sa.Column('damage_bonus', sa.Integer(), nullable=False),
-    sa.Column('damage_type', sa.String(length=20), nullable=True),
-    sa.Column('damage_mod', sa.String(length=20), nullable=True),
-    sa.Column('img', sa.String(length=20), nullable=False),
+    sa.Column('damage_type', sa.String(length=50), nullable=True),
+    sa.Column('damage_mod', sa.String(length=50), nullable=True),
+    sa.Column('img', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('description'),
     sa.UniqueConstraint('name')

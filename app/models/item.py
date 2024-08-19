@@ -9,12 +9,12 @@ class Helmet(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
-    type = db.Column(db.String(20), nullable=True)
-    rarity = db.Column(db.String(20), nullable=False)
+    type = db.Column(db.String(50), nullable=True)
+    rarity = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(500), nullable=True, unique=True)
     modifiers = db.Column(db.String(100), nullable=True)
     spell = db.Column(db.String(50), nullable=True)
-    img = db.Column(db.String(20), nullable=False)
+    img = db.Column(db.String(50), nullable=False)
 
     def to_dict(self):
         return {
@@ -38,11 +38,11 @@ class Cloak(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
-    rarity = db.Column(db.String(20), nullable=False)
+    rarity = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(500), nullable=True, unique=True)
     modifiers = db.Column(db.String(100), nullable=True)
     spell = db.Column(db.String(50), nullable=True)
-    img = db.Column(db.String(20), nullable=False)
+    img = db.Column(db.String(50), nullable=False)
 
     def to_dict(self):
         return {
@@ -65,13 +65,13 @@ class Armour(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
-    type = db.Column(db.String(20), nullable=True)
-    rarity = db.Column(db.String(20), nullable=False)
+    type = db.Column(db.String(50), nullable=True)
+    rarity = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(500), nullable=True, unique=True)
     modifiers = db.Column(db.String(100), nullable=True)
     spell = db.Column(db.String(50), nullable=True)
     armour_class = db.Column(db.Integer, nullable=False)
-    img = db.Column(db.String(20), nullable=False)
+    img = db.Column(db.String(50), nullable=False)
 
     def to_dict(self):
         return {
@@ -96,12 +96,12 @@ class Glove(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
-    type = db.Column(db.String(20), nullable=True)
-    rarity = db.Column(db.String(20), nullable=False)
+    type = db.Column(db.String(50), nullable=True)
+    rarity = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(500), nullable=True, unique=True)
     modifiers = db.Column(db.String(100), nullable=True)
     spell = db.Column(db.String(50), nullable=True)
-    img = db.Column(db.String(20), nullable=False)
+    img = db.Column(db.String(50), nullable=False)
 
     def to_dict(self):
         return {
@@ -125,12 +125,12 @@ class Boot(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
-    type = db.Column(db.String(20), nullable=True)
-    rarity = db.Column(db.String(20), nullable=False)
+    type = db.Column(db.String(50), nullable=True)
+    rarity = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(500), nullable=True, unique=True)
     modifiers = db.Column(db.String(100), nullable=True)
     spell = db.Column(db.String(50), nullable=True)
-    img = db.Column(db.String(20), nullable=False)
+    img = db.Column(db.String(50), nullable=False)
 
     def to_dict(self):
         return {
@@ -154,11 +154,11 @@ class Amulet(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
-    rarity = db.Column(db.String(20), nullable=False)
+    rarity = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(500), nullable=True, unique=True)
     modifiers = db.Column(db.String(100), nullable=True)
     spell = db.Column(db.String(50), nullable=True)
-    img = db.Column(db.String(20), nullable=False)
+    img = db.Column(db.String(50), nullable=False)
 
     def to_dict(self):
         return {
@@ -181,11 +181,11 @@ class Ring(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
-    rarity = db.Column(db.String(20), nullable=False)
+    rarity = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(500), nullable=True, unique=True)
     modifiers = db.Column(db.String(100), nullable=True)
     spell = db.Column(db.String(50), nullable=True)
-    img = db.Column(db.String(20), nullable=False)
+    img = db.Column(db.String(50), nullable=False)
 
     def to_dict(self):
         return {
@@ -209,17 +209,17 @@ class Weapon(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
-    type = db.Column(db.String(20), nullable=True)
+    type = db.Column(db.String(50), nullable=True)
     range = db.Column(db.String(6), db.Enum("Melee", "Ranged"), nullable=False)
-    rarity = db.Column(db.String(20), nullable=False)
+    rarity = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(500), nullable=True, unique=True)
     modifiers = db.Column(db.String(100), nullable=True)
     spell = db.Column(db.String(50), nullable=True)
     damage = db.Column(db.String(50), nullable=True)
     damage_bonus = db.Column(db.Integer, nullable=False)
-    damage_type = db.Column(db.String(20), nullable=True)
-    damage_mod = db.Column(db.String(20), db.Enum('strength', 'dexterity'))
-    img = db.Column(db.String(20), nullable=False)
+    damage_type = db.Column(db.String(50), nullable=True)
+    damage_mod = db.Column(db.String(50), db.Enum('strength', 'dexterity'))
+    img = db.Column(db.String(50), nullable=False)
 
     def to_dict(self):
         return {
