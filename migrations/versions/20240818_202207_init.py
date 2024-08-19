@@ -1,8 +1,8 @@
 """init
 
-Revision ID: a19c27bc0e1d
+Revision ID: 44ee7f265949
 Revises: 
-Create Date: 2024-08-18 20:13:00.889513
+Create Date: 2024-08-18 20:22:07.136716
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a19c27bc0e1d'
+revision = '44ee7f265949'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,7 +22,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('rarity', sa.String(length=50), nullable=False),
-    sa.Column('description', sa.String(length=500), nullable=True),
+    sa.Column('description', sa.String(length=1000), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
     sa.Column('img', sa.String(length=50), nullable=False),
@@ -35,7 +35,7 @@ def upgrade():
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('type', sa.String(length=50), nullable=True),
     sa.Column('rarity', sa.String(length=50), nullable=False),
-    sa.Column('description', sa.String(length=500), nullable=True),
+    sa.Column('description', sa.String(length=1000), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
     sa.Column('armour_class', sa.Integer(), nullable=False),
@@ -56,7 +56,7 @@ def upgrade():
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('type', sa.String(length=50), nullable=True),
     sa.Column('rarity', sa.String(length=50), nullable=False),
-    sa.Column('description', sa.String(length=500), nullable=True),
+    sa.Column('description', sa.String(length=1000), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
     sa.Column('img', sa.String(length=50), nullable=False),
@@ -75,7 +75,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('rarity', sa.String(length=50), nullable=False),
-    sa.Column('description', sa.String(length=500), nullable=True),
+    sa.Column('description', sa.String(length=1000), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
     sa.Column('img', sa.String(length=50), nullable=False),
@@ -88,7 +88,7 @@ def upgrade():
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('type', sa.String(length=50), nullable=True),
     sa.Column('rarity', sa.String(length=50), nullable=False),
-    sa.Column('description', sa.String(length=500), nullable=True),
+    sa.Column('description', sa.String(length=1000), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
     sa.Column('img', sa.String(length=50), nullable=False),
@@ -101,7 +101,7 @@ def upgrade():
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('type', sa.String(length=50), nullable=True),
     sa.Column('rarity', sa.String(length=50), nullable=False),
-    sa.Column('description', sa.String(length=500), nullable=True),
+    sa.Column('description', sa.String(length=1000), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
     sa.Column('img', sa.String(length=50), nullable=False),
@@ -126,7 +126,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('rarity', sa.String(length=50), nullable=False),
-    sa.Column('description', sa.String(length=500), nullable=True),
+    sa.Column('description', sa.String(length=1000), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
     sa.Column('img', sa.String(length=50), nullable=False),
@@ -149,7 +149,7 @@ def upgrade():
     sa.Column('type', sa.String(length=50), nullable=True),
     sa.Column('range', sa.String(length=6), nullable=False),
     sa.Column('rarity', sa.String(length=50), nullable=False),
-    sa.Column('description', sa.String(length=500), nullable=True),
+    sa.Column('description', sa.String(length=1000), nullable=True),
     sa.Column('modifiers', sa.String(length=100), nullable=True),
     sa.Column('spell', sa.String(length=50), nullable=True),
     sa.Column('damage', sa.String(length=50), nullable=True),
