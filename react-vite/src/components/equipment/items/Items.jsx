@@ -4,21 +4,23 @@ import styles from "./Items.module.css";
 import { useSelector } from "react-redux";
 import { IKImage } from "imagekitio-react";
 import { useState } from "react";
+import { PulseLoader } from "react-spinners";
 //Functions/Components
 import ItemInfo from "./ItemInfoPanel";
 
 export default function ItemsTableModal({ type }) {
-  const currentBuild = useSelector((state) => state.builds.current);
-  const Equipment = useSelector((state) => state.static.equipment);
-  const [selectedItem, setSelectedItem] = useState(currentBuild[type]);
-  const wearingItem = currentBuild[type] === selectedItem;
   const formatType = type.split("_")[0];
+  const currentBuild = useSelector((state) => state.builds.current);
+  const itemObj = useSelector((state) => state.static.items[formatType]);
+  const [selectedItem, setSelectedItem] = useState(currentBuild[type]);
   const capitalizedType = formatType[0].toUpperCase() + formatType.slice(1);
+  const wearingSelectedItem = currentBuild[type] === selectedItem
 
   const onClick = (e, id) => {
     e.preventDefault();
     setSelectedItem(id);
   };
+
 
   return (
     <>
@@ -27,15 +29,16 @@ export default function ItemsTableModal({ type }) {
           <div className={styles.thead}>
             <div className={styles.itemHead}>{`${capitalizedType}`}</div>
           </div>
-          {Object.values(Equipment).map((item) => {
-            if (item.type === formatType) {
+          {!itemObj && <PulseLoader className={styles.loading} color="#e4c274" />}
+          {itemObj &&
+            Object.values(itemObj).map((item) => {
               return (
                 <div key={item.id} className={styles.tbody}>
                   <button
                     onClick={(e) => onClick(e, item.id)}
                     id={selectedItem === item.id ? styles.selectedItem : ""}
                     className={
-                      Equipment[currentBuild[type]]?.name === item.name
+                      currentBuild[type] === item.id
                         ? styles.equippedItem
                         : styles.item
                     }
@@ -50,13 +53,12 @@ export default function ItemsTableModal({ type }) {
                   </button>
                 </div>
               );
-            }
-          })}
+            })}
         </div>
       </main>
       {selectedItem != undefined && (
         <ItemInfo
-          wearingItem={wearingItem}
+          wearingItem={wearingSelectedItem}
           selectedItem={selectedItem}
           type={type}
         />

@@ -36,7 +36,7 @@ class Build(db.Model):
     melee_oh = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('weapons.id')), nullable=True)
     ranged_mh = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('weapons.id')), nullable=True)
     ranged_oh = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('weapons.id')), nullable=True)
-    armor_class = db.Column(db.Integer, nullable=True)
+    armour_class = db.Column(db.Integer, nullable=True)
     level = db.Column(db.Integer, nullable=False)
 
     classes = db.relationship("BuildClass", backref="build", cascade="all, delete-orphan")
@@ -62,9 +62,9 @@ class Build(db.Model):
             'plus_2': self.plus_2,
             'helmet': self.helmet,
             'cloak': self.cloak,
-            'armor': self.armour,
-            'gloves': self.glove,
-            'boots': self.boot,
+            'armour': self.armour,
+            'glove': self.glove,
+            'boot': self.boot,
             'amulet': self.amulet,
             'ring_1': self.ring_1,
             'ring_2': self.ring_2,
@@ -72,7 +72,7 @@ class Build(db.Model):
             'melee_oh': self.melee_oh,
             'ranged_mh': self.ranged_mh,
             'ranged_oh': self.ranged_oh,
-            'armor_class': self.armor_class,
+            'armour_class': self.armour_class,
             'level': self.level,
             'build_classes': [build_class.to_dict() for build_class in self.classes],
             'comments': [comment.to_dict() for comment in self.comments]

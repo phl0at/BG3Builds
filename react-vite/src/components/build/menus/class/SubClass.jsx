@@ -22,7 +22,7 @@ export default function SubClass({ selectedClass }) {
     dispatch(action("build/setSubClass", updatedClass));
   }
 
-  if (selectedClassInBuild.sub_class === undefined) {
+  if (!selectedClassInBuild.sub_class) {
     return (
       <div className={styles.subClass}>
         {levelOneSubClasses[selectedClassInBuild.name] &&

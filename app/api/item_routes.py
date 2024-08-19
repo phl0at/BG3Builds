@@ -83,7 +83,7 @@ def get_rings():
 
 ###########################
 
-@item_routes.route("/weapon/melee")
+@item_routes.route("/melee")
 def get_melee_weapons():
     """
         Returns all melee weapons
@@ -94,7 +94,7 @@ def get_melee_weapons():
 
 ###########################
 
-@item_routes.route("/weapon/ranged")
+@item_routes.route("/ranged")
 def get_ranged_weapons():
     """
         Returns all ranged weapons

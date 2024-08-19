@@ -139,8 +139,8 @@ def seed_all():
          'type': 'Clothing',
          'rarity': 'Uncommon',
          'description': 'Synergetic Moments: When you inflict a condition, gain Arcane Synergy for 2 turns.',
-         'modifiers': None,
-         'spell': 'Arcane Synergy',
+         'modifiers': 'Arcane Synergy',
+         'spell': None,
          'img': 'Diadem of Arcane Synergy'
         },
         {
@@ -184,7 +184,7 @@ def seed_all():
          'name': 'Cloak of Protection',
          'rarity': 'Uncommon',
          'description': 'Description: Grants a +1 bonus to Armor Class and Saving Throw.',
-         'modifiers': 'armor_class+1',
+         'modifiers': 'armour_class+1',
          'spell': None,
          'img': 'Cloak of Protection'
         },
@@ -315,7 +315,7 @@ def seed_all():
          'type': 'Clothing',
          'rarity': 'Very Rare',
          'description': "Description: Set the wearer's Dexterity score to 18. This enchantment has no effect if their Dexterity is higher without it.",
-         'modifiers': 'Dexterity=18,Attack+1',
+         'modifiers': 'dexterity=18,Attack+1',
          'spell': None,
          'img': 'Gloves of Dexterity'
         },
@@ -538,8 +538,8 @@ def seed_all():
          'name': 'Ring of Arcane Synergy',
          'rarity': 'Rare',
          'description': 'Synergetic Cantrip: When you deal damage with a Cantrip, you gain Arcane Synergy for 2 turns.',
-         'modifiers': None,
-         'spell': 'Arcane Synergy',
+         'modifiers': 'Arcane Synergy',
+         'spell': None,
          'img': 'Ring of Arcane Synergy',
         },
 
@@ -770,7 +770,7 @@ def seed_all():
             "melee_oh": None,
             "ranged_mh": None,
             "ranged_oh": None,
-            'armor_class': 10,
+            'armour_class': 10,
             "level": 12
         },
         {
@@ -800,7 +800,7 @@ def seed_all():
             "melee_oh": None,
             "ranged_mh": None,
             "ranged_oh": None,
-            'armor_class': 10,
+            'armour_class': 10,
             "level": 12
         },
         {
@@ -830,7 +830,7 @@ def seed_all():
             "melee_oh": None,
             "ranged_mh": None,
             "ranged_oh": None,
-            'armor_class': 10,
+            'armour_class': 10,
             "level": 12
         },
         {
@@ -860,7 +860,7 @@ def seed_all():
             "melee_oh": None,
             "ranged_mh": None,
             "ranged_oh": None,
-            'armor_class': 10,
+            'armour_class': 10,
             "level": 12
         },
         {
@@ -890,7 +890,7 @@ def seed_all():
             "melee_oh": None,
             "ranged_mh": None,
             "ranged_oh": None,
-            'armor_class': 10,
+            'armour_class': 10,
             "level": 12
         },
         {
@@ -920,7 +920,7 @@ def seed_all():
             "melee_oh": None,
             "ranged_mh": None,
             "ranged_oh": None,
-            'armor_class': 10,
+            'armour_class': 10,
             "level": 12
         }
     ]
@@ -953,7 +953,7 @@ def seed_all():
             melee_oh=build_data['melee_oh'],
             ranged_mh=build_data['ranged_mh'],
             ranged_oh=build_data['ranged_oh'],
-            armor_class=build_data['armor_class'],
+            armour_class=build_data['armour_class'],
             level=build_data['level']
         )
         db.session.add(build)
@@ -963,12 +963,12 @@ def seed_all():
 
     ################ SEED BUILD CLASSES ################
     build_classes_list = [
-        { 'build_id': 1, 'class_id': 1, 'name': 'Barbarian', 'modifier': 'strength', 'level': 12, 'sub_class': None, 'order': 1},
-        { 'build_id': 2, 'class_id': 8, 'name': 'Ranger', 'modifier': 'dexterity', 'level': 12, 'sub_class': None, 'order': 1},
-        { 'build_id': 3, 'class_id': 9, 'name': 'Rogue', 'modifier': 'dexterity', 'level': 12, 'sub_class': None, 'order': 1},
-        { 'build_id': 4, 'class_id': 11, 'name': 'Warlock', 'modifier': 'charisma', 'level': 12, 'sub_class': None, 'order': 1},
-        { 'build_id': 5, 'class_id': 12, 'name': 'Wizard', 'modifier': 'intelligence', 'level': 12, 'sub_class': None, 'order': 1},
-        { 'build_id': 6, 'class_id': 5, 'name': 'Fighter', 'modifier': 'strength', 'level': 12, 'sub_class': None, 'order': 1},
+        { 'build_id': 1, 'class_id': 1, 'name': 'Barbarian', 'modifier': 'strength', 'level': 12, 'sub_class': "Berserker", 'order': 1},
+        { 'build_id': 2, 'class_id': 8, 'name': 'Ranger', 'modifier': 'dexterity', 'level': 12, 'sub_class': "Gloomstalker", 'order': 1},
+        { 'build_id': 3, 'class_id': 9, 'name': 'Rogue', 'modifier': 'dexterity', 'level': 12, 'sub_class': "Assassin", 'order': 1},
+        { 'build_id': 4, 'class_id': 11, 'name': 'Warlock', 'modifier': 'charisma', 'level': 12, 'sub_class': "The Archfey", 'order': 1},
+        { 'build_id': 5, 'class_id': 12, 'name': 'Wizard', 'modifier': 'intelligence', 'level': 12, 'sub_class': "Evocation", 'order': 1},
+        { 'build_id': 6, 'class_id': 5, 'name': 'Fighter', 'modifier': 'strength', 'level': 12, 'sub_class': "Champion", 'order': 1},
     ]
     for build_class in build_classes_list:
         new_bc = BuildClass(

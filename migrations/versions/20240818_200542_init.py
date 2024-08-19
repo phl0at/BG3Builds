@@ -1,8 +1,8 @@
 """init
 
-Revision ID: 1458c27a5e82
+Revision ID: e4f01460f8f7
 Revises: 
-Create Date: 2024-08-18 18:17:12.672639
+Create Date: 2024-08-18 20:05:42.621177
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '1458c27a5e82'
+revision = 'e4f01460f8f7'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -190,7 +190,7 @@ def upgrade():
     sa.Column('melee_oh', sa.Integer(), nullable=True),
     sa.Column('ranged_mh', sa.Integer(), nullable=True),
     sa.Column('ranged_oh', sa.Integer(), nullable=True),
-    sa.Column('armor_class', sa.Integer(), nullable=True),
+    sa.Column('armour_class', sa.Integer(), nullable=True),
     sa.Column('level', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['amulet'], ['amulets.id'], ),
     sa.ForeignKeyConstraint(['armour'], ['armours.id'], ),

@@ -91,6 +91,12 @@
   left: 8px;
 }
 
+.loading{
+  position: relative;
+  left: 40%;
+
+}
+
 /* DESCRIPTION PANEL */
 
 .sideMenu {

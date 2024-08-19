@@ -9,9 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 export default function ItemInfo({ wearingItem, selectedItem, type }) {
   const dispatch = useDispatch();
   const { buildId } = useParams();
-  const Equipment = useSelector((state) => state.static.equipment);
+  const itemObj = useSelector((state) => state.static.items[type.split("_")[0]]);
   const currentUser = useSelector((state) => state.session.user);
-  const viewedItem = Equipment[selectedItem];
+  const viewedItem = itemObj[selectedItem];
   const descriptions = viewedItem?.description.split("&*&");
 
   return (
