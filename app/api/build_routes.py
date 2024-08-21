@@ -83,9 +83,9 @@ def create_build():
     plus_2 = data.get('plus_2')
     helmet = data.get('helmet')
     cloak = data.get('cloak')
-    armor = data.get('armor')
-    gloves = data.get('gloves')
-    boots = data.get('boots')
+    armour = data.get('armour')
+    glove = data.get('glove')
+    boot = data.get('boot')
     amulet = data.get('amulet')
     ring_1 = data.get('ring_1')
     ring_2 = data.get('ring_2')
@@ -93,7 +93,7 @@ def create_build():
     melee_oh = data.get('melee_oh')
     ranged_mh = data.get('ranged_mh')
     ranged_oh = data.get('ranged_oh')
-    # armor_class = data.get('armor_class')
+    armour_class = data.get('armour_class')
     level = data.get('level')
     build_classes = data.get('build_classes')
 
@@ -138,9 +138,9 @@ def create_build():
             plus_2 = plus_2,
             helmet = helmet,
             cloak = cloak,
-            armor = armor,
-            gloves = gloves,
-            boots = boots,
+            armour = armour,
+            glove = glove,
+            boot = boot,
             amulet = amulet,
             ring_1 = ring_1,
             ring_2 = ring_2,
@@ -148,7 +148,7 @@ def create_build():
             melee_oh = melee_oh,
             ranged_mh = ranged_mh,
             ranged_oh = ranged_oh,
-            armor_class = None,
+            armour_class = armour_class,
             level = level
         )
         db.session.add(build)
@@ -205,9 +205,9 @@ def edit_build(id):
     plus_2 = data.get('plus_2')
     helmet = data.get('helmet')
     cloak = data.get('cloak')
-    armor = data.get('armor')
-    gloves = data.get('gloves')
-    boots = data.get('boots')
+    armour = data.get('armour')
+    glove = data.get('glove')
+    boot = data.get('boot')
     amulet = data.get('amulet')
     ring_1 = data.get('ring_1')
     ring_2 = data.get('ring_2')
@@ -215,7 +215,7 @@ def edit_build(id):
     melee_oh = data.get('melee_oh')
     ranged_mh = data.get('ranged_mh')
     ranged_oh = data.get('ranged_oh')
-    armor_class = data.get('armor_class')
+    armour_class = data.get('armour_class')
     level = data.get('level')
     build_classes = data.get('build_classes')
 
@@ -258,9 +258,9 @@ def edit_build(id):
         build.plus_2 = plus_2
         build.helmet = helmet
         build.cloak = cloak
-        build.armor = armor
-        build.gloves = gloves
-        build.boots = boots
+        build.armour = armour
+        build.glove = glove
+        build.boot = boot
         build.amulet = amulet
         build.ring_1 = ring_1
         build.ring_2 = ring_2
@@ -268,7 +268,7 @@ def edit_build(id):
         build.melee_oh = melee_oh
         build.ranged_mh = ranged_mh
         build.ranged_oh = ranged_oh
-        build.armor_class = armor_class
+        build.armour_class = armour_class
         build.level = level
 
 
