@@ -9,7 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 export default function ItemInfo({ wearingItem, selectedItem, type }) {
   const dispatch = useDispatch();
   const { buildId } = useParams();
-  const itemObj = useSelector((state) => state.static.items[type.split("_")[0]]);
+  const itemObj = useSelector(
+    (state) => state.static.items[type.split("_")[0]]
+  );
   const currentUser = useSelector((state) => state.session.user);
   const viewedItem = itemObj[selectedItem];
   const descriptions = viewedItem?.description.split("&*&");
@@ -21,7 +23,12 @@ export default function ItemInfo({ wearingItem, selectedItem, type }) {
           <div>{viewedItem.name}</div>
         </div>
         <div className={styles.sideInfo}>
-          <div className={styles.rarity}>{viewedItem.rarity}</div>
+          <div
+            id={styles[viewedItem.rarity.replace(" ", "")]}
+            className={styles.rarity}
+          >
+            {viewedItem.rarity}
+          </div>
           {(viewedItem.damage && viewedItem.damage_type) != null && (
             <div className={styles.damage}>
               <div>{`(${viewedItem.damage_type})`}</div>

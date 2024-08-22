@@ -14,13 +14,12 @@ export default function ItemsTableModal({ type }) {
   const itemObj = useSelector((state) => state.static.items[formatType]);
   const [selectedItem, setSelectedItem] = useState(currentBuild[type]);
   const capitalizedType = formatType[0].toUpperCase() + formatType.slice(1);
-  const wearingSelectedItem = currentBuild[type] === selectedItem
+  const wearingSelectedItem = currentBuild[type] === selectedItem;
 
   const onClick = (e, id) => {
     e.preventDefault();
     setSelectedItem(id);
   };
-
 
   return (
     <>
@@ -29,14 +28,16 @@ export default function ItemsTableModal({ type }) {
           <div className={styles.thead}>
             <div className={styles.itemHead}>{`${capitalizedType}`}</div>
           </div>
-          {!itemObj && <PulseLoader className={styles.loading} color="#e4c274" />}
+          {!itemObj && (
+            <PulseLoader className={styles.loading} color="#e4c274" />
+          )}
           {itemObj &&
             Object.values(itemObj).map((item) => {
               return (
                 <div key={item.id} className={styles.tbody}>
                   <button
                     onClick={(e) => onClick(e, item.id)}
-                    id={selectedItem === item.id ? styles.selectedItem : ""}
+                    id={selectedItem === item.id && styles.selectedItem}
                     className={
                       currentBuild[type] === item.id
                         ? styles.equippedItem
@@ -49,7 +50,7 @@ export default function ItemsTableModal({ type }) {
                         path={`item_icons/${item.name}.png`}
                       />
                     </div>
-                    <div className={styles.itemName}>{item.name}</div>
+                    <div id={styles[itemObj[item.id].rarity.replace(" ", "")]} className={styles.itemName}>{item.name}</div>
                   </button>
                 </div>
               );
