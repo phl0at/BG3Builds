@@ -2,12 +2,13 @@
 import styles from "../Info.module.css";
 // Functions/Components
 import { getBuildClassArray } from "../../../redux/build";
+import { CreateButton, DisplayButton } from "../Button";
+import { applyEquipmentStats } from "../../../utils/helper";
 // Packages
-
 import { useSelector } from "react-redux";
 import { BsFillHexagonFill } from "react-icons/bs";
 import { useParams } from "react-router-dom";
-import { CreateButton, DisplayButton } from "../Button";
+import { useEffect, useMemo, useState } from "react";
 
 export default function AboutBuild({ display, setDisplay }) {
   const { buildId } = useParams();
@@ -15,6 +16,52 @@ export default function AboutBuild({ display, setDisplay }) {
   const currentBuild = useSelector((state) => state.builds.current);
   const Backgrounds = useSelector((state) => state.static.backgrounds);
   const Races = useSelector((state) => state.static.races);
+  const Items = useSelector((state) => state.static.items);
+  const [modifiedBuild, setModifiedBuild] = useState({});
+  const newBuild = useMemo(()=> applyEquipmentStats(currentBuild, Items), [currentBuild, Items])
+  const {
+    strength,
+    dexterity,
+    constitution,
+    intelligence,
+    wisdom,
+    charisma,
+    helmet,
+    cloak,
+    armour,
+    glove,
+    boot,
+    amulet,
+    ring_1,
+    ring_2,
+    melee_mh,
+    melee_oh,
+    ranged_mh,
+    ranged_oh,
+  } = useSelector((state) => state.builds.current);
+
+  useEffect(() => {
+    setModifiedBuild(newBuild);
+  }, [
+    strength,
+    dexterity,
+    constitution,
+    intelligence,
+    wisdom,
+    charisma,
+    helmet,
+    cloak,
+    armour,
+    glove,
+    boot,
+    amulet,
+    ring_1,
+    ring_2,
+    melee_mh,
+    melee_oh,
+    ranged_mh,
+    ranged_oh,
+  ]);
 
   const abilities = [
     "Strength",
@@ -50,7 +97,7 @@ export default function AboutBuild({ display, setDisplay }) {
                   )}
                 </div>
                 <div className={styles.orange}>{ability.slice(0, 3)}</div>
-                <div>{currentBuild[ability.toLowerCase()]}</div>
+                <div>{modifiedBuild[ability.toLowerCase()]}</div>
               </div>
             );
           })}

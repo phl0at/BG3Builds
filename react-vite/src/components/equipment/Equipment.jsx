@@ -1,4 +1,5 @@
 //Files
+import { useSelector } from "react-redux";
 import styles from "./Equipment.module.css";
 //Functions/Components
 import { EquipmentSlot } from "./Slot";
@@ -9,6 +10,9 @@ export default function EquipmentComponent() {
   const accessoryTypes = ["amulet", "ring_1", "ring_2"];
   const meleeWeaponTypes = ["melee_mh", "melee_oh"];
   const rangeWeaponTypes = ["ranged_mh", "ranged_oh"];
+  const armour_class = useSelector(
+    (state) => state.builds.current.armour_class
+  );
 
   return (
     <main className={styles.main}>
@@ -29,7 +33,7 @@ export default function EquipmentComponent() {
         <div className={styles.right}>
           <div className={styles.accessories}>
             <div className={styles.armorClass}>
-              <span>AC: 15</span>
+              <span>{`AC: ${armour_class}`}</span>
             </div>
             {accessoryTypes.map((type) => (
               <EquipmentSlot key={type} type={type} />

@@ -56,7 +56,7 @@ export const thunkCreateBuild =
     build.name = name;
     build.character_name = character_name;
     build.build_classes = Object.values(build.build_classes);
-    
+
     const res = await fetch("/api/builds/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -467,6 +467,7 @@ function buildReducer(state = initialState, action) {
           plus_1: "",
           plus_2: "",
           level: 0,
+          armour_class: 10,
           build_classes: {},
         },
       };

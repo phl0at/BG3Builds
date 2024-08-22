@@ -139,7 +139,7 @@ def seed_all():
          'type': 'Clothing',
          'rarity': 'Uncommon',
          'description': 'Synergetic Moments: When you inflict a condition, gain Arcane Synergy for 2 turns.',
-         'modifiers': 'Arcane Synergy',
+         'modifiers': None,
          'spell': None,
          'img': 'Diadem of Arcane Synergy'
         },
@@ -216,7 +216,7 @@ def seed_all():
          'name': 'Reverse Rain Cloak',
          'rarity': 'Uncommon',
          'description': 'Description: The wearer is perpetually just a little bit damp.',
-         'modifiers': 'Wet',
+         'modifiers': None,
          'spell': None,
          'img': 'Reverse Rain Cloak'
         },
@@ -253,7 +253,7 @@ def seed_all():
          'type': 'Medium',
          'rarity': 'Rare',
          'description': 'Exotic Material: Add your full Dexterity Modifier to your Armour Class. Additionally, this armour does not impose Disadvantage on Stealth Ability Checks.',
-         'modifiers': 'armor_class+dexmod',
+         'modifiers': None,
          'spell': None,
          'armour_class': 15,
          'img': 'Scale Mail_2'
@@ -263,7 +263,7 @@ def seed_all():
          'type': 'Light',
          'rarity': 'Very Rare',
          'description': 'Description: Bhaal, Lord of Murder, was forced to walk the world as a mortal man during a period of history called the Time of Troubles. He was more vulnerable than he had ever been. But Bhaal was cunning. He had contingencies in case he died.&*&Aura of Murder: Enemies within 2m / 6.5ft become Vulnerable to Piercing damage, unless they are Resistant or Immune to it.',
-         'modifiers': 'Aura of Murder',
+         'modifiers': None,
          'spell': None,
          'armour_class': 14,
          'img': 'Bhaalist Armor'
@@ -315,7 +315,7 @@ def seed_all():
          'type': 'Clothing',
          'rarity': 'Very Rare',
          'description': "Description: Set the wearer's Dexterity score to 18. This enchantment has no effect if their Dexterity is higher without it.",
-         'modifiers': 'dexterity=18,Attack+1',
+         'modifiers': 'dexterity=18',
          'spell': None,
          'img': 'Gloves of Dexterity'
         },
@@ -325,7 +325,7 @@ def seed_all():
          'rarity': 'Very Rare',
          'description': "Description: When the Lord of Murder, Bhaal, was rendered mortal, he knew his days were numbered. His vile machinations had gained him many enemies. Those days ran out and Bhaal was indeed killed, not by a god, but by a man with hawkish features named Cyric.&*&\
             Garrotte: Wrap a shadow rope around a Humanoid creature's throat to deal 1d10 Bludgeoning damage and start Garrotting it (DC 14 Strength saving throw to avoid becoming Garrotted for 3 turns).",
-         'modifiers': "Attack+1",
+         'modifiers': None,
          'spell': 'Garrote',
          'img': 'Bhaalist Gloves',
         },
@@ -393,7 +393,7 @@ def seed_all():
          'type': 'Clothing',
          'rarity': 'Uncommon',
          'description': "Description: Peals of thunder rumble at the back of your skull with every step taken in these boots.&*&Arcane Echomalefaction: When the wearer inflicts a condition upon a hostile creature, they also inflict 2 turns of Reverberation.",
-         'modifiers': "Reverberation",
+         'modifiers': None,
          'spell': None,
          'img': 'Boots of Stormy Clamour',
         },
@@ -634,7 +634,7 @@ def seed_all():
          'rarity': 'Legendary',
          'description': "Description: Wielded by Balduran, the founder of Baldur's Gate and friend to his guardian dragon, a great glittering wyrm called Ansur. Fellowship can be undone, though, as easily as you or I might unlace the strings of our shoes, and it was in a time of skullduggery and hardship that Balduran killed Ansur, carrying out the deed with this sword.&*&\
             Giantslayer: On a hit, double the damage from your Strength modifier. This weapon grants you Advantage on Attack rolls against Large, Huge or Gargantuan creatures.",
-         'modifiers': 'damage+strmod',
+         'modifiers': None,
          'spell': None,
          'damage': '2d6',
          'damage_bonus': 3,
