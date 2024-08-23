@@ -50,7 +50,12 @@ export default function ItemsTableModal({ type }) {
                         path={`item_icons/${item.name}.png`}
                       />
                     </div>
-                    <div id={styles[itemObj[item.id].rarity.replace(" ", "")]} className={styles.itemName}>{item.name}</div>
+                    <div
+                      id={styles[itemObj[item.id].rarity.replace(" ", "")]}
+                      className={styles.itemName}
+                    >
+                      {item.name}
+                    </div>
                   </button>
                 </div>
               );
