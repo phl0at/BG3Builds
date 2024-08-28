@@ -47,7 +47,7 @@ export default function ItemsTableModal({ type }) {
                     <div className={styles.itemImg}>
                       <IKImage
                         loading="lazy"
-                        path={`item_icons/${item.name}.png`}
+                        path={`item_icons/${formatType}/${item.name}.png`}
                       />
                     </div>
                     <div
