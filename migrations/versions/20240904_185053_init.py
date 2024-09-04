@@ -1,8 +1,8 @@
 """init
 
-Revision ID: 55b6c39689e4
+Revision ID: 51c9104e3e06
 Revises: 
-Create Date: 2024-09-04 18:19:10.594566
+Create Date: 2024-09-04 18:50:53.199419
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '55b6c39689e4'
+revision = '51c9104e3e06'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -67,6 +67,7 @@ def upgrade():
     op.create_table('cantrips',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
+    sa.Column('school', sa.String(length=50), nullable=False),
     sa.Column('description', sa.String(length=250), nullable=False),
     sa.Column('duration', sa.Integer(), nullable=True),
     sa.Column('range', sa.Integer(), nullable=False),
@@ -74,6 +75,7 @@ def upgrade():
     sa.Column('attack_save', sa.String(length=3), nullable=True),
     sa.Column('damage', sa.String(length=10), nullable=True),
     sa.Column('damage_type', sa.String(length=10), nullable=True),
+    sa.Column('concentration', sa.Boolean(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('classes',

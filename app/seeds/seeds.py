@@ -1,4 +1,4 @@
-from app.models import db, Origin, Background, Race, \
+from app.models import db, Origin, Background, Race, Cantrip, \
                         User, Favorite, Build, Comment, \
                         Class, BuildClass,  Helmet, Cloak, \
                         Armour, Glove, Boot, Amulet, Ring, Weapon, \
@@ -985,6 +985,86 @@ def seed_all():
 
 
 
+    ################ SEED CANTRIPS ################
+
+    cantrip_list = [
+        {
+            'name': 'Acid Splash',
+            'school': 'Conjuration',
+            'description': 'Throw a bubble of acid that damages each creature it hits.',
+            'duration': 0,
+            'range': 18,
+            'radius': 2,
+            'attack_save': 'dex',
+            'damage': '1d6',
+            'damage_type': 'Acid',
+            'concentration': False,
+        },
+        {
+            'name': 'Blade Ward',
+            'school': 'Abjuration',
+            'description': 'Take only half the damage from Bludgeoning, Piercing, and Slashing attacks.',
+            'duration': 2,
+            'range': 0,
+            'radius': None,
+            'attack_save': None,
+            'damage': None,
+            'damage_type': None,
+            'concentration': False,
+        },
+        {
+            'name': 'Bone Chill',
+            'school': 'Necromancy',
+            'description': 'Prevent the target from healing until your next turn. An undead target receives disadvantage on attack rolls.',
+            'duration': 1,
+            'range': 18,
+            'radius': None,
+            'attack_save': 'atk',
+            'damage': '1d8',
+            'damage_type': 'Necrotic',
+            'concentration': False,
+        },
+        {
+            'name': 'Dancing Lights',
+            'school': 'Evocation',
+            'description': 'Illuminate a 9m radius.',
+            'duration': 10,
+            'range': 18,
+            'radius': 9,
+            'attack_save': None,
+            'damage': None,
+            'damage_type': None,
+            'concentration': True,
+        },
+        {
+            'name': 'Eldritch Blast',
+            'school': 'Evocation',
+            'description': 'Conjure a beam of crackling energy. Deals 1d10 Force damage to a target.',
+            'duration': 0,
+            'range': 18,
+            'radius': None,
+            'attack_save': 'atk',
+            'damage': '1d10',
+            'damage_type': 'Force',
+            'concentration': False,
+        },
+    ]
+
+    for cantrip in cantrip_list:
+        new_cantrip = Cantrip(
+            name = cantrip['name'],
+            school = cantrip['school'],
+            description = cantrip['description'],
+            duration = cantrip['duration'],
+            range = cantrip['range'],
+            radius = cantrip['radius'],
+            attack_save = cantrip['attack_save'],
+            damage = cantrip['damage'],
+            damage_type = cantrip['damage_type'],
+            concentration = cantrip['concentration'],
+        )
+        db.session.add(new_cantrip)
+
     ################ SEED COMMENTS ################
     comment_list = [
         {'user_id': 1, 'build_id': 3,  'message': 'such a cool build!'},
@@ -1042,6 +1122,7 @@ def undo_all():
         db.session.execute(f"TRUNCATE table {SCHEMA}.origins RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.races RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.backgrounds RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.cantrips RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
         db.session.execute(text("DELETE FROM builds"))
@@ -1060,5 +1141,6 @@ def undo_all():
         db.session.execute(text("DELETE FROM origins"))
         db.session.execute(text("DELETE FROM races"))
         db.session.execute(text("DELETE FROM backgrounds"))
+        db.session.execute(text("DELETE FROM cantrips"))
 
     db.session.commit()
