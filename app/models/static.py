@@ -82,3 +82,32 @@ class Class(db.Model):
             'modifier': self.modifier
         }
 
+################################################################################
+
+class Cantrip(db.Model):
+    __tablename__ = 'cantrips'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    description = db.Column(db.String(250), nullable=False)
+    duration = db.Column(db.Integer, nullable=True)
+    range = db.Column(db.Integer, nullable=False)
+    radius = db.Column(db.Integer, nullable=True)
+    attack_save = db.Column(db.String(3), nullable=True)
+    damage = db.Column(db.String(10), nullable=True)
+    damage_type = db.Column(db.String(10), nullable=True)
+
+    def to_dict(self):
+        return {
+            'name': self.name,
+            'description': self.description,
+            'duration': self.duration,
+            'range': self.range,
+            'radius': self.radius,
+            'attack_save': self.attack_save,
+            'damage': self.damage,
+            'damage_type': self.damage_type
+        }

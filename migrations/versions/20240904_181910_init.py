@@ -1,8 +1,8 @@
 """init
 
-Revision ID: 44ee7f265949
+Revision ID: 55b6c39689e4
 Revises: 
-Create Date: 2024-08-18 20:22:07.136716
+Create Date: 2024-09-04 18:19:10.594566
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '44ee7f265949'
+revision = '55b6c39689e4'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -63,6 +63,18 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('description'),
     sa.UniqueConstraint('name')
+    )
+    op.create_table('cantrips',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=50), nullable=False),
+    sa.Column('description', sa.String(length=250), nullable=False),
+    sa.Column('duration', sa.Integer(), nullable=True),
+    sa.Column('range', sa.Integer(), nullable=False),
+    sa.Column('radius', sa.Integer(), nullable=True),
+    sa.Column('attack_save', sa.String(length=3), nullable=True),
+    sa.Column('damage', sa.String(length=10), nullable=True),
+    sa.Column('damage_type', sa.String(length=10), nullable=True),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('classes',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -258,6 +270,7 @@ def downgrade():
     op.drop_table('gloves')
     op.drop_table('cloaks')
     op.drop_table('classes')
+    op.drop_table('cantrips')
     op.drop_table('boots')
     op.drop_table('backgrounds')
     op.drop_table('armours')
