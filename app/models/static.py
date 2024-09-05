@@ -104,6 +104,7 @@ class Cantrip(db.Model):
 
     def to_dict(self):
         return {
+            'id': self.id,
             'name': self.name,
             'school': self.school,
             'description': self.description,

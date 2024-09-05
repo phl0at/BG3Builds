@@ -4,7 +4,7 @@ import { createSelector } from "reselect";
 //*                             Actions
 //! --------------------------------------------------------------------
 
-const PRELOAD = "preload"
+const PRELOAD = "preload";
 const GET_ITEM = "items/get";
 
 //! --------------------------------------------------------------------
@@ -39,7 +39,6 @@ export const thunkPreloadData = () => async (dispatch) => {
 
 export const thunkGetItems = (type) => async (dispatch) => {
   try {
-
     const res = await fetch(`/api/items/${type}`);
     if (res.ok) {
       const data = await res.json();
@@ -99,34 +98,27 @@ function staticReducer(state = initialState, action) {
       return newState;
     }
     case PRELOAD: {
-      const { origins, classes, races, backgrounds } = action.payload;
-      const newState = { ...state };
-      classes.forEach(
-        (_class) =>
-          (newState["classes"] = {
-            ...newState["classes"],
-            [_class.class_id]: _class,
-          })
-      );
-      races.forEach(
-        (race) =>
-          (newState["races"] = { ...newState["races"], [race.id]: race })
-      );
-      backgrounds.forEach(
-        (background) =>
-          (newState["backgrounds"] = {
-            ...newState["backgrounds"],
-            [background.id]: background,
-          })
-      );
-      origins.forEach(
-        (origin) =>
-          (newState["origins"] = {
-            ...newState["origins"],
-            [origin.id]: origin,
-          })
-      );
-      newState["items"] = {};
+      const { origins, classes, races, backgrounds, cantrips } = action.payload;
+      const newState = {
+        ...state,
+        origins: {},
+        classes: {},
+        races: {},
+        backgrounds: {},
+        cantrips: {},
+        items: {},
+      };
+      
+      classes.forEach((_class) => (newState.classes[_class.class_id] = _class));
+
+      races.forEach((race) => (newState.races[race.id] = race));
+
+      backgrounds.forEach((bg) => (newState.backgrounds[bg.id] = bg));
+
+      origins.forEach((origin) => (newState.origins[origin.id] = origin));
+
+      cantrips.forEach((cantrip) => (newState.cantrips[cantrip.id] = cantrip));
+
       return newState;
     }
     default:
