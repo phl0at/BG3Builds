@@ -37,7 +37,7 @@ export default function ItemsTableModal({ type }) {
                 <div key={item.id} className={styles.tbody}>
                   <button
                     onClick={(e) => onClick(e, item.id)}
-                    id={selectedItem === item.id && styles.selectedItem}
+                    id={selectedItem === item.id ? styles.selectedItem : ""}
                     className={
                       currentBuild[type] === item.id
                         ? styles.equippedItem

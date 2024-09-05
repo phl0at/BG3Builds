@@ -108,7 +108,7 @@ function staticReducer(state = initialState, action) {
         cantrips: {},
         items: {},
       };
-      
+
       classes.forEach((_class) => (newState.classes[_class.class_id] = _class));
 
       races.forEach((race) => (newState.races[race.id] = race));

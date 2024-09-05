@@ -47,6 +47,8 @@ export function EquipmentSlot({ type }) {
     dispatch(thunkGetItems(formatType))
   }
 
+  console.log(itemObj, equippedItem)
+
   return (
     <OpenModalButton
       onButtonClick={onClick}
@@ -55,7 +57,7 @@ export function EquipmentSlot({ type }) {
         equippedItem ? (
           <IKImage
             className={styles.itemImg}
-            path={`item_icons/${itemObj[equippedItem].name}.png`}
+            path={`item_icons/${formatType}/${itemObj[equippedItem].name}.png`}
           />
         ) : (
           slotIcon[type]
