@@ -47,8 +47,6 @@ export function EquipmentSlot({ type }) {
     dispatch(thunkGetItems(formatType))
   }
 
-  console.log(itemObj, equippedItem)
-
   return (
     <OpenModalButton
       onButtonClick={onClick}
