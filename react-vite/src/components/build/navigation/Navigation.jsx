@@ -3,9 +3,14 @@ import styles from "./Navigation.module.css";
 //Functions/Components
 //Packages
 import { CiSquareRemove, CiStop1 } from "react-icons/ci";
+import { useSelector } from "react-redux";
 
 function Navigation({ setActiveMenu, activeMenu }) {
-  
+  const cantripPoints = useSelector(
+    (state) => state.builds.current.cantripPoints
+  );
+  const chosenCantrips = useSelector((state) => state.builds.current.cantrips);
+
   return (
     <main className={styles.main}>
       <div className={styles.title}>Build Menus</div>
@@ -102,6 +107,29 @@ function Navigation({ setActiveMenu, activeMenu }) {
           )}
           Abilities
         </button>
+      </div>
+      <div>
+        {cantripPoints > 0 ||
+          (chosenCantrips > 0 && (
+            <button
+              className={
+                activeMenu === "Cantrips"
+                  ? styles.menuItemSelected
+                  : styles.menuItem
+              }
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveMenu("Cantrips");
+              }}
+            >
+              {activeMenu === "Cantrips" ? (
+                <CiSquareRemove size="24" />
+              ) : (
+                <CiStop1 size="24" />
+              )}
+              Cantrips
+            </button>
+          ))}
       </div>
     </main>
   );
