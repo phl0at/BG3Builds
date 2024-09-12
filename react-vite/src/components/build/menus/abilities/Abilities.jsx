@@ -9,7 +9,7 @@ import { CiUndo } from "react-icons/ci";
 import { useSelector } from "react-redux";
 
 export default function AbilitiesComponent() {
-  const points = useSelector((state) => state.builds.current.points);
+  const points = useSelector((state) => state.builds.current.abilityPoints);
   const plus_1 = useSelector((state) => state.builds.current.plus_1);
   const plus_2 = useSelector((state) => state.builds.current.plus_2);
 

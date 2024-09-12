@@ -225,6 +225,12 @@ export const getCommentsArray = createSelector(
   (state) => state.builds.current.comments,
   (comment) => Object.values(comment)
 );
+//! --------------------------------------------------------------------
+
+export const getCantripsArray = createSelector(
+  (state) => state.builds.current.cantrips,
+  (cantrip) => Object.values(cantrip)
+);
 
 //! --------------------------------------------------------------------
 export const getBuildsArray = createSelector(
@@ -245,12 +251,41 @@ export const getBuildsArray = createSelector(
 const initialState = {};
 function buildReducer(state = initialState, action) {
   switch (action.type) {
+
+    case SET_DEFAULTS: {
+      const newState = {
+        ...state,
+        current: {
+          character_name: "Tav",
+          origin: 8,
+          race: 1,
+          background: 1,
+          strength: 8,
+          dexterity: 8,
+          constitution: 8,
+          intelligence: 8,
+          wisdom: 8,
+          charisma: 8,
+          abilityPoints: 27,
+          cantripPoints: 1,
+          cantrips: {},
+          plus_1: "",
+          plus_2: "",
+          level: 0,
+          armour_class: 10,
+          build_classes: {},
+        },
+      };
+      return newState;
+    }
+
     case GET_BUILD: {
       const newState = { ...state };
 
       newState[action.payload.id] = action.payload;
       newState.current = action.payload;
-      newState.current.points = 0;
+      newState.current.abilityPoints = 0;
+      newState.current.cantripPoints = 0;
 
       //Normalize classes
       const build_classes = {};
@@ -276,7 +311,8 @@ function buildReducer(state = initialState, action) {
       delete action.payload["comments"];
       delete action.payload["name"];
       newState.current = action.payload;
-      newState.current.points = 0;
+      newState.current.abilityPoints = 0;
+      newState.current.cantripPoints = 0;
       return newState;
     }
 
@@ -368,6 +404,8 @@ function buildReducer(state = initialState, action) {
       const newState = { ...state };
       newState.current.level = 0;
       newState.current.build_classes = {};
+      newState.current.cantrips = {};
+      newState.current.cantripPoints = 0;
       return newState;
     }
 
@@ -379,19 +417,19 @@ function buildReducer(state = initialState, action) {
 
     case RAISE_POINTS: {
       const newState = { ...state, current: { ...state.current } };
-      newState.current.points += action.payload;
+      newState.current.abilityPoints += action.payload;
       return newState;
     }
 
     case LOWER_POINTS: {
       const newState = { ...state, current: { ...state.current } };
-      newState.current.points -= action.payload;
+      newState.current.abilityPoints -= action.payload;
       return newState;
     }
 
     case RESET_ABILITIES: {
       const newState = { ...state, current: { ...state.current } };
-      newState.current.points = 27;
+      newState.current.abilityPoints = 27;
       newState.current.strength = 8;
       newState.current.dexterity = 8;
       newState.current.constitution = 8;
@@ -446,31 +484,6 @@ function buildReducer(state = initialState, action) {
     case REMOVE_ITEM: {
       const newState = { ...state, current: { ...state.current } };
       delete newState.current[action.payload];
-      return newState;
-    }
-
-    case SET_DEFAULTS: {
-      const newState = {
-        ...state,
-        current: {
-          character_name: "Tav",
-          origin: 8,
-          race: 1,
-          background: 1,
-          strength: 8,
-          dexterity: 8,
-          constitution: 8,
-          intelligence: 8,
-          wisdom: 8,
-          charisma: 8,
-          points: 27,
-          plus_1: "",
-          plus_2: "",
-          level: 0,
-          armour_class: 10,
-          build_classes: {},
-        },
-      };
       return newState;
     }
 

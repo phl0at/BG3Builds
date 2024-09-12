@@ -16,7 +16,7 @@ export function Ability({ ability }) {
   const currentAbilityValue = useSelector(
     (state) => state.builds.current[ability]
   );
-  const points = useSelector((state) => state.builds.current.points);
+  const points = useSelector((state) => state.builds.current.abilityPoints);
   const plus_1 = useSelector((state) => state.builds.current.plus_1);
   const plus_2 = useSelector((state) => state.builds.current.plus_2);
   const [clicks, setClicks] = useState(currentAbilityValue - 8);

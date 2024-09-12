@@ -1,6 +1,7 @@
 //Files
 import styles from "./Navigation.module.css";
 //Functions/Components
+import { getCantripsArray } from "../../../redux/build";
 //Packages
 import { CiSquareRemove, CiStop1 } from "react-icons/ci";
 import { useSelector } from "react-redux";
@@ -9,7 +10,8 @@ function Navigation({ setActiveMenu, activeMenu }) {
   const cantripPoints = useSelector(
     (state) => state.builds.current.cantripPoints
   );
-  const chosenCantrips = useSelector((state) => state.builds.current.cantrips);
+  const chosenCantrips = useSelector(getCantripsArray);
+  const displayCantrips = cantripPoints > 0 || chosenCantrips.length > 0
 
   return (
     <main className={styles.main}>
@@ -109,8 +111,7 @@ function Navigation({ setActiveMenu, activeMenu }) {
         </button>
       </div>
       <div>
-        {cantripPoints > 0 ||
-          (chosenCantrips > 0 && (
+        {displayCantrips && (
             <button
               className={
                 activeMenu === "Cantrips"
@@ -129,7 +130,7 @@ function Navigation({ setActiveMenu, activeMenu }) {
               )}
               Cantrips
             </button>
-          ))}
+          )}
       </div>
     </main>
   );
