@@ -267,7 +267,7 @@ function buildReducer(state = initialState, action) {
           wisdom: 8,
           charisma: 8,
           abilityPoints: 27,
-          cantripPoints: 1,
+          cantripPoints: 0,
           cantrips: {},
           plus_1: "",
           plus_2: "",

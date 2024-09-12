@@ -1,6 +1,6 @@
 from app.models import db, Origin, Background, Race, Cantrip, \
                         User, Favorite, Build, Comment, \
-                        Class, BuildClass,  Helmet, Cloak, \
+                        Class, BuildClass, BuildCantrip, Helmet, Cloak, \
                         Armour, Glove, Boot, Amulet, Ring, Weapon, \
                         environment, SCHEMA
 
@@ -1256,6 +1256,22 @@ def seed_all():
         )
         db.session.add(new_cantrip)
 
+    ################ SEED BUILD CANTRIPS ################
+
+    build_cantrip_list = [
+        {'build_id': 5, 'cantrip_id': 6},
+        {'build_id': 5, 'cantrip_id': 3},
+        {'build_id': 5, 'cantrip_id': 9},
+        {'build_id': 5, 'cantrip_id': 13},
+    ]
+
+    for cantrip in build_cantrip_list:
+        new_build_cantrip = BuildCantrip(
+            build_id = cantrip['build_id'],
+            cantrip_id = cantrip['cantrip_id']
+        )
+        db.session.add(new_build_cantrip)
+
     ################ SEED COMMENTS ################
     comment_list = [
         {'user_id': 1, 'build_id': 3,  'message': 'such a cool build!'},
@@ -1314,6 +1330,7 @@ def undo_all():
         db.session.execute(f"TRUNCATE table {SCHEMA}.races RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.backgrounds RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.cantrips RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.build_cantrips RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
         db.session.execute(text("DELETE FROM builds"))
@@ -1333,5 +1350,6 @@ def undo_all():
         db.session.execute(text("DELETE FROM races"))
         db.session.execute(text("DELETE FROM backgrounds"))
         db.session.execute(text("DELETE FROM cantrips"))
+        db.session.execute(text("DELETE FROM build_cantrips"))
 
     db.session.commit()

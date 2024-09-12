@@ -40,6 +40,7 @@ class Build(db.Model):
     level = db.Column(db.Integer, nullable=False)
 
     classes = db.relationship("BuildClass", backref="build", cascade="all, delete-orphan")
+    cantrips = db.relationship("BuildCantrip", backref="build", cascade="all, delete-orphan")
     comments = db.relationship("Comment", backref="build", cascade="all, delete-orphan")
     favorites = db.relationship("Favorite", back_populates="build", cascade="all, delete-orphan")
 
@@ -75,7 +76,8 @@ class Build(db.Model):
             'armour_class': self.armour_class,
             'level': self.level,
             'build_classes': [build_class.to_dict() for build_class in self.classes],
-            'comments': [comment.to_dict() for comment in self.comments]
+            'comments': [comment.to_dict() for comment in self.comments],
+            'cantrips': [cantrip.to_dict() for cantrip in self.cantrips]
         }
 
 ################################################################################
@@ -112,3 +114,21 @@ class BuildClass(db.Model):
         }
 
 ################################################################################
+
+
+class BuildCantrip(db.Model):
+    __tablename__ = 'build_cantrips'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    build_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('builds.id')), nullable=False)
+    cantrip_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('cantrips.id')), nullable=False)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'build_id': self.build_id,
+            'cantrip_id': self.cantrip_id
+        }

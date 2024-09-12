@@ -1,8 +1,8 @@
 """init
 
-Revision ID: 51c9104e3e06
+Revision ID: ea062b752be0
 Revises: 
-Create Date: 2024-09-04 18:50:53.199419
+Create Date: 2024-09-12 19:48:50.518131
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '51c9104e3e06'
+revision = 'ea062b752be0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -224,6 +224,14 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('build_cantrips',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('build_id', sa.Integer(), nullable=False),
+    sa.Column('cantrip_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['build_id'], ['builds.id'], ),
+    sa.ForeignKeyConstraint(['cantrip_id'], ['cantrips.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('build_classes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('build_id', sa.Integer(), nullable=False),
@@ -262,6 +270,7 @@ def downgrade():
     op.drop_table('favorites')
     op.drop_table('comments')
     op.drop_table('build_classes')
+    op.drop_table('build_cantrips')
     op.drop_table('builds')
     op.drop_table('weapons')
     op.drop_table('users')
