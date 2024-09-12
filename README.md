@@ -20,37 +20,3 @@ Welcome to the best way to plan and create builds for Baldur's Gate 3!
   <img src="https://user-images.githubusercontent.com/25181517/192108372-f71d70ac-7ae6-4c0d-8395-51d8870c2ef0.png" alt="GIT" width="40">
   <img src=https://user-images.githubusercontent.com/25181517/117207330-263ba280-adf4-11eb-9b97-0ac5b40bc3be.png alt="GIT" width="40">
 </p>
-
-## Getting Started
-
-To see BG3Builds live, click the link above. To run BG3Builds locally on your machine follow these steps:
-
-- Clone the repository:
-
-  - `git clone https://github.com/phl0at/BG3Builds.git`
-
-- Set up environment and local database:
-
-  - In the root directory (same folder as .flaskenv), create a .env file and copy the following environment variables into it:
-    - `SECRET_KEY=secret`
-      - (set this to whatever you want)
-    - `DATABASE_URL=sqlite:///dev.db`
-    - `SCHEMA=bg3builds_clone`
-  - Still in the root directory, enter the following commands:
-
-    - `pipenv install`
-    - `pipenv shell`
-    - `flask db migrate`
-    - `flask db upgrade`
-    - `flask seed all`
-    - `pipenv run flask run`
-      - (the backend database should now be running on port 8080)
-
-  - In a separate terminal, CD into react-app folder and run:
-
-    - `npm install`
-    - `npm run dev`
-      - (the frontend localhost should be running on port 5173)
-
-  - In your favorite browser, navigate to http://localhost:5173
-    - (you can confirm the correct port number in the frontend terminal)
