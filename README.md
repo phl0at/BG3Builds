@@ -1,7 +1,5 @@
 # BG3Builds
 
-Welcome to the best way to plan and create builds for Baldur's Gate 3!
-
 ## [Link To Site](https://bg3builds.onrender.com)
 
 ## [Wiki](https://github.com/phl0at/BG3Builds/wiki)
