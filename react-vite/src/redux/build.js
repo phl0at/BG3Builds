@@ -301,6 +301,12 @@ function buildReducer(state = initialState, action) {
       );
       newState.current.comments = { ...comments };
 
+      //Normalize cantrips
+      const cantrips = {};
+      newState.current.cantrips.forEach(
+        (cantrip) => (cantrips[cantrip.cantrip_id] = cantrip)
+      );
+      newState.current.cantrips = { ...cantrips };
       return newState;
     }
 

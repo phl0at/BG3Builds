@@ -6,7 +6,7 @@ import { CreateButton, DisplayButton } from "../Button";
 import { applyEquipmentStats } from "../../../utils/helper";
 // Packages
 import { useSelector } from "react-redux";
-import { BsFillHexagonFill } from "react-icons/bs";
+import { BsFillStarFill  } from "react-icons/bs";
 import { useParams } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 
@@ -93,7 +93,7 @@ export default function AboutBuild({ display, setDisplay }) {
               <div key={ability} className={styles.stat}>
                 <div className={styles.modifier}>
                   {build_classes[0]?.modifier === ability.toLowerCase() && (
-                    <BsFillHexagonFill color="#e69a28" size="14" />
+                    <BsFillStarFill color="#e69a28" size="14" />
                   )}
                 </div>
                 <div className={styles.orange}>{ability.slice(0, 3)}</div>
