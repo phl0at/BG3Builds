@@ -11,6 +11,7 @@ export default function BuildComponent({ activeMenu }) {
   const BackgroundComponent = lazy(() => import("./menus/backgrounds"));
   const ClassComponent = lazy(() => import("./menus/class"));
   const AbilitiesComponent = lazy(() => import("./menus/abilities"));
+  const CantripsComponent = lazy(() => import("./menus/cantrips"))
 
 
 
@@ -22,6 +23,7 @@ export default function BuildComponent({ activeMenu }) {
         {activeMenu === "Class" && <ClassComponent />}
         {activeMenu === "Background" && <BackgroundComponent />}
         {activeMenu === "Abilities" && <AbilitiesComponent />}
+        {activeMenu === "Cantrips" && <CantripsComponent />}
       </Suspense>
     </main>
   );

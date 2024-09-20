@@ -128,7 +128,6 @@ class BuildCantrip(db.Model):
 
     def to_dict(self):
         return {
-            'id': self.id,
             'build_id': self.build_id,
             'cantrip_id': self.cantrip_id
         }

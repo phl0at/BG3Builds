@@ -45,7 +45,6 @@ export const action = (type, payload) => ({
   payload,
 });
 
-
 //! --------------------------------------------------------------------
 //*                             Thunks
 //! --------------------------------------------------------------------
@@ -251,7 +250,6 @@ export const getBuildsArray = createSelector(
 const initialState = {};
 function buildReducer(state = initialState, action) {
   switch (action.type) {
-
     case SET_DEFAULTS: {
       const newState = {
         ...state,
@@ -292,21 +290,21 @@ function buildReducer(state = initialState, action) {
       newState.current.build_classes.forEach(
         (_class) => (build_classes[_class.class_id] = _class)
       );
-      newState.current.build_classes = { ...build_classes };
+      newState.current.build_classes = build_classes;
 
       //Normalize comments
       const comments = {};
       newState.current.comments.forEach(
         (comment) => (comments[comment.id] = comment)
       );
-      newState.current.comments = { ...comments };
+      newState.current.comments = comments;
 
       //Normalize cantrips
       const cantrips = {};
       newState.current.cantrips.forEach(
         (cantrip) => (cantrips[cantrip.cantrip_id] = cantrip)
       );
-      newState.current.cantrips = { ...cantrips };
+      newState.current.cantrips = cantrips;
       return newState;
     }
 
