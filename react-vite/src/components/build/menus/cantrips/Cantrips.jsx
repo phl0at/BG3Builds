@@ -23,20 +23,19 @@ export default function CantripsComponent() {
       <div className={styles.modifier} title="Spell Casting Modifier">
         <BsFillStarFill size="11" /> {modifier.slice(0, 3)}
       </div>
-      <p className={styles.introContainer}>
+      <div className={styles.introContainer}>
         <div className={styles.introTitle}>Select Cantrips</div>
         <div className={styles.instructions}>
           {`Change your cantrip selection by choosing from the spell list below.
           Cantrips don't use spell slots and can be cast at will.`}
         </div>
-      </p>
+      </div>
       <div className={styles.selected}>Selected</div>
       <div className={styles.selectedList}>
         {selectedCantrips.map((cantrip) => (
           <Tooltip
             key={cantrip.cantrip_id}
             cantrip={Cantrips[cantrip.cantrip_id]}
-
           >
             <IKImage
               className={styles.cantripImg}

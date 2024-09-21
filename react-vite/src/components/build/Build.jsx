@@ -11,13 +11,15 @@ export default function BuildComponent({ activeMenu }) {
   const BackgroundComponent = lazy(() => import("./menus/backgrounds"));
   const ClassComponent = lazy(() => import("./menus/class"));
   const AbilitiesComponent = lazy(() => import("./menus/abilities"));
-  const CantripsComponent = lazy(() => import("./menus/cantrips"))
-
-
+  const CantripsComponent = lazy(() => import("./menus/cantrips"));
 
   return (
     <main className={styles.main}>
-      <Suspense fallback={<PulseLoader className={styles.load} color="#e4c274" size="20px" />}>
+      <Suspense
+        fallback={
+          <PulseLoader className={styles.load} color="#e4c274" size="20px" />
+        }
+      >
         {activeMenu === "Origin" && <OriginComponent />}
         {activeMenu === "Race" && <RaceComponent />}
         {activeMenu === "Class" && <ClassComponent />}

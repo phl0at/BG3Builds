@@ -2,7 +2,6 @@
 import styles from "./Cantrips.module.css";
 // Functions/Components
 // Packages
-import { flip, useFloating } from "@floating-ui/react";
 import {
   GiDiceTwentyFacesOne,
   GiBoltEye,
@@ -14,17 +13,16 @@ import { useState } from "react";
 
 export default function Tooltip({ cantrip, children }) {
   const [display, setDisplay] = useState(false);
-  const { refs } = useFloating({ middleware: [flip({ mainAxis: true })] });
+
   return (
     <div
-      ref={refs.setReference}
       className={styles.tooltipContainer}
       onMouseEnter={() => setDisplay(true)}
       onMouseLeave={() => setDisplay(false)}
     >
       {children}
       {display && (
-        <div className={styles.tooltip}>
+        <div className={styles.tooltip} >
           <div className={styles.cantripName}>{cantrip.name}</div>
           <div
             className={styles.cantripSchool}
