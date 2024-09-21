@@ -15,7 +15,7 @@ export default function BuildPage() {
     <>
       <main className={styles.main}>
         <Navigation setActiveMenu={setActiveMenu} activeMenu={activeMenu} />
-        <BuildComponent activeMenu={activeMenu} />
+        <BuildComponent setActiveMenu={setActiveMenu} activeMenu={activeMenu} />
         <EquipmentComponent />
         <InfoComponent />
       </main>

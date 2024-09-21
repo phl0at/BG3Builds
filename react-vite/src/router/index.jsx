@@ -85,7 +85,11 @@ export const router = createBrowserRouter([
         element: (
           <Suspense
             fallback={
-              <GridLoader size="30px" className="suspense" color="#e4c274" />
+              <GridLoader
+                size="30px"
+                className="suspense"
+                color="rgb(21, 16, 14, 0.92)"
+              />
             }
           >
             <FAQPage />
