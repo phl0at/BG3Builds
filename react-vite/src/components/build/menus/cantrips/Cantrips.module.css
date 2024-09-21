@@ -8,6 +8,22 @@
   color: #e69a28;
 }
 
+.modifier {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 3px;
+  outline: 1px solid;
+  border-radius: 4px;
+  width: 70px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.modifier:hover {
+  outline: 1px solid #e69a28;
+}
+
 .introContainer {
   width: 80%;
   display: flex;
@@ -28,6 +44,36 @@
   color: #e69a28;
 }
 
+.selectedList {
+  width: 80%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+}
+
 .available {
   color: #e69a28;
+}
+
+.availableList {
+  width: 80%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  height: 120px;
+  gap: 2px;
+}
+
+.cantripImg {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.chosenCantripImg {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  outline: 1px solid white;
 }

@@ -1048,7 +1048,7 @@ def seed_all():
             'concentration': False,
         },
         {
-            'name': 'Fire Bold',
+            'name': 'Fire Bolt',
             'school': 'Evocation',
             'description': 'Hurl a mote of fire.',
             'duration': 0,
