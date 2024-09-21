@@ -1,8 +1,10 @@
 // Files
 import styles from "./Cantrips.module.css";
 // Functions/Components
+import Tooltip from "./Tooltip";
 import { getBuildClassArray, getCantripsArray } from "../../../../redux/build";
 // Packages
+
 import { useSelector } from "react-redux";
 import { BsFillStarFill } from "react-icons/bs";
 import { IKImage } from "imagekitio-react";
@@ -18,9 +20,9 @@ export default function CantripsComponent() {
   return (
     <>
       <div className={styles.title}>Cantrips</div>
-      <p className={styles.modifier} title="Spell Casting Modifier">
+      <div className={styles.modifier} title="Spell Casting Modifier">
         <BsFillStarFill size="11" /> {modifier.slice(0, 3)}
-      </p>
+      </div>
       <p className={styles.introContainer}>
         <div className={styles.introTitle}>Select Cantrips</div>
         <div className={styles.instructions}>
@@ -31,29 +33,33 @@ export default function CantripsComponent() {
       <div className={styles.selected}>Selected</div>
       <div className={styles.selectedList}>
         {selectedCantrips.map((cantrip) => (
-          <IKImage
+          <Tooltip
             key={cantrip.cantrip_id}
-            title={`${Cantrips[cantrip.cantrip_id].name}`}
-            className={styles.cantripImg}
-            loading="lazy"
-            path={`cantrip_icons/${Cantrips[cantrip.cantrip_id].name}.png`}
-          />
+            cantrip={Cantrips[cantrip.cantrip_id]}
+
+          >
+            <IKImage
+              className={styles.cantripImg}
+              loading="lazy"
+              path={`cantrip_icons/${Cantrips[cantrip.cantrip_id].name}.png`}
+            />
+          </Tooltip>
         ))}
       </div>
       <div className={styles.available}>Available</div>
       <div className={styles.availableList}>
         {Object.values(Cantrips).map((cantrip) => (
-          <IKImage
-            key={cantrip.id}
-            title={`${cantrip.name}`}
-            className={
-              selectedCantripsObject[cantrip.id]
-                ? styles.chosenCantripImg
-                : styles.cantripImg
-            }
-            loading="lazy"
-            path={`cantrip_icons/${cantrip.name}.png`}
-          />
+          <Tooltip key={cantrip.id} cantrip={cantrip}>
+            <IKImage
+              className={
+                selectedCantripsObject[cantrip.id]
+                  ? styles.chosenCantripImg
+                  : styles.cantripImg
+              }
+              loading="lazy"
+              path={`cantrip_icons/${cantrip.name}.png`}
+            />
+          </Tooltip>
         ))}
       </div>
     </>
