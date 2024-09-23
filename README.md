@@ -23,8 +23,8 @@
 **Please note:**
 <b>
 <ol>
-  <li>This is my first big solo project. It was submitted as a final to graduate the AppAcademy Web Development bootcamp and is very much a work in progress.</li>
-  <li>If you are familiar with the the game you will notice that many systems have not been implemented into the site...yet.</li>
+  <li>This was submitted as a final to graduate the AppAcademy Web Development bootcamp and is very much a work in progress.</li>
+  <li>If you are familiar with the the game you will notice that many of its systems are not implemented...yet.</li>
   <li>BG3Builds is hosted with a free instance of <a href="https://onrender.com">OnRender</a>, so the server spins down after 50 seconds of inactivity and can take 1-3 minutes to spin back up.</li>
 </ol>
 </b>
