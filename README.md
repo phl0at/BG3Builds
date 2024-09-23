@@ -104,7 +104,7 @@ Here are images showing a blank slate Ability menu with no points spent (left) a
 
 So how does this work under the hood?
 
-I started with giving each ability their own component; and in order to follow the DRY principal, I made a single component that is rendered inside an Array.Map() that iterates over each ability type as a string:
+I started with giving each ability their own component; and in order to follow the DRY principal, I made a single component which is rendered inside an Array.Map(). This iterates over each ability type as a string, and passes that string to the component:
 
 ```js
   const abilities = [
@@ -245,7 +245,7 @@ As more features are implemented, more code snippets and logic will be put on di
 <br/>
 <br/>
 
-Thanks for taking the time to check out what I'm working on! If you're hiring, here's a link to [my resume](https://github.com/user-attachments/files/17092342/Max_Fonda_Resume.pdf) and [my portfolio site](https://mxwll155.wixsite.com/portfolio)!
+Thanks for taking the time to check out what I'm working on! If you're hiring, here's a link to [my portfolio site](https://mxwll155.wixsite.com/portfolio)!
 
 <br/>
 <br/>
