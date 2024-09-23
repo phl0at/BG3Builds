@@ -55,7 +55,8 @@ You may have caught how some of these components are similar to menus found in-g
 <br/>
 <br/>
 
-![classig](https://github.com/user-attachments/assets/27eb3bf4-ec27-4926-a2d7-1691e5e0053f)![classsite](https://github.com/user-attachments/assets/da7f314b-1a7e-4598-bc74-94e621a58078)
+
+<img width = "50%" src="https://github.com/user-attachments/assets/27eb3bf4-ec27-4926-a2d7-1691e5e0053f"><img width = "50%" src="https://github.com/user-attachments/assets/da7f314b-1a7e-4598-bc74-94e621a58078">
 
 <br/>
 <br/>
@@ -95,7 +96,8 @@ Before beginning, here are a few important things to know about how this system 
 
 Here are images showing a blank slate Ability menu with no points spent (left) and a filled out Ability menu with all points and bonuses spent (right):
 
-![abilities1](https://github.com/user-attachments/assets/64ddb157-94a5-4f25-834c-e044fc9d5e5b)  ![abilities2](https://github.com/user-attachments/assets/f589e1d0-d1cd-49d3-a6b9-d49720c9a292)
+<img width = "50%" src="https://github.com/user-attachments/assets/64ddb157-94a5-4f25-834c-e044fc9d5e5b"><img width = "50%" src="https://github.com/user-attachments/assets/f589e1d0-d1cd-49d3-a6b9-d49720c9a292">
+
 
 <br/>
 <br/>
