@@ -55,7 +55,7 @@ You may have caught how some of these components are similar to menus found in-g
 <br/>
 <br/>
 
-![classig](https://github.com/user-attachments/assets/8a3f5fd6-437b-4111-94ed-5b5087a0c20d)  ![classsite](https://github.com/user-attachments/assets/6eb8494b-80bb-4ae4-b525-47642fd4a9b9)
+![classig](https://github.com/user-attachments/assets/8a7eec2b-0722-40ce-bf8f-5eb00fde292f)![classsite](https://github.com/user-attachments/assets/8c5d552d-d37f-4f20-a2e1-a313700615c3)
 
 <br/>
 <br/>
