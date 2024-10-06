@@ -220,3 +220,15 @@ export function applyEquipmentStats(build, items) {
 
   return modifiedBuild;
 }
+
+
+export function addCantripPoints(build, _class){
+  const classesWithCantrips = {
+    "cleric": {1:[]}
+  }
+
+  console.log(build)
+  console.log(_class)
+
+  return build
+}

@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { sortClasses } from "../utils/helper";
+import { addCantripPoints, sortClasses } from "../utils/helper";
 
 //! --------------------------------------------------------------------
 //*                          Action Types
@@ -382,7 +382,7 @@ function buildReducer(state = initialState, action) {
     }
 
     case ADD_BUILD_CLASS: {
-      const newState = {
+      let newState = {
         ...state,
         current: {
           ...state.current,
@@ -393,15 +393,19 @@ function buildReducer(state = initialState, action) {
       if (newState.current.build_classes[action.payload.class_id]) {
         //If the build has this class, simply increment the classes level
         newState.current.build_classes[action.payload.class_id].level++;
+
       } else {
         //Otherwise, set the class level to 1, set its order, and add it to the build
         action.payload.level = 1;
+
         action.payload.order =
           Object.values(newState.current.build_classes).length + 1;
+
         newState.current.build_classes[action.payload.class_id] =
           action.payload;
       }
       newState.current.level++;
+      newState.current = addCantripPoints(newState.current, action.payload);
       return newState;
     }
 
