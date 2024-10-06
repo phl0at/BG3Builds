@@ -242,11 +242,11 @@ export function addCantripPoints(build, _class) {
     Wizard: {},
   };
 
-  if(build[_class.class_id].sub_class){
+  // if(build[_class.class_id].sub_class){
 
-  }else {
+  // }else {
 
-  }
+  // }
 
   console.log(build);
   console.log(_class);
