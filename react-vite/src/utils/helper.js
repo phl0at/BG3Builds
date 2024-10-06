@@ -221,14 +221,34 @@ export function applyEquipmentStats(build, items) {
   return modifiedBuild;
 }
 
+export function addCantripPoints(build, _class) {
+  if (_class.name == "Barbarian") return build;
 
-export function addCantripPoints(build, _class){
   const classesWithCantrips = {
-    "cleric": {1:[]}
+    Bard: {
+      1: [2, 4, 8, 9, 10, 20, 21],
+      6: [3, 5, 6, 13, 15],
+      10: [3, 5, 6, 13, 15],
+    },
+    Cleric: {},
+    Druid: {},
+    Fighter: {},
+    Monk: {},
+    Paladin: {},
+    Ranger: {},
+    Rogue: {},
+    Sorcerer: {},
+    Warlock: {},
+    Wizard: {},
+  };
+
+  if(build[_class.class_id].sub_class){
+
+  }else {
+
   }
 
-  console.log(build)
-  console.log(_class)
-
-  return build
+  console.log(build);
+  console.log(_class);
+  return build;
 }
