@@ -11,7 +11,7 @@ function Navigation({ setActiveMenu, activeMenu }) {
     (state) => state.builds.current.cantripPoints
   );
   const chosenCantrips = useSelector(getCantripsArray);
-  const displayCantrips = cantripPoints > 0 || chosenCantrips.length > 0
+  const displayCantrips = cantripPoints > 0 || chosenCantrips.length > 0;
 
   return (
     <main className={styles.main}>
@@ -112,25 +112,25 @@ function Navigation({ setActiveMenu, activeMenu }) {
       </div>
       <div>
         {displayCantrips && (
-            <button
-              className={
-                activeMenu === "Cantrips"
-                  ? styles.menuItemSelected
-                  : styles.menuItem
-              }
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveMenu("Cantrips");
-              }}
-            >
-              {activeMenu === "Cantrips" ? (
-                <CiSquareRemove size="24" />
-              ) : (
-                <CiStop1 size="24" />
-              )}
-              Cantrips
-            </button>
-          )}
+          <button
+            className={
+              activeMenu === "Cantrips"
+                ? styles.menuItemSelected
+                : styles.menuItem
+            }
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveMenu("Cantrips");
+            }}
+          >
+            {activeMenu === "Cantrips" ? (
+              <CiSquareRemove size="24" />
+            ) : (
+              <CiStop1 size="24" />
+            )}
+            Cantrips
+          </button>
+        )}
       </div>
     </main>
   );

@@ -33,7 +33,6 @@ export default function ClassComponent() {
       class_id: _class.class_id,
       name: _class.name,
       modifier: _class.modifier,
-      // sub_class: _class.sub_class ? _class.sub_class : null,
     };
     dispatch(action("build/addBuildClass", newClass));
   };

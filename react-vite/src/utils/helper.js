@@ -226,35 +226,17 @@ export function addCantripPoints(build, _class) {
   // get a cantrip at any level or subclass
   if (_class.name == "Barbarian") return build;
 
-  // Each class has key/value pairs where the key is
-  // the level at which it gets classes and the
-  // value is an array of cantrip IDs that are available
-
-  // const classesWithCantrips = {
   //   Bard: {
   //     1: [2, 4, 8, 9, 10, 20, 21],
   //     6: [3, 5, 6, 13, 15],
   //     10: [3, 5, 6, 13, 15],
   //   },
-  //   Cleric: {},
-  //   Druid: {},
-  //   Fighter: {},
-  //   Monk: {},
-  //   Paladin: {},
-  //   Ranger: {},
-  //   Rogue: {},
-  //   Sorcerer: {},
-  //   Warlock: {},
-  //   Wizard: {},
-  // };
 
-  console.log(build);
-  console.log(_class);
   switch (_class.name) {
     case "Bard": {
       if (_class.level === 1) {
         const levelOneCantrips = [2, 4, 8, 9, 10, 20, 21];
-        build.classCantripPoints++;
+        build.cantripPoints++;
         levelOneCantrips.forEach((c) => build.availableCantrips.add(c));
       }
       break

@@ -29,6 +29,10 @@ const CLEAR_BONUS = "build/clearBonus";
 const SET_SUB_CLASS = "build/setSubClass";
 const ADD_BUILD_CLASS = "build/addBuildClass";
 const RESET_CLASSES = "build/resetClasses";
+// CANTRIP ACTIONS
+const ADD_CANTRIP = "build/addCantrip";
+const REMOVE_CANTRIP = "build/removeCantrip";
+
 // ITEM ACTIONS
 const EQUIP_ITEM = "build/equip";
 const REMOVE_ITEM = "build/remove";
@@ -267,8 +271,7 @@ function buildReducer(state = initialState, action) {
           abilityPoints: 27,
           cantrips: {},
           availableCantrips: new Set(),
-          raceCantripPoints: 0,
-          classCantripPoints: 0,
+          cantripPoints: 0,
           plus_1: "",
           plus_2: "",
           level: 0,
@@ -285,8 +288,7 @@ function buildReducer(state = initialState, action) {
       newState[action.payload.id] = action.payload;
       newState.current = action.payload;
       newState.current.abilityPoints = 0;
-      newState.current.raceCantripPoints = 0;
-      newState.current.classCantripPoints = 0;
+      newState.current.cantripPoints = 0;
 
       //Normalize classes
       const build_classes = {};
@@ -321,8 +323,7 @@ function buildReducer(state = initialState, action) {
       newState.current.abilityPoints = 0;
       newState.current.cantrips = {};
       newState.current.availableCantrips = new Set();
-      newState.current.raceCantripPoints = 0;
-      newState.current.classCantripPoints = 0;
+      newState.current.cantripPoints = 0;
       return newState;
     }
 
@@ -419,8 +420,7 @@ function buildReducer(state = initialState, action) {
       newState.current.build_classes = {};
       newState.current.cantrips = {};
       newState.current.availableCantrips = new Set();
-      newState.current.classCantripPoints = 0;
-      newState.current.raceCantripPoints = 0;
+      newState.current.cantripPoints = 0;
       return newState;
     }
 
@@ -487,6 +487,26 @@ function buildReducer(state = initialState, action) {
       const bonusAmount = Number(action.payload.amount.split("_")[1]);
       newState.current[action.payload.amount] = "";
       newState.current[action.payload.ability] -= bonusAmount;
+      return newState;
+    }
+
+    case ADD_CANTRIP: {
+      const newState = {
+        ...state,
+        current: { ...state.current, cantrips: { ...state.current.cantrips } },
+      };
+      newState.current.cantrips[action.payload.id] = action.payload;
+      newState.current.cantripPoints--
+      return newState;
+    }
+
+    case REMOVE_CANTRIP: {
+      const newState = {
+        ...state,
+        current: { ...state.current, cantrips: { ...state.current.cantrips } },
+      };
+      delete newState.current.cantrips[action.payload];
+      newState.current.cantripPoints++
       return newState;
     }
 
