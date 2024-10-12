@@ -1,0 +1,1 @@
+import{c as u,j as p}from"./index-2239fac3.js";function l({id:o,className:s,title:e,modalComponent:i,buttonText:r,onButtonClick:t,onModalClose:n}){const{setModalContent:a,setOnModalClose:c}=u(),f=()=>{n&&c(n),a(i),typeof t=="function"&&t()};return p.jsx("button",{id:o,title:e,className:s,onClick:f,children:r})}export{l as O};

@@ -224,6 +224,10 @@ export function applyEquipmentStats(build, items) {
 export function addCantripPoints(build, id) {
   const classes = build.build_classes;
 
+  const Cleric = {
+    1: [2, 8, 9, "NATURE", 13, 14, 16, 17, "NATURE", 18, 20, "NATURE", 21],
+  };
+
   switch (classes[id].name) {
     case "Bard": {
       if (classes[id].level === 1) {
@@ -241,6 +245,21 @@ export function addCantripPoints(build, id) {
         const levelTenCantrips = [3, 5, 6, 13, 15];
         build.cantripPoints++;
         levelTenCantrips.forEach((c) => build.availableCantrips.add(c));
+      }
+      break;
+    }
+
+    case "Cleric": {
+      if (classes[id].level === 1) {
+        if (classes[id].sub_class === "Nature Domain") {
+          const levelOneCantrips = [2, 8, 9, 13, 14, 16, 17, 18, 20, 21];
+          build.cantripPoints++;
+          levelOneCantrips.forEach((c) => build.availableCantrips.add(c));
+        } else {
+          const levelOneCantrips = [2, 8, 9, 14, 16, 17, 20, 21];
+          build.cantripPoints++;
+          levelOneCantrips.forEach((c) => build.availableCantrips.add(c));
+        }
       }
       break;
     }
