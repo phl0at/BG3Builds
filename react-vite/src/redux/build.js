@@ -265,9 +265,10 @@ function buildReducer(state = initialState, action) {
           wisdom: 8,
           charisma: 8,
           abilityPoints: 27,
-          classCantripPoints: 0,
-          raceCantripPoints: 0,
           cantrips: {},
+          availableCantrips: new Set(),
+          raceCantripPoints: 0,
+          classCantripPoints: 0,
           plus_1: "",
           plus_2: "",
           level: 0,
@@ -284,7 +285,8 @@ function buildReducer(state = initialState, action) {
       newState[action.payload.id] = action.payload;
       newState.current = action.payload;
       newState.current.abilityPoints = 0;
-      newState.current.cantripPoints = 0;
+      newState.current.raceCantripPoints = 0;
+      newState.current.classCantripPoints = 0;
 
       //Normalize classes
       const build_classes = {};
@@ -317,7 +319,10 @@ function buildReducer(state = initialState, action) {
       delete action.payload["name"];
       newState.current = action.payload;
       newState.current.abilityPoints = 0;
-      newState.current.cantripPoints = 0;
+      newState.current.cantrips = {};
+      newState.current.availableCantrips = new Set();
+      newState.current.raceCantripPoints = 0;
+      newState.current.classCantripPoints = 0;
       return newState;
     }
 
@@ -393,7 +398,6 @@ function buildReducer(state = initialState, action) {
       if (newState.current.build_classes[action.payload.class_id]) {
         //If the build has this class, simply increment the classes level
         newState.current.build_classes[action.payload.class_id].level++;
-
       } else {
         //Otherwise, set the class level to 1, set its order, and add it to the build
         action.payload.level = 1;
@@ -414,7 +418,9 @@ function buildReducer(state = initialState, action) {
       newState.current.level = 0;
       newState.current.build_classes = {};
       newState.current.cantrips = {};
-      newState.current.cantripPoints = 0;
+      newState.current.availableCantrips = new Set();
+      newState.current.classCantripPoints = 0;
+      newState.current.raceCantripPoints = 0;
       return newState;
     }
 
