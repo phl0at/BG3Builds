@@ -58,7 +58,7 @@ export default function CantripsComponent() {
             <IKImage
               onClick={() => removeCantrip(cantrip.id)}
               className={styles.cantripImg}
-              loading="lazy"
+              // loading="lazy"
               path={`cantrip_icons/${Cantrips[cantrip.id].name}.png`}
             />
           </Tooltip>
@@ -69,13 +69,15 @@ export default function CantripsComponent() {
         {cantripsArray.map((id) => (
           <Tooltip key={id} cantrip={Cantrips[id]}>
             <IKImage
-              onClick={() => addCantrip(id)}
+              onClick={() =>
+                selectedCantripsObject[id] ? removeCantrip(id) : addCantrip(id)
+              }
               className={
                 selectedCantripsObject[id]
                   ? styles.chosenCantripImg
                   : styles.cantripImg
               }
-              loading="lazy"
+              // loading="lazy"
               path={`cantrip_icons/${Cantrips[id].name}.png`}
             />
           </Tooltip>

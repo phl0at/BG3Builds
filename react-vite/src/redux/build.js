@@ -410,7 +410,7 @@ function buildReducer(state = initialState, action) {
           action.payload;
       }
       newState.current.level++;
-      newState.current = addCantripPoints(newState.current, action.payload);
+      newState.current = addCantripPoints(newState.current, action.payload.class_id);
       return newState;
     }
 

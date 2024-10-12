@@ -221,30 +221,33 @@ export function applyEquipmentStats(build, items) {
   return modifiedBuild;
 }
 
-export function addCantripPoints(build, _class) {
-  // Barbarians are the only class that never
-  // get a cantrip at any level or subclass
-  if (_class.name == "Barbarian") return build;
+export function addCantripPoints(build, id) {
+  const classes = build.build_classes;
 
-  //   Bard: {
-  //     1: [2, 4, 8, 9, 10, 20, 21],
-  //     6: [3, 5, 6, 13, 15],
-  //     10: [3, 5, 6, 13, 15],
-  //   },
-
-  switch (_class.name) {
+  switch (classes[id].name) {
     case "Bard": {
-      if (_class.level === 1) {
+      if (classes[id].level === 1) {
         const levelOneCantrips = [2, 4, 8, 9, 10, 20, 21];
         build.cantripPoints++;
         levelOneCantrips.forEach((c) => build.availableCantrips.add(c));
+      } else if (
+        classes[id].level === 6 &&
+        classes[id].sub_class === "College of Lore"
+      ) {
+        const levelSixCantrips = [3, 5, 6, 13, 15];
+        build.cantripPoints++;
+        levelSixCantrips.forEach((c) => build.availableCantrips.add(c));
+      } else if (classes[id].level === 10) {
+        const levelTenCantrips = [3, 5, 6, 13, 15];
+        build.cantripPoints++;
+        levelTenCantrips.forEach((c) => build.availableCantrips.add(c));
       }
-      break
+      break;
     }
 
     default: {
-     break
+      break;
     }
   }
-  return build
+  return build;
 }
