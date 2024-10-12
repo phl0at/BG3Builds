@@ -384,6 +384,7 @@ function buildReducer(state = initialState, action) {
         },
       };
       newState.current.build_classes[action.payload.class_id] = action.payload;
+      // newState.current = addCantripPoints(newState.current, action.payload.class_id);
       return newState;
     }
 
