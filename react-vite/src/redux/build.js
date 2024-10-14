@@ -1,5 +1,9 @@
 import { createSelector } from "reselect";
-import { addCantripPoints, sortClasses } from "../utils/helper";
+import {
+  addCantripPoints,
+  addSubClassCantrips,
+  sortClasses,
+} from "../utils/helper";
 
 //! --------------------------------------------------------------------
 //*                          Action Types
@@ -384,7 +388,10 @@ function buildReducer(state = initialState, action) {
         },
       };
       newState.current.build_classes[action.payload.class_id] = action.payload;
-      // newState.current = addCantripPoints(newState.current, action.payload.class_id);
+      // newState.current.availableCantrips = addSubClassCantrips(
+      //   newState.current,
+      //   action.payload
+      // );
       return newState;
     }
 
@@ -411,7 +418,10 @@ function buildReducer(state = initialState, action) {
           action.payload;
       }
       newState.current.level++;
-      newState.current = addCantripPoints(newState.current, action.payload.class_id);
+      newState.current = addCantripPoints(
+        newState.current,
+        action.payload.class_id
+      );
       return newState;
     }
 
@@ -497,7 +507,7 @@ function buildReducer(state = initialState, action) {
         current: { ...state.current, cantrips: { ...state.current.cantrips } },
       };
       newState.current.cantrips[action.payload.id] = action.payload;
-      newState.current.cantripPoints--
+      newState.current.cantripPoints--;
       return newState;
     }
 
@@ -507,7 +517,7 @@ function buildReducer(state = initialState, action) {
         current: { ...state.current, cantrips: { ...state.current.cantrips } },
       };
       delete newState.current.cantrips[action.payload];
-      newState.current.cantripPoints++
+      newState.current.cantripPoints++;
       return newState;
     }
 

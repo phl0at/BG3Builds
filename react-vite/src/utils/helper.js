@@ -232,17 +232,21 @@ export function addCantripPoints(build, id) {
     case "Bard": {
       if (classes[id].level === 1) {
         const levelOneCantrips = [2, 4, 8, 9, 10, 20, 21];
-        build.cantripPoints++;
+        build.cantripPoints += 2;
         levelOneCantrips.forEach((c) => build.availableCantrips.add(c));
-      } else if (
-        classes[id].level === 6 &&
-        classes[id].sub_class === "College of Lore"
-      ) {
-        const levelSixCantrips = [3, 5, 6, 13, 15];
+      } else if (classes[id].level === 4) {
         build.cantripPoints++;
-        levelSixCantrips.forEach((c) => build.availableCantrips.add(c));
-      } else if (classes[id].level === 10) {
+      }
+      // else if (
+      //   classes[id].level === 6 &&
+      //   classes[id].sub_class === "College of Lore"
+      // ) {
+      //   const magSecCantrips = [3, 5, 6, 13, 15];
+      //   build.magSec = 2
+      // }
+      else if (classes[id].level === 10) {
         const levelTenCantrips = [3, 5, 6, 13, 15];
+        build.magSec = build.magSec + 2 || 2
         build.cantripPoints++;
         levelTenCantrips.forEach((c) => build.availableCantrips.add(c));
       }
@@ -269,4 +273,23 @@ export function addCantripPoints(build, id) {
     }
   }
   return build;
+}
+
+export function addSubClassCantrips(build, _class) {
+  const updatedCantrips = new Set(build.availableCantrips);
+
+  switch (_class.name) {
+    case "Cleric": {
+      if (_class.sub_class === "Nature Domain") {
+        const natureCantrips = [];
+      }
+      break;
+    }
+
+    default: {
+      break;
+    }
+  }
+
+  return updatedCantrips;
 }
