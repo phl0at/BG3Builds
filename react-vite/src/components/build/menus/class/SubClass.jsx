@@ -15,10 +15,10 @@ export default function SubClass({ selectedClass }) {
   );
   const description = findDescription(selectedClassInBuild);
 
-  function onClick(e, _class, subClass) {
+  function onClick(e, _class, sub_class) {
     e.preventDefault();
     const updatedClass = { ..._class };
-    updatedClass.sub_class = subClass;
+    updatedClass.sub_class = sub_class;
     dispatch(action("build/setSubClass", updatedClass));
   }
 
@@ -31,20 +31,20 @@ export default function SubClass({ selectedClass }) {
               <div className={styles.subTitle}>Choose a Sub Class</div>
               <div className={styles.subButtonsContainer}>
                 {levelOneSubClasses[selectedClassInBuild.name].map(
-                  (subClass) => {
+                  (sub_class) => {
                     return (
                       <button
-                        key={subClass.name}
+                        key={sub_class.name}
                         className={styles.subButton}
                         onClick={(e) =>
-                          onClick(e, selectedClassInBuild, subClass.name)
+                          onClick(e, selectedClassInBuild, sub_class.name)
                         }
                       >
                         <IKImage
-                          path={`sc_icons/${selectedClassInBuild.name}/${subClass.name}.png`}
+                          path={`sc_icons/${selectedClassInBuild.name}/${sub_class.name}.png`}
                           className={styles.subImg}
                         />
-                        {subClass.name}
+                        {sub_class.name}
                       </button>
                     );
                   }
@@ -58,20 +58,20 @@ export default function SubClass({ selectedClass }) {
               <div className={styles.subTitle}>Choose a Sub Class</div>
               <div className={styles.subButtonsContainer}>
                 {levelTwoSubClasses[selectedClassInBuild.name].map(
-                  (subClass) => {
+                  (sub_class) => {
                     return (
                       <button
-                        key={subClass.name}
+                        key={sub_class.name}
                         className={styles.subButton}
                         onClick={(e) =>
-                          onClick(e, selectedClassInBuild, subClass.name)
+                          onClick(e, selectedClassInBuild, sub_class.name)
                         }
                       >
                         <IKImage
-                          path={`sc_icons/${selectedClassInBuild.name}/${subClass.name}.png`}
+                          path={`sc_icons/${selectedClassInBuild.name}/${sub_class.name}.png`}
                           className={styles.subImg}
                         />
-                        {subClass.name}
+                        {sub_class.name}
                       </button>
                     );
                   }
@@ -85,20 +85,21 @@ export default function SubClass({ selectedClass }) {
               <div className={styles.subTitle}>Choose a Sub Class</div>
               <div className={styles.subButtonsContainer}>
                 {levelThreeSubClasses[selectedClassInBuild.name].map(
-                  (subClass) => {
+                  (sub_class) => {
                     return (
                       <button
-                        key={subClass.name}
+                        key={sub_class.name}
                         className={styles.subButton}
                         onClick={(e) =>
-                          onClick(e, selectedClassInBuild, subClass.name)
+                          onClick(e, selectedClassInBuild, sub_class.name)
                         }
                       >
                         <IKImage
-                          path={`sc_icons/${selectedClassInBuild.name}/${subClass.name}.png`}
+                          path={`sc_icons/${selectedClassInBuild.name}/${sub_class.name}.png`}
                           className={styles.subImg}
+                          sub_class
                         />
-                        {subClass.name}
+                        {sub_class.name}
                       </button>
                     );
                   }
@@ -120,12 +121,7 @@ export default function SubClass({ selectedClass }) {
             />
             {selectedClassInBuild.sub_class}
           </div>
-          <button
-            className={styles.button}
-            onClick={(e) => onClick(e, selectedClassInBuild, undefined)}
-          >
-            Change
-          </button>
+          <div width="25px"></div>
         </div>
         <div className={styles.subDescription}>{description}</div>
         <br />

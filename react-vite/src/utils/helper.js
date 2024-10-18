@@ -224,10 +224,6 @@ export function applyEquipmentStats(build, items) {
 export function addCantripPoints(build, id) {
   const classes = build.build_classes;
 
-  const Cleric = {
-    1: [2, 8, 9, "NATURE", 13, 14, 16, 17, "NATURE", 18, 20, "NATURE", 21],
-  };
-
   switch (classes[id].name) {
     case "Bard": {
       if (classes[id].level === 1) {
@@ -236,17 +232,9 @@ export function addCantripPoints(build, id) {
         levelOneCantrips.forEach((c) => build.availableCantrips.add(c));
       } else if (classes[id].level === 4) {
         build.cantripPoints++;
-      }
-      // else if (
-      //   classes[id].level === 6 &&
-      //   classes[id].sub_class === "College of Lore"
-      // ) {
-      //   const magSecCantrips = [3, 5, 6, 13, 15];
-      //   build.magSec = 2
-      // }
-      else if (classes[id].level === 10) {
+      } else if (classes[id].level === 10) {
         const levelTenCantrips = [3, 5, 6, 13, 15];
-        build.magSec = build.magSec + 2 || 2
+        build.magSec = build.magSec + 2 || 2;
         build.cantripPoints++;
         levelTenCantrips.forEach((c) => build.availableCantrips.add(c));
       }

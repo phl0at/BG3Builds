@@ -387,11 +387,9 @@ function buildReducer(state = initialState, action) {
           build_classes: { ...state.current.build_classes },
         },
       };
+      
       newState.current.build_classes[action.payload.class_id] = action.payload;
-      // newState.current.availableCantrips = addSubClassCantrips(
-      //   newState.current,
-      //   action.payload
-      // );
+
       return newState;
     }
 
