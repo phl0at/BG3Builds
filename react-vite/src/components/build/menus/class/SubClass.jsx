@@ -97,7 +97,6 @@ export default function SubClass({ selectedClass }) {
                         <IKImage
                           path={`sc_icons/${selectedClassInBuild.name}/${sub_class.name}.png`}
                           className={styles.subImg}
-                          sub_class
                         />
                         {sub_class.name}
                       </button>
@@ -113,7 +112,6 @@ export default function SubClass({ selectedClass }) {
     return (
       <div className={styles.subClass}>
         <div className={styles.chosenSubClass}>
-          <div className={styles.subTitle}>Sub Class</div>
           <div className={styles.subImgName}>
             <IKImage
               path={`sc_icons/${selectedClassInBuild.name}/${selectedClassInBuild.sub_class}.png`}

@@ -1,3 +1,9 @@
+import {
+  levelOneSubClasses,
+  levelTwoSubClasses,
+  levelThreeSubClasses,
+} from "../components/build/menus/class/allSubClasses";
+
 // Recursive quick sort function to sort build_classes
 // by the order in which they were added to the build
 export function sortClasses(classArr) {
@@ -263,21 +269,35 @@ export function addCantripPoints(build, id) {
   return build;
 }
 
-export function addSubClassCantrips(build, _class) {
-  const updatedCantrips = new Set(build.availableCantrips);
+// export function addSubClassCantrips(build, _class) {
+//   const updatedCantrips = new Set(build.availableCantrips);
 
-  switch (_class.name) {
-    case "Cleric": {
-      if (_class.sub_class === "Nature Domain") {
-        const natureCantrips = [];
-      }
-      break;
-    }
+//   switch (_class.name) {
+//     case "Cleric": {
+//       if (_class.sub_class === "Nature Domain") {
+//         const natureCantrips = [];
+//       }
+//       break;
+//     }
 
-    default: {
-      break;
-    }
+//     default: {
+//       break;
+//     }
+//   }
+
+//   return updatedCantrips;
+// }
+
+export function mustPickSC(_class) {
+  // we take in the newly added class object
+  // if there is an available SC,
+  // return true, otherwise return false
+  if (levelOneSubClasses[_class.name] && _class.level === 1) {
+    return true;
+  } else if (levelTwoSubClasses[_class.name] && _class.level === 2) {
+    return true;
+  } else if (levelThreeSubClasses[_class.name] && _class.level === 3) {
+    return true;
   }
-
-  return updatedCantrips;
+  return false;
 }

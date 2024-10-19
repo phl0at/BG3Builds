@@ -1,12 +1,7 @@
 //Files
 import styles from "../../Build.module.css";
-import {
-  levelOneSubClasses,
-  levelTwoSubClasses,
-  levelThreeSubClasses,
-} from "./allSubClasses";
 //Packages
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CiUndo } from "react-icons/ci";
 import { IKImage } from "imagekitio-react";
@@ -29,36 +24,6 @@ export default function ClassComponent() {
     (state) => state.builds.current.build_classes[selectedClass]
   );
   const notMaxLevel = !buildLevel || buildLevel < 12;
-  const [mustPickSC, setMustPickSC] = useState(false);
-
-  useEffect(() => {
-    // When the selectedClassInBuild has an available sub class choice,
-    // disable the add level button until a sub class is chosen
-    if (selectedClassInBuild != undefined) {
-      if (
-        levelOneSubClasses[selectedClassInBuild.name] &&
-        selectedClassInBuild.level >= 1 &&
-        selectedClassInBuild.sub_class === undefined
-      ) {
-        setMustPickSC(true);
-      } else if (
-        levelTwoSubClasses[selectedClassInBuild.name] &&
-        selectedClassInBuild.level >= 2 &&
-        selectedClassInBuild.sub_class === undefined
-      ) {
-        setMustPickSC(true);
-      } else if (
-        levelThreeSubClasses[selectedClassInBuild.name] &&
-        selectedClassInBuild.level >= 3 &&
-        selectedClassInBuild.sub_class === undefined
-      ) {
-        setMustPickSC(true);
-      } else {
-        setMustPickSC(false);
-      }
-    }
-  }, [buildLevel, selectedClassInBuild?.sub_class]);
-
 
   const clickClass = (e, id) => {
     e.preventDefault();
@@ -67,7 +32,7 @@ export default function ClassComponent() {
 
   const clickAddClass = (e, _class) => {
     e.preventDefault();
-    if (mustPickSC) {
+    if (selectedClassInBuild?.mustPickSC === true) {
       setModalContent(
         <ErrorModal errors={{ FAQ: ["You have a pending Sub Class choice"] }} />
       );
