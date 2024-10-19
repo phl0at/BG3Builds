@@ -252,6 +252,8 @@ export function addCantripPoints(build, id) {
         const levelOneCantrips = [2, 7, 8, 12, 14, 15, 18];
         build.cantripPoints = 3;
         levelOneCantrips.forEach((c) => build.availableCantrips.add(c));
+      } else if(classes[id].level === 4 || classes[id].level === 10){
+        build.cantripPoints++
       }
       break;
     }
