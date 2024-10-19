@@ -249,15 +249,9 @@ export function addCantripPoints(build, id) {
 
     case "Cleric": {
       if (classes[id].level === 1) {
-        if (classes[id].sub_class === "Nature Domain") {
-          const levelOneCantrips = [2, 8, 9, 13, 14, 16, 17, 18, 20, 21];
-          build.cantripPoints++;
-          levelOneCantrips.forEach((c) => build.availableCantrips.add(c));
-        } else {
-          const levelOneCantrips = [2, 8, 9, 14, 16, 17, 20, 21];
-          build.cantripPoints++;
-          levelOneCantrips.forEach((c) => build.availableCantrips.add(c));
-        }
+        const levelOneCantrips = [2, 7, 8, 12, 14, 15, 18];
+        build.cantripPoints = 3;
+        levelOneCantrips.forEach((c) => build.availableCantrips.add(c));
       }
       break;
     }
@@ -268,25 +262,6 @@ export function addCantripPoints(build, id) {
   }
   return build;
 }
-
-// export function addSubClassCantrips(build, _class) {
-//   const updatedCantrips = new Set(build.availableCantrips);
-
-//   switch (_class.name) {
-//     case "Cleric": {
-//       if (_class.sub_class === "Nature Domain") {
-//         const natureCantrips = [];
-//       }
-//       break;
-//     }
-
-//     default: {
-//       break;
-//     }
-//   }
-
-//   return updatedCantrips;
-// }
 
 export function mustPickSC(_class) {
   // we take in the newly added class object

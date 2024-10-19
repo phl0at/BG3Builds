@@ -413,6 +413,7 @@ function buildReducer(state = initialState, action) {
       if (newState.current.build_classes[action.payload.class_id]) {
         //If the build has this class, simply increment the classes level
         newState.current.build_classes[action.payload.class_id].level++;
+
         newState.current.build_classes[action.payload.class_id].mustPickSC =
           mustPickSC(newState.current.build_classes[action.payload.class_id]);
       } else {
@@ -426,8 +427,10 @@ function buildReducer(state = initialState, action) {
           action.payload;
       }
       newState.current.level++;
+
       newState.current.build_classes[action.payload.class_id].mustPickSC =
         mustPickSC(newState.current.build_classes[action.payload.class_id]);
+
       newState.current = addCantripPoints(
         newState.current,
         action.payload.class_id
@@ -442,6 +445,7 @@ function buildReducer(state = initialState, action) {
       newState.current.cantrips = {};
       newState.current.availableCantrips = new Set();
       newState.current.cantripPoints = 0;
+      newState.current.magSec = 0;
       return newState;
     }
 
