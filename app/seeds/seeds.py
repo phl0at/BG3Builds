@@ -185,39 +185,39 @@ def seed_all():
          "rarity": "Uncommon",
          "description": "Description: Grants a +1 bonus to Armor Class and Saving Throw.",
          "modifiers": "armour_class+1",
-         "spell": null,
+         "spell": None,
          "img": "Cloak of Protection"
         },
         {
          "name": "The Deathstalker Mantle",
          "rarity": "Rare",
          "description": "The Shadow Itself: Once per turn when you kill an enemy, shroud yourself in primaeval darkness to become Invisible for 2 turns.",
-         "modifiers": null,
-         "spell": null,
+         "modifiers": None,
+         "spell": None,
          "img": "The Deathstalker Mantle"
         },
         {
          "name": "Shade Slayer Cloak",
          "rarity": "Very Rare",
          "description": "Stealthy Critical: While Hiding, the number you need to roll a Critical Hit while attacking is reduced by 1. This effect can stack.",
-         "modifiers": null,
-         "spell": null,
+         "modifiers": None,
+         "spell": None,
          "img": "Shade Slayer Cloak"
         },
         {
          "name": "Cindermoth Cloak",
          "rarity": "Uncommon",
          "description": "Flaming Shroud: A creature that damages the wearer within 2m / 7ft receives Burning.",
-         "modifiers": null,
-         "spell": null,
+         "modifiers": None,
+         "spell": None,
          "img": "Cindermoth Cloak"
         },
         {
          "name": "Reverse Rain Cloak",
          "rarity": "Uncommon",
          "description": "Description: The wearer is perpetually just a little bit damp.",
-         "modifiers": null,
-         "spell": null,
+         "modifiers": None,
+         "spell": None,
          "img": "Reverse Rain Cloak"
         },
     ]
