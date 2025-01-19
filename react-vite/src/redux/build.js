@@ -1,5 +1,10 @@
 import { createSelector } from "reselect";
-import { addCantripPoints, sortClasses, mustPickSC } from "../utils/helper";
+import {
+  addCantripPoints,
+  sortClasses,
+  mustPickSC,
+  addAvailableCantrips,
+} from "../utils/helper";
 
 //! --------------------------------------------------------------------
 //*                          Action Types
@@ -401,40 +406,38 @@ function buildReducer(state = initialState, action) {
         },
       };
 
-      // after adding a class/increasing a class level,
-      // use a helper function to determine whether the class has
-      // a subclass available at that level.
-      // if so, create a key in the class of "mustPickSC" and
-      // set it to true.
-      //! make sure to add logic to the save build button
-      //! that will require all classes to have sub classes
-      //! chosen. This way we don't need to track it on the backend
-
       if (newState.current.build_classes[action.payload.class_id]) {
         //If the build has this class, simply increment the classes level
         newState.current.build_classes[action.payload.class_id].level++;
-
-        newState.current.build_classes[action.payload.class_id].mustPickSC =
-          mustPickSC(newState.current.build_classes[action.payload.class_id]);
       } else {
         //Otherwise, set the class level to 1, set its order, and add it to the build
         action.payload.level = 1;
 
-        action.payload.order =
-          Object.values(newState.current.build_classes).length + 1;
+        action.payload.order = Object.values(
+          newState.current.build_classes
+        ).length;
 
         newState.current.build_classes[action.payload.class_id] =
           action.payload;
       }
       newState.current.level++;
 
+      // determines whether the
+      // class has a subclass available at this level
+      // and return either true or false
       newState.current.build_classes[action.payload.class_id].mustPickSC =
         mustPickSC(newState.current.build_classes[action.payload.class_id]);
-
-      newState.current = addCantripPoints(
-        newState.current,
-        action.payload.class_id
+ 
+      // adds the proper amount of cantrip points
+      // to the build based on the new class/level
+      newState.current.cantripPoints += addCantripPoints(
+        action.payload.name,
+        newState.current.build_classes[action.payload.class_id].level
       );
+
+      // add to the availableCantrips set if new cantrips are available with this class level
+      addAvailableCantrips(action.payload, newState.current);
+
       return newState;
     }
 

@@ -46,11 +46,13 @@
 
 .selectedList {
   width: 80%;
+  min-height: 42px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   gap: 2px;
 }
+
 
 .available {
   color: #e69a28;
@@ -125,7 +127,6 @@
   margin-top: 7px;
   margin-bottom: 7px;
 }
-
 
 .cantripDetails {
   margin-top: 7px;

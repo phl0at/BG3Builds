@@ -27,18 +27,18 @@ def seed_all():
 
     ################ SEED CLASSES ################
     class_list = [
-        { 'id': 1, 'name': 'Barbarian', 'modifier': 'strength', 'description': 'The strong embrace the wild that hides inside - keen instincts, primal physicality, and most of all, an unbridled, unquenchable rage.'},
-        { 'id': 2, 'name': 'Bard', 'modifier': 'charisma', 'description': 'Bards know music is more than idle fancy - it is power. Through study and adventure, these traveling troudabours master song, speech, and the magic within'},
-        { 'id': 3, 'name': 'Cleric','modifier': 'wisdom', 'description': 'Clerics are representatives of the gods they worship, wielding potent divine magic for good or ill.'},
-        { 'id': 4, 'name': 'Druid','modifier': 'wisdom', 'description': 'Druids channel the elemental forces of nature and share a deep kinship with animals. Mastery of Wild Shape allows them to transform into beasts from all over the Realms.'},
-        { 'id': 5, 'name': 'Fighter','modifier': 'strength', 'description': 'Fighters have mastered the art of combat, wielding weapons with unmatched skill and wearing armor like a second skin.'},
-        { 'id': 6, 'name': 'Monk','modifier': 'wisdom', 'description': 'Some reach enlightenment by languid meditation - others do so in the heat of battle. Monks manipulate ki to empower their own strikes and debilitate their foes.'},
-        { 'id': 7, 'name': 'Paladin','modifier': 'charisma', 'description': 'A promise made so deeply that it becomes divine in itself flows through a paladin, burning bright enough to inspire allies and smite foes.'},
-        { 'id': 8, 'name': 'Ranger','modifier': 'dexterity', 'description': 'Rangers are unrivalled scouts and trackers, honing a deep connection with nature in order to hunt their favored prey.'},
-        { 'id': 9, 'name': 'Rogue','modifier': 'dexterity', 'description': "With stealth, skill, and uncanny reflexes, rogues' versatility lets them get the upper hand in almost any situation."},
-        { 'id': 10, 'name': 'Sorcerer','modifier': 'charisma', 'description': 'Sorcerers are natural spellcasters, drawing on inherent magic from a gift or bloodline.'},
-        { 'id': 11, 'name': 'Warlock','modifier': 'charisma', 'description': 'Bound by a pact to an all-powerful patron, warlocks trade their loyalty for supernatural abilities and unique magic.'},
-        { 'id': 12, 'name': 'Wizard','modifier': 'intelligence', 'description': 'Wizards master the arcane by specializing in individual schools of magic, combining ancient spells with modern research.'},
+        { "id": 1, "name": "Barbarian", "modifier": "strength", "description": "The strong embrace the wild that hides inside - keen instincts, primal physicality, and most of all, an unbridled, unquenchable rage."},
+        { "id": 2, "name": "Bard", "modifier": "charisma", "description": "Bards know music is more than idle fancy - it is power. Through study and adventure, these traveling troudabours master song, speech, and the magic within"},
+        { "id": 3, "name": "Cleric","modifier": "wisdom", "description": "Clerics are representatives of the gods they worship, wielding potent divine magic for good or ill."},
+        { "id": 4, "name": "Druid","modifier": "wisdom", "description": "Druids channel the elemental forces of nature and share a deep kinship with animals. Mastery of Wild Shape allows them to transform into beasts from all over the Realms."},
+        { "id": 5, "name": "Fighter","modifier": "strength", "description": "Fighters have mastered the art of combat, wielding weapons with unmatched skill and wearing armor like a second skin."},
+        { "id": 6, "name": "Monk","modifier": "wisdom", "description": "Some reach enlightenment by languid meditation - others do so in the heat of battle. Monks manipulate ki to empower their own strikes and debilitate their foes."},
+        { "id": 7, "name": "Paladin","modifier": "charisma", "description": "A promise made so deeply that it becomes divine in itself flows through a paladin, burning bright enough to inspire allies and smite foes."},
+        { "id": 8, "name": "Ranger","modifier": "dexterity","description": "Rangers are unrivalled scouts and trackers, honing a deep connection with nature in order to hunt their favored prey."},
+        { "id": 9, "name": "Rogue","modifier": "dexterity","description": "With stealth, skill, and uncanny reflexes, rogues' versatility lets them get the upper hand in almost any situation."},
+        { "id": 10, "name": "Sorcerer","modifier": "charisma", "description": "Sorcerers are natural spellcasters, drawing on inherent magic from a gift or bloodline."},
+        { "id": 11, "name": "Warlock","modifier": "charisma", "description": "Bound by a pact to an all-powerful patron, warlocks trade their loyalty for supernatural abilities and unique magic."},
+        { "id": 12, "name": "Wizard","modifier": "intelligence", "description": "Wizards master the arcane by specializing in individual schools of magic, combining ancient spells with modern research."},
     ]
 
     for classes in class_list:
@@ -54,14 +54,14 @@ def seed_all():
 
     ################ SEED ORIGINS ################
     origin_list = [
-        {'id': 1, 'name': 'Astarion', 'description': 'After two hundred years of serving a cruel master, the vampire spawn Astarion is finally free - free to walk in the sun, free to chase power, and free to take revenge.'},
-        {'id': 2, 'name': "Lae'zel", 'description': "Lae'zel was raised ready for a life amongst the stars, mercilessly conquering the cosmos as a githyanki soldier. Grounded, she must deal with a world she doesn't understand, and find a way to server her people in a plane that despises her militant kin."},
-        {'id': 3, 'name': 'Gale', 'description': "Gale's wizarding prowess once earned him the love of Mystra, the goddess of magic, until his ambition led him to the brink of catastrophe..."},
-        {'id': 4, 'name': 'Shadowheart', 'description': "Shadowheart willingly undertook a ritual to remove her memories in order to protect the secrets of her fellow Shar worshippers. Loss and pain are sacred to her, but her faith is now being tested like never before."},
-        {'id': 5, 'name': 'Wyll', 'description': "Known as 'The Blade of Frontiers', Wyll uses his magic to fell the monsters and devils menacing the Sword Coast. In a moment of desperation, he accepted an offer of greater power, forcing him into an infernal game he is struggling to play."},
-        {'id': 6, 'name': 'Karlach', 'description': "Karlach has escaped ten years of service in the Hells with nothing but the axe on her back - and the infernal engine blazing furiously where her heart used to be."},
-        {'id': 7, 'name': 'The Dark Urge', 'description':  "You remember nothing but a path paved in blood. Unimaginable cruelty whispers to you from within. Can you escape it? Would you even want to?"},
-        {'id': 8, 'name': 'Custom', 'description': "Choose your own origins and destiny!"},
+        {"id": 1, "name": "Astarion", "description": "After two hundred years of serving a cruel master, the vampire spawn Astarion is finally free - free to walk in the sun, free to chase power, and free to take revenge."},
+        {"id": 2, "name": "Lae'zel", "description": "Lae'zel was raised ready for a life amongst the stars, mercilessly conquering the cosmos as a githyanki soldier. Grounded, she must deal with a world she doesn't understand, and find a way to server her people in a plane that despises her militant kin."},
+        {"id": 3, "name": "Gale", "description": "Gale's wizarding prowess once earned him the love of Mystra, the goddess of magic, until his ambition led him to the brink of catastrophe..."},
+        {"id": 4, "name": "Shadowheart", "description": "Shadowheart willingly undertook a ritual to remove her memories in order to protect the secrets of her fellow Shar worshippers. Loss and pain are sacred to her, but her faith is now being tested like never before."},
+        {"id": 5, "name": "Wyll", "description": "Known as 'The Blade of Frontiers', Wyll uses his magic to fell the monsters and devils menacing the Sword Coast. In a moment of desperation, he accepted an offer of greater power, forcing him into an infernal game he is struggling to play."},
+        {"id": 6, "name": "Karlach", "description": "Karlach has escaped ten years of service in the Hells with nothing but the axe on her back - and the infernal engine blazing furiously where her heart used to be."},
+        {"id": 7, "name": "The Dark Urge", "description": "You remember nothing but a path paved in blood. Unimaginable cruelty whispers to you from within. Can you escape it? Would you even want to?"},
+        {"id": 8, "name": "Custom", "description": "Choose your own origins and destiny!"},
     ]
     for origin in origin_list:
         new_origin = Origin(
@@ -75,17 +75,17 @@ def seed_all():
 
     ################ SEED RACES ################
     race_list = [
-        { 'id': 1, 'name': 'Elf', 'description': "With ethereal countenances and long lifespans, elves are at home with nature's power, flourishing in light and dark alike"},
-        { 'id': 2, 'name': 'Tiefling', 'description': "Descended from devils of the Nine Hells, tieflings face constant suspicion in Faerûn. Thankfully, their arcane abilities make them natural survivors."},
-        { 'id': 3, 'name': 'Drow', 'description': "Driven to the Underdark, most drow have adopted a ruthless pragmatism. While the Lolth-sworn delight in the goddess' evil tenets, the Seldarine reject Her attempt to overthrow the leader of the elven pantheon."},
-        { 'id': 4, 'name': 'Human', 'description': "The most common face in Faerûn, humans are known for their tenacity, creativity, and endless capacity for growth."},
-        { 'id': 5, 'name': 'Githyanki', 'description': "With a ruthlessness borne from mind flayer enslavement, githyanki ride the Astral Sea atop red dragons, bringing their silver swords and psionic might to bear against any trace of the illithid menace."},
-        { 'id': 6, 'name': 'Dwarf', 'description': "As durable an unyielding as their homes of stone, dwarves are some of the finest warriors, miners, and smiths of Faerûn."},
-        { 'id': 7, 'name': 'Half-Elf', 'description': "Curious, ambitious, and versatile, half-elves are welcome everywhere, but struggle without a community to call their own."},
-        { 'id': 8, 'name': 'Halfling', 'description': "Small yet capable, halflings prefer the comforts of home and hearth - but their natural luck and dexterity makes them fine adventurers."},
-        { 'id': 9, 'name': 'Gnome', 'description': "Small, clever, and energetic, gnomes use their long lives to explore Faerûn's brightest corners and darkest depths."},
-        { 'id': 10, 'name': 'Dragonborn', 'description': "A proud race that values clan and skills above all else. Once enslaved by dragons, they strive to be self-sufficient, not wanting to be beholden to anyone, not even the gods."},
-        { 'id': 11, 'name': 'Half-Orc', 'description': "Creatures of intense emotion, half-orcs are more inclined to act than contemplate - whether the rage burning in their bodies compels them to fight, or the love filling their hearts inspires acts of incredible kindness."},
+        { "id": 1, "name": "Elf", "description": "With ethereal countenances and long lifespans, elves are at home with nature's power, flourishing in light and dark alike"},
+        { "id": 2, "name": "Tiefling", "description": "Descended from devils of the Nine Hells, tieflings face constant suspicion in Faerûn. Thankfully, their arcane abilities make them natural survivors."},
+        { "id": 3, "name": "Drow", "description": "Driven to the Underdark, most drow have adopted a ruthless pragmatism. While the Lolth-sworn delight in the goddess' evil tenets, the Seldarine reject Her attempt to overthrow the leader of the elven pantheon."},
+        { "id": 4, "name": "Human", "description": "The most common face in Faerûn, humans are known for their tenacity, creativity, and endless capacity for growth."},
+        { "id": 5, "name": "Githyanki", "description": "With a ruthlessness borne from mind flayer enslavement, githyanki ride the Astral Sea atop red dragons, bringing their silver swords and psionic might to bear against any trace of the illithid menace."},
+        { "id": 6, "name": "Dwarf", "description": "As durable an unyielding as their homes of stone, dwarves are some of the finest warriors, miners, and smiths of Faerûn."},
+        { "id": 7, "name": "Half-Elf", "description": "Curious, ambitious, and versatile, half-elves are welcome everywhere, but struggle without a community to call their own."},
+        { "id": 8, "name": "Halfling", "description": "Small yet capable, halflings prefer the comforts of home and hearth - but their natural luck and dexterity makes them fine adventurers."},
+        { "id": 9, "name": "Gnome", "description": "Small, clever, and energetic, gnomes use their long lives to explore Faerûn's brightest corners and darkest depths."},
+        { "id": 10, "name": "Dragonborn", "description": "A proud race that values clan and skills above all else. Once enslaved by dragons, they strive to be self-sufficient, not wanting to be beholden to anyone, not even the gods."},
+        { "id": 11, "name": "Half-Orc", "description": "Creatures of intense emotion, half-orcs are more inclined to act than contemplate - whether the rage burning in their bodies compels them to fight, or the love filling their hearts inspires acts of incredible kindness."},
     ]
     for race in race_list:
         new_race = Race(
@@ -98,18 +98,18 @@ def seed_all():
 
     ################ SEED BACKGROUNDS ################
     background_list = [
-        {'id': 1, 'name':"Acolyte", "description": "You have spent your life in service to a temple, learning sacred rites and providing sacrifices to the god or gods you worship. Serving the gods and discovering their sacred works will guide you to greatness." },
-        {'id': 2, 'name':"Charlatan", "description": "You're an expert in manipulation, prone to exaggeration and more than happy to profit from it. Bending the truth and turning allies against each other will lead to greater success down the road." },
-        {'id': 3, 'name':"Criminal", "description": "You have a history of breaking the law and survive by leveraging less-than-legal connections. Profiting from criminal enterprise will lead to greater opportunities in the future." },
-        {'id': 4, 'name':"Entertainer", "description": "You live to sway and subvert your audience, engaging common crowds and high society alike. Preserving art and bringing joy to the hapless and downtrodden heightens your charismatic aura." },
-        {'id': 5, 'name':"Folk Hero", "description": "You're a champion to the common people, challenging tyrants and monsters to protect the helpless. Saving innocents in imminent danger will make your legend grow." },
-        {'id': 6, 'name':"Guild Artisan", "description": "Your skill in a particular craft has earned you membership in a mercantile guild, offering privileges and protection while engaging in your art. Repairing and discovering rare crafts will bring new inspiration." },
-        {'id': 7, 'name':"Noble", "description": "You were raised in a family among the social elite, accustomed to power and privilege. Accumulating renown, power, and loyalty will raise your status." },
-        {'id': 8, 'name':"Outlander", "description": "You grew up in the wilds, learning to survive far from the comforts of civilization. Surviving unusual hazards of the wild will enhance your prowess and understanding." },
-        {'id': 9, 'name':"Sage", "description": "You are curious and well-read, with an unending thirst for knowledge. Learning about rare lore of the world will inspire you to put this knowledge to greater purpose." },
-        {'id': 10, 'name':"Soldier", "description": "You are trained in battlefield tactics and combat, having served in a militia, mercenary company, or officer corps. Show smart tactics and bravery on the battlefield to enhance you prowess." },
-        {'id': 11, 'name':"Urchin", "description": "After surviving a poor and bleak childhood, you know how to make the most out of every little. Using your street smarts bolsters your spirit for the journey ahead." },
-        {'id': 12, 'name':"Haunted One", "description": "A wicked moment, person, or thing that cannot be slain by sword or spell haunts your mind and flickers in your peripheral vision. You carry it wherever your adventure takes you - or perhaps it carries you." },
+        {"id": 1, "name":"Acolyte", "description": "You have spent your life in service to a temple, learning sacred rites and providing sacrifices to the god or gods you worship. Serving the gods and discovering their sacred works will guide you to greatness." },
+        {"id": 2, "name":"Charlatan", "description": "You're an expert in manipulation, prone to exaggeration and more than happy to profit from it. Bending the truth and turning allies against each other will lead to greater success down the road." },
+        {"id": 3, "name":"Criminal", "description": "You have a history of breaking the law and survive by leveraging less-than-legal connections. Profiting from criminal enterprise will lead to greater opportunities in the future." },
+        {"id": 4, "name":"Entertainer", "description": "You live to sway and subvert your audience, engaging common crowds and high society alike. Preserving art and bringing joy to the hapless and downtrodden heightens your charismatic aura." },
+        {"id": 5, "name":"Folk Hero", "description": "You're a champion to the common people, challenging tyrants and monsters to protect the helpless. Saving innocents in imminent danger will make your legend grow." },
+        {"id": 6, "name":"Guild Artisan", "description": "Your skill in a particular craft has earned you membership in a mercantile guild, offering privileges and protection while engaging in your art. Repairing and discovering rare crafts will bring new inspiration." },
+        {"id": 7, "name":"Noble", "description": "You were raised in a family among the social elite, accustomed to power and privilege. Accumulating renown, power, and loyalty will raise your status." },
+        {"id": 8, "name":"Outlander", "description": "You grew up in the wilds, learning to survive far from the comforts of civilization. Surviving unusual hazards of the wild will enhance your prowess and understanding." },
+        {"id": 9, "name":"Sage", "description": "You are curious and well-read, with an unending thirst for knowledge. Learning about rare lore of the world will inspire you to put this knowledge to greater purpose." },
+        {"id": 10, "name":"Soldier", "description": "You are trained in battlefield tactics and combat, having served in a militia, mercenary company, or officer corps. Show smart tactics and bravery on the battlefield to enhance you prowess." },
+        {"id": 11, "name":"Urchin", "description": "After surviving a poor and bleak childhood, you know how to make the most out of every little. Using your street smarts bolsters your spirit for the journey ahead." },
+        {"id": 12, "name":"Haunted One", "description": "A wicked moment, person, or thing that cannot be slain by sword or spell haunts your mind and flickers in your peripheral vision. You carry it wherever your adventure takes you - or perhaps it carries you." },
     ]
     for background in background_list:
         new_background = Background(
@@ -126,41 +126,41 @@ def seed_all():
 
     helmet_list = [
         {
-         'name': 'Haste Helm',
-         'type': 'Clothing',
-         'rarity': 'Rare',
-         'description': 'Smooth Start: At the start of combat, the wearer gains Momentum for 3 turns.',
-         'modifiers': None,
-         'spell': None,
-         'img': 'Haste Helm'
+         "name": "Haste Helm",
+         "type": "Clothing",
+         "rarity": "Rare",
+         "description": "Smooth Start: At the start of combat, the wearer gains Momentum for 3 turns.",
+         "modifiers": None,
+         "spell": None,
+         "img": "Haste Helm"
         },
         {
-         'name': 'Diadem of Arcane Synergy',
-         'type': 'Clothing',
-         'rarity': 'Uncommon',
-         'description': 'Synergetic Moments: When you inflict a condition, gain Arcane Synergy for 2 turns.',
-         'modifiers': None,
-         'spell': None,
-         'img': 'Diadem of Arcane Synergy'
+         "name": "Diadem of Arcane Synergy",
+         "type": "Clothing",
+         "rarity": "Uncommon",
+         "description": "Synergetic Moments: When you inflict a condition, gain Arcane Synergy for 2 turns.",
+         "modifiers": None,
+         "spell": None,
+         "img": "Diadem of Arcane Synergy"
         },
         {
 
-         'name': 'Mask of Soul Perception',
-         'type': 'Clothing',
-         'rarity': 'Very Rare',
-         'description': 'Soul Perception: Gain a +2 bonus to Attack rolls, Initiative Rolls, and Perception Checks.',
-         'modifiers': None,
-         'spell': 'Detect Thoughts',
-         'img': 'Mask of Soul Perception'
+         "name": "Mask of Soul Perception",
+         "type": "Clothing",
+         "rarity": "Very Rare",
+         "description": "Soul Perception: Gain a +2 bonus to Attack rolls, Initiative Rolls, and Perception Checks.",
+         "modifiers": None,
+         "spell": "Detect Thoughts",
+         "img": "Mask of Soul Perception"
         },
         {
-         'name': 'Circlet of Hunting',
-         'type': 'Clothing',
-         'rarity': 'Very Rare',
-         'description': "Hunter's Eye: You gain a +1d4 bonus to Attack rolls against creatures marked by Hunter's Mark, True Strike, Faerie Fire, or Guiding Bolt.",
-         'modifiers': None,
-         'spell': None,
-         'img': 'Tiara Grey'
+         "name": "Circlet of Hunting",
+         "type": "Clothing",
+         "rarity": "Very Rare",
+         "description": "Hunter's Eye: You gain a +1d4 bonus to Attack rolls against creatures marked by Hunter's Mark, True Strike, Faerie Fire, or Guiding Bolt.",
+         "modifiers": None,
+         "spell": None,
+         "img": "Tiara Grey"
         },
     ]
 
@@ -181,44 +181,44 @@ def seed_all():
 
     cloak_list = [
         {
-         'name': 'Cloak of Protection',
-         'rarity': 'Uncommon',
-         'description': 'Description: Grants a +1 bonus to Armor Class and Saving Throw.',
-         'modifiers': 'armour_class+1',
-         'spell': None,
-         'img': 'Cloak of Protection'
+         "name": "Cloak of Protection",
+         "rarity": "Uncommon",
+         "description": "Description: Grants a +1 bonus to Armor Class and Saving Throw.",
+         "modifiers": "armour_class+1",
+         "spell": null,
+         "img": "Cloak of Protection"
         },
         {
-         'name': 'The Deathstalker Mantle',
-         'rarity': 'Rare',
-         'description': 'The Shadow Itself: Once per turn when you kill an enemy, shroud yourself in primaeval darkness to become Invisible for 2 turns.',
-         'modifiers': None,
-         'spell': None,
-         'img': "The Deathstalker Mantle"
+         "name": "The Deathstalker Mantle",
+         "rarity": "Rare",
+         "description": "The Shadow Itself: Once per turn when you kill an enemy, shroud yourself in primaeval darkness to become Invisible for 2 turns.",
+         "modifiers": null,
+         "spell": null,
+         "img": "The Deathstalker Mantle"
         },
         {
-         'name': 'Shade Slayer Cloak',
-         'rarity': 'Very Rare',
-         'description': 'Stealthy Critical: While Hiding, the number you need to roll a Critical Hit while attacking is reduced by 1. This effect can stack.',
-         'modifiers': None,
-         'spell': None,
-         'img': 'Shade Slayer Cloak'
+         "name": "Shade Slayer Cloak",
+         "rarity": "Very Rare",
+         "description": "Stealthy Critical: While Hiding, the number you need to roll a Critical Hit while attacking is reduced by 1. This effect can stack.",
+         "modifiers": null,
+         "spell": null,
+         "img": "Shade Slayer Cloak"
         },
         {
-         'name': 'Cindermoth Cloak',
-         'rarity': 'Uncommon',
-         'description': 'Flaming Shroud: A creature that damages the wearer within 2m / 7ft receives Burning.',
-         'modifiers': None,
-         'spell': None,
-         'img': "Cindermoth Cloak"
+         "name": "Cindermoth Cloak",
+         "rarity": "Uncommon",
+         "description": "Flaming Shroud: A creature that damages the wearer within 2m / 7ft receives Burning.",
+         "modifiers": null,
+         "spell": null,
+         "img": "Cindermoth Cloak"
         },
         {
-         'name': 'Reverse Rain Cloak',
-         'rarity': 'Uncommon',
-         'description': 'Description: The wearer is perpetually just a little bit damp.',
-         'modifiers': None,
-         'spell': None,
-         'img': 'Reverse Rain Cloak'
+         "name": "Reverse Rain Cloak",
+         "rarity": "Uncommon",
+         "description": "Description: The wearer is perpetually just a little bit damp.",
+         "modifiers": null,
+         "spell": null,
+         "img": "Reverse Rain Cloak"
         },
     ]
 
@@ -239,56 +239,56 @@ def seed_all():
 
     armour_list = [
         {
-         'name': 'Leather Armour',
-         'type': 'Light',
-         'rarity': 'Common',
-         'description': 'Description: Dark, messy stains line the armholes of the well-used leather breastplate.',
-         'modifiers': None,
-         'spell': None,
-         'armour_class': 11,
-         'img': 'Leather Armour'
+         "name": "Leather Armour",
+         "type": "Light",
+         "rarity": "Common",
+         "description": "Description: Dark, messy stains line the armholes of the well-used leather breastplate.",
+         "modifiers": None,
+         "spell": None,
+         "armour_class": 11,
+         "img": "Leather Armour"
         },
         {
-         'name': 'Yuan Ti Scale Mail',
-         'type': 'Medium',
-         'rarity': 'Rare',
-         'description': 'Exotic Material: Add your full Dexterity Modifier to your Armour Class. Additionally, this armour does not impose Disadvantage on Stealth Ability Checks.',
-         'modifiers': None,
-         'spell': None,
-         'armour_class': 15,
-         'img': 'Scale Mail_2'
+         "name": "Yuan Ti Scale Mail",
+         "type": "Medium",
+         "rarity": "Rare",
+         "description": "Exotic Material: Add your full Dexterity Modifier to your Armour Class. Additionally, this armour does not impose Disadvantage on Stealth Ability Checks.",
+         "modifiers": None,
+         "spell": None,
+         "armour_class": 15,
+         "img": "Scale Mail_2"
         },
         {
-         'name': 'Bhaalist Armor',
-         'type': 'Light',
-         'rarity': 'Very Rare',
-         'description': 'Description: Bhaal, Lord of Murder, was forced to walk the world as a mortal man during a period of history called the Time of Troubles. He was more vulnerable than he had ever been. But Bhaal was cunning. He had contingencies in case he died.&*&Aura of Murder: Enemies within 2m / 6.5ft become Vulnerable to Piercing damage, unless they are Resistant or Immune to it.',
-         'modifiers': None,
-         'spell': None,
-         'armour_class': 14,
-         'img': 'Bhaalist Armor'
+         "name": "Bhaalist Armor",
+         "type": "Light",
+         "rarity": "Very Rare",
+         "description": "Description: Bhaal, Lord of Murder, was forced to walk the world as a mortal man during a period of history called the Time of Troubles. He was more vulnerable than he had ever been. But Bhaal was cunning. He had contingencies in case he died.&*&Aura of Murder: Enemies within 2m / 6.5ft become Vulnerable to Piercing damage, unless they are Resistant or Immune to it.",
+         "modifiers": None,
+         "spell": None,
+         "armour_class": 14,
+         "img": "Bhaalist Armor"
         },
         {
-         'name': 'Dark Justiciar Half Plate',
-         'type': 'Medium',
-         'rarity': 'Rare',
-         'description': "Description: Shar's aspect winds its way though the patterns and pauldrons of this half plate, and any light cast nearby seems to almost quiver away from it, afraid. For even the light knows that the clank of this armour is swiftly followed by the Dark Justiciar's silent blade.&*&Shar's Umbrae: While obscured, the wearer has Advantage on Stealth Checks. Additionally, gain advantage on Constitution Saving Throws",
-         'modifiers': None,
-         'spell': "Shar's Aegis",
-         'armour_class': 16,
-         'img': 'Dark Justiciar Half Plate'
+         "name": "Dark Justiciar Half Plate",
+         "type": "Medium",
+         "rarity": "Rare",
+         "description": "Description: Shar's aspect winds its way though the patterns and pauldrons of this half plate, and any light cast nearby seems to almost quiver away from it, afraid. For even the light knows that the clank of this armour is swiftly followed by the Dark Justiciar's silent blade.&*&Shar's Umbrae: While obscured, the wearer has Advantage on Stealth Checks. Additionally, gain advantage on Constitution Saving Throws",
+         "modifiers": None,
+         "spell": "Shar's Aegis",
+         "armour_class": 16,
+         "img": "Dark Justiciar Half Plate"
         },
         {
-         'name': 'Helldusk Armour',
-         'type': 'Heavy',
-         'rarity': 'Legendary',
-         'description': "Description: Carixim, soul-stuffed forgemaster of hellish Avernus, hammers away ceaselessly at new creations. Questions of morality and destiny do not concern him. Conscience is for his betters. He works with cheer, his swollen skin moaning soothingly.&*&\
+         "name": "Helldusk Armour",
+         "type": "Heavy",
+         "rarity": "Legendary",
+         "description": "Description: Carixim, soul-stuffed forgemaster of hellish Avernus, hammers away ceaselessly at new creations. Questions of morality and destiny do not concern him. Conscience is for his betters. He works with cheer, his swollen skin moaning soothingly.&*&\
             Infernal Retribution: When you succeed a Saving Throw, the caster receives Burning for 3 turns.&*&\
             Prime Aegis of Fire: You have Resistance to Fire damage and cannot be Burned. Additionally, you are considered Proficient with this armor while wearing it and you take 3 less damage from all sources.",
-         'modifiers': None,
-         'spell': "Fly",
-         'armour_class': 21,
-         'img': 'Helldusk Armour'
+         "modifiers": None,
+         "spell": "Fly",
+         "armour_class": 21,
+         "img": "Helldusk Armour"
         },
     ]
 
@@ -1058,6 +1058,18 @@ def seed_all():
             'damage': '1d10',
             'damage_type': 'Fire',
             'concentration': False,
+        },
+        {
+            'name': 'Friends',
+            'school': 'Enchantment',
+            'description': 'Gain Advantage on Charisma Checks against a non-hostile creature.',
+            'duration': 0,
+            'range': 18,
+            'radius': None,
+            'attack_save': 'cha',
+            'damage': None,
+            'damage_type': None,
+            'concentration': True,
         },
         {
             'name': 'Guidance',

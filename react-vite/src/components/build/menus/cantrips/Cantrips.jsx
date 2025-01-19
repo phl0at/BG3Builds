@@ -58,13 +58,14 @@ export default function CantripsComponent() {
             <IKImage
               onClick={() => removeCantrip(cantrip.id)}
               className={styles.cantripImg}
-              // loading="lazy"
+              loading="lazy"
               path={`cantrip_icons/${Cantrips[cantrip.id].name}.png`}
             />
           </Tooltip>
         ))}
       </div>
-      <div className={styles.available}>Available</div>
+
+      <div className={styles.available}>{`Available Points: ${cantripPoints}`}</div>
       <div className={styles.availableList}>
         {cantripsArray.map((id) => (
           <Tooltip key={id} cantrip={Cantrips[id]}>

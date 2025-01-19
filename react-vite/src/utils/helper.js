@@ -227,42 +227,91 @@ export function applyEquipmentStats(build, items) {
   return modifiedBuild;
 }
 
-export function addCantripPoints(build, id) {
-  const classes = build.build_classes;
-
-  switch (classes[id].name) {
+export function addCantripPoints(_class, level) {
+  switch (_class) {
     case "Bard": {
-      if (classes[id].level === 1) {
-        const levelOneCantrips = [2, 4, 8, 9, 10, 20, 21];
-        build.cantripPoints += 2;
-        levelOneCantrips.forEach((c) => build.availableCantrips.add(c));
-      } else if (classes[id].level === 4) {
-        build.cantripPoints++;
-      } else if (classes[id].level === 10) {
-        const levelTenCantrips = [3, 5, 6, 13, 15];
-        build.magSec = build.magSec + 2 || 2;
-        build.cantripPoints++;
-        levelTenCantrips.forEach((c) => build.availableCantrips.add(c));
+      if (level === 1) {
+        return 2;
+      } else if (level === 4) {
+        return 1;
+      } else if (level === 10) {
+        return 1;
+      } else {
+        return 0;
       }
-      break;
     }
 
     case "Cleric": {
-      if (classes[id].level === 1) {
-        const levelOneCantrips = [2, 7, 8, 12, 14, 15, 18];
-        build.cantripPoints = 3;
-        levelOneCantrips.forEach((c) => build.availableCantrips.add(c));
-      } else if(classes[id].level === 4 || classes[id].level === 10){
-        build.cantripPoints++
+      if (level === 1) {
+        return 3;
+      } else if (level === 4 || level === 10) {
+        return 1;
+      } else {
+        return 0;
       }
-      break;
+    }
+
+    case "Druid": {
+      if (level === 1) {
+        return 2;
+      } else if (level === 4 || level === 10) {
+        return 1;
+      } else {
+        return 0;
+      }
     }
 
     default: {
       break;
     }
   }
-  return build;
+}
+
+export function addAvailableCantrips(_class, build) {
+  switch (_class.name) {
+    case "Bard": {
+      if (build.build_classes[_class.class_id].level === 1) {
+        [2, 4, 7, 9, 10, 11, 21, 22].forEach((num) =>
+          build.availableCantrips.add(num)
+        );
+      } else if (build.build_classes[_class.class_id].level === 10) {
+        [3, 5, 6, 13, 15].forEach((num) => build.availableCantrips.add(num));
+      }
+      break;
+    }
+
+    case "Cleric": {
+      if (build.build_classes[_class.class_id].level === 1) {
+        [2, 8, 9, 13, 15, 16, 19].forEach((num) =>
+          build.availableCantrips.add(num)
+        );
+      }
+      break;
+    }
+
+    case "Druid": {
+      if (build.build_classes[_class.class_id].level === 1) {
+        [2, 12, 13, 15, 17, 20].forEach((num) =>
+          build.availableCantrips.add(num)
+        );
+      }
+    }
+
+    default: {
+      break;
+    }
+  }
+}
+
+export function addMagicSecrets(build) {
+  const magicSecrets = 0;
+  if ((build.level === 4) & (build.sub_class === "College of Lore")) {
+    magicSecrets += 2;
+  } else if (build.level === 10) {
+    magicSecrets += 2;
+  }
+
+  return magicSecrets;
 }
 
 export function mustPickSC(_class) {

@@ -22,6 +22,9 @@ export default function SaveBuildModal({ title, thunk }) {
   const submit = async (e) => {
     setErrors("");
     e.preventDefault();
+    const mustPickSC = Object.values(currentBuild.build_classes).find(
+      (_class) => _class.mustPickSC
+    );
     if (buildName.trim().length < 3 || buildName.length > 25) {
       setErrors("Names must be 3 to 25 characters");
     } else if (charName.trim().length < 3 || charName.length > 25) {
@@ -30,6 +33,8 @@ export default function SaveBuildModal({ title, thunk }) {
       setErrors("Please spend all ability points");
     } else if (!currentBuild.plus_1 || !currentBuild.plus_2) {
       setErrors("Please select both ability bonuses");
+    } else if (mustPickSC) {
+      setErrors(`${mustPickSC.name} has a pending Sub Class choice`);
     } else {
       const serverResponse = await dispatch(
         thunk(currentBuild, {
